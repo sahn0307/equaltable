@@ -9,9 +9,9 @@ export default function RootLayout({ children }) {
         <title>Carbon Emissions Calculator</title>
       </head>
       <body className="bg-gray-100 text-gray-800">
-        <Header />
+        {/* <Header /> */}
         <main className="container mx-auto p-4">{children}</main>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

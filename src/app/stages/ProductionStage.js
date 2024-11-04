@@ -1,15 +1,32 @@
 // src/app/stages/ProductionStage.js
 "use client";
 
+import { useEffect, useState } from 'react';
+
 export default function ProductionStage({ productionData, setProductionData }) {
+  // Local state for monthly emissions at this stage
+  const [monthlyEmissions, setMonthlyEmissions] = useState(0);
+
   // Handle input changes for production stage
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProductionData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: parseFloat(value),
     }));
   };
+
+  // Calculate monthly emissions whenever productionData changes
+  useEffect(() => {
+    const { monthlyCoffeeUsage, carbonEmissionsPerKg } = productionData;
+
+    // Calculate emissions only if values are positive numbers
+    if (monthlyCoffeeUsage > 0 && carbonEmissionsPerKg > 0) {
+      setMonthlyEmissions(monthlyCoffeeUsage * carbonEmissionsPerKg);
+    } else {
+      setMonthlyEmissions(0);
+    }
+  }, [productionData]);
 
   return (
     <div className="p-6 bg-white shadow-md rounded-md">
@@ -39,6 +56,12 @@ export default function ProductionStage({ productionData, setProductionData }) {
           className="w-full p-2 border rounded"
           placeholder="Enter emissions per kg of roasted beans"
         />
+      </div>
+
+      {/* Monthly Carbon Emissions Display */}
+      <div className="mt-4 p-4 bg-gray-100 rounded-md">
+        <h3 className="text-lg font-semibold">Monthly Carbon Emissions at this Stage</h3>
+        <p className="text-xl">{monthlyEmissions.toFixed(2)} kg CO₂</p>
       </div>
     </div>
   );

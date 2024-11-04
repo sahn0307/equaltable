@@ -71,7 +71,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-8">
-      <h2 className="text-xl font-semibold mb-4">Welcome to the Carbon Emissions Calculator</h2>
+      <h2 className="text-xl font-semibold mb-4">Equal Table Carbon Emissions Calculator</h2>
       <p>Use this tool to measure the carbon emissions from coffee production to disposal.</p>
 
       <div className="mt-8">
