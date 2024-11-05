@@ -16,8 +16,8 @@ export default function TransportationStage({ transportData, setTransportData })
     }));
   };
 
-  // Handle select changes for the transport type
-  const handleSelectChange = (e) => {
+  // Handle radio button changes for the transport type
+  const handleRadioChange = (e) => {
     const { name, value } = e.target;
     setTransportData((prevData) => ({
       ...prevData,
@@ -74,20 +74,31 @@ export default function TransportationStage({ transportData, setTransportData })
     <div className="p-6 bg-white shadow-md rounded-md">
       <h2 className="text-2xl font-bold mb-4">Transportation Stage</h2>
 
-      {/* Farm to Port Distance */}
+      {/* Farm to Airport Distance */}
       <div className="mb-4">
-        <label className="block font-medium mb-2">Distance from Farm to Port (km)</label>
-        <select
-          name="farmToPort"
-          value={transportData.transportType.farmToPort}
-          onChange={handleSelectChange}
-          className="w-full p-2 border rounded mb-2"
-        >
-          <option value="truck">Truck</option>
-          <option value="train">Train</option>
-          <option value="ship">Ship</option>
-          <option value="flight">Flight</option>
-        </select>
+        <label className="block font-medium mb-2">Distance from Farm to Airport (km)</label>
+        <div className="mb-2">
+          <label className="mr-4">
+            <input
+              type="radio"
+              name="farmToPort"
+              value="truck"
+              checked={transportData.transportType.farmToPort === 'truck'}
+              onChange={handleRadioChange}
+            />
+            Truck
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="farmToPort"
+              value="train"
+              checked={transportData.transportType.farmToPort === 'train'}
+              onChange={handleRadioChange}
+            />
+            Train
+          </label>
+        </div>
         <input
           type="number"
           name="farmToPortDistance"
@@ -98,20 +109,31 @@ export default function TransportationStage({ transportData, setTransportData })
         />
       </div>
 
-      {/* Port to Domestic Distance */}
+      {/* Port to Domestic Ports/Airports Distance */}
       <div className="mb-4">
-        <label className="block font-medium mb-2">Distance from Port to Domestic Location (km)</label>
-        <select
-          name="portToDomestic"
-          value={transportData.transportType.portToDomestic}
-          onChange={handleSelectChange}
-          className="w-full p-2 border rounded mb-2"
-        >
-          <option value="truck">Truck</option>
-          <option value="train">Train</option>
-          <option value="ship">Ship</option>
-          <option value="flight">Flight</option>
-        </select>
+        <label className="block font-medium mb-2">Distance from Ports or Airports in Coffee-Producing Countries to Domestic Ports or Airports (km)</label>
+        <div className="mb-2">
+          <label className="mr-4">
+            <input
+              type="radio"
+              name="portToDomestic"
+              value="flight"
+              checked={transportData.transportType.portToDomestic === 'flight'}
+              onChange={handleRadioChange}
+            />
+            Flight
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="portToDomestic"
+              value="ship"
+              checked={transportData.transportType.portToDomestic === 'ship'}
+              onChange={handleRadioChange}
+            />
+            Ship
+          </label>
+        </div>
         <input
           type="number"
           name="portToDomesticDistance"
@@ -122,18 +144,31 @@ export default function TransportationStage({ transportData, setTransportData })
         />
       </div>
 
-      {/* Domestic Distance */}
+      {/* Domestic Distance to Roasting Factory */}
       <div className="mb-4">
-        <label className="block font-medium mb-2">Distance from Domestic Port to Roasting Factory (km)</label>
-        <select
-          name="domestic"
-          value={transportData.transportType.domestic}
-          onChange={handleSelectChange}
-          className="w-full p-2 border rounded mb-2"
-        >
-          <option value="truck">Truck</option>
-          <option value="train">Train</option>
-        </select>
+        <label className="block font-medium mb-2">Distance from Airport or Port to Roasting Factory (km)</label>
+        <div className="mb-2">
+          <label className="mr-4">
+            <input
+              type="radio"
+              name="domestic"
+              value="truck"
+              checked={transportData.transportType.domestic === 'truck'}
+              onChange={handleRadioChange}
+            />
+            Truck
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="domestic"
+              value="train"
+              checked={transportData.transportType.domestic === 'train'}
+              onChange={handleRadioChange}
+            />
+            Train
+          </label>
+        </div>
         <input
           type="number"
           name="domesticDistance"
