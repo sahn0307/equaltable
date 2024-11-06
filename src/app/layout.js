@@ -1,7 +1,13 @@
 // src/app/layout.js
-import Header from './components/Header';
-import Footer from './components/Footer';
+// import Header from './components/Header';
+// import Footer from './components/Footer';
+import { Roboto } from 'next/font/google';
 import './styles/global.scss';
+
+const roboto = Roboto({
+  subsets: ['latin'], 
+  weight: ['400', '700'],
+});
 
 export default function RootLayout({ children }) {
   return (
@@ -9,9 +15,9 @@ export default function RootLayout({ children }) {
       <head>
         <title>Carbon Emissions Calculator</title>
       </head>
-      <body className="bg-gray-100 text-gray-800">
+      <body className={roboto.className}>
         {/* <Header /> */}
-        <main className="container mx-auto p-4">{children}</main>
+        <main className="">{children}</main>
         {/* <Footer /> */}
       </body>
     </html>
