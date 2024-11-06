@@ -64,14 +64,14 @@ export default function ProcessingStage({ processingData, setProcessingData }) {
   }, [processingData]);
 
   return (
-    <div className="p-6 bg-white shadow-md rounded-md">
-      <h2 className="text-2xl font-bold mb-4">Processing Stage</h2>
+    <div>
+      <h2>Processing Stage</h2>
 
       {/* Type of Roaster */}
-      <div className="mb-4">
-        <label className="block font-medium mb-2">Type of Roaster</label>
-        <div className="mb-2">
-          <label className="mr-4">
+      <div>
+        <label>Type of Roaster</label>
+        <div>
+          <label>
             <input
               type="radio"
               name="roasterType"
@@ -94,63 +94,63 @@ export default function ProcessingStage({ processingData, setProcessingData }) {
         </div>
       </div>
 
-      {/* Roaster Power Consumption */}
-      <div className="mb-4">
-        <label className="block font-medium mb-2">Roaster Power Consumption (kcal)</label>
-        <input
-          type="number"
-          name="powerConsumption"
-          value={processingData.powerConsumption ?? 0}
-          onChange={handleInputChange}
-          className="w-full p-2 border rounded"
-          placeholder="Enter power consumption in kcal"
-        />
-      </div>
+      {/* Roaster Power Consumption - Only displayed if Electric Roaster is selected */}
+      {processingData.roasterType === 'electric' && (
+        <div>
+          <label>Roaster Power Consumption (kcal)</label>
+          <input
+            type="number"
+            name="powerConsumption"
+            value={processingData.powerConsumption ?? 0}
+            onChange={handleInputChange}
+            placeholder="Enter power consumption in kcal"
+          />
+        </div>
+      )}
 
-      {/* Roaster Gas Consumption */}
-      <div className="mb-4">
-        <label className="block font-medium mb-2">Roaster Gas Consumption (kcal/hr)</label>
-        <input
-          type="number"
-          name="gasConsumption"
-          value={processingData.gasConsumption ?? 0}
-          onChange={handleInputChange}
-          className="w-full p-2 border rounded"
-          placeholder="Enter gas consumption in kcal/hr"
-        />
-      </div>
+      {/* Roaster Gas Consumption - Only displayed if Gas Roaster is selected */}
+      {processingData.roasterType === 'gas' && (
+        <div>
+          <label>Roaster Gas Consumption (kcal/hr)</label>
+          <input
+            type="number"
+            name="gasConsumption"
+            value={processingData.gasConsumption ?? 0}
+            onChange={handleInputChange}
+            placeholder="Enter gas consumption in kcal/hr"
+          />
+        </div>
+      )}
 
       {/* Roaster Usage Time */}
-      <div className="mb-4">
-        <label className="block font-medium mb-2">Roaster Usage Time (hrs)</label>
+      <div>
+        <label>Roaster Usage Time (hrs)</label>
         <input
           type="number"
           name="usageTime"
           value={processingData.usageTime ?? 0}
           onChange={handleInputChange}
-          className="w-full p-2 border rounded"
           placeholder="Enter usage time in hours"
         />
       </div>
 
       {/* Roaster Production Quantity */}
-      <div className="mb-4">
-        <label className="block font-medium mb-2">Roaster Production Quantity (kg)</label>
+      <div>
+        <label>Roaster Production Quantity (kg)</label>
         <input
           type="number"
           name="productionQuantity"
           value={processingData.productionQuantity ?? 0}
           onChange={handleInputChange}
-          className="w-full p-2 border rounded"
           placeholder="Enter production quantity in kg"
         />
       </div>
 
       {/* Smoke Eliminator Type */}
-      <div className="mb-4">
-        <label className="block font-medium mb-2">Smoke Eliminator Type</label>
-        <div className="mb-2">
-          <label className="mr-4">
+      <div>
+        <label>Smoke Eliminator Type</label>
+        <div>
+          <label>
             <input
               type="radio"
               name="smokeEliminator"
@@ -160,7 +160,7 @@ export default function ProcessingStage({ processingData, setProcessingData }) {
             />
             Smoke Eliminator
           </label>
-          <label className="mr-4">
+          <label>
             <input
               type="radio"
               name="smokeEliminator"
@@ -185,14 +185,13 @@ export default function ProcessingStage({ processingData, setProcessingData }) {
 
       {/* Smoke Eliminator Power Consumption */}
       {processingData.smokeEliminator === 'smokeEliminator' && (
-        <div className="mb-4">
-          <label className="block font-medium mb-2">Smoke Eliminator Power Consumption (kW)</label>
+        <div>
+          <label>Smoke Eliminator Power Consumption (kW)</label>
           <input
             type="number"
             name="smokeEliminatorPowerConsumption"
             value={processingData.smokeEliminatorPowerConsumption ?? 0}
             onChange={handleInputChange}
-            className="w-full p-2 border rounded"
             placeholder="Enter power consumption in kW"
           />
         </div>
@@ -200,14 +199,13 @@ export default function ProcessingStage({ processingData, setProcessingData }) {
 
       {/* Afterburner Power Consumption */}
       {processingData.smokeEliminator === 'afterburner' && (
-        <div className="mb-4">
-          <label className="block font-medium mb-2">Afterburner Power Consumption (kW)</label>
+        <div>
+          <label>Afterburner Power Consumption (kW)</label>
           <input
             type="number"
             name="afterburnerPowerConsumption"
             value={processingData.afterburnerPowerConsumption ?? 0}
             onChange={handleInputChange}
-            className="w-full p-2 border rounded"
             placeholder="Enter power consumption in kW"
           />
         </div>
@@ -215,14 +213,13 @@ export default function ProcessingStage({ processingData, setProcessingData }) {
 
       {/* Afterburner Gas Consumption */}
       {processingData.smokeEliminator === 'afterburner' && (
-        <div className="mb-4">
-          <label className="block font-medium mb-2">Afterburner Gas Consumption (kcal/hr)</label>
+        <div>
+          <label>Afterburner Gas Consumption (kcal/hr)</label>
           <input
             type="number"
             name="afterburnerGasConsumption"
             value={processingData.afterburnerGasConsumption ?? 0}
             onChange={handleInputChange}
-            className="w-full p-2 border rounded"
             placeholder="Enter gas consumption in kcal/hr"
           />
         </div>
@@ -230,38 +227,22 @@ export default function ProcessingStage({ processingData, setProcessingData }) {
 
       {/* Afterburner Usage Time */}
       {processingData.smokeEliminator === 'afterburner' && (
-        <div className="mb-4">
-          <label className="block font-medium mb-2">Afterburner Usage Time (hrs)</label>
+        <div>
+          <label>Afterburner Usage Time (hrs)</label>
           <input
             type="number"
             name="afterburnerUsageTime"
             value={processingData.afterburnerUsageTime ?? 0}
             onChange={handleInputChange}
-            className="w-full p-2 border rounded"
             placeholder="Enter usage time in hours"
           />
         </div>
       )}
 
-      {/* Afterburner Production Quantity */}
-      {processingData.smokeEliminator === 'afterburner' && (
-        <div className="mb-4">
-          <label className="block font-medium mb-2">Afterburner Production Quantity (kg)</label>
-          <input
-            type="number"
-            name="afterburnerProductionQuantity"
-            value={processingData.afterburnerProductionQuantity ?? 0}
-            onChange={handleInputChange}
-            className="w-full p-2 border rounded"
-            placeholder="Enter production quantity in kg"
-          />
-        </div>
-      )}
-
       {/* Monthly Carbon Emissions Display */}
-      <div className="mt-4 p-4 bg-gray-100 rounded-md">
-        <h3 className="text-lg font-semibold">Monthly Carbon Emissions at this Stage</h3>
-        <p className="text-xl">{monthlyEmissions.toFixed(2)} kg CO₂</p>
+      <div>
+        <h3>Monthly Carbon Emissions at this Stage</h3>
+        <p>{monthlyEmissions.toFixed(2)} kg CO₂</p>
       </div>
     </div>
   );
