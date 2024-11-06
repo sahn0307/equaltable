@@ -1,6 +1,6 @@
 // src/app/stages/ProductionStage.js
 "use client";
-
+import '../styles/ProductionStage.scss';
 import { useEffect, useState } from 'react';
 
 export default function ProductionStage({ productionData, setProductionData }) {
@@ -28,41 +28,39 @@ export default function ProductionStage({ productionData, setProductionData }) {
     }
   }, [productionData]);
 
-  return (
-    <div className="p-6 bg-white shadow-md rounded-md">
-      <h2 className="text-2xl font-bold mb-4">Production Stage</h2>
+return (
+    <div>
+        <h2>Production Stage</h2>
 
-      {/* Monthly Coffee Usage */}
-      <div className="mb-4">
-        <label className="block font-medium mb-2">Monthly Coffee Usage (kg)</label>
-        <input
-          type="number"
-          name="monthlyCoffeeUsage"
-          value={productionData.monthlyCoffeeUsage}
-          onChange={handleInputChange}
-          className="w-full p-2 border rounded"
-          placeholder="Enter monthly coffee usage in kg"
-        />
-      </div>
+        {/* Monthly Coffee Usage */}
+        <div>
+            <label>Monthly Coffee Usage (kg)</label>
+            <input
+                type="number"
+                name="monthlyCoffeeUsage"
+                value={productionData.monthlyCoffeeUsage}
+                onChange={handleInputChange}
+                placeholder="Enter monthly coffee usage in kg"
+            />
+        </div>
 
-      {/* Carbon Emissions from Farm */}
-      <div className="mb-4">
-        <label className="block font-medium mb-2">Carbon Emissions from Farm (kg CO₂ per kg of roasted beans)</label>
-        <input
-          type="number"
-          name="carbonEmissionsPerKg"
-          value={productionData.carbonEmissionsPerKg}
-          onChange={handleInputChange}
-          className="w-full p-2 border rounded"
-          placeholder="Enter emissions per kg of roasted beans"
-        />
-      </div>
+        {/* Carbon Emissions from Farm */}
+        <div>
+            <label>Carbon Emissions from Farm (kg CO₂ per kg of roasted beans)</label>
+            <input
+                type="number"
+                name="carbonEmissionsPerKg"
+                value={productionData.carbonEmissionsPerKg}
+                onChange={handleInputChange}
+                placeholder="Enter emissions per kg of roasted beans"
+            />
+        </div>
 
-      {/* Monthly Carbon Emissions Display */}
-      <div className="mt-4 p-4 bg-gray-100 rounded-md">
-        <h3 className="text-lg font-semibold">Monthly Carbon Emissions at this Stage</h3>
-        <p className="text-xl">{monthlyEmissions.toFixed(2)} kg CO₂</p>
-      </div>
+        {/* Monthly Carbon Emissions Display */}
+        <div>
+            <h3>Monthly Carbon Emissions at this Stage</h3>
+            <p>{monthlyEmissions.toFixed(2)} kg CO₂</p>
+        </div>
     </div>
-  );
+);
 }

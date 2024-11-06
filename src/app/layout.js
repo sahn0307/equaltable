@@ -1,6 +1,7 @@
 // src/app/layout.js
 import Header from './components/Header';
 import Footer from './components/Footer';
+import './styles/global.scss';
 
 export default function RootLayout({ children }) {
   return (
