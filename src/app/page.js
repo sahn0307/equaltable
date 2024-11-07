@@ -84,28 +84,38 @@ export default function Home() {
 
 			<div className='stage-container'>
 				{/* Render all stages on the same page and pass down state and setters */}
-        <ProductionStage
-          productionData={productionData}
-          setProductionData={setProductionData}
-        />
-        <TransportationStage transportData={transportData} setTransportData={setTransportData} />
-          {/* <ProcessingStage processingData={processingData} setProcessingData={setProcessingData} /> */}
-          {/* <ExtractionStage extractionData={extractionData} setExtractionData={setExtractionData} /> */}
-          {/* <DisposalStage disposalData={disposalData} setDisposalData={setDisposalData} /> */}
+				<ProductionStage
+					productionData={productionData}
+					setProductionData={setProductionData}
+				/>
+				<TransportationStage
+					transportData={transportData}
+					setTransportData={setTransportData}
+				/>
+				<ProcessingStage
+					processingData={processingData}
+					setProcessingData={setProcessingData}
+				/>
+				<ExtractionStage
+					extractionData={extractionData}
+					setExtractionData={setExtractionData}
+				/>
+				<DisposalStage
+					disposalData={disposalData}
+					setDisposalData={setDisposalData}
+				/>
 			</div>
 
 			{/* Button to show the emission summary */}
-			<div className='mt-8 text-center'>
-				<button
-					onClick={handleShowSummary}
-					className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded'>
+			<div>
+				<button onClick={handleShowSummary}>
 					Calculate Total Emissions
 				</button>
 			</div>
 
 			{/* Emission Summary Display */}
 			{showSummary && (
-				<div className='mt-8'>
+				<div>
 					<EmissionSummary
 						productionData={summaryData.productionData}
 						transportData={summaryData.transportData}

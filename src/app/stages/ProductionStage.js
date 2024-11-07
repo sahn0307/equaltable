@@ -34,16 +34,16 @@ export default function ProductionStage({ productionData, setProductionData }) {
 			{/* Monthly Coffee Usage */}
 			<div className='question-group'>
 				<label>Monthly Coffee Usage (kg)</label>
-        <div className='row-group'>
-          <input
-            type='number'
-            name='monthlyCoffeeUsage'
-            value={productionData.monthlyCoffeeUsage}
-            onChange={handleInputChange}
-            placeholder='Enter monthly coffee usage in kg'
-          />
-          <span className='unit'>kg</span>
-        </div>
+				<div className='row-group'>
+					<input
+						type='number'
+						name='monthlyCoffeeUsage'
+						value={productionData.monthlyCoffeeUsage}
+						onChange={handleInputChange}
+						placeholder='Enter monthly coffee usage in kg'
+					/>
+					<span className='unit'>kg</span>
+				</div>
 			</div>
 			{/* Carbon Emissions from Farm */}
 			<div className='question-group'>
@@ -59,7 +59,7 @@ export default function ProductionStage({ productionData, setProductionData }) {
 				/>
 			</div>
 			{/* Monthly Carbon Emissions Display */}
-			<div>
+			<div className='carbon-summary'>
 				<h4>Monthly Carbon Emissions at this Stage</h4>
 				<p>{monthlyEmissions.toFixed(2)} kg CO₂</p>
 			</div>

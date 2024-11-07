@@ -76,15 +76,12 @@ export default function TransportationStage({
 
 	return (
 		<section className='stage-column'>
-			<h3 >Transportation Stage</h3>
-
+			<h3>Transportation Stage</h3>
 			{/* Farm to Airport Distance */}
 			<div className='question-group'>
-				<label className='block font-medium mb-2'>
-					Distance from Farm to Airport (km)
-				</label>
-				<div className='mb-2'>
-					<label className='mr-4'>
+				<label>Distance from Farm to Airport (km)</label>
+				<div>
+					<label>
 						<input
 							type='radio'
 							name='farmToPort'
@@ -116,11 +113,10 @@ export default function TransportationStage({
 					name='farmToPortDistance'
 					value={transportData.farmToPortDistance}
 					onChange={handleInputChange}
-					className='w-full p-2 border rounded'
+					// className='w-full p-2 border rounded'
 					placeholder='Enter distance in km'
 				/>
 			</div>
-
 			{/* Port to Domestic Ports/Airports Distance */}
 			<div className='question-group'>
 				<label className='block font-medium mb-2'>
@@ -201,17 +197,15 @@ export default function TransportationStage({
 					name='domesticDistance'
 					value={transportData.domesticDistance}
 					onChange={handleInputChange}
-					className='w-full p-2 border rounded'
+					// className='w-full p-2 border rounded'
 					placeholder='Enter distance in km'
 				/>
 			</div>
 
 			{/* Monthly Carbon Emissions Display */}
-			<div className='mt-4 p-4 bg-gray-100 rounded-md'>
-				<h4 className='text-lg font-semibold'>
-					Monthly Carbon Emissions at this Stage
-				</h4>
-				<p className='text-xl'>{monthlyEmissions.toFixed(2)} kg CO₂</p>
+			<div className='carbon-summary'>
+				<h4>Monthly Carbon Emissions at this Stage</h4>
+				<p>{monthlyEmissions.toFixed(2)} kg CO₂</p>
 			</div>
 		</section>
 	)
