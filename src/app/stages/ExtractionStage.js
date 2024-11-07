@@ -69,7 +69,7 @@ export default function ExtractionStage({ extractionData, setExtractionData }) {
 				<label>
 					Type of Grinder
 				</label>
-				<div>
+				<div className='radio-group'>
 					<label>
 						<input
 							type='radio'
@@ -145,7 +145,7 @@ export default function ExtractionStage({ extractionData, setExtractionData }) {
 				<label>
 					Is Extractor Power Used?
 				</label>
-				<div>
+				<div className='radio-group'>
 					<label>
 						<input
 							type='radio'

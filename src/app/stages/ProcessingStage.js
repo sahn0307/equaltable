@@ -88,7 +88,7 @@ export default function ProcessingStage({ processingData, setProcessingData }) {
 			{/* Type of Roaster */}
 			<div className='question-group'>
 				<label>Type of Roaster</label>
-				<div>
+				<div className='radio-group'>
 					<label>
 						<input
 							type='radio'
@@ -167,7 +167,7 @@ export default function ProcessingStage({ processingData, setProcessingData }) {
 			{/* Smoke Eliminator Type */}
 			<div className='question-group'>
 				<label>Smoke Eliminator Type</label>
-				<div>
+				<div className='radio-group'>
 					<label>
 						<input
 							type='radio'

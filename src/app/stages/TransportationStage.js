@@ -80,7 +80,7 @@ export default function TransportationStage({
 			{/* Farm to Airport Distance */}
 			<div className='question-group'>
 				<label>Distance from Farm to Airport (km)</label>
-				<div>
+				<div className='radio-group'>
 					<label>
 						<input
 							type='radio'
@@ -119,11 +119,11 @@ export default function TransportationStage({
 			</div>
 			{/* Port to Domestic Ports/Airports Distance */}
 			<div className='question-group'>
-				<label className='block font-medium mb-2'>
+				<label>
 					Distance from Ports or Airports in Coffee-Producing
 					Countries to Domestic Ports or Airports (km)
 				</label>
-				<div className='mb-2'>
+				<div className='radio-group'>
 					<label className='mr-4'>
 						<input
 							type='radio'
@@ -166,8 +166,8 @@ export default function TransportationStage({
 				<label className='block font-medium mb-2'>
 					Distance from Airport or Port to Roasting Factory (km)
 				</label>
-				<div className='mb-2'>
-					<label className='mr-4'>
+				<div className='radio-group'>
+					<label>
 						<input
 							type='radio'
 							name='domestic'

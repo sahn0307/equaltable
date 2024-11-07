@@ -33,7 +33,6 @@ body {
   font-family: $font-body;
   font-weight: $regular;
   font-size: 17px;
-  line-height: 1.6;
   color: $mid-grey;
   background-color: $body-bg;
 }
@@ -53,6 +52,7 @@ h3 {
 
 p {
   color: $mid-grey;
+  line-height: 1.6;
 }
 
 // Container Styling for the Entire Application
@@ -117,21 +117,24 @@ p {
     color: $text;
     // float:
   }
+  .radio-group {
+    // margin-top: 15px;
+    // margin-bottom: 20px;
+  
+    label {
+      font-size: 12px;
+      font-weight: $regular;
+      color: $dk-grey;
+      margin-right: 10px;
+    }
+    input {
+      height: 5px;
+      width: 5px;
+      margin-right: 7px;
+      accent-color: $accent-bright;
+    }
+  }
 }
-
-
-// .radio-group {
-//   margin-top: 15px;
-//   margin-bottom: 20px;
-
-//   label {
-//     font-size: 12px;
-//     font-weight: $bold;
-//     color: $dk-grey;
-//   }
-// }
-
-
 
 .carbon-summary {
   // background-color: #e6f7ff;

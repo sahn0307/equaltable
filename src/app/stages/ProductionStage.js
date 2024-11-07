@@ -1,6 +1,6 @@
 // src/app/stages/ProductionStage.js
 'use client'
-import '../styles/ProductionStage.scss'
+// import '../styles/ProductionStage.scss'
 import { useEffect, useState } from 'react'
 
 export default function ProductionStage({ productionData, setProductionData }) {

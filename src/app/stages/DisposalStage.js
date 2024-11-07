@@ -52,7 +52,7 @@ export default function DisposalStage({ disposalData, setDisposalData }) {
 			{/* Upcycling Status */}
 			<div className='question-group'>
 				<label>Upcycling Status</label>
-				<div>
+				<div className='radio-group'>
 					<label>
 						<input
 							type='radio'
@@ -97,7 +97,7 @@ export default function DisposalStage({ disposalData, setDisposalData }) {
 				<label>
 					Use Packaging for 1kg of Coffee Bean?
 				</label>
-				<div>
+				<div className='radio-group'>
 					<label>
 						<input
 							type='radio'
@@ -123,7 +123,7 @@ export default function DisposalStage({ disposalData, setDisposalData }) {
 
 			{/* Packaging Emissions */}
 			{disposalData.packagingUsed === 'yes' && (
-				<div>
+				<div className='question-group'>
 					<label>
 						Carbon Emissions from Coffee Packaging Waste (kg)
 					</label>
