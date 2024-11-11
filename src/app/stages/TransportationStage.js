@@ -10,6 +10,7 @@ export default function TransportationStage({
 }) {
     // Local state for monthly emissions at this stage
     const [monthlyEmissions, setMonthlyEmissions] = useState(0)
+    const [isCompleted, setIsCompleted] = useState(false)
 
     // Handle input changes for the transportation stage
     const handleInputChange = (e) => {
@@ -84,7 +85,7 @@ export default function TransportationStage({
             transportType
         } = transportData
 
-        const isCompleted =
+        const completed =
             farmToPortDistance > 0 &&
             portToDomesticDistance > 0 &&
             domesticDistance > 0 &&
@@ -92,12 +93,13 @@ export default function TransportationStage({
             transportType.portToDomestic &&
             transportType.domestic
 
-        setStageCompleted(isCompleted)
+        setIsCompleted(completed)
+        setStageCompleted(completed)
     }, [transportData, setStageCompleted])
 
     return (
-        <section className='stage-column'>
-            <h3>Transportation Stage</h3>
+        <section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
+            <h3>Transportation Stage {isCompleted && <span className="checkmark">✓</span>}</h3>
             {/* Farm to Airport Distance */}
             <div className='question-group'>
                 <label>Distance from Farm to Airport (km)</label>

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 export default function DisposalStage({ disposalData, setDisposalData, setStageCompleted }) {
     // Local state for monthly emissions at this stage
     const [monthlyEmissions, setMonthlyEmissions] = useState(0)
+    const [isCompleted, setIsCompleted] = useState(false)
 
     // Handle input changes for disposal stage
     const handleInputChange = (e) => {
@@ -54,17 +55,18 @@ export default function DisposalStage({ disposalData, setDisposalData, setStageC
             packagingUsed
         } = disposalData
 
-        const isCompleted =
+        const completed =
             coffeeWasteEmissions > 0 &&
             upcyclingStatus &&
-            (packingUsed === 'no' || (packagingUsed === 'yes' && packagingEmissions > 0))
+            (packagingUsed === 'no' || (packagingUsed === 'yes' && packagingEmissions > 0))
 
-        setStageCompleted(isCompleted)
+        setIsCompleted(completed)
+        setStageCompleted(completed)
     }, [disposalData, setStageCompleted])
 
     return (
-        <section className='stage-column'>
-            <h3>Disposal Stage</h3>
+        <section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
+            <h3>Disposal Stage {isCompleted && <span className="checkmark">✓</span>}</h3>
 
             {/* Upcycling Status */}
             <div className='question-group'>
