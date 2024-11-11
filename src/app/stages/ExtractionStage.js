@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 export default function ExtractionStage({ extractionData, setExtractionData, setStageCompleted }) {
     // Local state for monthly emissions at this stage
     const [monthlyEmissions, setMonthlyEmissions] = useState(0)
+    const [isCompleted, setIsCompleted] = useState(false)
 
     // Handle input changes for the extraction stage
     const handleInputChange = (e) => {
@@ -60,16 +61,17 @@ export default function ExtractionStage({ extractionData, setExtractionData, set
             extractorPowerConsumption
         } = extractionData
 
-        const isCompleted = grinderType && usageTime > 0 && productionQuantity > 0 &&
+        const completed = grinderType && usageTime > 0 && productionQuantity > 0 &&
             (grinderType === 'electric' ? powerConsumption > 0 : true) &&
             (extractorPower === 'yes' ? extractorPowerConsumption > 0 : true)
 
-        setStageCompleted(isCompleted)
+        setIsCompleted(completed)
+        setStageCompleted(completed)
     }, [extractionData, setStageCompleted])
 
     return (
-        <section className='stage-column'>
-            <h3>Extraction Stage</h3>
+        <section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
+            <h3>Extraction Stage {isCompleted && <span className="checkmark">✓</span>}</h3>
             {/* Grinder Type */}
             <div className='question-group'>
                 <label>Grinder Type</label>

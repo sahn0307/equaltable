@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 export default function ProductionStage({ productionData, setProductionData, setStageCompleted }) {
     // Local state for monthly emissions at this stage
     const [monthlyEmissions, setMonthlyEmissions] = useState(0)
+    const [isCompleted, setIsCompleted] = useState(false)
 
     // Set default value for carbonEmissionsPerKg if not provided
     useEffect(() => {
@@ -38,16 +39,14 @@ export default function ProductionStage({ productionData, setProductionData, set
     // Check if all fields are filled out
     useEffect(() => {
         const { monthlyCoffeeUsage, carbonEmissionsPerKg } = productionData
-        if (monthlyCoffeeUsage > 0 && carbonEmissionsPerKg > 0) {
-            setStageCompleted(true)
-        } else {
-            setStageCompleted(false)
-        }
+        const completed = monthlyCoffeeUsage > 0 && carbonEmissionsPerKg > 0
+        setIsCompleted(completed)
+        setStageCompleted(completed)
     }, [productionData, setStageCompleted])
 
     return (
-        <section className='stage-column'>
-            <h3>Production Stage</h3>
+        <section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
+            <h3>Production Stage {isCompleted && <span className="checkmark">✓</span>}</h3>
             {/* Monthly Coffee Usage */}
             <div className='question-group'>
                 <label>Monthly Coffee Usage (kg)</label>

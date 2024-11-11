@@ -1,8 +1,12 @@
+// src/app/stages/ProcessingStage.js
+'use client'
+
 import { useEffect, useState } from 'react'
 
 export default function ProcessingStage({ processingData, setProcessingData, setStageCompleted }) {
     // Local state for monthly emissions at this stage
     const [monthlyEmissions, setMonthlyEmissions] = useState(0)
+    const [isCompleted, setIsCompleted] = useState(false)
 
     // Handle input changes for processing stage
     const handleInputChange = (e) => {
@@ -94,18 +98,19 @@ export default function ProcessingStage({ processingData, setProcessingData, set
             afterburnerUsageTime
         } = processingData
 
-        const isCompleted = roasterType && usageTime > 0 && productionQuantity > 0 &&
+        const completed = roasterType && usageTime > 0 && productionQuantity > 0 &&
             (roasterType === 'electric' ? powerConsumption > 0 : gasConsumption > 0) &&
             (smokeEliminator === 'smokeEliminator' ? smokeEliminatorPowerConsumption > 0 :
                 smokeEliminator === 'afterburner' ? afterburnerPowerConsumption > 0 && afterburnerGasConsumption > 0 && afterburnerUsageTime > 0 :
                     smokeEliminator === 'notInUse')
 
-        setStageCompleted(isCompleted)
+        setIsCompleted(completed)
+        setStageCompleted(completed)
     }, [processingData, setStageCompleted])
 
     return (
-        <section className='stage-column'>
-            <h3>Processing Stage</h3>
+        <section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
+            <h3>Processing Stage {isCompleted && <span className="checkmark">✓</span>}</h3>
             {/* Type of Roaster */}
             <div className='question-group'>
                 <label>Type of Roaster</label>
