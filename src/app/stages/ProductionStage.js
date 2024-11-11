@@ -1,8 +1,6 @@
-// src/app/stages/ProductionStage.js
-'use client'
 import { useEffect, useState } from 'react'
 
-export default function ProductionStage({ productionData, setProductionData }) {
+export default function ProductionStage({ productionData, setProductionData, setStageCompleted }) {
     // Local state for monthly emissions at this stage
     const [monthlyEmissions, setMonthlyEmissions] = useState(0)
 
@@ -36,6 +34,16 @@ export default function ProductionStage({ productionData, setProductionData }) {
             setMonthlyEmissions(0)
         }
     }, [productionData])
+
+    // Check if all fields are filled out
+    useEffect(() => {
+        const { monthlyCoffeeUsage, carbonEmissionsPerKg } = productionData
+        if (monthlyCoffeeUsage > 0 && carbonEmissionsPerKg > 0) {
+            setStageCompleted(true)
+        } else {
+            setStageCompleted(false)
+        }
+    }, [productionData, setStageCompleted])
 
     return (
         <section className='stage-column'>
