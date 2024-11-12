@@ -118,14 +118,17 @@ export default function Home() {
                     setStageCompleted={setDisposalStageCompleted}
                 />
             </div>
-               {/* Progress Bar */}
-               <ProgressBar
+
+            {/* Progress Bar */}
+            <ProgressBar
                 stagesCompleted={[
+                    true, // Assuming Monthly usage entry is always completed
                     isProductionStageCompleted,
                     isTransportStageCompleted,
                     isProcessingStageCompleted,
                     isExtractionStageCompleted,
-                    isDisposalStageCompleted
+                    isDisposalStageCompleted,
+                    showSummary // Assuming Check results is completed when summary is shown
                 ]}
             />
 
