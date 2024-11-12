@@ -119,6 +119,24 @@ export default function Home() {
                 />
             </div>
 
+            <div className='progress-bar-container'>
+				{/* Progress Bar */}
+				<ProgressBar
+					stagesCompleted={[
+						isProductionStageCompleted,
+						isTransportStageCompleted,
+						isProcessingStageCompleted,
+						isExtractionStageCompleted,
+						isDisposalStageCompleted
+					]}
+				/>
+				{/* Button to show the emission summary */}
+				<button className='calculate-button' onClick={handleShowSummary}>
+					Calculate Total Emissions
+				</button>
+			</div>
+            
+
             {/* Progress Bar */}
             <ProgressBar
                 stagesCompleted={[
