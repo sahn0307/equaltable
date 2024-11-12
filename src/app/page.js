@@ -119,8 +119,8 @@ export default function Home() {
                 />
             </div>
 
+            {/* Progress Bar */}
             <div className='progress-bar-container'>
-				{/* Progress Bar */}
 				<ProgressBar
 					stagesCompleted={[
 						isProductionStageCompleted,
@@ -132,30 +132,9 @@ export default function Home() {
 				/>
 				{/* Button to show the emission summary */}
 				<button className='calculate-button' onClick={handleShowSummary}>
-					Calculate Total Emissions
+                Check my monthly carbon emissions report
 				</button>
 			</div>
-            
-
-            {/* Progress Bar */}
-            <ProgressBar
-                stagesCompleted={[
-                    true, // Assuming Monthly usage entry is always completed
-                    isProductionStageCompleted,
-                    isTransportStageCompleted,
-                    isProcessingStageCompleted,
-                    isExtractionStageCompleted,
-                    isDisposalStageCompleted,
-                    showSummary // Assuming Check results is completed when summary is shown
-                ]}
-            />
-
-            {/* Button to show the emission summary */}
-            <div>
-                <button onClick={handleShowSummary}>
-                    Calculate Total Emissions
-                </button>
-            </div>
 
             {/* Emission Summary Display */}
             {showSummary && (
