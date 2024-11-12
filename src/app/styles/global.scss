@@ -6,8 +6,9 @@ $bold: 700;
 
 /* Pallet */
 $body-bg: #F1F3F2;
+$hr: #E6E9F4;
 /* i18n black, form default text, radial labels,  */
-$dk-grey: #000002; 
+$dk-grey: #000002;
 $mid-grey: #707070;
 /* forms */
 $form-title: #131523;
@@ -73,7 +74,7 @@ p {
   padding: 39px 33px 38px 34px;
   border-radius: 8px;
   border: 1px solid #ddd;
-  background: #ffffff;
+  background: $white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   display: flex;
@@ -138,7 +139,7 @@ p {
 .carbon-summary {
   // background-color: #e6f7ff;
   // 30px from bottom
-  border-top: 2px solid #E6E9F4;
+  border-top: 1.4px solid $hr;
   padding: 15px;
   margin-top: 20px;
   // display: inline-block;
@@ -161,7 +162,7 @@ p {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  background: lightgreen;
+  // background: lightgreen;
 }
 .progress-bar {
   display: flex;
