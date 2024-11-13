@@ -131,7 +131,7 @@ export default function Home() {
 					]}
 				/>
 				{/* Button to show the emission summary */}
-				<button className='calculate-button' onClick={handleShowSummary}>Check my monthly carbonemissions report
+				<button className='calculate-button' onClick={handleShowSummary}>Check my monthly carbon emissions report
 				</button>
 			</div>
 
