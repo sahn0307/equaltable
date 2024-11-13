@@ -22,7 +22,6 @@ function ProgressBar({ stagesCompleted }) {
 					{index < stages.length - 1 && (
 						<div className={`line ${stagesCompleted[index] ? 'completed' : ''}`}></div>
 					)}
-
 				</div>
 			))}
 		</div>
