@@ -102,39 +102,48 @@ export default function ExtractionStage({ extractionData, setExtractionData, set
             {/* Grinder Power Consumption - Only displayed if Electric Grinder is selected */}
             {extractionData.grinderType === 'electric' && (
                 <div className='question-group'>
-                    <label>Grinder Power Consumption (kW)</label>
-                    <input
-                        type='number'
-                        name='powerConsumption'
-                        value={extractionData.powerConsumption ?? 0}
-                        onChange={handleInputChange}
-                        placeholder='Enter power consumption in kW'
-                    />
+                    <label>Grinder Power Consumption</label>
+                    <div className='row-group'>
+                        <input
+                            type='number'
+                            name='powerConsumption'
+                            value={extractionData.powerConsumption ?? 0}
+                            onChange={handleInputChange}
+                            placeholder='Enter power consumption in kW'
+                        />
+                        <span className='unit'>kW</span>
+                    </div>
                 </div>
             )}
 
             {/* Grinder Usage Time */}
             <div className='question-group'>
-                <label>Grinder Usage Time (hrs)</label>
-                <input
-                    type='number'
-                    name='usageTime'
-                    value={extractionData.usageTime ?? 0}
-                    onChange={handleInputChange}
-                    placeholder='Enter usage time in hours'
-                />
+                <label>Grinder Usage Time</label>
+                <div className='row-group'>
+                    <input
+                        type='number'
+                        name='usageTime'
+                        value={extractionData.usageTime ?? 0}
+                        onChange={handleInputChange}
+                        placeholder='Enter usage time in hours'
+                    />
+                    <span className='unit'>hr</span>
+                </div>
             </div>
 
             {/* Grinder Production Quantity */}
             <div className='question-group'>
-                <label>Grinder Production Quantity (kg)</label>
-                <input
-                    type='number'
-                    name='productionQuantity'
-                    value={extractionData.productionQuantity ?? 0}
-                    onChange={handleInputChange}
-                    placeholder='Enter production quantity in kg'
-                />
+                <label>Grinder Production Quantity</label>
+                <div className='row-group'>
+                    <input
+                        type='number'
+                        name='productionQuantity'
+                        value={extractionData.productionQuantity ?? 0}
+                        onChange={handleInputChange}
+                        placeholder='Enter production quantity in kg'
+                    />
+                    <span className='unit'>kg</span>
+                </div>
             </div>
 
             {/* Extractor Power */}
@@ -167,14 +176,17 @@ export default function ExtractionStage({ extractionData, setExtractionData, set
             {/* Extractor Power Consumption - Only displayed if Extractor Power is Yes */}
             {extractionData.extractorPower === 'yes' && (
                 <div className='question-group'>
-                    <label>Extractor Power Consumption (kW)</label>
-                    <input
-                        type='number'
-                        name='extractorPowerConsumption'
-                        value={extractionData.extractorPowerConsumption ?? 0}
-                        onChange={handleInputChange}
-                        placeholder='Enter power consumption in kW'
-                    />
+                    <label>Extractor Power Consumption</label>
+                    <div className='row-group'>
+                        <input
+                            type='number'
+                            name='extractorPowerConsumption'
+                            value={extractionData.extractorPowerConsumption ?? 0}
+                            onChange={handleInputChange}
+                            placeholder='Enter power consumption in kW'
+                        />
+                        <span className='unit'>kW</span>
+                    </div>
                 </div>
             )}
 

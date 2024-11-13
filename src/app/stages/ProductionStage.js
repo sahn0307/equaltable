@@ -64,15 +64,18 @@ export default function ProductionStage({ productionData, setProductionData, set
             {/* Carbon Emissions from Farm */}
             <div className='question-group'>
                 <label>
-                    Carbon Emissions from Farm (kg CO₂ per kg of roasted beans)
+                    Carbon emissions from farms per kg of roasted beans
                 </label>
-                <input
-                    type='number'
-                    name='carbonEmissionsPerKg'
-                    value={productionData.carbonEmissionsPerKg || 1.64}
-                    onChange={handleInputChange}
-                    placeholder='Enter emissions per kg of roasted beans'
-                />
+                <div className='row-group'>
+                    <input
+                        type='number'
+                        name='carbonEmissionsPerKg'
+                        value={productionData.carbonEmissionsPerKg || 1.64}
+                        onChange={handleInputChange}
+                        placeholder='Enter emissions per kg of roasted beans'
+                    />
+                    <span className='unit'>kg</span>
+                </div>
             </div>
             {/* Monthly Carbon Emissions Display */}
             <div className='carbon-summary'>

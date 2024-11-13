@@ -99,15 +99,18 @@ export default function DisposalStage({ disposalData, setDisposalData, setStageC
             <div className='question-group'>
                 <label>
                     Carbon Emissions of Coffee Grounds Waste per 1kg of Coffee
-                    Beans (kg)
+                    Beans
                 </label>
-                <input
-                    type='number'
-                    name='coffeeWasteEmissions'
-                    value={disposalData.coffeeWasteEmissions || 0.34}
-                    onChange={handleInputChange}
-                    placeholder='Enter carbon emissions for coffee grounds waste'
-                />
+                <div className='row-group'>
+                    <input
+                        type='number'
+                        name='coffeeWasteEmissions'
+                        value={disposalData.coffeeWasteEmissions || 0.34}
+                        onChange={handleInputChange}
+                        placeholder='Enter carbon emissions for coffee grounds waste'
+                    />
+                    <span className='unit'>kg</span>
+                </div>
             </div>
 
             {/* Packaging Usage */}
@@ -143,15 +146,18 @@ export default function DisposalStage({ disposalData, setDisposalData, setStageC
             {disposalData.packagingUsed === 'yes' && (
                 <div className='question-group'>
                     <label>
-                        Carbon Emissions from Coffee Packaging Waste (kg)
+                        Carbon Emissions from Coffee Packaging Waste
                     </label>
-                    <input
-                        type='number'
-                        name='packagingEmissions'
-                        value={disposalData.packagingEmissions || 0.049}
-                        onChange={handleInputChange}
-                        placeholder='Enter carbon emissions from packaging waste'
-                    />
+                    <div className='row-group'>
+                        <input
+                            type='number'
+                            name='packagingEmissions'
+                            value={disposalData.packagingEmissions || 0.049}
+                            onChange={handleInputChange}
+                            placeholder='Enter carbon emissions from packaging waste'
+                        />
+                        <span className='unit'>kg</span>
+                    </div>
                 </div>
             )}
 

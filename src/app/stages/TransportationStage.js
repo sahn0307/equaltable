@@ -102,7 +102,7 @@ export default function TransportationStage({
             <h3>Transportation Stage {isCompleted && <span className="checkmark">✓</span>}</h3>
             {/* Farm to Airport Distance */}
             <div className='question-group'>
-                <label>Distance from Farm to Airport (km)</label>
+                <label>Distance from Farm to Airport</label>
                 <div className='radio-group'>
                     <label>
                         <input
@@ -131,22 +131,25 @@ export default function TransportationStage({
                         Train
                     </label>
                 </div>
-                <input
-                    type='number'
-                    name='farmToPortDistance'
-                    value={transportData.farmToPortDistance}
-                    onChange={handleInputChange}
-                    placeholder='Enter distance in km'
-                />
+                <div className='row-group'>
+                    <input
+                        type='number'
+                        name='farmToPortDistance'
+                        value={transportData.farmToPortDistance}
+                        onChange={handleInputChange}
+                        placeholder='Enter distance in km'
+                    />
+                    <span className='unit'>km</span>
+                </div>
             </div>
             {/* Port to Domestic Ports/Airports Distance */}
             <div className='question-group'>
                 <label>
                     Distance from Ports or Airports in Coffee-Producing
-                    Countries to Domestic Ports or Airports (km)
+                    Countries to Domestic Ports or Airports
                 </label>
                 <div className='radio-group'>
-                    <label className='mr-4'>
+                    <label>
                         <input
                             type='radio'
                             name='portToDomestic'
@@ -173,20 +176,23 @@ export default function TransportationStage({
                         Ship
                     </label>
                 </div>
-                <input
-                    type='number'
-                    name='portToDomesticDistance'
-                    value={transportData.portToDomesticDistance}
-                    onChange={handleInputChange}
-                    className='w-full p-2 border rounded'
-                    placeholder='Enter distance in km'
-                />
+                <div className='row-group'>
+                    <input
+                        type='number'
+                        name='portToDomesticDistance'
+                        value={transportData.portToDomesticDistance}
+                        onChange={handleInputChange}
+                        className='w-full p-2 border rounded'
+                        placeholder='Enter distance in km'
+                    />
+                    <span className='unit'>km</span>
+                </div>
             </div>
 
             {/* Domestic Distance to Roasting Factory */}
             <div className='question-group'>
-                <label className='block font-medium mb-2'>
-                    Distance from Airport or Port to Roasting Factory (km)
+                <label>
+                    Distance from Airport or Port to Roasting Factory
                 </label>
                 <div className='radio-group'>
                     <label>
@@ -214,13 +220,17 @@ export default function TransportationStage({
                         Train
                     </label>
                 </div>
-                <input
-                    type='number'
-                    name='domesticDistance'
-                    value={transportData.domesticDistance}
-                    onChange={handleInputChange}
-                    placeholder='Enter distance in km'
-                />
+                <div className='row-group'>
+                    <input
+                        type='number'
+                        name='domesticDistance'
+                        value={transportData.domesticDistance}
+                        onChange={handleInputChange}
+                        placeholder='Enter distance in km'
+                    />
+                    <span className='unit'>km</span>
+                </div>
+
             </div>
 
             {/* Monthly Carbon Emissions Display */}
