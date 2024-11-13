@@ -70,28 +70,30 @@ export default function DisposalStage({ disposalData, setDisposalData, setStageC
 
             {/* Upcycling Status */}
             <div className='question-group'>
-                <label>Upcycling Status</label>
-                <div className='radio-group'>
-                    <label>
-                        <input
-                            type='radio'
-                            name='upcyclingStatus'
-                            value='yes'
-                            checked={disposalData.upcyclingStatus === 'yes'}
-                            onChange={handleRadioChange}
-                        />
-                        Yes
-                    </label>
-                    <label>
-                        <input
-                            type='radio'
-                            name='upcyclingStatus'
-                            value='no'
-                            checked={disposalData.upcyclingStatus === 'no'}
-                            onChange={handleRadioChange}
-                        />
-                        No
-                    </label>
+                <div className='question-row'>
+                    <label>Upcycling Status</label>
+                    <div className='radio-group'>
+                        <label>
+                            <input
+                                type='radio'
+                                name='upcyclingStatus'
+                                value='yes'
+                                checked={disposalData.upcyclingStatus === 'yes'}
+                                onChange={handleRadioChange}
+                            />
+                            Yes
+                        </label>
+                        <label>
+                            <input
+                                type='radio'
+                                name='upcyclingStatus'
+                                value='no'
+                                checked={disposalData.upcyclingStatus === 'no'}
+                                onChange={handleRadioChange}
+                            />
+                            No
+                        </label>
+                    </div>
                 </div>
             </div>
 

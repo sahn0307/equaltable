@@ -5,19 +5,16 @@ $regular: 400;
 $medium: 500;
 $bold: 700;
 
-/* Pallet */
+/* Palette */
+$white: #fff;
 $body-bg: #F1F3F2;
 $hr: #E6E9F4;
-/* i18n black, form default text, radial labels,  */
-$dk-grey: #000002;
-$mid-grey: #707070;
-/* forms */
-$form-title: #131523;
-$white: #fff;
 $text-field-bg: #F1F3F2;
-$placeholder-txt: #7e7f8180;
-/* progress bar black, measurment(kg, kw, km), information txt */
+$mid-grey: #707070;
 $text: #7E7F81;
+$placeholder-txt: #7e7f8180;
+$form-title: #131523;
+$dk-grey: #000002;
 $accent: #D16E11;
 $accent-bright: #FE6400;
 
@@ -109,6 +106,9 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
+      .radio-group {
+        margin-top: 0;
+      }
   }
   label {
     margin-bottom: 7px;
@@ -143,10 +143,9 @@ p {
     // float:
   }
   .radio-group {
+    margin-top: 10px;
     display: flex;
     justify-content: flex-end;
-    // margin-top: 15px;
-    // margin-bottom: 20px;
     label {
       font-size: 12px;
       font-weight: $regular;
