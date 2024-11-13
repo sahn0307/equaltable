@@ -139,14 +139,14 @@ p {
 // Carbon Summary
 .carbon-summary {
   border-top: 1.4px solid $hr;
-  padding: 15px;
-  margin-top: 20px;
+  margin: 20px 15px;
+  padding-top: 32px;
   align-items: flex-end;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  // background: $text-field-bg;
+
   h4 {
     font-size: 12px;
     color: $dk-grey;
