@@ -7,7 +7,7 @@ import './styles/global.scss';
 
 const roboto = Roboto({
   subsets: ['latin'], 
-  weight: ['400', '700'],
+  weight: ['300', '400', '500', '700'],
 });
 
 // const pretendard = localFont({

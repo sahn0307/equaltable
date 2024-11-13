@@ -1,54 +1,61 @@
 import { useEffect, useState } from 'react'
 
-export default function ProductionStage({ productionData, setProductionData, setStageCompleted }) {
-    // Local state for monthly emissions at this stage
-    const [monthlyEmissions, setMonthlyEmissions] = useState(0)
-    const [isCompleted, setIsCompleted] = useState(false)
+export default function ProductionStage({
+	productionData,
+	setProductionData,
+	setStageCompleted
+}) {
+	// Local state for monthly emissions at this stage
+	const [monthlyEmissions, setMonthlyEmissions] = useState(0)
+	const [isCompleted, setIsCompleted] = useState(false)
 
-    // Set default value for carbonEmissionsPerKg if not provided
-    useEffect(() => {
-        if (productionData.carbonEmissionsPerKg === undefined) {
-            setProductionData((prevData) => ({
-                ...prevData,
-                carbonEmissionsPerKg: 1.64
-            }))
-        }
-    }, [productionData, setProductionData])
+	// Set default value for carbonEmissionsPerKg if not provided
+	useEffect(() => {
+		if (productionData.carbonEmissionsPerKg === undefined) {
+			setProductionData((prevData) => ({
+				...prevData,
+				carbonEmissionsPerKg: 1.64
+			}))
+		}
+	}, [productionData, setProductionData])
 
-    // Handle input changes for production stage
-    const handleInputChange = (e) => {
-        const { name, value } = e.target
-        setProductionData((prevData) => ({
-            ...prevData,
-            [name]: parseFloat(value)
-        }))
-    }
+	// Handle input changes for production stage
+	const handleInputChange = (e) => {
+		const { name, value } = e.target
+		setProductionData((prevData) => ({
+			...prevData,
+			[name]: parseFloat(value)
+		}))
+	}
 
-    // Calculate monthly emissions whenever productionData changes
-    useEffect(() => {
-        const { monthlyCoffeeUsage, carbonEmissionsPerKg } = productionData
+	// Calculate monthly emissions whenever productionData changes
+	useEffect(() => {
+		const { monthlyCoffeeUsage, carbonEmissionsPerKg } = productionData
 
-        // Calculate emissions only if values are positive numbers
-        if (monthlyCoffeeUsage > 0 && carbonEmissionsPerKg > 0) {
-            setMonthlyEmissions(monthlyCoffeeUsage * carbonEmissionsPerKg)
-        } else {
-            setMonthlyEmissions(0)
-        }
-    }, [productionData])
+		// Calculate emissions only if values are positive numbers
+		if (monthlyCoffeeUsage > 0 && carbonEmissionsPerKg > 0) {
+			setMonthlyEmissions(monthlyCoffeeUsage * carbonEmissionsPerKg)
+		} else {
+			setMonthlyEmissions(0)
+		}
+	}, [productionData])
 
-    // Check if all fields are filled out
-    useEffect(() => {
-        const { monthlyCoffeeUsage, carbonEmissionsPerKg } = productionData
-        const completed = monthlyCoffeeUsage > 0 && carbonEmissionsPerKg > 0
-        setIsCompleted(completed)
-        setStageCompleted(completed)
-    }, [productionData, setStageCompleted])
+	// Check if all fields are filled out
+	useEffect(() => {
+		const { monthlyCoffeeUsage, carbonEmissionsPerKg } = productionData
+		const completed = monthlyCoffeeUsage > 0 && carbonEmissionsPerKg > 0
+		setIsCompleted(completed)
+		setStageCompleted(completed)
+	}, [productionData, setStageCompleted])
 
-    return (
-        <section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
-            <h3>Production Stage {isCompleted && <span className="checkmark">✓</span>}</h3>
-            {/* Monthly Coffee Usage */}
-            <div className='question-group'>
+	return (
+		<section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
+			<h3>
+				Production Stage{' '}
+				{isCompleted && <span className='checkmark'>✓</span>}
+			</h3>
+			{/* Monthly Coffee Usage */}
+			<div className='question-group'>
                 <label>Monthly Coffee Usage (kg)</label>
                 <div className='row-group'>
                     <input
@@ -61,27 +68,47 @@ export default function ProductionStage({ productionData, setProductionData, set
                     <span className='unit'>kg</span>
                 </div>
             </div>
-            {/* Carbon Emissions from Farm */}
-            <div className='question-group'>
-                <label>
-                    Carbon emissions from farms per kg of roasted beans
-                </label>
-                <div className='row-group'>
-                    <input
-                        type='number'
-                        name='carbonEmissionsPerKg'
-                        value={productionData.carbonEmissionsPerKg || 1.64}
-                        onChange={handleInputChange}
-                        placeholder='Enter emissions per kg of roasted beans'
-                    />
-                    <span className='unit'>kg</span>
-                </div>
-            </div>
-            {/* Monthly Carbon Emissions Display */}
-            <div className='carbon-summary'>
-                <h4>Monthly Carbon Emissions at this Stage</h4>
-                <p>{monthlyEmissions.toFixed(2)} kg CO₂</p>
-            </div>
-        </section>
-    )
+			{/* Carbon Emissions from Farm */}
+			<div className='question-group'>
+				<label>
+					Carbon emissions from farms per 1kg of roasted beans
+				</label>
+				<div className='row-group'>
+					<input
+						type='number'
+						name='carbonEmissionsPerKg'
+						value={productionData.carbonEmissionsPerKg || 1.64}
+						onChange={handleInputChange}
+						placeholder='Enter emissions per kg of roasted beans'
+					/>
+					<span className='unit'>kg</span>
+				</div>
+			</div>
+			<article className='footnote'>
+				<p>
+					Please enter the carbon emissions associated with 1 kg of
+					coffee from your coffee farm. If you do not know the carbon
+					emissions from your farm, please use the preset values based
+					on the paper provided below.
+				</p>
+                <br /><br /><br />
+				<span className='bold'>Reference</span>
+				<p>
+					1. (2020)Life cycle assessment synthesis of the carbon
+					footprint of Arabica coffee
+				</p>
+                <br />
+				<p>
+					2. (2018) Environmental Impact Associated with the Supply
+					Chain and Production of Grounding and Roasting Coffee
+					through Life Cycle Analysis
+				</p>
+			</article>
+			{/* Monthly Carbon Emissions Display */}
+			<div className='carbon-summary'>
+				<h4>Monthly carbon emissions at this stage</h4>
+				<p>{monthlyEmissions.toFixed(2)} kg CO₂</p>
+			</div>
+		</section>
+	)
 }
