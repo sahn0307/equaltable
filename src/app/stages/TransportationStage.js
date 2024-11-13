@@ -182,7 +182,6 @@ export default function TransportationStage({
                         name='portToDomesticDistance'
                         value={transportData.portToDomesticDistance}
                         onChange={handleInputChange}
-                        className='w-full p-2 border rounded'
                         placeholder='Enter distance in km'
                     />
                     <span className='unit'>km</span>
