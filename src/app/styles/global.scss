@@ -54,7 +54,7 @@ p {
   line-height: 1.6;
 }
 
-// Container Styling for the Entire Application
+// Page 2 - Container Styling
 .stage-container {
   margin-top: 23px;
   flex-wrap: nowrap;
@@ -79,6 +79,7 @@ p {
   margin-bottom: 20px;
   display: flex;
   flex-flow: column nowrap;
+  position: relative;
 }
 
 .question-group {
@@ -137,15 +138,15 @@ p {
 
 // Carbon Summary
 .carbon-summary {
-  // background-color: #e6f7ff;
-  // 30px from bottom
   border-top: 1.4px solid $hr;
   padding: 15px;
   margin-top: 20px;
-  // display: inline-block;
   align-items: flex-end;
-  // align-self: flex-end;
-  // justify-content: flex-end;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // background: $text-field-bg;
   h4 {
     font-size: 12px;
     color: $dk-grey;
