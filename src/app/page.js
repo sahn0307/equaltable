@@ -85,17 +85,19 @@ export default function Home() {
 	}
 
 	return (
-		<div>
-			<h2>Measure the carbon emissions from coffee farms to disposal</h2>
-			<p>
-				This is a carbon emission calculator that allows you to know the
-				detailed carbon emissions of the coffee you use.
-			</p>
-			<p>
-				The carbon emissions are calculated based on 1 kg of raw beans,
-				and if the figures are unknown, they are entered based on an
-				international academic journal GEO paper.
-			</p>
+		<>
+            <div className='page-header'>
+                <h2>Measure the carbon emissions from coffee farms to disposal</h2>
+                <p>
+                    This is a carbon emission calculator that allows you to know the
+                    detailed carbon emissions of the coffee you use.
+                </p>
+                <p>
+                    The carbon emissions are calculated based on 1 kg of raw beans,
+                    and if the figures are unknown, they are entered based on an
+                    international academic journal GEO paper.
+                </p>
+            </div>
 
 			<div className='stage-container'>
 				{/* Render all stages on the same page and pass down state and setters */}
@@ -161,6 +163,6 @@ export default function Home() {
 					/>
 				</div>
 			)}
-		</div>
+		</>
 	)
 }

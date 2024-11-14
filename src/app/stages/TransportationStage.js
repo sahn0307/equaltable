@@ -238,6 +238,7 @@ export default function TransportationStage({
 				of the distance, you can use the site below to help measure it.
 				It is measured based on a 20FT container for ships.</p>
 			</article>
+            <a href=''  target='_blank' className='external-link'>Distance measurement site</a>
 			{/* Monthly Carbon Emissions Display */}
 			<div className='carbon-summary'>
 				<h4>Monthly carbon emissions at this stage</h4>
