@@ -127,221 +127,230 @@ export default function ProcessingStage({
 				Processing Stage{' '}
 				{isCompleted && <span className='checkmark'>✓</span>}
 			</h3>
-			{/* Type of Roaster */}
-			<div className='question-group'>
-				<div className='question-row'>
-					<label>Type of Roaster</label>
-					<div className='radio-group'>
-						<label>
+			<article className='scroll'>
+				{/* Type of Roaster */}
+				<div className='question-group'>
+					<div className='question-row'>
+						<label>Type of Roaster</label>
+						<div className='radio-group'>
+							<label>
+								<input
+									type='radio'
+									name='roasterType'
+									value='electric'
+									checked={
+										processingData.roasterType ===
+										'electric'
+									}
+									onChange={handleRadioChange}
+								/>
+								Electric
+							</label>
+							<label>
+								<input
+									type='radio'
+									name='roasterType'
+									value='gas'
+									checked={
+										processingData.roasterType === 'gas'
+									}
+									onChange={handleRadioChange}
+								/>
+								Gas
+							</label>
+						</div>
+					</div>
+				</div>
+
+				{/* Roaster Power Consumption - Only displayed if Electric Roaster is selected */}
+				{processingData.roasterType === 'electric' && (
+					<div className='question-group'>
+						<label>Roaster Power Consumption (kcal)</label>
+						<div className='row-group'>
 							<input
-								type='radio'
-								name='roasterType'
-								value='electric'
-								checked={
-									processingData.roasterType === 'electric'
-								}
-								onChange={handleRadioChange}
+								type='number'
+								name='powerConsumption'
+								value={processingData.powerConsumption ?? 0}
+								onChange={handleInputChange}
+								placeholder='Enter power consumption in kcal'
 							/>
-							Electric
-						</label>
-						<label>
+							<span className='unit'>kW</span>
+						</div>
+					</div>
+				)}
+
+				{/* Roaster Gas Consumption - Only displayed if Gas Roaster is selected */}
+				{processingData.roasterType === 'gas' && (
+					<div className='question-group'>
+						<label>Roaster Gas Consumption</label>
+						<div className='row-group'>
 							<input
-								type='radio'
-								name='roasterType'
-								value='gas'
-								checked={processingData.roasterType === 'gas'}
-								onChange={handleRadioChange}
+								type='number'
+								name='gasConsumption'
+								value={processingData.gasConsumption ?? 0}
+								onChange={handleInputChange}
+								placeholder='Enter gas consumption in kcal/hr'
 							/>
-							Gas
-						</label>
+							<span className='unit'>kcal /hr</span>
+							{/* need to fix this ^^; should not change input field width*/}
+						</div>
 					</div>
-				</div>
-			</div>
+				)}
 
-			{/* Roaster Power Consumption - Only displayed if Electric Roaster is selected */}
-			{processingData.roasterType === 'electric' && (
+				{/* Roaster Usage Time */}
 				<div className='question-group'>
-					<label>Roaster Power Consumption (kcal)</label>
+					<label>Roaster Usage Time</label>
 					<div className='row-group'>
 						<input
 							type='number'
-							name='powerConsumption'
-							value={processingData.powerConsumption ?? 0}
-							onChange={handleInputChange}
-							placeholder='Enter power consumption in kcal'
-						/>
-						<span className='unit'>kW</span>
-					</div>
-				</div>
-			)}
-
-			{/* Roaster Gas Consumption - Only displayed if Gas Roaster is selected */}
-			{processingData.roasterType === 'gas' && (
-				<div className='question-group'>
-					<label>Roaster Gas Consumption</label>
-					<div className='row-group'>
-						<input
-							type='number'
-							name='gasConsumption'
-							value={processingData.gasConsumption ?? 0}
-							onChange={handleInputChange}
-							placeholder='Enter gas consumption in kcal/hr'
-						/>
-						<span className='unit'>kcal /hr</span>
-						{/* need to fix this ^^; should not change input field width*/}
-					</div>
-				</div>
-			)}
-
-			{/* Roaster Usage Time */}
-			<div className='question-group'>
-				<label>Roaster Usage Time</label>
-				<div className='row-group'>
-					<input
-						type='number'
-						name='usageTime'
-						value={processingData.usageTime ?? 0}
-						onChange={handleInputChange}
-						placeholder='Enter usage time in hours'
-					/>
-					<span className='unit'>hr</span>
-				</div>
-			</div>
-
-			{/* Roaster Production Quantity */}
-			<div className='question-group'>
-				<label>Roaster Production Quantity</label>
-				<div className='row-group'>
-					<input
-						type='number'
-						name='productionQuantity'
-						value={processingData.productionQuantity ?? 0}
-						onChange={handleInputChange}
-						placeholder='Enter production quantity in kg'
-					/>
-					<span className='unit'>kg</span>
-				</div>
-			</div>
-
-			{/* Smoke Eliminator Type */}
-			<div className='question-group'>
-				<label>Smoke Eliminator Type</label>
-				<div className='radio-group'>
-					<label>
-						<input
-							type='radio'
-							name='smokeEliminator'
-							value='smokeEliminator'
-							checked={
-								processingData.smokeEliminator ===
-								'smokeEliminator'
-							}
-							onChange={handleRadioChange}
-						/>
-						Smoke Eliminator
-					</label>
-					<label>
-						<input
-							type='radio'
-							name='smokeEliminator'
-							value='afterburner'
-							checked={
-								processingData.smokeEliminator === 'afterburner'
-							}
-							onChange={handleRadioChange}
-						/>
-						Afterburner
-					</label>
-					<label>
-						<input
-							type='radio'
-							name='smokeEliminator'
-							value='notInUse'
-							checked={
-								processingData.smokeEliminator === 'notInUse'
-							}
-							onChange={handleRadioChange}
-						/>
-						Not in Use
-					</label>
-				</div>
-			</div>
-
-			{/* Smoke Eliminator Power Consumption */}
-			{processingData.smokeEliminator === 'smokeEliminator' && (
-				<div className='question-group'>
-					<label>Smoke Eliminator Power Consumption</label>
-					<div className='row-group'>
-						<input
-							type='number'
-							name='smokeEliminatorPowerConsumption'
-							value={
-								processingData.smokeEliminatorPowerConsumption ??
-								0
-							}
-							onChange={handleInputChange}
-							placeholder='Enter power consumption in kW'
-						/>
-						<span className='unit'>kW</span>
-					</div>
-				</div>
-			)}
-
-			{/* Afterburner Power Consumption */}
-			{processingData.smokeEliminator === 'afterburner' && (
-				<div className='question-group'>
-					<label>Afterburner Power Consumption</label>
-					<div className='row-group'>
-						<input
-							type='number'
-							name='afterburnerPowerConsumption'
-							value={
-								processingData.afterburnerPowerConsumption ?? 0
-							}
-							onChange={handleInputChange}
-							placeholder='Enter power consumption in kW'
-						/>
-						<span className='unit'>kW</span>
-					</div>
-				</div>
-			)}
-
-			{/* Afterburner Gas Consumption */}
-			{processingData.smokeEliminator === 'afterburner' && (
-				<div className='question-group'>
-					<label>Afterburner Gas Consumption</label>
-					<div className='row-group'>
-						<input
-							type='number'
-							name='afterburnerGasConsumption'
-							value={
-								processingData.afterburnerGasConsumption ?? 0
-							}
-							onChange={handleInputChange}
-							placeholder='Enter gas consumption in kcal/hr'
-						/>
-						<span className='unit'>kcal /hr</span>
-					</div>
-					{/* need to fix this ^^; should not change input field width*/}
-				</div>
-			)}
-
-			{/* Afterburner Usage Time */}
-			{processingData.smokeEliminator === 'afterburner' && (
-				<div className='question-group'>
-					<label>Afterburner Usage Time</label>
-					<div className='row-group'>
-						<input
-							type='number'
-							name='afterburnerUsageTime'
-							value={processingData.afterburnerUsageTime ?? 0}
+							name='usageTime'
+							value={processingData.usageTime ?? 0}
 							onChange={handleInputChange}
 							placeholder='Enter usage time in hours'
 						/>
 						<span className='unit'>hr</span>
 					</div>
 				</div>
-			)}
+
+				{/* Roaster Production Quantity */}
+				<div className='question-group'>
+					<label>Roaster Production Quantity</label>
+					<div className='row-group'>
+						<input
+							type='number'
+							name='productionQuantity'
+							value={processingData.productionQuantity ?? 0}
+							onChange={handleInputChange}
+							placeholder='Enter production quantity in kg'
+						/>
+						<span className='unit'>kg</span>
+					</div>
+				</div>
+
+				{/* Smoke Eliminator Type */}
+				<div className='question-group'>
+					<label>Smoke Eliminator Type</label>
+					<div className='radio-group'>
+						<label>
+							<input
+								type='radio'
+								name='smokeEliminator'
+								value='smokeEliminator'
+								checked={
+									processingData.smokeEliminator ===
+									'smokeEliminator'
+								}
+								onChange={handleRadioChange}
+							/>
+							Smoke Eliminator
+						</label>
+						<label>
+							<input
+								type='radio'
+								name='smokeEliminator'
+								value='afterburner'
+								checked={
+									processingData.smokeEliminator ===
+									'afterburner'
+								}
+								onChange={handleRadioChange}
+							/>
+							Afterburner
+						</label>
+						<label>
+							<input
+								type='radio'
+								name='smokeEliminator'
+								value='notInUse'
+								checked={
+									processingData.smokeEliminator ===
+									'notInUse'
+								}
+								onChange={handleRadioChange}
+							/>
+							Not in Use
+						</label>
+					</div>
+				</div>
+
+				{/* Smoke Eliminator Power Consumption */}
+				{processingData.smokeEliminator === 'smokeEliminator' && (
+					<div className='question-group'>
+						<label>Smoke Eliminator Power Consumption</label>
+						<div className='row-group'>
+							<input
+								type='number'
+								name='smokeEliminatorPowerConsumption'
+								value={
+									processingData.smokeEliminatorPowerConsumption ??
+									0
+								}
+								onChange={handleInputChange}
+								placeholder='Enter power consumption in kW'
+							/>
+							<span className='unit'>kW</span>
+						</div>
+					</div>
+				)}
+
+				{/* Afterburner Power Consumption */}
+				{processingData.smokeEliminator === 'afterburner' && (
+					<div className='question-group'>
+						<label>Afterburner Power Consumption</label>
+						<div className='row-group'>
+							<input
+								type='number'
+								name='afterburnerPowerConsumption'
+								value={
+									processingData.afterburnerPowerConsumption ??
+									0
+								}
+								onChange={handleInputChange}
+								placeholder='Enter power consumption in kW'
+							/>
+							<span className='unit'>kW</span>
+						</div>
+					</div>
+				)}
+
+				{/* Afterburner Gas Consumption */}
+				{processingData.smokeEliminator === 'afterburner' && (
+					<div className='question-group'>
+						<label>Afterburner Gas Consumption</label>
+						<div className='row-group'>
+							<input
+								type='number'
+								name='afterburnerGasConsumption'
+								value={
+									processingData.afterburnerGasConsumption ??
+									0
+								}
+								onChange={handleInputChange}
+								placeholder='Enter gas consumption in kcal/hr'
+							/>
+							<span className='unit'>kcal /hr</span>
+						</div>
+						{/* need to fix this ^^; should not change input field width*/}
+					</div>
+				)}
+
+				{/* Afterburner Usage Time */}
+				{processingData.smokeEliminator === 'afterburner' && (
+					<div className='question-group'>
+						<label>Afterburner Usage Time</label>
+						<div className='row-group'>
+							<input
+								type='number'
+								name='afterburnerUsageTime'
+								value={processingData.afterburnerUsageTime ?? 0}
+								onChange={handleInputChange}
+								placeholder='Enter usage time in hours'
+							/>
+							<span className='unit'>hr</span>
+						</div>
+					</div>
+				)}
+			</article>
 
 			{/* Monthly Carbon Emissions Display */}
 			<div className='carbon-summary'>

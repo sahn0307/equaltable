@@ -103,142 +103,155 @@ export default function TransportationStage({
 				Transportation Stage{' '}
 				{isCompleted && <span className='checkmark'>✓</span>}
 			</h3>
-			{/* Farm to Airport Distance */}
-			<div className='question-group'>
-				<label>Distance from the farm to the airport or port</label>
-				<div className='radio-group'>
-					<label>
+			<article className='scroll'>
+				{/* Farm to Airport Distance */}
+				<div className='question-group'>
+					<label>Distance from the farm to the airport or port</label>
+					<div className='radio-group'>
+						<label>
+							<input
+								type='radio'
+								name='farmToPort'
+								value='truck'
+								checked={
+									transportData.transportType.farmToPort ===
+									'truck'
+								}
+								onChange={handleRadioChange}
+							/>
+							Truck
+						</label>
+						<label>
+							<input
+								type='radio'
+								name='farmToPort'
+								value='train'
+								checked={
+									transportData.transportType.farmToPort ===
+									'train'
+								}
+								onChange={handleRadioChange}
+							/>
+							Train
+						</label>
+					</div>
+					<div className='row-group'>
 						<input
-							type='radio'
-							name='farmToPort'
-							value='truck'
-							checked={
-								transportData.transportType.farmToPort ===
-								'truck'
-							}
-							onChange={handleRadioChange}
+							type='number'
+							name='farmToPortDistance'
+							value={transportData.farmToPortDistance}
+							onChange={handleInputChange}
+							placeholder='Enter distance in km'
 						/>
-						Truck
-					</label>
+						<span className='unit'>km</span>
+					</div>
+				</div>
+				{/* Port to Domestic Ports/Airports Distance */}
+				<div className='question-group'>
 					<label>
-						<input
-							type='radio'
-							name='farmToPort'
-							value='train'
-							checked={
-								transportData.transportType.farmToPort ===
-								'train'
-							}
-							onChange={handleRadioChange}
-						/>
-						Train
+						Distance from ports or airports in coffee-producing
+						countries to domestic ports or airports
 					</label>
-				</div>
-				<div className='row-group'>
-					<input
-						type='number'
-						name='farmToPortDistance'
-						value={transportData.farmToPortDistance}
-						onChange={handleInputChange}
-						placeholder='Enter distance in km'
-					/>
-					<span className='unit'>km</span>
-				</div>
-			</div>
-			{/* Port to Domestic Ports/Airports Distance */}
-			<div className='question-group'>
-				<label>
-					Distance from ports or airports in coffee-producing
-					countries to domestic ports or airports
-				</label>
-				<div className='radio-group'>
-					<label>
+					<div className='radio-group'>
+						<label>
+							<input
+								type='radio'
+								name='portToDomestic'
+								value='flight'
+								checked={
+									transportData.transportType
+										.portToDomestic === 'flight'
+								}
+								onChange={handleRadioChange}
+							/>
+							Flight
+						</label>
+						<label>
+							<input
+								type='radio'
+								name='portToDomestic'
+								value='ship'
+								checked={
+									transportData.transportType
+										.portToDomestic === 'ship'
+								}
+								onChange={handleRadioChange}
+							/>
+							Ship
+						</label>
+					</div>
+					<div className='row-group'>
 						<input
-							type='radio'
-							name='portToDomestic'
-							value='flight'
-							checked={
-								transportData.transportType.portToDomestic ===
-								'flight'
-							}
-							onChange={handleRadioChange}
+							type='number'
+							name='portToDomesticDistance'
+							value={transportData.portToDomesticDistance}
+							onChange={handleInputChange}
+							placeholder='Enter distance in km'
 						/>
-						Flight
-					</label>
-					<label>
-						<input
-							type='radio'
-							name='portToDomestic'
-							value='ship'
-							checked={
-								transportData.transportType.portToDomestic ===
-								'ship'
-							}
-							onChange={handleRadioChange}
-						/>
-						Ship
-					</label>
+						<span className='unit'>km</span>
+					</div>
 				</div>
-				<div className='row-group'>
-					<input
-						type='number'
-						name='portToDomesticDistance'
-						value={transportData.portToDomesticDistance}
-						onChange={handleInputChange}
-						placeholder='Enter distance in km'
-					/>
-					<span className='unit'>km</span>
-				</div>
-			</div>
 
-			{/* Domestic Distance to Roasting Factory */}
-			<div className='question-group'>
-				<label>
-					Distance from the airport or port to the roasting factory
-				</label>
-				<div className='radio-group'>
+				{/* Domestic Distance to Roasting Factory */}
+				<div className='question-group'>
 					<label>
-						<input
-							type='radio'
-							name='domestic'
-							value='truck'
-							checked={
-								transportData.transportType.domestic === 'truck'
-							}
-							onChange={handleRadioChange}
-						/>
-						Truck
+						Distance from the airport or port to the roasting
+						factory
 					</label>
-					<label>
+					<div className='radio-group'>
+						<label>
+							<input
+								type='radio'
+								name='domestic'
+								value='truck'
+								checked={
+									transportData.transportType.domestic ===
+									'truck'
+								}
+								onChange={handleRadioChange}
+							/>
+							Truck
+						</label>
+						<label>
+							<input
+								type='radio'
+								name='domestic'
+								value='train'
+								checked={
+									transportData.transportType.domestic ===
+									'train'
+								}
+								onChange={handleRadioChange}
+							/>
+							Train
+						</label>
+					</div>
+					<div className='row-group'>
 						<input
-							type='radio'
-							name='domestic'
-							value='train'
-							checked={
-								transportData.transportType.domestic === 'train'
-							}
-							onChange={handleRadioChange}
+							type='number'
+							name='domesticDistance'
+							value={transportData.domesticDistance}
+							onChange={handleInputChange}
+							placeholder='Enter distance in km'
 						/>
-						Train
-					</label>
+						<span className='unit'>km</span>
+					</div>
 				</div>
-				<div className='row-group'>
-					<input
-						type='number'
-						name='domesticDistance'
-						value={transportData.domesticDistance}
-						onChange={handleInputChange}
-						placeholder='Enter distance in km'
-					/>
-					<span className='unit'>km</span>
+				<div className='footnote'>
+					<p>
+						Please enter the distance between each unit. If you are
+						unsure of the distance, you can use the site below to
+						help measure it. It is measured based on a 20FT
+						container for ships.
+					</p>
+                    <br /><br />
 				</div>
-			</div>
-			<article className='footnote'>
-				<p>Please enter the distance between each unit. If you are unsure
-				of the distance, you can use the site below to help measure it.
-				It is measured based on a 20FT container for ships.</p>
+				<a href='' target='_blank' className='external-link'>
+					Distance measurement site
+				</a>
+                <br /><br /><br />
 			</article>
-            <a href=''  target='_blank' className='external-link'>Distance measurement site</a>
+
 			{/* Monthly Carbon Emissions Display */}
 			<div className='carbon-summary'>
 				<h4>Monthly carbon emissions at this stage</h4>
