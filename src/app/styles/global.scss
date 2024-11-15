@@ -59,9 +59,8 @@ p {
 // fix input width when kcal /hr
 // align input field and placeholders right
 // apply whatever is going on with first input to all inputs to allow alpha chars in numerical input
-// update txt for each column
-// include hr rules where needed
 // link in Transportation Stage address
+// chevron on form submission
 
 // Page 2
 .page-header {
@@ -104,7 +103,7 @@ p {
   max-height: 500px;
   overflow-y: scroll;
   padding-left: 2px;
-  padding-right: 25px;
+  padding-right: 10px;
   // background: aliceblue;
 }
 /* Style the scrollbar for WebKit browsers */
@@ -129,6 +128,12 @@ p {
 
 .bold {
   font-weight: $bold;
+}
+
+.question-container {
+  border-bottom: 1.4px solid $hr;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
 }
 
 .question-group {
@@ -183,11 +188,17 @@ p {
       color: $dk-grey;
       margin-right: 10px;
     }
+    .trim-label {
+      margin-right: 5px;
+    }
     input {
       height: 10px;
       width: 10px;
       margin-right: 5px;
       accent-color: $accent-bright;
+    }
+    .trim {
+      margin-right: 4px;
     }
   }
 }
@@ -298,6 +309,10 @@ p {
   padding: 12px 40px;
   text-align: left;
   color: $white;
+  display: flex;
+  flex-flow: row nowrap;
+  // justify-content: center;
+  align-items: center;
   background-color: $accent;
   &:hover {
     background-color: $accent-bright;

@@ -11,6 +11,7 @@ import DisposalStage from './stages/DisposalStage'
 import EmissionSummary from './stages/EmissionSummary'
 import ProgressBar from './components/ProgressBar'
 import chevron from '../../public/assets/chevron.png'
+import chevronwht from '../../public/assets/chevron-wht.png'
 
 export default function Home() {
 	// Initialize each state with all required fields and provide default values
@@ -148,6 +149,7 @@ export default function Home() {
 					className='calculate-button'
 					onClick={handleShowSummary}>
 					Check my monthly carbon emissions report
+                    <Image src={chevronwht} width={6} height={11} alt='white chevron' />
 				</button>
 			</div>
 

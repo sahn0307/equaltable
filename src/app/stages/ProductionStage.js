@@ -57,7 +57,7 @@ export default function ProductionStage({
 			<article className='scroll'>
 				{/* Monthly Coffee Usage */}
 				<div className='question-group'>
-					<label>Monthly Coffee Usage (kg)</label>
+					<label>Monthly Coffee Usage</label>
 					<div className='row-group'>
 						<input
 							type='number'

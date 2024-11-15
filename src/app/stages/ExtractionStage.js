@@ -88,86 +88,88 @@ export default function ExtractionStage({
 				{isCompleted && <span className='checkmark'>✓</span>}
 			</h3>
 			<article className='scroll'>
-				{/* Grinder Type */}
-				<div className='question-group'>
-					<div className='question-row'>
-						<label>Grinder Type</label>
-						<div className='radio-group'>
-							<label>
-								<input
-									type='radio'
-									name='grinderType'
-									value='electric'
-									checked={
-										extractionData.grinderType ===
-										'electric'
-									}
-									onChange={handleRadioChange}
-								/>
-								Electric
-							</label>
-							<label>
-								<input
-									type='radio'
-									name='grinderType'
-									value='manual'
-									checked={
-										extractionData.grinderType === 'manual'
-									}
-									onChange={handleRadioChange}
-								/>
-								Manual
-							</label>
-						</div>
-					</div>
-				</div>
+                <div className='question-container'>
+                    {/* Grinder Type */}
+                    <div className='question-group'>
+                        <div className='question-row'>
+                            <label>Grinder Type</label>
+                            <div className='radio-group'>
+                                <label>
+                                    <input
+                                        type='radio'
+                                        name='grinderType'
+                                        value='electric'
+                                        checked={
+                                            extractionData.grinderType ===
+                                            'electric'
+                                        }
+                                        onChange={handleRadioChange}
+                                    />
+                                    Electric
+                                </label>
+                                <label>
+                                    <input
+                                        type='radio'
+                                        name='grinderType'
+                                        value='manual'
+                                        checked={
+                                            extractionData.grinderType === 'manual'
+                                        }
+                                        onChange={handleRadioChange}
+                                    />
+                                    Manual
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 
-				{/* Grinder Power Consumption - Only displayed if Electric Grinder is selected */}
-				{extractionData.grinderType === 'electric' && (
-					<div className='question-group'>
-						<label>Grinder Power Consumption</label>
-						<div className='row-group'>
-							<input
-								type='number'
-								name='powerConsumption'
-								value={extractionData.powerConsumption ?? 0}
-								onChange={handleInputChange}
-								placeholder='Enter power consumption in kW'
-							/>
-							<span className='unit'>kW</span>
-						</div>
-					</div>
-				)}
+                    {/* Grinder Power Consumption - Only displayed if Electric Grinder is selected */}
+                    {extractionData.grinderType === 'electric' && (
+                        <div className='question-group'>
+                            <label>Grinder Power Consumption</label>
+                            <div className='row-group'>
+                                <input
+                                    type='number'
+                                    name='powerConsumption'
+                                    value={extractionData.powerConsumption ?? 0}
+                                    onChange={handleInputChange}
+                                    placeholder='Enter power consumption in kW'
+                                />
+                                <span className='unit'>kW</span>
+                            </div>
+                        </div>
+                    )}
 
-				{/* Grinder Usage Time */}
-				<div className='question-group'>
-					<label>Grinder Usage Time</label>
-					<div className='row-group'>
-						<input
-							type='number'
-							name='usageTime'
-							value={extractionData.usageTime ?? 0}
-							onChange={handleInputChange}
-							placeholder='Enter usage time in hours'
-						/>
-						<span className='unit'>hr</span>
-					</div>
-				</div>
+                    {/* Grinder Usage Time */}
+                    <div className='question-group'>
+                        <label>Grinder Usage Time</label>
+                        <div className='row-group'>
+                            <input
+                                type='number'
+                                name='usageTime'
+                                value={extractionData.usageTime ?? 0}
+                                onChange={handleInputChange}
+                                placeholder='Enter usage time in hours'
+                            />
+                            <span className='unit'>hr</span>
+                        </div>
+                    </div>
 
-				{/* Grinder Production Quantity */}
-				<div className='question-group'>
-					<label>Grinder Production Quantity</label>
-					<div className='row-group'>
-						<input
-							type='number'
-							name='productionQuantity'
-							value={extractionData.productionQuantity ?? 0}
-							onChange={handleInputChange}
-							placeholder='Enter production quantity in kg'
-						/>
-						<span className='unit'>kg</span>
-					</div>
-				</div>
+                    {/* Grinder Production Quantity */}
+                    <div className='question-group'>
+                        <label>Grinder Production Quantity</label>
+                        <div className='row-group'>
+                            <input
+                                type='number'
+                                name='productionQuantity'
+                                value={extractionData.productionQuantity ?? 0}
+                                onChange={handleInputChange}
+                                placeholder='Enter production quantity in kg'
+                            />
+                            <span className='unit'>kg</span>
+                        </div>
+                    </div>
+                </div>
 
 				{/* Extractor Power */}
 				<div className='question-group'>

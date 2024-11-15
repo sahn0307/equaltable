@@ -76,54 +76,60 @@ export default function DisposalStage({
 				{isCompleted && <span className='checkmark'>✓</span>}
 			</h3>
 			<article className='scroll'>
-				{/* Upcycling Status */}
-				<div className='question-group'>
-					<div className='question-row'>
-						<label>Upcycling Status</label>
-						<div className='radio-group'>
-							<label>
-								<input
-									type='radio'
-									name='upcyclingStatus'
-									value='yes'
-									checked={
-										disposalData.upcyclingStatus === 'yes'
-									}
-									onChange={handleRadioChange}
-								/>
-								Yes
-							</label>
-							<label>
-								<input
-									type='radio'
-									name='upcyclingStatus'
-									value='no'
-									checked={
-										disposalData.upcyclingStatus === 'no'
-									}
-									onChange={handleRadioChange}
-								/>
-								No
-							</label>
+				<div className='question-container'>
+					{/* Upcycling Status */}
+					<div className='question-group'>
+						<div className='question-row'>
+							<label>Upcycling Status</label>
+							<div className='radio-group'>
+								<label>
+									<input
+										type='radio'
+										name='upcyclingStatus'
+										value='yes'
+										checked={
+											disposalData.upcyclingStatus ===
+											'yes'
+										}
+										onChange={handleRadioChange}
+									/>
+									Yes
+								</label>
+								<label>
+									<input
+										type='radio'
+										name='upcyclingStatus'
+										value='no'
+										checked={
+											disposalData.upcyclingStatus ===
+											'no'
+										}
+										onChange={handleRadioChange}
+									/>
+									No
+								</label>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				{/* Coffee Grounds Waste Emissions */}
-				<div className='question-group'>
-					<label>
-						Carbon Emissions of Coffee Grounds Waste per 1kg of
-						Coffee Beans
-					</label>
-					<div className='row-group'>
-						<input
-							type='number'
-							name='coffeeWasteEmissions'
-							value={disposalData.coffeeWasteEmissions || 0.34}
-							onChange={handleInputChange}
-							placeholder='Enter carbon emissions for coffee grounds waste'
-						/>
-						<span className='unit'>kg</span>
+					{/* Coffee Grounds Waste Emissions */}
+					<div className='question-group'>
+						<label>
+							Carbon Emissions of Coffee Grounds Waste per 1kg of
+							Coffee Beans
+						</label>
+						<div className='row-group'>
+							<input
+								type='number'
+								name='coffeeWasteEmissions'
+								value={
+									disposalData.coffeeWasteEmissions || 0.34
+								}
+								onChange={handleInputChange}
+								placeholder='Enter carbon emissions for coffee grounds waste'
+							/>
+							<span className='unit'>kg</span>
+						</div>
 					</div>
 				</div>
 
@@ -172,6 +178,12 @@ export default function DisposalStage({
 						</div>
 					</div>
 				)}
+				<div className='footnote'>
+					<p>
+						If you don't enter the carbon emissions of the waste separately, the general standard of the carbon emissions
+						will be applied.
+					</p>
+				</div>
 			</article>
 
 			{/* Monthly Carbon Emissions Display */}
