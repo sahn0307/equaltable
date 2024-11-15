@@ -139,9 +139,9 @@ export default function TransportationStage({
 						<input
 							type='number'
 							name='farmToPortDistance'
+							placeholder='Enter distance in km'
 							value={transportData.farmToPortDistance}
 							onChange={handleInputChange}
-							placeholder='Enter distance in km'
 						/>
 						<span className='unit'>km</span>
 					</div>
@@ -246,6 +246,9 @@ export default function TransportationStage({
 					</p>
                     <br /><br />
 				</div>
+                {/* 
+                //*TODO:  This link needs an address! 
+                */}
 				<a href='' target='_blank' className='external-link'>
 					Distance measurement site
 				</a>

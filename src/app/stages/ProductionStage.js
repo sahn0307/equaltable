@@ -78,9 +78,9 @@ export default function ProductionStage({
 						<input
 							type='number'
 							name='carbonEmissionsPerKg'
+							placeholder='Please enter a number'
 							value={productionData.carbonEmissionsPerKg || 1.64}
 							onChange={handleInputChange}
-							placeholder='Enter emissions per kg of roasted beans'
 						/>
 						<span className='unit'>kg</span>
 					</div>

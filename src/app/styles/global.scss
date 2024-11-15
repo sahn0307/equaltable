@@ -55,12 +55,6 @@ p {
   color: $mid-grey;
   line-height: 1.6;
 }
-// p2 notes: 
-// fix input width when kcal /hr
-// align input field and placeholders right
-// apply whatever is going on with first input to all inputs to allow alpha chars in numerical input
-// link in Transportation Stage address
-// chevron on form submission
 
 // Page 2
 .page-header {
@@ -74,7 +68,6 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // border: .5px solid cyan;
 }
 
 // Common Styles for Stage Components
@@ -90,7 +83,6 @@ p {
   border-radius: 8px;
   position: relative;
   flex: 1;
-  // border: 1px solid #ddd;
   .footnote {
     margin-top: 21px;
     font-size: 10px;
@@ -104,7 +96,6 @@ p {
   overflow-y: scroll;
   padding-left: 2px;
   padding-right: 10px;
-  // background: aliceblue;
 }
 /* Style the scrollbar for WebKit browsers */
 .scroll::-webkit-scrollbar {
@@ -115,7 +106,7 @@ p {
 }
 .scroll::-webkit-scrollbar-thumb {
   background: #888; /* Set the color of the scrollbar thumb */
-  border-radius: 3px; /* Optional: Add border radius for rounded corners */
+  border-radius: 3px;
 }
 .scroll::-webkit-scrollbar-thumb:hover {
   background: #555; /* Set the color of the scrollbar thumb on hover */
@@ -155,18 +146,20 @@ p {
   input[type="text"],
   select {
     height: 47px;
-    width: 244px;
-    padding: 8px;
+    width: 240px;
     margin-top: 5px;
+    padding: 13px 15px 11px 15px;
     color: $placeholder-txt;
     font-size: 20px;
+    text-align: right;
     background-color: $lt-grey;
     box-shadow: inset 0 0 3px #ccc;
-    border-radius: 2px;
+    border-radius: 4px;
     border: none;
   }
-// input padding
-  // 13px 15px 11px
+  input::placeholder {
+    color: $placeholder-txt;
+  }
   .row-group {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -176,7 +169,6 @@ p {
     margin-left: 8px;
     font-size: 12px;
     color: $text;
-    // float:
   }
   .radio-group {
     margin-top: 10px;
@@ -225,7 +217,6 @@ p {
   position: sticky;
   bottom: 0;
   z-index: 10;
-  // background: lightgoldenrodyellow;
   h4 {
     font-size: 12px;
     color: $dk-grey;
@@ -243,7 +234,6 @@ p {
   width: 1719px;
   display: flex;
   flex-flow: row nowrap;
-  // background: lightgreen;
 }
 .progress-bar {
   margin: 0 -100px 20px 0;
@@ -311,7 +301,6 @@ p {
   color: $white;
   display: flex;
   flex-flow: row nowrap;
-  // justify-content: center;
   align-items: center;
   background-color: $accent;
   &:hover {
