@@ -7,7 +7,7 @@ import './styles/global.scss';
 
 const roboto = Roboto({
   subsets: ['latin'], 
-  weight: ['400', '700'],
+  weight: ['300', '400', '500', '700'],
 });
 
 // const pretendard = localFont({
@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={roboto.className}>
         {/* <Header /> */}
-        <main className="">{children}</main>
+        <main>{children}</main>
         {/* <Footer /> */}
       </body>
     </html>

@@ -1,9 +1,9 @@
 // src/app/components/Header.js
 export default function Header() {
     return (
-      <header className="bg-white shadow p-4">
-        <div className="container mx-auto">
-          <h1 className="text-2xl font-bold">Equal Emissions Calculator</h1>
+      <header>
+        <div>
+          <h1>Equal Emissions Calculator</h1>
         </div>
       </header>
     );

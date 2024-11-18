@@ -1,22 +1,20 @@
 /* Typography*/
 $font-body: "Roboto", sans-serif;
-$light: 400;
+$light: 300;
 $regular: 400;
+$medium: 500;
 $bold: 700;
 
-/* Pallet */
+/* Palette */
+$white: #fff;
 $body-bg: #F1F3F2;
 $hr: #E6E9F4;
-/* i18n black, form default text, radial labels,  */
-$dk-grey: #000002;
+$lt-grey: #F1F3F2;
 $mid-grey: #707070;
-/* forms */
-$form-title: #131523;
-$white: #fff;
-$text-field-bg: #F1F3F2;
-$placeholder-txt: #7e7f8180;
-/* progress bar black, measurment(kg, kw, km), information txt */
 $text: #7E7F81;
+$placeholder-txt: #7e7f8180;
+$form-title: #131523;
+$dk-grey: #000002;
 $accent: #D16E11;
 $accent-bright: #FE6400;
 
@@ -46,67 +44,122 @@ h2 {
 }
 h3 {
   margin-bottom: 41px;
+  top: 0;
   color: $form-title;
   font-size: 18px;
+  font-weight: $medium;
+  position: sticky;
+  z-index: 10;
 }
 p {
   color: $mid-grey;
   line-height: 1.6;
 }
 
-// Page 2 - Container Styling
+// Page 2
+.page-header {
+  width: 1719px;
+}
+
 .stage-container {
   width: 1719px;
   margin-top: 23px;
   flex-wrap: nowrap;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  // border: .5px solid cyan;
 }
 
 // Common Styles for Stage Components
 .stage-column {
   height: 725px;
-  max-height: 725px;
   width: 325px;
-  max-width: 325px;
-  flex: 1;
-  padding: 39px 33px 38px 34px;
-  border-radius: 8px;
-  // border: 1px solid #ddd;
-  background: $white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   margin-bottom: 20px;
+  padding: 36px 20px 33px 28px;
+  background: $white;
   display: flex;
   flex-flow: column nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
   position: relative;
+  flex: 1;
+  .footnote {
+    margin-top: 21px;
+    font-size: 10px;
+    color: $text;
+  }
+}
+
+.scroll {
+  flex-grow: 1;
+  max-height: 500px;
+  overflow-y: scroll;
+  padding-left: 2px;
+  padding-right: 10px;
+}
+/* Style the scrollbar for WebKit browsers */
+.scroll::-webkit-scrollbar {
+  width: 3px; /* Set the width of the scrollbar */
+}
+.scroll::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Set the background of the scrollbar track */
+}
+.scroll::-webkit-scrollbar-thumb {
+  background: #888; /* Set the color of the scrollbar thumb */
+  border-radius: 3px;
+}
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Set the color of the scrollbar thumb on hover */
+}
+/* Style the scrollbar for Firefox */
+.scroll {
+  scrollbar-width: thin; /* Set the width of the scrollbar */
+  scrollbar-color: #888 #f1f1f1; /* Set the color of the scrollbar thumb and track */
+}
+
+.bold {
+  font-weight: $bold;
+}
+
+.question-container {
+  border-bottom: 1.4px solid $hr;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
 }
 
 .question-group {
+  margin-bottom: 20px;
+  .question-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+      .radio-group {
+        margin-top: 0;
+      }
+  }
   label {
+    margin-bottom: 7px;
     font-size: 12px;
-    font-weight: $bold;
     color: $dk-grey;
   }
   input[type="number"],
   input[type="text"],
   select {
     height: 47px;
-    width: 244px;
-    padding: 8px;
+    width: 240px;
     margin-top: 5px;
+    padding: 13px 15px 11px 15px;
     color: $placeholder-txt;
     font-size: 20px;
-    background-color: $text-field-bg;
+    text-align: right;
+    background-color: $lt-grey;
     box-shadow: inset 0 0 3px #ccc;
-    // border: 1px solid hotpink;
-    border-radius: 2px;
+    border-radius: 4px;
     border: none;
   }
-// input padding
-  // 13px 15px 11px
-
+  input::placeholder {
+    color: $placeholder-txt;
+  }
   .row-group {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -116,41 +169,58 @@ p {
     margin-left: 8px;
     font-size: 12px;
     color: $text;
-    // float:
   }
   .radio-group {
-    // margin-top: 15px;
-    // margin-bottom: 20px;
-  
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
     label {
       font-size: 12px;
       font-weight: $regular;
       color: $dk-grey;
       margin-right: 10px;
     }
+    .trim-label {
+      margin-right: 5px;
+    }
     input {
-      height: 5px;
-      width: 5px;
-      margin-right: 7px;
+      height: 10px;
+      width: 10px;
+      margin-right: 5px;
       accent-color: $accent-bright;
     }
+    .trim {
+      margin-right: 4px;
+    }
   }
+}
+
+.external-link {
+  padding: 10px 8px;
+  color: $text;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: $bold;
+  background: $white;
+  border: 1px solid $lt-grey;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 // Carbon Summary
 .carbon-summary {
   border-top: 1.4px solid $hr;
-  margin: 20px 15px;
+  width: 270px;
   padding-top: 32px;
   align-items: flex-end;
-  position: absolute;
+  position: sticky;
   bottom: 0;
-  left: 0;
-  right: 0;
-
+  z-index: 10;
   h4 {
     font-size: 12px;
     color: $dk-grey;
+    font-weight: $regular;
   }
   p {
     font-size: 28px;
@@ -164,7 +234,6 @@ p {
   width: 1719px;
   display: flex;
   flex-flow: row nowrap;
-  // background: lightgreen;
 }
 .progress-bar {
   margin: 0 -100px 20px 0;
@@ -225,22 +294,23 @@ p {
 }
 
 .calculate-button {
-  padding: 12px 40px;
   height: 60px;
   max-width: 325px;
+  padding: 12px 40px;
   text-align: left;
+  color: $white;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  background-color: $accent;
   &:hover {
     background-color: $accent-bright;
   }
 }
 
-
 button {
-  padding: 10px 20px;
   border: none;
   border-radius: 4px;
-  background-color: $accent;
-  color: $white;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
