@@ -473,6 +473,25 @@ h1 {
   }
 }
 
+// page 4
+.placeholder {
+  background: aliceblue;
+  margin-top: 10px;
+}
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+  // justify-content: space-between;
+  align-items: center;
+}
+.col {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
 button {
   border: none;
   border-radius: 4px;
