@@ -11,8 +11,8 @@ $body-bg: #F1F3F2;
 $hr: #E6E9F4;
 $lt-grey: #F1F3F2;
 $mid-grey: #707070;
+$grey-bg: #D7D8D8;
 $text: #7E7F81;
-$placeholder-txt: #7e7f81;
 $form-title: #131523;
 $dk-grey: #000002;
 $accent: #D16E11;
@@ -149,7 +149,7 @@ p {
     width: 240px;
     margin-top: 5px;
     padding: 13px 15px 11px 15px;
-    color: $placeholder-txt;
+    color: $text;
     font-size: 20px;
     text-align: right;
     background-color: $lt-grey;
@@ -158,7 +158,7 @@ p {
     border: none;
   }
   input::placeholder {
-    color: $placeholder-txt;
+    color: $text;
   }
   .row-group {
     display: inline-flex;
@@ -314,7 +314,6 @@ p {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  background: aliceblue;
 }
 .brand-wrapper {
   width: 161px;
@@ -356,7 +355,7 @@ h1 {
     height: 73px;
     margin-top: 0;
     padding: 22px 36px 20px 0;
-    color: $placeholder-txt;
+    color: $text;
     font-size: 27px;
     text-align: right;
     background-color: $white;
@@ -365,11 +364,63 @@ h1 {
     border: none;
   }
   input::placeholder {
-    color: $placeholder-txt;
+    color: $text;
   }
   .unit {
     font-size: 20px;
   }
+}
+.button-group {
+  margin-bottom: 52px;
+  width: 544px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  .p1-button {
+    width: 250px;
+    height: 280px;
+    padding: 22px 20px 17px 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    text-align: left;
+    background: $white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    position: relative;
+  }
+  .b1 {
+    padding-top: 6px;
+  }
+  .bottom {
+    margin: 0 11px 17px 0;
+    position: absolute;
+    bottom: 0;
+    align-items: flex-end;
+  }
+  .title-group {
+    margin-bottom: 14px;
+  }
+  .title {
+    font-size: 18px;
+    color: $form-title;
+    line-height: 1.2;
+  }
+  .accent {
+    color: $accent;
+  }
+  .small {
+    font-size: 12px;
+    color: $text;
+  }
+}
+
+.data-consent {
+  width: 694px;
+  height: 87px;
+  margin-bottom: 79px;
+  padding: 15px 17px;
+  background: $grey-bg;
 }
 
 button {

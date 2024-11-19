@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import logo from '../../public/assets/logo.png'
+import simple from '../../public/assets/easy-check.png'
+import detail from '../../public/assets/detailed.png'
 
 export default function page1() {
 	return (
@@ -49,7 +51,6 @@ export default function page1() {
 					{/* <label>Monthly Coffee Usage</label> */}
 					<div className='row-group'>
 						<input
-                            // className='start-page-input'
 							type='number'
 							name='monthlyCoffeeUsage'
 							// value={productionData.monthlyCoffeeUsage || ''}
@@ -59,10 +60,52 @@ export default function page1() {
 						<span className='unit'>kg</span>
 					</div>
 				</div>
-				<button>button 1</button>
-				<button>button 2</button>
+				<div className='button-group'>
+					<button className='p1-button'>
+						<Image
+							className='b1'
+							src={simple}
+							width={45}
+							height={62}
+							alt='document icon'
+						/>
+						<div className='bottom'>
+							<div className='title-group'>
+								<p className='title accent bold'>Easily Check</p>
+								<p className='title bold'>Carbon Emissions</p>
+							</div>
+							<p className='small'>
+								By simply entering your monthly coffee usage, you
+								can check the approximate carbon emissions of your
+								coffee based on general standards.
+							</p>
+						</div>
+					</button>
+					<button className='p1-button'>
+						<Image
+							className='b2'
+							src={detail}
+							width={76}
+							height={68}
+							alt='pencil checking icon'
+						/>
+						<div className='bottom'>
+							<div className='title-group'>
+								<p className='title accent bold'>Detailed Check</p>
+								<p className='title bold'>Carbon Emissions</p>
+							</div>
+							<p className='small'>
+								By entering detailed values from the coffee farm to
+								disposal, you can check the detailed carbon
+								emissions of your coffee.
+							</p>
+						</div>
+					</button>
+				</div>
 			</form>
-			<div>placeholder for data collection consent</div>
+			<div className='data-consent'>
+				placeholder for data collection consent
+			</div>
 		</section>
 	)
 }
