@@ -71,13 +71,15 @@ export default function page1() {
 						/>
 						<div className='bottom'>
 							<div className='title-group'>
-								<p className='title accent bold'>Easily Check</p>
+								<p className='title accent bold'>
+									Easily Check
+								</p>
 								<p className='title bold'>Carbon Emissions</p>
 							</div>
 							<p className='small'>
-								By simply entering your monthly coffee usage, you
-								can check the approximate carbon emissions of your
-								coffee based on general standards.
+								By simply entering your monthly coffee usage,
+								you can check the approximate carbon emissions
+								of your coffee based on general standards.
 							</p>
 						</div>
 					</button>
@@ -91,12 +93,14 @@ export default function page1() {
 						/>
 						<div className='bottom'>
 							<div className='title-group'>
-								<p className='title accent bold'>Detailed Check</p>
+								<p className='title accent bold'>
+									Detailed Check
+								</p>
 								<p className='title bold'>Carbon Emissions</p>
 							</div>
 							<p className='small'>
-								By entering detailed values from the coffee farm to
-								disposal, you can check the detailed carbon
+								By entering detailed values from the coffee farm
+								to disposal, you can check the detailed carbon
 								emissions of your coffee.
 							</p>
 						</div>
@@ -104,7 +108,19 @@ export default function page1() {
 				</div>
 			</form>
 			<div className='data-consent'>
-				placeholder for data collection consent
+				<div className='row'>
+					<p className='medium title'>
+						Consent to Data Collection Confirmation
+					</p>
+					<div className='row'>
+						<input type='checkbox' />
+						<label>check</label>
+					</div>
+				</div>
+				<p className='small'>
+					The carbon emission data provided is approximate. For more
+					accurate figures, please contact Equal Table Inc.
+				</p>
 			</div>
 		</section>
 	)

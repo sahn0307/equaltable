@@ -120,6 +120,9 @@ p {
 .bold {
   font-weight: $bold;
 }
+.medium {
+  font-weight: $medium;
+}
 
 .question-container {
   border-bottom: 1.4px solid $hr;
@@ -420,7 +423,54 @@ h1 {
   height: 87px;
   margin-bottom: 79px;
   padding: 15px 17px;
+  color: $dk-grey;
   background: $grey-bg;
+  border-radius: 4px;
+  p {
+    color: $dk-grey;
+  }
+  .row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .title {
+    font-size: 18px;
+  }
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 17px;
+    height: 17px;
+    margin: 0 10px 0 13px;
+    color: $accent;
+    font-size: 1.2em;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background: $white;
+    border-radius: 3.5px;
+    border: 3px solid $white;
+    position: relative;
+  }
+  input[type="checkbox"]::before {
+    content: "x";
+    position: absolute;
+    top: -6.5px;
+    visibility: hidden;
+  }
+  input[type="checkbox"]:checked::before {
+    visibility: visible;
+  }
+  label {
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  .small {
+    margin-top: 8px;
+    font-size: 12px;
+  }
 }
 
 button {
