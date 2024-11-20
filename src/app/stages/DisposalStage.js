@@ -1,4 +1,6 @@
 // src/app/stages/DisposalStage.js
+/* eslint-disable react/no-unescaped-entities */
+
 'use client'
 
 import { useEffect, useState } from 'react'
