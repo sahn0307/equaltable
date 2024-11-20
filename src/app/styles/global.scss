@@ -11,8 +11,8 @@ $body-bg: #F1F3F2;
 $hr: #E6E9F4;
 $lt-grey: #F1F3F2;
 $mid-grey: #707070;
+$grey-bg: #D7D8D8;
 $text: #7E7F81;
-$placeholder-txt: #7e7f8180;
 $form-title: #131523;
 $dk-grey: #000002;
 $accent: #D16E11;
@@ -120,6 +120,9 @@ p {
 .bold {
   font-weight: $bold;
 }
+.medium {
+  font-weight: $medium;
+}
 
 .question-container {
   border-bottom: 1.4px solid $hr;
@@ -149,7 +152,7 @@ p {
     width: 240px;
     margin-top: 5px;
     padding: 13px 15px 11px 15px;
-    color: $placeholder-txt;
+    color: $text;
     font-size: 20px;
     text-align: right;
     background-color: $lt-grey;
@@ -158,7 +161,7 @@ p {
     border: none;
   }
   input::placeholder {
-    color: $placeholder-txt;
+    color: $text;
   }
   .row-group {
     display: inline-flex;
@@ -305,6 +308,168 @@ p {
   background-color: $accent;
   &:hover {
     background-color: $accent-bright;
+  }
+}
+
+// page 1
+.centered-wrapper {
+  width: 1719px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+.brand-wrapper {
+  width: 161px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  .brand-logo {
+    margin-right: 9px;
+  }
+  .brand-name {
+    font-weight: 900;
+    font-size: 24px;
+  }
+}
+.progress-static {
+  width: 344px;
+  height: 36px;
+  margin: 68px 0 102px 0;
+  display: flex;
+  flex-flow: row nowrap;
+  .progress-bar {
+    align-items: baseline;
+  }
+}
+.page1-header {
+  margin-bottom: 49px;
+  text-align: center;
+}
+h1 {
+  font-size: 45px;
+  font-weight: $medium;
+  color: $dk-grey;
+}
+.step1 {
+  input[type="number"],
+  input[type="text"],
+  select {
+    width: 535px;
+    height: 73px;
+    margin-top: 0;
+    padding: 22px 36px 20px 0;
+    color: $text;
+    font-size: 27px;
+    text-align: right;
+    background-color: $white;
+    box-shadow: inset 0 0 3px #ccc;
+    border-radius: 4px;
+    border: none;
+  }
+  input::placeholder {
+    color: $text;
+  }
+  .unit {
+    font-size: 20px;
+  }
+}
+.button-group {
+  margin-bottom: 52px;
+  width: 544px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  .p1-button {
+    width: 250px;
+    height: 280px;
+    padding: 22px 20px 17px 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    text-align: left;
+    background: $white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    position: relative;
+  }
+  .b1 {
+    padding-top: 6px;
+  }
+  .bottom {
+    margin: 0 11px 17px 0;
+    position: absolute;
+    bottom: 0;
+    align-items: flex-end;
+  }
+  .title-group {
+    margin-bottom: 14px;
+  }
+  .title {
+    font-size: 18px;
+    color: $form-title;
+    line-height: 1.2;
+  }
+  .accent {
+    color: $accent;
+  }
+  .small {
+    font-size: 12px;
+    color: $text;
+  }
+}
+
+.data-consent {
+  width: 694px;
+  height: 87px;
+  margin-bottom: 79px;
+  padding: 15px 17px;
+  color: $dk-grey;
+  background: $grey-bg;
+  border-radius: 4px;
+  p {
+    color: $dk-grey;
+  }
+  .row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .title {
+    font-size: 18px;
+  }
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 17px;
+    height: 17px;
+    margin: 0 10px 0 13px;
+    color: $accent;
+    font-size: 1.2em;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background: $white;
+    border-radius: 3.5px;
+    border: 3px solid $white;
+    position: relative;
+  }
+  input[type="checkbox"]::before {
+    content: "x";
+    position: absolute;
+    top: -6.5px;
+    visibility: hidden;
+  }
+  input[type="checkbox"]:checked::before {
+    visibility: visible;
+  }
+  label {
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  .small {
+    margin-top: 8px;
+    font-size: 12px;
   }
 }
 
