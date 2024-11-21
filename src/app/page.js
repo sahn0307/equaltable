@@ -1,17 +1,11 @@
 'use client'
-import { useRouter } from 'next/navigation'; // Import useRouter
+import Link from 'next/link'; // Import Link
 import Image from 'next/image';
 import logo from '../../public/assets/logo.png';
 import simple from '../../public/assets/easy-check.png';
 import detail from '../../public/assets/detailed.png';
 
 export default function page1() {
-    const router = useRouter(); // Initialize the useRouter hook
-
-    const navigateToPage = (path) => {
-        router.push(path); // Function to navigate to a specified path
-    };
-
     return (
         <section className='centered-wrapper'>
             <div className='brand-wrapper'>
@@ -64,55 +58,51 @@ export default function page1() {
                 </div>
                 <div className='button-group'>
                     {/* Simple Check Button */}
-                    <button
-                        type='button'
-                        className='p1-button'
-                        onClick={() => navigateToPage('/page3')} // Navigate to /page3
-                    >
-                        <Image
-                            className='b1'
-                            src={simple}
-                            width={45}
-                            height={62}
-                            alt='document icon'
-                        />
-                        <div className='bottom'>
-                            <div className='title-group'>
-                                <p className='title accent bold'>Easily Check</p>
-                                <p className='title bold'>Carbon Emissions</p>
+                    <Link href="/page3" passHref>
+                        <button type="button" className='p1-button'>
+                            <Image
+                                className='b1'
+                                src={simple}
+                                width={45}
+                                height={62}
+                                alt='document icon'
+                            />
+                            <div className='bottom'>
+                                <div className='title-group'>
+                                    <p className='title accent bold'>Easily Check</p>
+                                    <p className='title bold'>Carbon Emissions</p>
+                                </div>
+                                <p className='small'>
+                                    By simply entering your monthly coffee usage,
+                                    you can check the approximate carbon emissions
+                                    of your coffee based on general standards.
+                                </p>
                             </div>
-                            <p className='small'>
-                                By simply entering your monthly coffee usage,
-                                you can check the approximate carbon emissions
-                                of your coffee based on general standards.
-                            </p>
-                        </div>
-                    </button>
+                        </button>
+                    </Link>
                     {/* Detailed Check Button */}
-                    <button
-                        type='button'
-                        className='p1-button'
-                        onClick={() => navigateToPage('/page2')} // Navigate to /page2
-                    >
-                        <Image
-                            className='b2'
-                            src={detail}
-                            width={76}
-                            height={68}
-                            alt='pencil checking icon'
-                        />
-                        <div className='bottom'>
-                            <div className='title-group'>
-                                <p className='title accent bold'>Detailed Check</p>
-                                <p className='title bold'>Carbon Emissions</p>
+                    <Link href="/page2" passHref>
+                        <button type="button" className='p1-button'>
+                            <Image
+                                className='b2'
+                                src={detail}
+                                width={76}
+                                height={68}
+                                alt='pencil checking icon'
+                            />
+                            <div className='bottom'>
+                                <div className='title-group'>
+                                    <p className='title accent bold'>Detailed Check</p>
+                                    <p className='title bold'>Carbon Emissions</p>
+                                </div>
+                                <p className='small'>
+                                    By entering detailed values from the coffee farm
+                                    to disposal, you can check the detailed carbon
+                                    emissions of your coffee.
+                                </p>
                             </div>
-                            <p className='small'>
-                                By entering detailed values from the coffee farm
-                                to disposal, you can check the detailed carbon
-                                emissions of your coffee.
-                            </p>
-                        </div>
-                    </button>
+                        </button>
+                    </Link>
                 </div>
             </form>
             <div className='data-consent'>
