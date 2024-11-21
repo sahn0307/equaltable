@@ -7,11 +7,9 @@ import step3 from '../../../public/assets/step3.png'
 import step4 from '../../../public/assets/step4.png'
 import step5 from '../../../public/assets/step5.png'
 
-
-
 export default function page() {
 	return (
-		<>
+		<section className='page-wrapper'>
 			<div className='page-header'>
 				<h2>
 					Measure the carbon emissions from coffee farms to disposal
@@ -26,45 +24,81 @@ export default function page() {
 					based on an international academic journal GEO paper.
 				</p>
 			</div>
-            <div className='row'>
-                <div className='col'>
-                    <Image src={step1} width={38.6} height={60.4} alt='Production Stage Icon' />
-                    <span>Production Stage</span>
-                </div>
-                <Image src={chevron} width={16} height={16} alt='chevron' />
+			<div className='row'>
+				<div className='col'>
+					<Image
+						src={step1}
+						width={38.6}
+						height={60.4}
+						alt='Production Stage Icon'
+					/>
+					<span className='stage-title medium'>Production Stage</span>
+					<div className='bar-circle' />
+				</div>
+				<Image src={chevron} width={16} height={16} alt='chevron' />
+				<div className='col'>
+					<Image
+						src={step2}
+						width={63.8}
+						height={39.2}
+						alt='Transportation Stage Icon'
+					/>
+					<span className='stage-title medium'>
+						Transportation Stage
+					</span>
+					<div className='bar-circle' />
+				</div>
+				<Image src={chevron} width={16} height={16} alt='chevron' />
+				<div className='col'>
+					<Image
+						src={step3}
+						width={30.2}
+						height={80.5}
+						alt='Processing Stage Icon'
+					/>
+					<span className='stage-title medium'>Processing Stage</span>
+					<div className='bar-circle' />
+				</div>
+				<Image src={chevron} width={16} height={16} alt='chevron' />
+				<div className='col'>
+					<Image
+						src={step4}
+						width={46.7}
+						height={51.2}
+						alt='Extraction Stage Icon'
+					/>
+					<span className='stage-title medium'>Extraction Stage</span>
+					<div className='bar-circle' />
+				</div>
+				<Image src={chevron} width={16} height={16} alt='chevron' />
+				<div className='col'>
+					<Image
+						src={step5}
+						width={41.3}
+						height={47.5}
+						alt='Disposal Stage Icon'
+					/>
+					<span className='stage-title medium'>Disposal Stage</span>
+					<div className='bar-circle' />
+				</div>
+			</div>
+			<div className='psudo-progress'>
+				<div className='bar'>
+					<div className='bar-line' />
+				</div>
+			</div>
 
-                <div className='col'>
-                    <Image src={step2} width={63.8} height={39.2} alt='Transportation Stage Icon' />
-                    <span>Transportation Stage</span>
-                </div>
-                <Image src={chevron} width={16} height={16} alt='chevron' />
-
-                <div className='col'>
-                    <Image src={step3} width={30.2} height={80.5} alt='Processing Stage Icon' />
-                    <span>Processing Stage</span>
-                </div>
-                <Image src={chevron} width={16} height={16} alt='chevron' />
-
-                <div className='col'>
-                    <Image src={step4} width={46.7} height={51.2} alt='Extraction Stage Icon' />
-                    <span>Extraction Stage</span>
-                </div>
-                <Image src={chevron} width={16} height={16} alt='chevron' />
-
-                <div className='col'>
-                <Image src={step5} width={41.3} height={47.5} alt='Disposal Stage Icon' />
-                <span>Disposal Stage</span>
-                </div>
+			<div className='card-row row'>
+                <div className='card h180'>text here!</div>
+                <div className='card h180'>text here!</div>
+                <div className='card h180'>text here!</div>
+                <div className='card h180'>text here!</div>
+                <div className='card h180'>text here!</div>
             </div>
-            <div className='placeholder row'>
-                <p>
-                    placeholder for static progress bar with icons
-                </p>
-            </div>
-
-            <div className='placeholder stage-container'>
-                placeholder for stage rows
-            </div>
-		</>
+			<div className='card-div'>placeholder grey divider</div>
+			<div className='card-row'>placeholder for stage rows</div>
+			<div className='card-div'>placeholder grey divider</div>
+			<div className='card-row'>placeholder for stage rows</div>
+		</section>
 	)
 }

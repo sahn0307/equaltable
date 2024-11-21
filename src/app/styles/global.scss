@@ -7,7 +7,9 @@ $bold: 700;
 
 /* Palette */
 $white: #fff;
-$body-bg: #F1F3F2;
+// $body-bg: #F1F3F2;
+$body-bg: #8599AD;
+// $body-bg: #738C80;
 $hr: #E6E9F4;
 $lt-grey: #F1F3F2;
 $mid-grey: #707070;
@@ -474,23 +476,87 @@ h1 {
 }
 
 // page 4
-.placeholder {
-  background: aliceblue;
-  margin-top: 10px;
+.page-wrapper {
+  width: 1719px;
+  display: flex;
+  flex-flow: column nowrap;
+  .page-header {
+    margin-bottom: 60px;
+  }
 }
 .row {
   display: flex;
   flex-flow: row nowrap;
-  // justify-content: space-between;
-  align-items: center;
+  justify-content: space-between;
+  align-items: baseline;
+  // background: aliceblue;
 }
 .col {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  .stage-title {
+    margin: 12px 0 13px 0;
+    color: $form-title;
+    font-size: 18px;
+  }
+  .bar-circle {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: $white;
+    z-index: 1;
+  }
 }
-
+.col:first-of-type {
+  margin-left: 86px;
+}
+.col:last-of-type {
+  margin-right: 86px;
+}
+.psudo-progress {
+  .bar {
+    width: 1719px;
+    margin: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    .bar-line {
+      width: 100%;
+      height: 2px;
+      background: $white;
+      position: absolute;
+      top: -9px;
+      z-index: 0;
+    }
+  }
+}
+.card-row {
+  background: darkseagreen;
+  width: 1719px;
+  margin-bottom: 23px;
+  .card {
+    margin-right: 24px;
+    width: 325px;
+    background: $white;
+  }
+  .h150 {
+    height: 150px;
+  }
+  .h180 {
+    margin-top: 23px;
+    height: 180px;
+  }
+}
+.card:last-of-type {
+  margin-right: 0;
+}
+.card-div {
+  background: darkblue;
+}
 
 button {
   border: none;
