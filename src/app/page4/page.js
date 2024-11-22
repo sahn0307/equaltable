@@ -276,7 +276,7 @@ export default function page() {
 						coffee grounds
 					</p>
 					<p>
-						Check the packaging and recycle coffee grounds Check the
+						Check the packaging and recycle coffee grounds. Check the
 						eco-friendliness and recyclability of the product&apos;s
 						packaging, and use the leftover coffee grounds for
 						fertilizer, air fresheners, or send them to upcycling
