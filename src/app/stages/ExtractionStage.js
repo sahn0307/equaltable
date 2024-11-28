@@ -92,7 +92,7 @@ export default function ExtractionStage({
                     {/* Grinder Type */}
                     <div className='question-group'>
                         <div className='question-row'>
-                            <label>Grinder Type</label>
+                            <label>Grinder</label>
                             <div className='radio-group'>
                                 <label>
                                     <input
