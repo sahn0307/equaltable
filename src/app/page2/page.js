@@ -61,6 +61,8 @@ export default function Home() {
 	const [summaryData, setSummaryData] = useState({})
 
 	// State to track the completion status of each stage
+	const [isMonthlyUsageCompleted, setMonthlyUsageCompleted] = 
+		useState(true)
 	const [isProductionStageCompleted, setProductionStageCompleted] =
 		useState(false)
 	const [isTransportStageCompleted, setTransportStageCompleted] =
@@ -137,6 +139,7 @@ export default function Home() {
 			<div className='progress-bar-container'>
 				<ProgressBar
 					stagesCompleted={[
+						isMonthlyUsageCompleted,
 						isProductionStageCompleted,
 						isTransportStageCompleted,
 						isProcessingStageCompleted,
