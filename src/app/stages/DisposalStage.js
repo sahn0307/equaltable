@@ -1,198 +1,184 @@
-// src/app/stages/DisposalStage.js
-/* eslint-disable react/no-unescaped-entities */
+'use client';
 
-'use client'
-
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
 export default function DisposalStage({
-	disposalData,
-	setDisposalData,
-	setStageCompleted
+    disposalData,
+    setDisposalData,
+    setStageCompleted,
 }) {
-	// Local state for monthly emissions at this stage
-	const [monthlyEmissions, setMonthlyEmissions] = useState(0)
-	const [isCompleted, setIsCompleted] = useState(false)
+    const [monthlyEmissions, setMonthlyEmissions] = useState(0);
+    const [isCompleted, setIsCompleted] = useState(false);
 
-	// Handle input changes for disposal stage
-	const handleInputChange = (e) => {
-		const { name, value } = e.target
-		setDisposalData((prevData) => ({
-			...prevData,
-			[name]: parseFloat(value)
-		}))
-	}
+    // Handle input changes
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setDisposalData((prevData) => ({
+            ...prevData,
+            [name]: parseFloat(value),
+        }));
+    };
 
-	// Handle radio button changes for upcycling status and packaging use
-	const handleRadioChange = (e) => {
-		const { name, value } = e.target
-		setDisposalData((prevData) => ({
-			...prevData,
-			[name]: value
-		}))
-	}
+    // Handle radio button changes
+    const handleRadioChange = (e) => {
+        const { name, value } = e.target;
+        setDisposalData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
 
-	// Calculate monthly emissions whenever disposalData changes
-	useEffect(() => {
-		const {
-			coffeeWasteEmissions,
-			packagingEmissions,
-			upcyclingStatus,
-			packagingUsed
-		} = disposalData
+    // Calculate emissions
+    useEffect(() => {
+        const {
+            upcyclingStatus = 'yes',
+            coffeeWasteEmissions = 0.34,
+            packagingUsed = 'yes',
+            packagingEmissions = 0.049,
+        } = disposalData;
 
-		let emissions = 0
-		if (upcyclingStatus === 'no' && coffeeWasteEmissions > 0) {
-			emissions += coffeeWasteEmissions
-		}
-		if (packagingUsed === 'yes' && packagingEmissions > 0) {
-			emissions += packagingEmissions
-		}
+        let emissions = 0;
 
-		setMonthlyEmissions(emissions)
-	}, [disposalData])
+        // Calculate emissions from coffee waste only if upcycling is 'no'
+        if (upcyclingStatus === 'no') {
+            emissions += coffeeWasteEmissions;
+        }
 
-	// Check if all fields are filled out
-	useEffect(() => {
-		const {
-			coffeeWasteEmissions,
-			packagingEmissions,
-			upcyclingStatus,
-			packagingUsed
-		} = disposalData
+        // Add emissions from packaging waste if packaging is used
+        if (packagingUsed === 'yes') {
+            emissions += packagingEmissions;
+        }
 
-		const completed =
-			coffeeWasteEmissions > 0 &&
-			upcyclingStatus &&
-			(packagingUsed === 'no' ||
-				(packagingUsed === 'yes' && packagingEmissions > 0))
+        setMonthlyEmissions(emissions);
+    }, [disposalData]);
 
-		setIsCompleted(completed)
-		setStageCompleted(completed)
-	}, [disposalData, setStageCompleted])
+    // Check if all fields are filled out
+    useEffect(() => {
+        const { upcyclingStatus, coffeeWasteEmissions, packagingUsed, packagingEmissions } =
+            disposalData;
 
-	return (
-		<section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
-			<h3>
-				Disposal Stage{' '}
-				{isCompleted && <span className='checkmark'>✓</span>}
-			</h3>
-			<article className='scroll'>
-				<div className='question-container'>
-					{/* Upcycling Status */}
-					<div className='question-group'>
-						<div className='question-row'>
-							<label>Upcycling Status</label>
-							<div className='radio-group'>
-								<label>
-									<input
-										type='radio'
-										name='upcyclingStatus'
-										value='yes'
-										checked={
-											disposalData.upcyclingStatus ===
-											'yes'
-										}
-										onChange={handleRadioChange}
-									/>
-									Yes
-								</label>
-								<label>
-									<input
-										type='radio'
-										name='upcyclingStatus'
-										value='no'
-										checked={
-											disposalData.upcyclingStatus ===
-											'no'
-										}
-										onChange={handleRadioChange}
-									/>
-									No
-								</label>
-							</div>
-						</div>
-					</div>
+        const completed =
+            upcyclingStatus &&
+            (upcyclingStatus === 'yes' || coffeeWasteEmissions > 0) &&
+            packagingUsed &&
+            (packagingUsed === 'no' || packagingEmissions > 0);
 
-					{/* Coffee Grounds Waste Emissions */}
-					<div className='question-group'>
-						<label>
-							Carbon Emissions of Coffee Grounds Waste per 1kg of
-							Coffee Beans
-						</label>
-						<div className='row-group'>
-							<input
-								type='number'
-								name='coffeeWasteEmissions'
-								value={
-									disposalData.coffeeWasteEmissions || 0.34
-								}
-								onChange={handleInputChange}
-								placeholder='Enter carbon emissions for coffee grounds waste'
-							/>
-							<span className='unit'>kg</span>
-						</div>
-					</div>
-				</div>
+        setIsCompleted(completed);
+        setStageCompleted(completed);
+    }, [disposalData, setStageCompleted]);
 
-				{/* Packaging Usage */}
-				<div className='question-group'>
-					<label>Use Packaging for 1kg of Coffee Bean?</label>
-					<div className='radio-group'>
-						<label>
-							<input
-								type='radio'
-								name='packagingUsed'
-								value='yes'
-								checked={disposalData.packagingUsed === 'yes'}
-								onChange={handleRadioChange}
-							/>
-							Yes
-						</label>
-						<label>
-							<input
-								type='radio'
-								name='packagingUsed'
-								value='no'
-								checked={disposalData.packagingUsed === 'no'}
-								onChange={handleRadioChange}
-							/>
-							No
-						</label>
-					</div>
-				</div>
+    return (
+        <section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
+            <h3>
+                Disposal Stage {isCompleted && <span className='checkmark'>✓</span>}
+            </h3>
+            <article className='scroll'>
+                <div className='question-container'>
+                    {/* Upcycling Status */}
+                    <div className='question-group'>
+                        <div className='question-row'>
+                            <label>Upcycling Status</label>
+                            <div className='radio-group'>
+                                <label>
+                                    <input
+                                        type='radio'
+                                        name='upcyclingStatus'
+                                        value='yes'
+                                        checked={disposalData.upcyclingStatus === 'yes'}
+                                        onChange={handleRadioChange}
+                                    />
+                                    Yes
+                                </label>
+                                <label>
+                                    <input
+                                        type='radio'
+                                        name='upcyclingStatus'
+                                        value='no'
+                                        checked={disposalData.upcyclingStatus === 'no'}
+                                        onChange={handleRadioChange}
+                                    />
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 
-				{/* Packaging Emissions */}
-				{disposalData.packagingUsed === 'yes' && (
-					<div className='question-group'>
-						<label>
-							Carbon Emissions from Coffee Packaging Waste
-						</label>
-						<div className='row-group'>
-							<input
-								type='number'
-								name='packagingEmissions'
-								value={disposalData.packagingEmissions || 0.049}
-								onChange={handleInputChange}
-								placeholder='Enter carbon emissions from packaging waste'
-							/>
-							<span className='unit'>kg</span>
-						</div>
-					</div>
-				)}
-				<div className='footnote'>
-					<p>
-						If you don't enter the carbon emissions of the waste separately, the general standard of the carbon emissions
-						will be applied.
-					</p>
-				</div>
-			</article>
+                    {/* Coffee Grounds Waste Emissions */}
+                    {disposalData.upcyclingStatus === 'no' && (
+                        <div className='question-group'>
+                            <label>
+                                Carbon Emissions of Coffee Grounds Waste per 1kg of Coffee Beans
+                            </label>
+                            <div className='row-group'>
+                                <input
+                                    type='number'
+                                    name='coffeeWasteEmissions'
+                                    value={disposalData.coffeeWasteEmissions || 0.34}
+                                    onChange={handleInputChange}
+                                    placeholder='Enter carbon emissions for coffee grounds waste'
+                                />
+                                <span className='unit'>kg</span>
+                            </div>
+                        </div>
+                    )}
+                </div>
 
-			{/* Monthly Carbon Emissions Display */}
-			<div className='carbon-summary'>
-				<h4>Monthly Carbon Emissions at this Stage</h4>
-				<p>{monthlyEmissions.toFixed(2)} kg CO₂</p>
-			</div>
-		</section>
-	)
+                {/* Packaging Usage */}
+                <div className='question-group'>
+                    <label>Use Packaging for 1kg of Coffee Beans?</label>
+                    <div className='radio-group'>
+                        <label>
+                            <input
+                                type='radio'
+                                name='packagingUsed'
+                                value='yes'
+                                checked={disposalData.packagingUsed === 'yes'}
+                                onChange={handleRadioChange}
+                            />
+                            Yes
+                        </label>
+                        <label>
+                            <input
+                                type='radio'
+                                name='packagingUsed'
+                                value='no'
+                                checked={disposalData.packagingUsed === 'no'}
+                                onChange={handleRadioChange}
+                            />
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                {/* Packaging Emissions */}
+                {disposalData.packagingUsed === 'yes' && (
+                    <div className='question-group'>
+                        <label>Carbon Emissions from Coffee Packaging Waste</label>
+                        <div className='row-group'>
+                            <input
+                                type='number'
+                                name='packagingEmissions'
+                                value={disposalData.packagingEmissions || 0.049}
+                                onChange={handleInputChange}
+                                placeholder='Enter carbon emissions from packaging waste'
+                            />
+                            <span className='unit'>kg</span>
+                        </div>
+                    </div>
+                )}
+                <div className='footnote'>
+                    <p>
+                        If you don't enter the carbon emissions of the waste separately, the
+                        general standard of the carbon emissions will be applied.
+                    </p>
+                </div>
+            </article>
+
+            {/* Monthly Carbon Emissions Display */}
+            <div className='carbon-summary'>
+                <h4>Monthly Carbon Emissions at this Stage</h4>
+                <p>{monthlyEmissions.toFixed(2)} kg CO₂</p>
+            </div>
+        </section>
+    );
 }
