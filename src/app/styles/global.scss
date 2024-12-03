@@ -587,3 +587,17 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+/* Remove spinners from number input fields */
+input[type="number"] {
+  -moz-appearance: textfield; /* Remove for Firefox */
+  -webkit-appearance: none;  /* Remove for Chrome, Safari, Edge */
+  appearance: none;          /* Remove for modern browsers */
+  margin: 0;                 /* Reset margin for consistency */
+}
+
+/* Ensure additional browser-specific styling is removed */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
