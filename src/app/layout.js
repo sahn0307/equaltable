@@ -1,8 +1,9 @@
+'use client'
 // src/app/layout.js
 // import Header from './components/Header';
 // import Footer from './components/Footer';
 import { Roboto } from 'next/font/google';
-// import localFont from 'next/font/local'
+import { EmissionsProvider } from './context/EmissionsContext'; // Import the EmissionsProvider
 import './styles/global.scss';
 
 const roboto = Roboto({
@@ -23,9 +24,11 @@ export default function RootLayout({ children }) {
         <title>Carbon Emissions Calculator</title>
       </head>
       <body className={roboto.className}>
-        {/* <Header /> */}
-        <main>{children}</main>
-        {/* <Footer /> */}
+        <EmissionsProvider> {/* Wrap the entire app in the context provider */}
+          {/* <Header /> */}
+          <main>{children}</main>
+          {/* <Footer /> */}
+        </EmissionsProvider>
       </body>
     </html>
   );

@@ -1,124 +1,149 @@
-// src/app/stages/EmissionSummary.js
-'use client'
+'use client';
 
 export default function EmissionSummary({
-	productionData,
-	transportData,
-	processingData,
-	extractionData,
-	disposalData
+    productionData,
+    transportData,
+    processingData,
+    extractionData,
+    disposalData,
 }) {
-	// Production emissions are static for simplicity
-	const productionEmissions = 1.64
+    // **Production Stage Emissions**
+    const productionEmissions =
+        parseFloat(productionData?.emissions) || -2.69; // Absorption during farming (per kg)
 
-	// Transportation emissions calculation based on distances and transport type
-	const getTransportEmissionFactor = (type) => {
-		switch (type) {
-			case 'truck':
-				return 0.2 // kg CO₂ per km
-			case 'train':
-				return 0.1 // kg CO₂ per km
-			case 'ship':
-				return 0.015 // kg CO₂ per km
-			case 'flight':
-				return 0.9 // kg CO₂ per km
-			default:
-				return 0
-		}
-	}
+    // **Transportation Stage Emissions**
+    const getTransportEmissionFactor = (type) => {
+        switch (type) {
+            case 'truck':
+                return 0.1942; // kg CO₂ per km
+            case 'train':
+                return 0.04; // kg CO₂ per km
+            case 'ship':
+                return 0.00902; // kg CO₂ per km
+            case 'flight':
+                return 0.9; // kg CO₂ per km
+            default:
+                return 0;
+        }
+    };
 
-	const transportEmissions =
-		(parseFloat(transportData?.farmToPortDistance) *
-			getTransportEmissionFactor(
-				transportData?.transportType?.farmToPort
-			) || 0) +
-		(parseFloat(transportData?.portToDomesticDistance) *
-			getTransportEmissionFactor(
-				transportData?.transportType?.portToDomestic
-			) || 0) +
-		(parseFloat(transportData?.domesticDistance) *
-			getTransportEmissionFactor(
-				transportData?.transportType?.domestic
-			) || 0)
+    const calculateTransportEmissions = () => {
+        const farmToPort =
+            (parseFloat(transportData?.farmToPortDistance) || 0) *
+            getTransportEmissionFactor(transportData?.transportType?.farmToPort);
+        const portToDomestic =
+            (parseFloat(transportData?.portToDomesticDistance) || 0) *
+            getTransportEmissionFactor(
+                transportData?.transportType?.portToDomestic
+            );
+        const domestic =
+            (parseFloat(transportData?.domesticDistance) || 0) *
+            getTransportEmissionFactor(transportData?.transportType?.domestic);
 
-	// Processing emissions calculation based on power consumption and gas usage
-	const processingEmissions =
-		(parseFloat(processingData?.powerConsumption) *
-			parseFloat(processingData?.usageTime) || 0) *
-			0.495 + // Electric energy emissions
-		(parseFloat(processingData?.gasConsumption) *
-			parseFloat(processingData?.usageTime) || 0) *
-			0.23 // Gas energy emissions
+        return (farmToPort + portToDomestic + domestic) * 0.001; // Convert t to kg
+    };
 
-	// Extraction emissions calculation
-	const extractionEmissions =
-		(extractionData?.grinderType === 'electric'
-			? parseFloat(extractionData?.powerConsumption) *
-			  parseFloat(extractionData?.usageTime) *
-			  0.495
-			: 0) +
-		(extractionData?.extractorPower === 'yes'
-			? parseFloat(extractionData?.extractorPowerConsumption) *
-			  parseFloat(extractionData?.usageTime) *
-			  0.495
-			: 0)
+    const transportEmissions = calculateTransportEmissions();
 
-	// Disposal emissions calculation based on disposal methods
-	const getDisposalEmissionFactor = (method) => {
-		switch (method) {
-			case 'landfill':
-				return 0.455 // kg CO₂ per kg of waste
-			case 'incineration':
-				return 1.182 // kg CO₂ per kg of waste
-			case 'recycling':
-				return 0.1 // kg CO₂ per kg of waste
-			default:
-				return 0
-		}
-	}
+    // **Processing Stage Emissions**
+    const calculateProcessingEmissions = () => {
+        const roastingEmissions =
+            ((parseFloat(processingData?.roasterPower) || 0) *
+                (parseFloat(processingData?.usageTime) || 0) *
+                0.495) / // kg CO₂ per kWh
+            parseFloat(processingData?.productionQuantity || 1); // Normalize per kg
+        const packagingEmissions =
+            (parseFloat(processingData?.packagingWeight) || 0.0263) *
+            0.05; // Average kg CO₂ per packaging kg
 
-	const disposalEmissions =
-		parseFloat(disposalData?.wasteMass) *
-			getDisposalEmissionFactor(disposalData?.disposalMethod) || 0
+        return roastingEmissions + packagingEmissions;
+    };
 
-	// Calculate total emissions
-	const totalEmissions =
-		productionEmissions +
-		transportEmissions +
-		processingEmissions +
-		extractionEmissions +
-		disposalEmissions
+    const processingEmissions = calculateProcessingEmissions();
 
-	return (
-		<div>
-			<h2>Summary of Emissions</h2>
+    // **Extraction Stage Emissions**
+    const calculateExtractionEmissions = () => {
+        const grinderEmissions =
+            extractionData?.grinderType === 'electric'
+                ? (parseFloat(extractionData?.powerConsumption) || 0) *
+                  (parseFloat(extractionData?.usageTime) || 0) *
+                  0.495
+                : 0;
+        const extractorEmissions =
+            extractionData?.extractorPower === 'yes'
+                ? (parseFloat(extractionData?.extractorPowerConsumption) || 0) *
+                  (parseFloat(extractionData?.usageTime) || 0) *
+                  0.495
+                : 0;
 
-			<div>
-				<h3>Production Stage:</h3>
-				<p>Emissions: {productionEmissions.toFixed(2)} kg CO₂</p>
-			</div>
+        return grinderEmissions + extractorEmissions;
+    };
 
-			<div>
-				<h3>Transportation Stage:</h3>
-				<p>Emissions: {transportEmissions.toFixed(2)} kg CO₂</p>
-			</div>
+    const extractionEmissions = calculateExtractionEmissions();
 
-			<div>
-				<h3>Processing Stage:</h3>
-				<p>Emissions: {processingEmissions.toFixed(2)} kg CO₂</p>
-			</div>
+    // **Disposal Stage Emissions**
+    const getDisposalEmissionFactor = (method) => {
+        switch (method) {
+            case 'landfill':
+                return 0.4551; // kg CO₂ per kg of waste
+            case 'incineration':
+                return 1.182; // kg CO₂ per kg of waste
+            case 'recycling':
+                return 0.1; // kg CO₂ per kg of waste
+            default:
+                return 0;
+        }
+    };
 
-			<div>
-				<h3>Extraction Stage:</h3>
-				<p>Emissions: {extractionEmissions.toFixed(2)} kg CO₂</p>
-			</div>
+    const calculateDisposalEmissions = () => {
+        return (
+            (parseFloat(disposalData?.wasteMass) || 0) *
+            getDisposalEmissionFactor(disposalData?.disposalMethod)
+        );
+    };
 
-			<div>
-				<h3>Disposal Stage:</h3>
-				<p>Emissions: {disposalEmissions.toFixed(2)} kg CO₂</p>
-			</div>
+    const disposalEmissions = calculateDisposalEmissions();
 
-			<div>Total Emissions: {totalEmissions.toFixed(2)} kg CO₂</div>
-		</div>
-	)
+    // **Total Emissions**
+    const totalEmissions =
+        productionEmissions +
+        transportEmissions +
+        processingEmissions +
+        extractionEmissions +
+        disposalEmissions;
+
+    return (
+        <div>
+            <h2>Summary of Emissions</h2>
+
+            <div>
+                <h3>Production Stage:</h3>
+                <p>Emissions: {productionEmissions.toFixed(2)} kg CO₂</p>
+            </div>
+
+            <div>
+                <h3>Transportation Stage:</h3>
+                <p>Emissions: {transportEmissions.toFixed(2)} kg CO₂</p>
+            </div>
+
+            <div>
+                <h3>Processing Stage:</h3>
+                <p>Emissions: {processingEmissions.toFixed(2)} kg CO₂</p>
+            </div>
+
+            <div>
+                <h3>Extraction Stage:</h3>
+                <p>Emissions: {extractionEmissions.toFixed(2)} kg CO₂</p>
+            </div>
+
+            <div>
+                <h3>Disposal Stage:</h3>
+                <p>Emissions: {disposalEmissions.toFixed(2)} kg CO₂</p>
+            </div>
+
+            <div>
+                <strong>Total Emissions:</strong> {totalEmissions.toFixed(2)} kg CO₂
+            </div>
+        </div>
+    );
 }
