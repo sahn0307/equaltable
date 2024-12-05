@@ -86,7 +86,7 @@ export default function TransportationStage({
 
     return (
         <section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
-            <h3>
+            <h3 className={ isCompleted ? 'completed' : ''}>
                 Transportation Stage
             </h3>
             <article className='scroll'>

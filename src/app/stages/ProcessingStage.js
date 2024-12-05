@@ -112,7 +112,7 @@ export default function ProcessingStage({
 
 	return (
 		<section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
-			<h3>Processing Stage</h3>
+			<h3 className={ isCompleted ? 'completed' : ''}>Processing Stage</h3>
 			<article className='scroll'>
 				{/* Type of Roaster */}
 				<div className='question-group'>
