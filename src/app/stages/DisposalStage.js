@@ -168,7 +168,7 @@ export default function DisposalStage({
                 )}
                 <div className='footnote'>
                     <p>
-                        If you don't enter the carbon emissions of the waste separately, the
+                        If you don\'t enter the carbon emissions of the waste separately, the
                         general standard of the carbon emissions will be applied.
                     </p>
                 </div>
