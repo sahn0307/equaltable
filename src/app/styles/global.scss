@@ -172,6 +172,7 @@ p {
     display: inline-flex;
     flex-flow: row nowrap;
     align-items: end;
+    justify-content: center;
   }
   .unit {
     margin-left: 8px;
@@ -182,18 +183,21 @@ p {
     margin-top: 10px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     label {
       font-size: 12px;
       font-weight: $regular;
       color: $dk-grey;
       margin-right: 10px;
+      display: flex;
+      align-items: center;
     }
     .trim-label {
       margin-right: 5px;
     }
     input {
-      height: 10px;
-      width: 10px;
+      height: 16px;
+      width: 16px;
       margin-right: 5px;
       accent-color: $accent-bright;
     }

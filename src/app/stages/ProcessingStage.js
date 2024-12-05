@@ -114,100 +114,101 @@ export default function ProcessingStage({
 		<section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
 			<h3 className={ isCompleted ? 'completed' : ''}>Processing Stage</h3>
 			<article className='scroll'>
-				{/* Type of Roaster */}
-				<div className='question-group'>
-					<div className='question-row'>
-						<label>Type</label>
-						<div className='radio-group'>
-							<label>
-								<input
-									type='radio'
-									name='roasterType'
-									value='electric'
-									checked={
-										processingData.roasterType ===
-										'electric'
-									}
-									onChange={handleRadioChange}
-								/>
-								Electric
-							</label>
-							<label>
-								<input
-									type='radio'
-									name='roasterType'
-									value='gas'
-									checked={
-										processingData.roasterType === 'gas'
-									}
-									onChange={handleRadioChange}
-								/>
-								Gas
-							</label>
+				<div className='question-container'>
+					{/* Type of Roaster */}
+					<div className='question-group'>
+						<div className='question-row'>
+							<label>Type</label>
+							<div className='radio-group'>
+								<label>
+									<input
+										type='radio'
+										name='roasterType'
+										value='electric'
+										checked={
+											processingData.roasterType ===
+											'electric'
+										}
+										onChange={handleRadioChange}
+									/>
+									Electric
+								</label>
+								<label>
+									<input
+										type='radio'
+										name='roasterType'
+										value='gas'
+										checked={
+											processingData.roasterType === 'gas'
+										}
+										onChange={handleRadioChange}
+									/>
+									Gas
+								</label>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				{/* Power Consumption */}
-				{processingData.roasterType === 'electric' && (
+					{/* Power Consumption */}
+					{processingData.roasterType === 'electric' && (
+						<div className='question-group'>
+							<label>Power Consumption (kW)</label>
+							<input
+								type='number'
+								name='powerConsumption'
+								value={processingData.powerConsumption || ''}
+								onChange={handleInputChange}
+								placeholder='Enter power consumption in kW'
+							/>
+							<span className='unit'>kW</span>
+						</div>
+					)}
+					{processingData.roasterType === 'gas' && (
+						<div className='question-group'>
+							<label>Gas Consumption (kcal/hr)</label>
+							<div className='row-group'>
+								<input
+									type='number'
+									name='gasConsumption'
+									value={processingData.gasConsumption || ''}
+									onChange={handleInputChange}
+									placeholder='Enter gas consumption in kcal/hr'
+								/>
+								<span className='unit'>kcal /hr</span>
+							</div>
+						</div>
+					)}
+
+					{/* Usage Time */}
 					<div className='question-group'>
-						<label>Power Consumption (kW)</label>
-						<input
-							type='number'
-							name='powerConsumption'
-							value={processingData.powerConsumption || ''}
-							onChange={handleInputChange}
-							placeholder='Enter power consumption in kW'
-						/>
-						<span className='unit'>kW</span>
-					</div>
-				)}
-				{processingData.roasterType === 'gas' && (
-					<div className='question-group'>
-						<label>Gas Consumption (kcal/hr)</label>
+						<label>Usage Time (hours)</label>
 						<div className='row-group'>
 							<input
 								type='number'
-								name='gasConsumption'
-								value={processingData.gasConsumption || ''}
+								name='usageTime'
+								value={processingData.usageTime || ''}
 								onChange={handleInputChange}
-								placeholder='Enter gas consumption in kcal/hr'
+								placeholder='Enter usage time in hours'
 							/>
-							<span className='unit'>kcal /hr</span>
+							<span className='unit'>hr</span>
 						</div>
 					</div>
-				)}
 
-				{/* Usage Time */}
-				<div className='question-group'>
-					<label>Usage Time (hours)</label>
-					<div className='row-group'>
-						<input
-							type='number'
-							name='usageTime'
-							value={processingData.usageTime || ''}
-							onChange={handleInputChange}
-							placeholder='Enter usage time in hours'
-						/>
-						<span className='unit'>hr</span>
+					{/* Production Quantity */}
+					<div className='question-group'>
+						<label>Production Quantity (kg)</label>
+						<div className='row-group'>
+							<input
+								type='number'
+								name='productionQuantity'
+								value={processingData.productionQuantity || ''}
+								onChange={handleInputChange}
+								placeholder='Enter production quantity in kg'
+							/>
+							<span className='unit'>kg</span>
+						</div>
 					</div>
 				</div>
-
-				{/* Production Quantity */}
-				<div className='question-group'>
-					<label>Production Quantity (kg)</label>
-					<div className='row-group'>
-						<input
-							type='number'
-							name='productionQuantity'
-							value={processingData.productionQuantity || ''}
-							onChange={handleInputChange}
-							placeholder='Enter production quantity in kg'
-						/>
-						<span className='unit'>kg</span>
-					</div>
-				</div>
-
 				{/* Smoke Eliminator */}
 				<div className='question-group'>
 					<label>Smoke Eliminator</label>
