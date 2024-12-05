@@ -51,8 +51,7 @@ export default function ProductionStage({
 	return (
 		<section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
 			<h3>
-				Production Stage{' '}
-				{isCompleted && <span className='checkmark'>✓</span>}
+				Production Stage
 			</h3>
 			<article className='scroll'>
 				{/* Monthly Coffee Usage */}

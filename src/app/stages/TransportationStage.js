@@ -87,8 +87,7 @@ export default function TransportationStage({
     return (
         <section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
             <h3>
-                Transportation Stage{' '}
-                {isCompleted && <span className='checkmark'>✓</span>}
+                Transportation Stage
             </h3>
             <article className='scroll'>
                 {/* Farm to Port Distance */}

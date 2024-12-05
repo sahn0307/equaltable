@@ -84,8 +84,7 @@ export default function ExtractionStage({
 	return (
 		<section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
 			<h3>
-				Extraction Stage{' '}
-				{isCompleted && <span className='checkmark'>✓</span>}
+				Extraction Stage
 			</h3>
 			<article className='scroll'>
                 <div className='question-container'>

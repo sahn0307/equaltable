@@ -105,7 +105,7 @@ export default function ProcessingStage({
     return (
         <section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
             <h3>
-                Processing Stage {isCompleted && <span className='checkmark'>✓</span>}
+                Processing Stage
             </h3>
             <article className='scroll'>
                 {/* Type of Roaster */}
