@@ -148,6 +148,7 @@ p {
   label {
     margin-bottom: 7px;
     font-size: 12px;
+    font-weight: $medium;
     color: $dk-grey;
   }
   input[type="number"],
@@ -193,7 +194,7 @@ p {
       align-items: center;
     }
     .trim-label {
-      margin-right: 5px;
+      margin-right: 4px;
     }
     input {
       height: 16px;
@@ -204,6 +205,10 @@ p {
     .trim {
       margin-right: 4px;
     }
+  }
+  .trim-row {
+    // justify-content:space-between;
+    display: -webkit-box;
   }
 }
 

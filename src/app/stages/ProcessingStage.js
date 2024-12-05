@@ -212,7 +212,7 @@ export default function ProcessingStage({
 				{/* Smoke Eliminator */}
 				<div className='question-group'>
 					<label>Smoke Eliminator</label>
-					<div className='radio-group'>
+					<div className='radio-group trim-row'>
 						<label className='trim-label'>
 							<input
 								type='radio'
