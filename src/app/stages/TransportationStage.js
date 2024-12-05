@@ -212,10 +212,12 @@ export default function TransportationStage({
                         help measure it. It is measured based on a 20FT
                         container for ships.
                     </p>
+                    <br /><br />
                 </div>
                 <a href='https://example.com' target='_blank' className='external-link'>
                     Distance measurement site
                 </a>
+                <br /><br /><br />
             </article>
 
             {/* Monthly Carbon Emissions Display */}
