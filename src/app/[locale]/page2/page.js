@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+// import { useTranslations } from 'next-intl'
 import Image from 'next/image';
 import Link from 'next/link'; // Import Link for navigation
 import { useEmissionsContext } from '../../context/EmissionsContext'; // Import the context
@@ -14,6 +15,8 @@ import chevron from '../../../public/assets/chevron.png';
 import chevronwht from '../../../public/assets/chevron-wht.png';
 
 export default function Home() {
+    // const t = useTranslations()
+    
     const {
         productionData,
         setProductionData,
