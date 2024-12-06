@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 import { NextIntlClientProvider } from 'next-intl'
 import { routing } from '../../i18n/routing'
 import { Roboto } from 'next/font/google'

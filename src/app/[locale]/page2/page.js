@@ -11,8 +11,8 @@ import ProcessingStage from '../../stages/ProcessingStage';
 import ExtractionStage from '../../stages/ExtractionStage';
 import DisposalStage from '../../stages/DisposalStage';
 import ProgressBar from '../../components/ProgressBar';
-import chevron from '../../../public/assets/chevron.png';
-import chevronwht from '../../../public/assets/chevron-wht.png';
+import chevron from '../../../../public/assets/chevron.png';
+import chevronwht from '../../../../public/assets/chevron-wht.png';
 
 export default function Home() {
     // const t = useTranslations()

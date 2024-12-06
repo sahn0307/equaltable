@@ -1,26 +1,26 @@
-'use client';
+'use client'
 import { useTranslations } from 'next-intl'
 import { Link } from '../../i18n/routing'
-// import Link from 'next/link'; // Import Link
-import Image from 'next/image';
-import { useEmissionsContext } from '../context/EmissionsContext'; // Import the context
+// import Link from 'next/link' // Import Link
+import Image from 'next/image'
+import { useEmissionsContext } from '../context/EmissionsContext' // Import the context
 import LocaleSwitch from '../components/LocaleSwitch'
-import logo from '../../../public/assets/logo.png';
-import simple from '../../../public/assets/easy-check.png';
-import detail from '../../../public/assets/detailed.png';
+import logo from '../../../public/assets/logo.png'
+import simple from '../../../public/assets/easy-check.png'
+import detail from '../../../public/assets/detailed.png'
 
 export default function Page1() {
     const t = useTranslations()
-    const { productionData, setProductionData } = useEmissionsContext(); // Access context
+    const { productionData, setProductionData } = useEmissionsContext() // Access context
 
     // Handle input change to save monthly coffee usage to context
     const handleInputChange = (e) => {
-        const { value } = e.target;
+        const { value } = e.target
         setProductionData((prev) => ({
             ...prev,
             monthlyCoffeeUsage: parseFloat(value) || 0,
-        }));
-    };
+        }))
+    }
 
     return (
         <section className="centered-wrapper">
@@ -139,5 +139,5 @@ export default function Page1() {
                 </p>
             </div>
         </section>
-    );
+    )
 }
