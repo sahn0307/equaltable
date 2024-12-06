@@ -3,13 +3,13 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; // Import Link for navigation
-import { useEmissionsContext } from '../context/EmissionsContext'; // Import the context
-import ProductionStage from '../stages/ProductionStage';
-import TransportationStage from '../stages/TransportationStage';
-import ProcessingStage from '../stages/ProcessingStage';
-import ExtractionStage from '../stages/ExtractionStage';
-import DisposalStage from '../stages/DisposalStage';
-import ProgressBar from '../components/ProgressBar';
+import { useEmissionsContext } from '../../context/EmissionsContext'; // Import the context
+import ProductionStage from '../../stages/ProductionStage';
+import TransportationStage from '../../stages/TransportationStage';
+import ProcessingStage from '../../stages/ProcessingStage';
+import ExtractionStage from '../../stages/ExtractionStage';
+import DisposalStage from '../../stages/DisposalStage';
+import ProgressBar from '../../components/ProgressBar';
 import chevron from '../../../public/assets/chevron.png';
 import chevronwht from '../../../public/assets/chevron-wht.png';
 
