@@ -1,12 +1,16 @@
 'use client';
-import Link from 'next/link'; // Import Link
+import { useTranslations } from 'next-intl'
+import { Link } from '../../i18n/routing'
+// import Link from 'next/link'; // Import Link
 import Image from 'next/image';
-import { useEmissionsContext } from './context/EmissionsContext'; // Import the context
-import logo from '../../public/assets/logo.png';
-import simple from '../../public/assets/easy-check.png';
-import detail from '../../public/assets/detailed.png';
+import { useEmissionsContext } from '../context/EmissionsContext'; // Import the context
+import LocaleSwitch from '../components/LocaleSwitch'
+import logo from '../../../public/assets/logo.png';
+import simple from '../../../public/assets/easy-check.png';
+import detail from '../../../public/assets/detailed.png';
 
 export default function Page1() {
+    const t = useTranslations()
     const { productionData, setProductionData } = useEmissionsContext(); // Access context
 
     // Handle input change to save monthly coffee usage to context
@@ -20,6 +24,7 @@ export default function Page1() {
 
     return (
         <section className="centered-wrapper">
+            <LocaleSwitch />
             <div className="brand-wrapper">
                 <Image
                     src={logo}
@@ -51,6 +56,7 @@ export default function Page1() {
             </div>
             <div className="page1-header">
                 <h1>Measure the carbon emissions of coffee</h1>
+                <h1>{t('welcome')}</h1>
                 <p>
                     This is a carbon emissions calculator that allows you to
                     know the carbon emissions of the coffee you use
