@@ -69,8 +69,8 @@ export default function DisposalStage({
 
     return (
         <section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
-            <h3>
-                Disposal Stage {isCompleted && <span className='checkmark'>✓</span>}
+            <h3 className={ isCompleted ? 'completed' : ''}>
+                Disposal Stage
             </h3>
             <article className='scroll'>
                 <div className='question-container'>

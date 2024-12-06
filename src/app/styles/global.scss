@@ -53,6 +53,9 @@ h3 {
   position: sticky;
   z-index: 10;
 }
+h3.completed {
+  color: $accent;
+}
 p {
   color: $mid-grey;
   line-height: 1.6;
@@ -145,7 +148,9 @@ p {
   label {
     margin-bottom: 7px;
     font-size: 12px;
+    font-weight: $medium;
     color: $dk-grey;
+    line-height: 1;
   }
   input[type="number"],
   input[type="text"],
@@ -169,6 +174,7 @@ p {
     display: inline-flex;
     flex-flow: row nowrap;
     align-items: end;
+    justify-content: center;
   }
   .unit {
     margin-left: 8px;
@@ -179,24 +185,31 @@ p {
     margin-top: 10px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     label {
       font-size: 12px;
       font-weight: $regular;
       color: $dk-grey;
       margin-right: 10px;
+      display: flex;
+      align-items: center;
     }
     .trim-label {
-      margin-right: 5px;
+      margin-right: 4px;
     }
     input {
-      height: 10px;
-      width: 10px;
+      height: 16px;
+      width: 16px;
       margin-right: 5px;
       accent-color: $accent-bright;
     }
     .trim {
       margin-right: 4px;
     }
+  }
+  .trim-row {
+    // justify-content:space-between;
+    display: -webkit-box;
   }
 }
 
@@ -303,11 +316,18 @@ p {
   max-width: 325px;
   padding: 12px 40px;
   text-align: left;
+  text-decoration: none;
+  // font-size: 12px;
+  font-weight: $medium;
   color: $white;
   display: flex;
+  background-color: $accent;
   flex-flow: row nowrap;
   align-items: center;
-  background-color: $accent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   &:hover {
     background-color: $accent-bright;
   }
