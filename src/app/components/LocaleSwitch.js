@@ -1,15 +1,17 @@
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '../../i18n/routing'
 
 const LocaleSwitch = () => {
 	const router = useRouter()
+	const pathname = usePathname()
 	const locale = useLocale()
 	const t = useTranslations()
 
 	const changeLocale = (newLocale) => {
-		const { pathname, query } = router
-		router.push({ pathname, query }, undefined, { locale: newLocale })
+		// Convert current path to new locale path
+		const newPath = pathname.replace(`/${locale}`, `/${newLocale}`)
+		router.push(newPath)
 	}
 
 	return (
