@@ -15,24 +15,24 @@ const LocaleSwitch = () => {
 	}
 
 	return (
-		<div>
+		<div className='switch'>
 			<button
+			className='b1'
 				onClick={() => changeLocale('en')}
 				disabled={locale === 'en'}
-				style={{ fontWeight: locale === 'en' ? 'bold' : 'normal' }}>
+				style={{ color: locale === 'en' ? '#D16E11' : 'inherit' }}>
 				{t('English')}
 			</button>
 			<br />
 			<button
+				className='b2'
 				onClick={() => changeLocale('ko')}
 				disabled={locale === 'ko'}
-				style={{ fontWeight: locale === 'ko' ? 'bold' : 'normal' }}>
+				style={{ color: locale === 'ko' ? '#D16E11' : 'inherit' }}>
 				{t('Korean')}
 			</button>
 			<br />
-			<Link href='/' locale={locale}>
-				<button>{t('home')}</button>
-			</Link>
+			<Link href='/' locale={locale}>{t('home')}</Link>
 		</div>
 	)
 }

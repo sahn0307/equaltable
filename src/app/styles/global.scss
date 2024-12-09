@@ -12,8 +12,9 @@ $body-bg: #F1F3F2;
 // $body-bg: #738C80;
 $hr: #E6E9F4;
 $lt-grey: #F1F3F2;
-$mid-grey: #707070;
+$grey-outline: #D7DBEC;
 $grey-bg: #D7D8D8;
+$mid-grey: #707070;
 $text: #7E7F81;
 $form-title: #131523;
 $dk-grey: #000002;
@@ -620,4 +621,41 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+// LocalSwitch
+.switch {
+  height: 35px;
+  text-transform: uppercase;
+  color: $dk-grey;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row nowrap;
+  gap: .5px;
+  background: $grey-outline;
+  border: 1px solid $grey-outline;
+  border-radius: 4px;
+  button {
+    // color: $dk-grey;
+    background: $white;
+  }
+  .b1 {
+    width: 76px;
+    text-transform: uppercase;
+  }
+  .b2 {
+    width: 74px;
+  }
+  a {
+    padding: 0 10px;
+    min-width: 57px;
+    max-width: 81px;
+    color: $white;
+    text-decoration: none;
+    font-weight: $bold;
+    text-align: center;
+    align-content: center;
+    background: $accent;
+    border-radius: 4px;
+  }
 }
