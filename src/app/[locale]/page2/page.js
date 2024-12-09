@@ -1,19 +1,22 @@
 'use client';
 
 import { useState } from 'react';
+// import { useTranslations } from 'next-intl'
 import Image from 'next/image';
 import Link from 'next/link'; // Import Link for navigation
-import { useEmissionsContext } from '../context/EmissionsContext'; // Import the context
-import ProductionStage from '../stages/ProductionStage';
-import TransportationStage from '../stages/TransportationStage';
-import ProcessingStage from '../stages/ProcessingStage';
-import ExtractionStage from '../stages/ExtractionStage';
-import DisposalStage from '../stages/DisposalStage';
-import ProgressBar from '../components/ProgressBar';
-import chevron from '../../../public/assets/chevron.png';
-import chevronwht from '../../../public/assets/chevron-wht.png';
+import { useEmissionsContext } from '../../context/EmissionsContext'; // Import the context
+import ProductionStage from '../../stages/ProductionStage';
+import TransportationStage from '../../stages/TransportationStage';
+import ProcessingStage from '../../stages/ProcessingStage';
+import ExtractionStage from '../../stages/ExtractionStage';
+import DisposalStage from '../../stages/DisposalStage';
+import ProgressBar from '../../components/ProgressBar';
+import chevron from '../../../../public/assets/chevron.png';
+import chevronwht from '../../../../public/assets/chevron-wht.png';
 
 export default function Home() {
+    // const t = useTranslations()
+    
     const {
         productionData,
         setProductionData,

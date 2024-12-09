@@ -1,6 +1,6 @@
 'use client';
 
-import { useEmissionsContext } from '../context/EmissionsContext'; // Access the context
+import { useEmissionsContext } from '../../context/EmissionsContext'; // Access the context
 
 export default function Page3() {
     const {
