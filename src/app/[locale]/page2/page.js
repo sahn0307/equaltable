@@ -3,7 +3,7 @@
 import { useState } from 'react'
 // import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { Link } from '../../../i18n/routing' // Import Link for navigation
+import { Link } from '../../../i18n/routing'
 import { useEmissionsContext } from '../../context/EmissionsContext' // Import the context
 import LocaleSwitch from '../../components/LocaleSwitch'
 import ProductionStage from '../../stages/ProductionStage'
