@@ -65,6 +65,8 @@ p {
 // Page 2
 .page-header {
   width: 1719px;
+  display: flex;
+  justify-content:space-between;
 }
 
 .stage-container {
