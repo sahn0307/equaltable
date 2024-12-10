@@ -17,7 +17,7 @@ export const EmissionsProvider = ({ children }) => {
 		domesticDistance: 0,
 		transportType: {
 			farmToPort: 'truck',
-			portToDomestic: 'ship',
+			portToDomestic: 'flight',
 			domestic: 'truck'
 		}
 	})
@@ -36,7 +36,7 @@ export const EmissionsProvider = ({ children }) => {
 		powerConsumption: 0,
 		usageTime: 0,
 		productionQuantity: 0,
-		extractorPower: 'no',
+		extractorPower: 'yes',
 		extractorPowerConsumption: 0
 	})
 
