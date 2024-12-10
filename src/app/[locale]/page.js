@@ -59,7 +59,7 @@ export default function Page1() {
 			</div>
 			<div className='page1-header'>
 				<h1>Measure the carbon emissions of coffee</h1>
-				<h1>{t('welcome')}</h1>
+				{/* <h1>{t('welcome')}</h1> */}
 				<p>
 					This is a carbon emissions calculator that allows you to
 					know the carbon emissions of the coffee you use
