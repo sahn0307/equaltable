@@ -24,17 +24,20 @@ export default function Page1() {
 
     return (
         <section className="centered-wrapper">
-            <LocaleSwitch />
-            <div className="brand-wrapper">
-                <Image
-                    src={logo}
-                    width={40}
-                    height={32}
-                    className="brand-logo"
-                    alt="Equal Table logo"
-                />
-                <p className="brand-name">내일의 커피</p>
+            <div className="flex-row">
+                <div className="brand-wrapper">
+                    <Image
+                        src={logo}
+                        width={40}
+                        height={32}
+                        className="brand-logo"
+                        alt="Equal Table logo"
+                    />
+                        <p className="brand-name">내일의 커피</p>
+                </div>
+                    <LocaleSwitch />
             </div>
+
             <div className="progress-static">
                 <div className="progress-bar">
                     <div className="progress-step">
