@@ -12,6 +12,21 @@ export default function TransportationStage({
     const [monthlyEmissions, setMonthlyEmissions] = useState(0)
     const [isCompleted, setIsCompleted] = useState(false)
 
+    // Set default values for transportType if not provided
+    useEffect(() => {
+        if (!transportData.transportType) {
+            setTransportData((prevData) => ({
+                ...prevData,
+                transportType: {
+                    farmToPort: 'truck', // Default for first group
+                    portToDomestic: 'flight', // Default for second group
+                    domestic: 'truck' // Default for third group
+                }
+            }));
+        }
+    }, [transportData, setTransportData]);
+
+
     // Handle input changes for the transportation stage
     const handleInputChange = (e) => {
         const { name, value } = e.target
