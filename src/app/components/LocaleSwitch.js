@@ -1,36 +1,51 @@
-import { useRouter } from 'next/navigation'
+import { useEffect, useCallback } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '../../i18n/routing'
+import { useEmissionsContext } from '../context/EmissionsContext'
 
 const LocaleSwitch = () => {
 	const router = useRouter()
+	const pathname = usePathname()
 	const locale = useLocale()
 	const t = useTranslations()
+	const { saveFormState, restoreFormState } = useEmissionsContext()
 
-	const changeLocale = (newLocale) => {
-		const { pathname, query } = router
-		router.push({ pathname, query }, undefined, { locale: newLocale })
-	}
+	const memoizedRestoreFormState = useCallback(() => {
+		restoreFormState()
+	  }, [restoreFormState])
+	  
+	  useEffect(() => {
+		memoizedRestoreFormState()
+	  }, [locale, memoizedRestoreFormState]) // Restore when locale changes
+	
+	  const changeLocale = (newLocale) => {
+		saveFormState() // Save before locale change
+		const newPath = pathname.replace(`/${locale}`, `/${newLocale}`)
+		router.replace(newPath, { scroll: false, shallow: true })
+	  }
 
 	return (
-		<div>
+		<div className='switch' role='region' aria-label='language switcher'>
 			<button
+			className='b1'
 				onClick={() => changeLocale('en')}
 				disabled={locale === 'en'}
-				style={{ fontWeight: locale === 'en' ? 'bold' : 'normal' }}>
+				style={{ color: locale === 'en' ? '#D16E11' : 'inherit' }}
+				aria-pressed={locale === 'en'}>
 				{t('English')}
 			</button>
 			<br />
 			<button
+				className='b2'
 				onClick={() => changeLocale('ko')}
 				disabled={locale === 'ko'}
-				style={{ fontWeight: locale === 'ko' ? 'bold' : 'normal' }}>
+				style={{ color: locale === 'ko' ? '#D16E11' : 'inherit' }}
+				aria-pressed={locale === 'ko'}>
 				{t('Korean')}
 			</button>
 			<br />
-			<Link href='/' locale={locale}>
-				<button>{t('home')}</button>
-			</Link>
+			<Link href='/' locale={locale}>{t('home')}</Link>
 		</div>
 	)
 }

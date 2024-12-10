@@ -12,8 +12,9 @@ $body-bg: #F1F3F2;
 // $body-bg: #738C80;
 $hr: #E6E9F4;
 $lt-grey: #F1F3F2;
-$mid-grey: #707070;
+$grey-outline: #D7DBEC;
 $grey-bg: #D7D8D8;
+$mid-grey: #707070;
 $text: #7E7F81;
 $form-title: #131523;
 $dk-grey: #000002;
@@ -64,6 +65,8 @@ p {
 // Page 2
 .page-header {
   width: 1719px;
+  display: flex;
+  justify-content:space-between;
 }
 
 .stage-container {
@@ -173,7 +176,7 @@ p {
   .row-group {
     display: inline-flex;
     flex-flow: row nowrap;
-    align-items: end;
+    align-items: flex-end;
     justify-content: center;
   }
   .unit {
@@ -208,7 +211,6 @@ p {
     }
   }
   .trim-row {
-    // justify-content:space-between;
     display: -webkit-box;
   }
 }
@@ -317,7 +319,6 @@ p {
   padding: 12px 40px;
   text-align: left;
   text-decoration: none;
-  // font-size: 12px;
   font-weight: $medium;
   color: $white;
   display: flex;
@@ -340,11 +341,19 @@ p {
   flex-flow: column nowrap;
   align-items: center;
 }
-.brand-wrapper {
-  width: 161px;
+.flex-row {
+  position: relative;
   display: flex;
-  flex-flow: row nowrap;
   align-items: center;
+  width: 100%;
+}
+.brand-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  margin-right: auto;
   .brand-logo {
     margin-right: 9px;
   }
@@ -620,4 +629,42 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+// LocalSwitch
+.switch {
+  height: 35px;
+  margin-left: auto;
+  text-transform: uppercase;
+  color: $dk-grey;
+  font-size: 12px;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: .5px;
+  background: $grey-outline;
+  border: 1px solid $grey-outline;
+  border-radius: 4px;
+  button {
+    background: $white;
+  }
+  .b1 {
+    width: 76px;
+    text-transform: uppercase;
+  }
+  .b2 {
+    width: 74px;
+  }
+  a {
+    padding: 0 10px;
+    min-width: 57px;
+    max-width: 81px;
+    color: $white;
+    text-decoration: none;
+    font-weight: $bold;
+    text-align: center;
+    align-content: center;
+    background: $accent;
+    border-radius: 4px;
+  }
 }

@@ -1,28 +1,33 @@
 'use client'
+import { Link } from '../../../i18n/routing'
+import LocaleSwitch from '../../components/LocaleSwitch'
 import Image from 'next/image'
-import chevron from '../../../public/assets/chevron.png'
-import step1 from '../../../public/assets/step1.png'
-import step2 from '../../../public/assets/step2.png'
-import step3 from '../../../public/assets/step3.png'
-import step4 from '../../../public/assets/step4.png'
-import step5 from '../../../public/assets/step5.png'
+import chevron from '../../../../public/assets/chevron.png'
+import step1 from '../../../../public/assets/step1.png'
+import step2 from '../../../../public/assets/step2.png'
+import step3 from '../../../../public/assets/step3.png'
+import step4 from '../../../../public/assets/step4.png'
+import step5 from '../../../../public/assets/step5.png'
 
 export default function page() {
 	return (
 		<section className='page-wrapper'>
 			<div className='page-header'>
-				<h2>
-					Measure the carbon emissions from coffee farms to disposal
-				</h2>
-				<p>
-					This is a carbon emission calculator that allows you to know
-					the detailed carbon emissions of the coffee you use.
-				</p>
-				<p>
-					The carbon emissions are calculated based on 1 kg of raw
-					beans, and if the figures are unknown, they are entered
-					based on an international academic journal GEO paper.
-				</p>
+				<div className='left'>
+					<h2>
+						Measure the carbon emissions from coffee farms to disposal
+					</h2>
+					<p>
+						This is a carbon emission calculator that allows you to know
+						the detailed carbon emissions of the coffee you use.
+					</p>
+					<p>
+						The carbon emissions are calculated based on 1 kg of raw
+						beans, and if the figures are unknown, they are entered
+						based on an international academic journal GEO paper.
+					</p>
+				</div>
+				<LocaleSwitch />
 			</div>
 			<div className='row'>
 				<div className='col'>
