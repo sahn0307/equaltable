@@ -176,7 +176,7 @@ p {
   .row-group {
     display: inline-flex;
     flex-flow: row nowrap;
-    align-items: end;
+    align-items: flex-end;
     justify-content: center;
   }
   .unit {
