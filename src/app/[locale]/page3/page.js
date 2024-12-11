@@ -24,7 +24,7 @@ export default function Page3() {
                 <div className="left">
                     <h2>Monthly Carbon Emissions Report</h2>
                     <p>
-                        This page provides a detailed breakdown of your coffee's carbon emissions
+                        This page provides a detailed breakdown of your coffee&apos;s carbon emissions
                         from production to disposal. The values are based on 1 kg of raw coffee beans.
                     </p>
                 </div>
@@ -55,8 +55,8 @@ export default function Page3() {
                                 <span>30</span>
                             </div>
                         </div>
-                        <p className="grade">Grade: {grade}</p>
-                        <p>Total Emissions: {totalEmissions.toFixed(2)} kg CO₂</p>
+                        
+<p><a href='/page4' className='link'>Ways to increase carbon emission reduction ratings</a></p>
                     </div>
                 </div>
 
