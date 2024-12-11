@@ -1,6 +1,15 @@
 {
-	"welcome": "Insert KOREAN here!",
-	"Korean": "한국어",
 	"English": "English",
-	"home": "홈으로 이동"
+	"Korean": "한국어",
+	"home": "홈으로 이동",
+	"p1-header": "커피의 탄소배출량을 측정해보세요.",
+	"p1-desc": "내가 사용하는 커피의 탄소배출량을 알 수 있는 탄소배출 계산기입니다.",
+	"input-default-kg": "월 커피 사용량 입력",
+	"easy-check-title": "<p className='title bold'>탄소배출량 </p><p className='title accent bold'>간단히</p> <p className='title bold'>확인하기</p>",
+	"button-1-desc": "월 커피 사용량만 입력하면 일반 원두 기준으로 대략적인 커피의탄소배출량을 확인할 수 있습니다.",
+	"detail-check-title": "<p className='title bold'>탄소배출량 </p><p className='title accent bold'>자세히 </p><p className='title bold'>확인하기</p>",
+	"button-2-desc": "커피의 농장부터 폐기되는 과정을 상세히 입력하고 자세한 커피의 탄소배출량을 확인할 수 있습니다.",
+	"data-consent-title": "데이터 수치 확인 동의",
+	"data-consent": "확인",
+	"data-consent-desc": "해당 탄소배출은 대략적인 수치로 보다 정확한 수치를 확인하기 위해서는 (주)이퀄테이블로 문의바랍니다."
 }
