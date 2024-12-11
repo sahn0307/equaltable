@@ -1,6 +1,7 @@
 'use client';
 
 import { useEmissionsContext } from '../../context/EmissionsContext'; // Access the context
+import LocaleSwitch from '../../components/LocaleSwitch';
 
 export default function Page3() {
     const {
@@ -11,116 +12,88 @@ export default function Page3() {
         disposalData,
     } = useEmissionsContext(); // Access the context data
 
-    // Calculate total emissions
-    const totalEmissions = (() => {
-        const productionEmissions = productionData.carbonEmissionsPerKg || 0;
-        const transportEmissions =
-            (transportData.farmToPortDistance * 0.2 || 0) + // Truck
-            (transportData.portToDomesticDistance * 0.015 || 0) + // Ship
-            (transportData.domesticDistance * 0.2 || 0); // Truck
-        const processingEmissions =
-            (processingData.roasterType === 'electric'
-                ? (processingData.powerConsumption || 0) *
-                  (processingData.usageTime || 0) *
-                  0.495
-                : (processingData.gasConsumption || 0) *
-                  (processingData.usageTime || 0) *
-                  0.23) || 0;
-        const extractionEmissions =
-            (extractionData.grinderType === 'electric'
-                ? (extractionData.powerConsumption || 0) *
-                  (extractionData.usageTime || 0) *
-                  0.495
-                : 0) +
-            (extractionData.extractorPower === 'yes'
-                ? (extractionData.extractorPowerConsumption || 0) *
-                  (extractionData.usageTime || 0) *
-                  0.495
-                : 0);
-        const disposalEmissions =
-            (disposalData.wasteMass || 0) * 0.455 + // Landfill
-            (disposalData.packagingType === 'LDPE' ? 0.049 : 0); // Packaging emissions
-        return (
-            productionEmissions +
-            transportEmissions +
-            processingEmissions +
-            extractionEmissions +
-            disposalEmissions
-        );
-    })();
+    // Placeholder calculations for total emissions
+    const totalEmissions = 0; // Replace with actual calculation logic
+    const clampedEmissions = 0; // Placeholder
+    const normalizedPosition = 0; // Placeholder
+    const grade = "A"; // Placeholder
 
     return (
-        <div className="centered-wrapper">
+        <>
             <div className="page-header">
-                <h2>Compare the Monthly Carbon Emissions of Your Coffee</h2>
-                <p>
-                    Check the carbon emissions of your coffee and compare them to
-                    carbon-reducing coffee.
-                </p>
+                <div className="left">
+                    <h2>Monthly Carbon Emissions Report</h2>
+                    <p>
+                        This page provides a detailed breakdown of your coffee's carbon emissions
+                        from production to disposal. The values are based on 1 kg of raw coffee beans.
+                    </p>
+                </div>
+                <LocaleSwitch />
             </div>
-            <div className="report">
-                {/* Carbon Emissions Report */}
-                <div>
-                    <h3>Total Carbon Emissions:</h3>
-                    <p>{totalEmissions.toFixed(2)} kg CO₂</p>
+
+            <div className="page-content" style={{ display: 'flex', gap: '20px', alignItems: 'stretch' }}>
+                {/* First Column */}
+                <div className="column" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div className="stage-column" style={{ flex: 1 }}>
+                        <h3>Monthly Coffee Usage</h3>
+                        <p>{productionData?.monthlyCoffeeUsage?.toFixed(2) || 0} kg</p>
+                    </div>
+
+                    <div className="stage-column" style={{ flex: 1 }}>
+                        <h3>The level of carbon emissions I use</h3>
+                        <div className="gauge-container">
+                            <div className="gauge">
+                                <div
+                                    className="gauge-pointer"
+                                    style={{
+                                        left: `${normalizedPosition}%`,
+                                    }}
+                                />
+                            </div>
+                            <div className="gauge-labels">
+                                <span>-30</span>
+                                <span>30</span>
+                            </div>
+                        </div>
+                        <p className="grade">Grade: {grade}</p>
+                        <p>Total Emissions: {totalEmissions.toFixed(2)} kg CO₂</p>
+                    </div>
                 </div>
-                <div>
-                    <h4>Production Stage:</h4>
-                    <p>{productionData.carbonEmissionsPerKg.toFixed(2)} kg CO₂</p>
+
+                {/* Second Column */}
+                <div className="column" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div className="stage-column" style={{ flex: 1 }}>
+                        <h3>Expected Monthly Carbon Emissions</h3>
+                        <p>Placeholder for data</p>
+                    </div>
                 </div>
-                <div>
-                    <h4>Transportation Stage:</h4>
-                    <p>
-                        {(transportData.farmToPortDistance * 0.2 +
-                            transportData.portToDomesticDistance * 0.015 +
-                            transportData.domesticDistance * 0.2).toFixed(2)}{' '}
-                        kg CO₂
-                    </p>
+
+                {/* Third Column */}
+                <div className="column" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div className="stage-column" style={{ flex: 1 }}>
+                        <h3>Monthly carbon emissions when using carbon-reducing coffee</h3>
+                        <p>Placeholder for data</p>
+                    </div>
                 </div>
-                <div>
-                    <h4>Processing Stage:</h4>
-                    <p>
-                        {(
-                            (processingData.roasterType === 'electric'
-                                ? processingData.powerConsumption *
-                                  processingData.usageTime *
-                                  0.495
-                                : processingData.gasConsumption *
-                                  processingData.usageTime *
-                                  0.23) || 0
-                        ).toFixed(2)}{' '}
-                        kg CO₂
-                    </p>
-                </div>
-                <div>
-                    <h4>Extraction Stage:</h4>
-                    <p>
-                        {(
-                            (extractionData.grinderType === 'electric'
-                                ? extractionData.powerConsumption *
-                                  extractionData.usageTime *
-                                  0.495
-                                : 0) +
-                            (extractionData.extractorPower === 'yes'
-                                ? extractionData.extractorPowerConsumption *
-                                  extractionData.usageTime *
-                                  0.495
-                                : 0)
-                        ).toFixed(2)}{' '}
-                        kg CO₂
-                    </p>
-                </div>
-                <div>
-                    <h4>Disposal Stage:</h4>
-                    <p>
-                        {(
-                            disposalData.wasteMass * 0.455 +
-                            (disposalData.packagingType === 'LDPE' ? 0.049 : 0)
-                        ).toFixed(2)}{' '}
-                        kg CO₂
-                    </p>
+
+                {/* Fourth Column */}
+                <div className="column" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div className="stage-column" style={{ flex: 1 }}>
+                        <h3>When applying carbon-reducing coffee, how much will carbon emissions be reduced each Month?</h3>
+                        <p>Placeholder for data</p>
+                    </div>
+
+                    <div className="stage-column" style={{ flex: 1 }}>
+                        <h3>What is the equivalent travel distance for carbon emissions?</h3>
+                        <p>Placeholder for data</p>
+                    </div>
+
+                    <div className="stage-column" style={{ flex: 1 }}>
+                        <h3>What is the equivalent travel distance for carbon reduction?</h3>
+                        <p>Placeholder for data</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
