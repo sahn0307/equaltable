@@ -2,6 +2,7 @@
 
 import { useEmissionsContext } from '../../context/EmissionsContext'; // Access the context
 import LocaleSwitch from '../../components/LocaleSwitch';
+import { Link } from '../../../i18n/routing'
 
 export default function Page3() {
     const {
