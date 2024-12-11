@@ -1,9 +1,8 @@
 'use client'
 import { useTranslations } from 'next-intl'
 import { Link } from '../../i18n/routing'
-// import Link from 'next/link' // Import Link
 import Image from 'next/image'
-import { useEmissionsContext } from '../context/EmissionsContext' // Import the context
+import { useEmissionsContext } from '../context/EmissionsContext'
 import LocaleSwitch from '../components/LocaleSwitch'
 import logo from '../../../public/assets/logo.png'
 import simple from '../../../public/assets/easy-check.png'
@@ -11,8 +10,7 @@ import detail from '../../../public/assets/detailed.png'
 
 export default function Page1() {
 	const t = useTranslations()
-	const { productionData, setProductionData } = useEmissionsContext() // Access context
-
+	const { productionData, setProductionData } = useEmissionsContext()
 	// Handle input change to save monthly coffee usage to context
 	const handleInputChange = (e) => {
 		const { value } = e.target
@@ -58,12 +56,8 @@ export default function Page1() {
 				</div>
 			</div>
 			<div className='page1-header'>
-				<h1>Measure the carbon emissions of coffee</h1>
-				{/* <h1>{t('welcome')}</h1> */}
-				<p>
-					This is a carbon emissions calculator that allows you to
-					know the carbon emissions of the coffee you use
-				</p>
+				<h1>{t('p1-header')}</h1>
+				<p>{t('p1-desc')}</p>
 			</div>
 			<form className='step1'>
 				{/* Monthly Coffee Usage */}
@@ -72,7 +66,7 @@ export default function Page1() {
 						<input
 							type='number'
 							name='monthlyCoffeeUsage'
-							placeholder='Enter monthly coffee usage'
+							placeholder={t('input-default-kg')}
 							value={productionData.monthlyCoffeeUsage || ''} // Controlled input
 							onChange={handleInputChange} // Update context
 						/>
@@ -92,19 +86,13 @@ export default function Page1() {
 							/>
 							<div className='bottom'>
 								<div className='title-group'>
-									<p className='title accent bold'>
-										Easily Check
-									</p>
-									<p className='title bold'>
-										Carbon Emissions
-									</p>
+									{t.rich('easy-check-title', {
+										accent: (chunks) => <p className='title accent bold'>{chunks}</p>,
+										bold: (chunks) => <p className='title bold'>{chunks}</p>,
+										row: (chunks) => <div className='row'>{chunks}</div>
+									})}
 								</div>
-								<p className='small'>
-									By simply entering your monthly coffee
-									usage, you can check the approximate carbon
-									emissions of your coffee based on general
-									standards.
-								</p>
+								<p className='small'>{t('button-2-desc')}</p>
 							</div>
 						</button>
 					</Link>
@@ -120,18 +108,13 @@ export default function Page1() {
 							/>
 							<div className='bottom'>
 								<div className='title-group'>
-									<p className='title accent bold'>
-										Detailed Check
-									</p>
-									<p className='title bold'>
-										Carbon Emissions
-									</p>
+									{t.rich('detail-check-title', {
+										accent: (chunks) => <div className='title accent bold'>{chunks}</div>,
+										bold: (chunks) => <div className='title bold'>{chunks}</div>,
+										row: (chunks) => <div className='row'>{chunks}</div>
+									})}
 								</div>
-								<p className='small'>
-									By entering detailed values from the coffee
-									farm to disposal, you can check the detailed
-									carbon emissions of your coffee.
-								</p>
+								<p className='small'>{t('button-2-desc')}</p>
 							</div>
 						</button>
 					</Link>
@@ -139,18 +122,13 @@ export default function Page1() {
 			</form>
 			<div className='data-consent'>
 				<div className='row'>
-					<p className='medium title'>
-						Consent to Data Collection Confirmation
-					</p>
+					<p className='medium title'>{t('data-consent-title')}</p>
 					<div className='row'>
 						<input type='checkbox' />
-						<label>check</label>
+						<label>{t('data-consent')}</label>
 					</div>
 				</div>
-				<p className='small'>
-					The carbon emission data provided is approximate. For more
-					accurate figures, please contact Equal Table Inc.
-				</p>
+				<p className='small'>{t('data-consent-desc')}</p>
 			</div>
 		</section>
 	)
