@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function ProcessingStage({
 	processingData,
@@ -9,6 +10,7 @@ export default function ProcessingStage({
 }) {
 	const [monthlyEmissions, setMonthlyEmissions] = useState(0)
 	const [isCompleted, setIsCompleted] = useState(false)
+	const t = useTranslations()
 
 	// Handle input changes for form fields
 	const handleInputChange = (e) => {
@@ -112,13 +114,18 @@ export default function ProcessingStage({
 
 	return (
 		<section className={`stage-column ${isCompleted ? 'completed' : ''}`}>
-			<h3 className={ isCompleted ? 'completed' : ''}>Processing Stage</h3>
+			{t.rich('stg-4-col', {
+				h3: (chunks) => {
+					const className = isCompleted ? 'completed' : ''
+					return <h3 className={className}>{chunks}</h3>
+				}
+			})}
 			<article className='scroll'>
 				<div className='question-container'>
 					{/* Type of Roaster */}
 					<div className='question-group'>
 						<div className='question-row'>
-							<label>Type</label>
+							<label>{t('q6')}</label>
 							<div className='radio-group'>
 								<label>
 									<input
@@ -131,7 +138,7 @@ export default function ProcessingStage({
 										}
 										onChange={handleRadioChange}
 									/>
-									Electric
+									{t('Electric')}
 								</label>
 								<label>
 									<input
@@ -143,7 +150,7 @@ export default function ProcessingStage({
 										}
 										onChange={handleRadioChange}
 									/>
-									Gas
+									{t('Gas')}
 								</label>
 							</div>
 						</div>
@@ -152,27 +159,27 @@ export default function ProcessingStage({
 					{/* Power Consumption */}
 					{processingData.roasterType === 'electric' && (
 						<div className='question-group'>
-							<label>Power Consumption (kW)</label>
+							<label>{t('q7')}</label>
 							<input
 								type='number'
 								name='powerConsumption'
 								value={processingData.powerConsumption || ''}
 								onChange={handleInputChange}
-								placeholder='Enter power consumption in kW'
+								placeholder={t('input-default')}
 							/>
 							<span className='unit'>kW</span>
 						</div>
 					)}
 					{processingData.roasterType === 'gas' && (
 						<div className='question-group'>
-							<label>Gas Consumption (kcal/hr)</label>
+							<label>{t('q8')}</label>
 							<div className='row-group'>
 								<input
 									type='number'
 									name='gasConsumption'
 									value={processingData.gasConsumption || ''}
 									onChange={handleInputChange}
-									placeholder='Enter gas consumption in kcal/hr'
+									placeholder={t('input-default')}
 								/>
 								<span className='unit'>kcal /hr</span>
 							</div>
@@ -181,14 +188,14 @@ export default function ProcessingStage({
 
 					{/* Usage Time */}
 					<div className='question-group'>
-						<label>Usage Time (hours)</label>
+						<label>{t('q9')}</label>
 						<div className='row-group'>
 							<input
 								type='number'
 								name='usageTime'
 								value={processingData.usageTime || ''}
 								onChange={handleInputChange}
-								placeholder='Enter usage time in hours'
+								placeholder={t('input-default')}
 							/>
 							<span className='unit'>hr</span>
 						</div>
@@ -196,14 +203,14 @@ export default function ProcessingStage({
 
 					{/* Production Quantity */}
 					<div className='question-group'>
-						<label>Production Quantity (kg)</label>
+						<label>{t('q10')}</label>
 						<div className='row-group'>
 							<input
 								type='number'
 								name='productionQuantity'
 								value={processingData.productionQuantity || ''}
 								onChange={handleInputChange}
-								placeholder='Enter production quantity in kg'
+								placeholder={t('input-default')}
 							/>
 							<span className='unit'>kg</span>
 						</div>
@@ -211,7 +218,7 @@ export default function ProcessingStage({
 				</div>
 				{/* Smoke Eliminator */}
 				<div className='question-group'>
-					<label>Smoke Eliminator</label>
+					<label>{t('q11')}</label>
 					<div className='radio-group trim-row'>
 						<label className='trim-label'>
 							<input
@@ -225,7 +232,7 @@ export default function ProcessingStage({
 								onChange={handleRadioChange}
 								className='trim'
 							/>
-							Smoke Eliminator
+							{t('smoke-elim')}
 						</label>
 						<label className='trim-label'>
 							<input
@@ -239,7 +246,7 @@ export default function ProcessingStage({
 								onChange={handleRadioChange}
 								className='trim'
 							/>
-							Afterburner
+							{t('afterburner')}
 						</label>
 						<label className='trim-label'>
 							<input
@@ -253,7 +260,7 @@ export default function ProcessingStage({
 								onChange={handleRadioChange}
 								className='trim'
 							/>
-							Not in Use
+							{t('not-in-use')}
 						</label>
 					</div>
 				</div>
@@ -261,7 +268,7 @@ export default function ProcessingStage({
 				{/* Additional Smoke Eliminator Fields */}
 				{processingData.smokeEliminator === 'smokeEliminator' && (
 					<div className='question-group'>
-						<label>Power Consumption (kW)</label>
+						<label>{t('smoke-elim-power')}</label>
 						<div className='row-group'>
 							<input
 								type='number'
@@ -271,7 +278,7 @@ export default function ProcessingStage({
 									''
 								}
 								onChange={handleInputChange}
-								placeholder='Enter power consumption in kW'
+								placeholder={t('input-default')}
 							/>
 							<span className='unit'>kW</span>
 						</div>
@@ -280,7 +287,7 @@ export default function ProcessingStage({
 				{processingData.smokeEliminator === 'afterburner' && (
 					<>
 						<div className='question-group'>
-							<label>Afterburner Power Consumption (kW)</label>
+							<label>{t('ab-power')}</label>
 							<div className='row-group'>
 								<input
 									type='number'
@@ -290,14 +297,14 @@ export default function ProcessingStage({
 										''
 									}
 									onChange={handleInputChange}
-									placeholder='Enter power consumption in kW'
+									placeholder={t('input-default')}
 								/>
 								<span className='unit'>kW</span>
 							</div>
 						</div>
 
 						<div className='question-group'>
-							<label>Afterburner Gas Consumption (kcal/hr)</label>
+							<label>{t('ab-gas')}</label>
 							<div className='row-group'>
 								<input
 									type='number'
@@ -307,14 +314,14 @@ export default function ProcessingStage({
 										''
 									}
 									onChange={handleInputChange}
-									placeholder='Enter gas consumption in kcal/hr'
+									placeholder={t('input-default')}
 								/>
 								<span className='unit'>kcal /hr</span>
 							</div>
 						</div>
 
 						<div className='question-group'>
-							<label>Afterburner Usage Time (hours)</label>
+							<label>{t('ab-hrs')}</label>
 							<div className='row-group'>
 								<input
 									type='number'
@@ -324,7 +331,7 @@ export default function ProcessingStage({
 										''
 									}
 									onChange={handleInputChange}
-									placeholder='Enter usage time in hours'
+									placeholder={t('input-default')}
 								/>
 								<span className='unit'>hr</span>
 							</div>
@@ -335,7 +342,7 @@ export default function ProcessingStage({
 
 			{/* Monthly Carbon Emissions Display */}
 			<div className='carbon-summary'>
-				<h4>Monthly Carbon Emissions per kg</h4>
+				<h4>{t('carbon-summary-title')}</h4>
 				<p>{monthlyEmissions.toFixed(2)} kg CO₂</p>
 			</div>
 		</section>
