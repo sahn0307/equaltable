@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-// import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '../../../i18n/routing'
-import { useEmissionsContext } from '../../context/EmissionsContext' // Import the context
+import { useEmissionsContext } from '../../context/EmissionsContext'
 import LocaleSwitch from '../../components/LocaleSwitch'
 import ProductionStage from '../../stages/ProductionStage'
 import TransportationStage from '../../stages/TransportationStage'
@@ -16,7 +16,7 @@ import chevron from '../../../../public/assets/chevron.png'
 import chevronwht from '../../../../public/assets/chevron-wht.png'
 
 export default function Home() {
-	// const t = useTranslations()
+	const t = useTranslations()
 
 	const {
 		productionData,
@@ -47,20 +47,9 @@ export default function Home() {
 		<>
 			<div className='page-header'>
 				<div className='left'>
-					<h2>
-						Measure the carbon emissions from coffee farms to
-						disposal
-					</h2>
-					<p>
-						This is a carbon emission calculator that allows you to
-						know the detailed carbon emissions of the coffee you
-						use.
-					</p>
-					<p>
-						The carbon emissions are calculated based on 1 kg of raw
-						beans, and if the figures are unknown, they are entered
-						based on an international academic journal GEO paper.
-					</p>
+					<h2>{t('p2-header')}</h2>
+					<p>{t('p2-para1')}</p>
+					<p>{t('p2-para2')}</p>
 				</div>
 				<LocaleSwitch />
 			</div>
@@ -112,7 +101,7 @@ export default function Home() {
 				/>
 				{/* Button to navigate to page3 */}
 				<Link href='/page3' className='calculate-button'>
-					Check my monthly carbon emissions report
+					<span>{t('p2-button')}</span>
 					<Image
 						src={chevronwht}
 						width={6}

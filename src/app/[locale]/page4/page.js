@@ -1,7 +1,8 @@
 'use client'
+import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { Link } from '../../../i18n/routing'
 import LocaleSwitch from '../../components/LocaleSwitch'
-import Image from 'next/image'
 import chevron from '../../../../public/assets/chevron.png'
 import step1 from '../../../../public/assets/step1.png'
 import step2 from '../../../../public/assets/step2.png'
@@ -9,23 +10,16 @@ import step3 from '../../../../public/assets/step3.png'
 import step4 from '../../../../public/assets/step4.png'
 import step5 from '../../../../public/assets/step5.png'
 
-export default function page() {
+export default function Page() {
+	const t = useTranslations()
+
 	return (
 		<section className='page-wrapper'>
 			<div className='page-header'>
 				<div className='left'>
-					<h2>
-						Measure the carbon emissions from coffee farms to disposal
-					</h2>
-					<p>
-						This is a carbon emission calculator that allows you to know
-						the detailed carbon emissions of the coffee you use.
-					</p>
-					<p>
-						The carbon emissions are calculated based on 1 kg of raw
-						beans, and if the figures are unknown, they are entered
-						based on an international academic journal GEO paper.
-					</p>
+					<h2>{t('p2-header')}</h2>
+					<p>{t('p2-para1')}</p>
+					<p>{t('p2-para2')}</p>
 				</div>
 				<LocaleSwitch />
 			</div>
@@ -37,7 +31,7 @@ export default function page() {
 						height={60.4}
 						alt='Production Stage Icon'
 					/>
-					<span className='stage-title medium'>Production Stage</span>
+					<span className='stage-title medium'>{t('stg-2')}</span>
 					<div className='bar-circle' />
 				</div>
 				<Image src={chevron} width={16} height={16} alt='chevron' />
@@ -48,9 +42,7 @@ export default function page() {
 						height={39.2}
 						alt='Transportation Stage Icon'
 					/>
-					<span className='stage-title medium'>
-						Transportation Stage
-					</span>
+					<span className='stage-title medium'>{t('stg-3')}</span>
 					<div className='bar-circle' />
 				</div>
 				<Image src={chevron} width={16} height={16} alt='chevron' />
@@ -61,7 +53,7 @@ export default function page() {
 						height={80.5}
 						alt='Processing Stage Icon'
 					/>
-					<span className='stage-title medium'>Processing Stage</span>
+					<span className='stage-title medium'>{t('stg-4')}</span>
 					<div className='bar-circle' />
 				</div>
 				<Image src={chevron} width={16} height={16} alt='chevron' />
@@ -72,7 +64,7 @@ export default function page() {
 						height={51.2}
 						alt='Extraction Stage Icon'
 					/>
-					<span className='stage-title medium'>Extraction Stage</span>
+					<span className='stage-title medium'>{t('stg-5')}</span>
 					<div className='bar-circle' />
 				</div>
 				<Image src={chevron} width={16} height={16} alt='chevron' />
@@ -83,7 +75,7 @@ export default function page() {
 						height={47.5}
 						alt='Disposal Stage Icon'
 					/>
-					<span className='stage-title medium'>Disposal Stage</span>
+					<span className='stage-title medium'>{t('stg-6')}</span>
 					<div className='bar-circle' />
 				</div>
 			</div>
@@ -95,198 +87,115 @@ export default function page() {
 
 			<div className='card-row row'>
 				<div className='card h180'>
-					<p>
-						Our carbon-neutral certified farm has transformed the
-						cultivation process that emits +1.69 kg of carbon per 1
-						kg of green coffee beans to achieve a carbon emission of
-						-2.69kg. We are reducing more carbon emissions through
-						agroforestry, the use of organic fertilizers, reduced
-						water usage, and the use of renewable energy.
-					</p>
+					<p>{t('prod-info')}</p>
 				</div>
 				<div className='card h180'>
-					<p>
-						In the case of air transport, there is a difference of
-						more than 10 times in carbon emissions compared to
-						shipping. To reduce carbon emissions during the
-						transportation stage of Naeil Coffee, we transport
-						containers filled with green coffee beans from the farm
-						by ship. Additionally, we measure and record all
-						distances and the corresponding carbon emissions from
-						the farm to the port, from port to port, and from the
-						port to the roasting facility.
-					</p>
+					<p>{t('trans-info')}</p>
 				</div>
 				<div className='card h180'>
-					<p>
-						Naeil Coffee uses 100% renewable energy for the energy
-						required to produce carbon-reduced coffee. We utilize
-						renewable energy for all processes necessary for
-						manufacturing in the factory, including roasting,
-						grinding, and extraction testing. To achieve this, our
-						company is implementing RE100 in our factories.
-					</p>
+					<p>{t('process-info')}</p>
 				</div>
 				<div className='card h180'>
-					<p>
-						Our factory also uses renewable energy when extracting
-						coffee in our factories. All processes, including the
-						grinder, espresso machine, kettle, and ice maker, are
-						powered by renewable energy.
-					</p>
+					<p>{t('ext-info')}</p>
 				</div>
 				<div className='card h180'>
-					<p>
-						The materials used for carbon-reduced coffee are
-						recyclable or made from biodegradable packaging,
-						excluding non-recyclable materials such as aluminum.
-						This helps reduce carbon emissions generated from
-						packaging waste. Additionally, we are engaged in
-						upcycling by utilizing leftover materials, such as green
-						coffee bean bags, to create goods like tote bags.
-					</p>
+					<p>{t('dis-info')}</p>
 				</div>
 			</div>
-			<div className='card-div'>
-				Methods for Implementing Carbon Reduction in Cafes/Companies
-			</div>
+			<div className='card-div'>{t('row-2')}</div>
 			<div className='card-row row'>
 				<div className='card h150'>
 					<p className='card-title'>
-						<span>Verify the Carbon Emissions</span>
-						<br />
-						of the Farm
+						{t.rich('prod-cc', {
+							accent: (chunks) => <span>{chunks}</span>,
+							br: () => <br />
+						})}
 					</p>
-					<p>
-						Check whether coffee farms are operating in an
-						environmentally friendly manner, such as carbon-neutral,
-						organic, rainforest-certified, or shade-grown, and keep
-						track of farm operations
-					</p>
+					<p>{t('prod-p')}</p>
 				</div>
 				<div className='card h150'>
 					<p className='card-title'>
-						Buy Green Beans in
-						<br />
-						<span>Large Quantities</span>
+						{t.rich('trans-cc', {
+							accent: (chunks) => <span>{chunks}</span>,
+							br: () => <br />
+						})}
 					</p>
-					<p>
-						When importing green beans from abroad, import them in
-						large quantities by ship rather than by air
-						transportation
-					</p>
+					<p>{t('trans-cc-p')}</p>
 				</div>
 				<div className='card h150'>
 					<p className='card-title'>
-						Use <span>Renewable Energy</span>
-						<br />
-						for Roasting
+						{t.rich('process-cc', {
+							accent: (chunks) => <span>{chunks}</span>,
+							br: () => <br />
+						})}
 					</p>
-					<p>
-						Try to implement RE100 using renewable energy in the
-						roasting stage and roast large amounts of beans at once
-					</p>
+					<p>{t('process-cc-p')}</p>
 				</div>
 				<div className='card h150'>
 					<p className='card-title'>
-						Use <span>Renewable Energy</span>
-						<br />
-						for Roasting
+						{t.rich('ext-cc', {
+							accent: (chunks) => <span>{chunks}</span>,
+							br: () => <br />
+						})}
 					</p>
-					<p>
-						Try to implement RE100 using renewable energy in the
-						extraction stage and minimize power consumption when
-						using the coffee machine
-					</p>
+					<p>{t('ext-cc-p')}</p>
 				</div>
 				<div className='card h150'>
 					<p className='card-title'>
-						<span>Use eco-friendly </span>materials <br /> and
-						upcycle.
+						{t.rich('dis-cc', {
+							accent: (chunks) => <span>{chunks}</span>,
+							br: () => <br />
+						})}
 					</p>
-					<p>
-						Using eco-friendly packaging and upcycling waste
-						materials such as raw coffee bean bags and coffee
-						grounds to reduce carbon emissions.
-					</p>
+					<p>{t('dis-cc-p')}</p>
 				</div>
 			</div>
-			<div className='card-div'>
-				Methods for Individuals to Implement Carbon Reduction in Daily
-				Life
-			</div>
+			<div className='card-div'>{t('row-3')}</div>
 			<div className='card-row row'>
 				<div className='card h150'>
 					<p className='card-title'>
-						Check <span>eco-friendly farm</span>
-						<br />
-						certification
+						{t.rich('prod-ind', {
+							accent: (chunks) => <span>{chunks}</span>,
+							br: () => <br />
+						})}
 					</p>
-					<p>
-						Check the certification of the coffee beans you use, and
-						consume the coffee beans produced in an eco-friendly
-						manner
-					</p>
+					<p>{t('prod-ind-p')}</p>
 				</div>
 				<div className='card h150'>
 					<p className='card-title'>
-						Consider the&nbsp;
-						<span>
-							transportation <br />
-							method
-						</span>
+						{t.rich('trans-ind', {
+							accent: (chunks) => <span>{chunks}</span>,
+							br: () => <br />
+						})}
 					</p>
-					<p>
-						Recognize that the most carbon is emitted during the
-						transportation phase among all coffee production
-						processes and consume products that import beans in bulk
-						by ship
-					</p>
+					<p>{t('trans-ind-p')}</p>
 				</div>
 				<div className='card h150'>
 					<p className='card-title'>
-						Verify&nbsp;
-						<span>
-							Renewable
-							<br />
-							Energy Roasting
-						</span>
+						{t.rich('process-ind', {
+							accent: (chunks) => <span>{chunks}</span>,
+							br: () => <br />
+						})}
 					</p>
-					<p>
-						Be aware that processing green beans consumes a large
-						amount of energy, and use beans that are roasted with
-						renewable energy
-					</p>
+					<p>{t('process-ind-p')}</p>
 				</div>
 				<div className='card h150'>
 					<p className='card-title'>
-						Try using non-powered
-						<br />
-						<span>extraction methods</span>
+						{t.rich('ext-ind', {
+							accent: (chunks) => <span>{chunks}</span>,
+							br: () => <br />
+						})}
 					</p>
-					<p>
-						Use methods that allow for grinding and extraction
-						without power, like a manual grinder or cold brew, or
-						use energy-efficient coffee machines.
-					</p>
+					<p>{t('ext-ind-p')}</p>
 				</div>
 				<div className='card h150'>
 					<p className='card-title'>
-						Check the
-						<span>
-							&nbsp; packaging and
-							<br />
-							recycle&nbsp;
-						</span>
-						coffee grounds
+						{t.rich('dis-ind', {
+							accent: (chunks) => <span>{chunks}</span>,
+							br: () => <br />
+						})}
 					</p>
-					<p>
-						Check the packaging and recycle coffee grounds. Check the
-						eco-friendliness and recyclability of the product&apos;s
-						packaging, and use the leftover coffee grounds for
-						fertilizer, air fresheners, or send them to upcycling
-						companies.
-					</p>
+					<p>{t('dis-ind-p')}</p>
 				</div>
 			</div>
 		</section>
