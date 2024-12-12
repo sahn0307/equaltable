@@ -108,8 +108,7 @@ export default function Page() {
 					<p className='card-title'>
 						{t.rich('prod-cc', {
 							accent: (chunks) => <span>{chunks}</span>,
-							br: () => <br />,
-							row: (chunks) => <div className='row'>{chunks}</div>
+							br: () => <br />
 						})}
 					</p>
 					<p>{t('prod-p')}</p>
@@ -118,8 +117,7 @@ export default function Page() {
 					<p className='card-title'>
 						{t.rich('trans-cc', {
 							accent: (chunks) => <span>{chunks}</span>,
-							br: () => <br />,
-							row: (chunks) => <div className='row'>{chunks}</div>
+							br: () => <br />
 						})}
 					</p>
 					<p>{t('trans-cc-p')}</p>
@@ -128,8 +126,7 @@ export default function Page() {
 					<p className='card-title'>
 						{t.rich('process-cc', {
 							accent: (chunks) => <span>{chunks}</span>,
-							br: () => <br />,
-							row: (chunks) => <div className='row'>{chunks}</div>
+							br: () => <br />
 						})}
 					</p>
 					<p>{t('process-cc-p')}</p>
@@ -138,8 +135,7 @@ export default function Page() {
 					<p className='card-title'>
 						{t.rich('ext-cc', {
 							accent: (chunks) => <span>{chunks}</span>,
-							br: () => <br />,
-							row: (chunks) => <div className='row'>{chunks}</div>
+							br: () => <br />
 						})}
 					</p>
 					<p>{t('ext-cc-p')}</p>
@@ -148,8 +144,7 @@ export default function Page() {
 					<p className='card-title'>
 						{t.rich('dis-cc', {
 							accent: (chunks) => <span>{chunks}</span>,
-							br: () => <br />,
-							row: (chunks) => <div className='row'>{chunks}</div>
+							br: () => <br />
 						})}
 					</p>
 					<p>{t('dis-cc-p')}</p>
@@ -161,8 +156,7 @@ export default function Page() {
 					<p className='card-title'>
 						{t.rich('prod-ind', {
 							accent: (chunks) => <span>{chunks}</span>,
-							br: () => <br />,
-							row: (chunks) => <div className='row'>{chunks}</div>
+							br: () => <br />
 						})}
 					</p>
 					<p>{t('prod-ind-p')}</p>
@@ -171,8 +165,7 @@ export default function Page() {
 					<p className='card-title'>
 						{t.rich('trans-ind', {
 							accent: (chunks) => <span>{chunks}</span>,
-							br: () => <br />,
-							row: (chunks) => <div className='row'>{chunks}</div>
+							br: () => <br />
 						})}
 					</p>
 					<p>{t('trans-ind-p')}</p>
@@ -181,8 +174,7 @@ export default function Page() {
 					<p className='card-title'>
 						{t.rich('process-ind', {
 							accent: (chunks) => <span>{chunks}</span>,
-							br: () => <br />,
-							row: (chunks) => <div className='row'>{chunks}</div>
+							br: () => <br />
 						})}
 					</p>
 					<p>{t('process-ind-p')}</p>
@@ -191,8 +183,7 @@ export default function Page() {
 					<p className='card-title'>
 						{t.rich('ext-ind', {
 							accent: (chunks) => <span>{chunks}</span>,
-							br: () => <br />,
-							row: (chunks) => <div className='row'>{chunks}</div>
+							br: () => <br />
 						})}
 					</p>
 					<p>{t('ext-ind-p')}</p>
@@ -201,8 +192,7 @@ export default function Page() {
 					<p className='card-title'>
 						{t.rich('dis-ind', {
 							accent: (chunks) => <span>{chunks}</span>,
-							br: () => <br />,
-							row: (chunks) => <div className='row'>{chunks}</div>
+							br: () => <br />
 						})}
 					</p>
 					<p>{t('dis-ind-p')}</p>
