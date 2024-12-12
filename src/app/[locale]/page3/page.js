@@ -3,6 +3,7 @@
 import { useEmissionsContext } from '../../context/EmissionsContext'; // Access the context
 import LocaleSwitch from '../../components/LocaleSwitch';
 import { Link } from '../../../i18n/routing'
+import EmissionsBreakdown from '../../components/EmissionsBreakdown';
 
 export default function Page3() {
     const {
@@ -65,7 +66,13 @@ export default function Page3() {
                 <div className="column" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
                     <div className="stage-column" style={{ flex: 1 }}>
                         <h3>Expected Monthly Carbon Emissions</h3>
-                        <p>Placeholder for data</p>
+                        <EmissionsBreakdown 
+                        productionData={productionData}
+                        transportData={transportData}
+                        processingData={processingData}
+                        extractionData={extractionData}
+                        disposalData={disposalData}
+                        />
                     </div>
                 </div>
 
@@ -73,7 +80,13 @@ export default function Page3() {
                 <div className="column" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
                     <div className="stage-column" style={{ flex: 1 }}>
                         <h3>Monthly carbon emissions when using carbon-reducing coffee</h3>
-                        <p>Placeholder for data</p>
+                        <EmissionsBreakdown 
+                        productionData={productionData}
+                        transportData={transportData}
+                        processingData={processingData}
+                        extractionData={extractionData}
+                        disposalData={disposalData}
+                        />
                     </div>
                 </div>
 
