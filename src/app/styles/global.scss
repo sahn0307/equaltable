@@ -190,9 +190,6 @@ p {
     justify-content: flex-end;
     align-items: center;
     label {
-      font-size: 12px;
-      font-weight: $regular;
-      color: $dk-grey;
       margin-right: 10px;
       display: flex;
       align-items: center;
@@ -201,8 +198,6 @@ p {
       margin-right: 4px;
     }
     input {
-      height: 16px;
-      width: 16px;
       margin-right: 5px;
       accent-color: $accent-bright;
     }
@@ -213,6 +208,34 @@ p {
   .trim-row {
     display: -webkit-box;
   }
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  width: 10px;
+  height: 10px;
+  font-size: 12px;
+  font-weight: $regular;
+  color: $dk-grey;
+  border: .5px solid $text;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+}
+input[type="radio"]::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em $accent-bright;
+}
+input[type="radio"]:checked::before {
+  transform: scale(1);
 }
 
 .external-link {
