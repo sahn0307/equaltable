@@ -1,5 +1,5 @@
 /* Typography*/
-$font-body: "Roboto", sans-serif;
+$font-body: "Roboto", "Pretendard", sans-serif;
 $light: 300;
 $regular: 400;
 $medium: 500;
@@ -7,9 +7,9 @@ $bold: 700;
 
 /* Palette */
 $white: #fff;
-$body-bg: #F1F3F2;
+// $body-bg: #F1F3F2;
 // $body-bg: #8599AD;
-// $body-bg: #738C80;
+$body-bg: #738C80;
 $hr: #E6E9F4;
 $lt-grey: #F1F3F2;
 $grey-outline: #D7DBEC;
@@ -676,6 +676,17 @@ input[type="number"]::-webkit-outer-spin-button {
     align-content: center;
     background: $accent;
     border-radius: 4px;
+  }
+}
+
+// page 3
+.page3-wrapper {
+  width: 1719px;
+  display: flex;
+  flex-flow: column nowrap;
+  background: darkslategray;
+  .page-header {
+    margin-bottom: 45px;
   }
 }
 
