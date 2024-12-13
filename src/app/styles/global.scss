@@ -717,7 +717,7 @@ input[type="number"]::-webkit-outer-spin-button {
   flex-flow: row nowrap;
   gap: 27px;
   // background: cyan;
-  // border: 1px solid magenta;
+  border: 1px solid magenta;
   article {
     width: 410px;
     height: 782px;
@@ -733,6 +733,7 @@ input[type="number"]::-webkit-outer-spin-button {
   // }
 }
 .card {
+  padding: 38px 30px;
   border-radius: 6px;
   background: $white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
