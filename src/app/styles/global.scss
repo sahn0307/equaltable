@@ -704,14 +704,15 @@ input[type="number"]::-webkit-outer-spin-button {
     // background: #000;
     // border: 1px solid darkkhaki;
   }
-  div {
-    // background: $white;
-    border: 1px solid #888;
-  }
+  // div {
+  //   // background: $white;
+  //   border: 1px solid #888;
+  // }
 }
 .card {
   border-radius: 6px;
   background: $white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   // background: hotpink;
 }
 
