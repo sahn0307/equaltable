@@ -27,13 +27,8 @@ export default function Page3() {
 		<section className='page3-wrapper'>
 			<div className='page-header'>
 				<div className='left'>
-					<h2>Monthly Carbon Emissions Report</h2>
-					<p>
-						This page provides a detailed breakdown of your
-						coffee&aposs carbon emissions from production to
-						disposal. The values are based on 1 kg of raw coffee
-						beans.
-					</p>
+					<h2>{t('p3-header')}</h2>
+					<p>{t('p3-p')}</p>
 				</div>
 				<LocaleSwitch />
 			</div>
@@ -41,7 +36,7 @@ export default function Page3() {
 				{/* col 1 */}
 				<article>
 					<div className='card'>
-						<h3>Monthly Coffee Usage</h3>
+						<h3>{t('col1-1-h')}</h3>
 						<p>
 							{productionData?.monthlyCoffeeUsage?.toFixed(2) ||
 								0}{' '}
@@ -49,7 +44,7 @@ export default function Page3() {
 						</p>
 					</div>
 					<div className='card'>
-						<h3>The level of carbon emissions I use</h3>
+						<h3>{t('col1-2-h')}</h3>
 						<div className='gauge-container'>
 							<div className='gauge'>
 								<div
@@ -66,8 +61,7 @@ export default function Page3() {
 						</div>
 						<p>
 							<Link href='/page4' className='link'>
-								Ways to increase carbon emission reduction
-								ratings
+								{t('p4-link')}
 							</Link>
 						</p>
 					</div>
@@ -75,7 +69,7 @@ export default function Page3() {
 
 				{/* col 2 */}
 				<article className='card'>
-					<h3>Expected Monthly Carbon Emissions</h3>
+					<h3>{t('col2-h')}</h3>
 					<EmissionsBreakdown
 						productionData={productionData}
 						transportData={transportData}
@@ -87,10 +81,7 @@ export default function Page3() {
 
 				{/* col 3 */}
 				<article className='card'>
-					<h3>
-						Monthly carbon emissions when using carbon-reducing
-						coffee
-					</h3>
+					<h3>{t('col3-h')}</h3>
 					<EmissionsBreakdown
 						productionData={productionData}
 						transportData={transportData}
@@ -103,29 +94,24 @@ export default function Page3() {
 				{/* col 4 */}
 				<article>
 					<div className='card'>
-						<h3>
-							When applying carbon-reducing coffee, how much will
-							carbon emissions be reduced each Month?
-						</h3>
-						<p>Placeholder for data</p>
+						<h3>{t('col4-1')}</h3>
+						<p>--data-- kg</p>
 					</div>
-					<div>4.2</div>
+					<div>{t('col4-2')}</div>
 					<div className='card'>
 						<h3>
-							What is the equivalent travel distance for carbon
-							emissions?
+                        {t('col4-3')}
 						</h3>
-						<p>Placeholder for data</p>
+						<p>--data-- km</p>
 					</div>
-					<div>4.4</div>
+					<div>{t('col4-4')}</div>
 					<div className='card'>
 						<h3>
-							What is the equivalent travel distance for carbon
-							reduction?
+                        {t('col4-5')}
 						</h3>
-						<p>Placeholder for data</p>
+						<p>--data-- {t('trees')}</p>
 					</div>
-					<div>4.6</div>
+					<div>{t('col4-6')}</div>
 				</article>
 			</div>
 
