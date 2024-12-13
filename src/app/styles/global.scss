@@ -7,9 +7,9 @@ $bold: 700;
 
 /* Palette */
 $white: #fff;
-// $body-bg: #F1F3F2;
+$body-bg: #F1F3F2;
 // $body-bg: #8599AD;
-$body-bg: #738C80;
+// $body-bg: #738C80;
 $hr: #E6E9F4;
 $lt-grey: #F1F3F2;
 $grey-outline: #D7DBEC;
@@ -684,11 +684,37 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 1719px;
   display: flex;
   flex-flow: column nowrap;
-  background: darkslategray;
+  // background: darkslategray;
   .page-header {
     margin-bottom: 45px;
   }
 }
+.content-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 27px;
+  // background: cyan;
+  // border: 1px solid magenta;
+  article {
+    width: 410px;
+    height: 782px;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+    // background: #000;
+    // border: 1px solid darkkhaki;
+  }
+  div {
+    // background: $white;
+    border: 1px solid #888;
+  }
+}
+.card {
+  border-radius: 6px;
+  background: $white;
+  // background: hotpink;
+}
+
 
 //gauge styling
 .gauge-container {
