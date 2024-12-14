@@ -8,8 +8,6 @@ $bold: 700;
 /* Palette */
 $white: #fff;
 $body-bg: #F1F3F2;
-// $body-bg: #8599AD;
-// $body-bg: #738C80;
 $hr: #E6E9F4;
 $lt-grey: #F1F3F2;
 $grey-outline: #D7DBEC;
@@ -707,39 +705,93 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 1719px;
   display: flex;
   flex-flow: column nowrap;
-  // background: darkslategray;
   .page-header {
     margin-bottom: 45px;
+  }
+  h5 {
+    font-size: 17px;
+    font-weight: $medium;
   }
 }
 .content-wrapper {
   display: flex;
   flex-flow: row nowrap;
   gap: 27px;
-  // background: cyan;
-  border: 1px solid magenta;
   article {
     width: 410px;
     height: 782px;
     display: flex;
     flex-flow: column nowrap;
     gap: 20px;
-    // background: #000;
-    // border: 1px solid darkkhaki;
   }
-  // div {
-  //   // background: $white;
-  //   border: 1px solid #888;
-  // }
 }
 .card {
   padding: 38px 30px;
   border-radius: 6px;
   background: $white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  // background: hotpink;
+  color: $form-title;
+  .row-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  p {
+    color: $form-title;
+    font-size: 28px;
+    font-weight: $medium;
+  }
 }
-
+.card-row-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.square {
+  width: 198px;
+  height: 150px;
+}
+.h180 {
+  height: 180px;
+  padding-top: 28px;
+}
+.accent {
+  padding: 28px 41px 25px 29px;
+  background: $accent;
+  color: $white;
+}
+.col4-1 {
+  margin-top: -22px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  p {
+    color: $white;
+    font-size: 28px;
+    font-weight: $medium;
+  }
+}
+.font-20 {
+  padding-left: 9px;
+  font-size: 19px;
+  color: $mid-grey;
+}
+.col4-3>p {
+  margin-top: 32px;
+  color: $form-title;
+  font-size: 28px;
+  font-weight: $medium;
+}
+.font-12 {
+  padding-left: 9px;
+  font-size: 12px;
+  color: $mid-grey;
+}
+.col4-5 {
+  margin-top: -34px;
+}
 
 //gauge styling
 .gauge-container {
@@ -747,7 +799,6 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 20px;
   margin: 20px 0;
 }
-
 .gauge {
   position: relative;
   width: 100%;
@@ -755,7 +806,6 @@ input[type="number"]::-webkit-outer-spin-button {
   background: linear-gradient(to right, #008000, #FFD700, #FFA500, #FF0000);
   border-radius: 5px;
 }
-
 .gauge-pointer {
   position: absolute;
   top: -5px;
@@ -765,14 +815,12 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 2px;
   transform: translateX(-50%);
 }
-
 .gauge-labels {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
   color: #666;
 }
-
 .grade {
   font-size: 18px;
   font-weight: bold;

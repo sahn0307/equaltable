@@ -5,6 +5,9 @@ import { Link } from '../../../i18n/routing'
 import { useEmissionsContext } from '../../context/EmissionsContext'
 import LocaleSwitch from '../../components/LocaleSwitch'
 import EmissionsBreakdown from '../../components/EmissionsBreakdown'
+import minus from '../../../../public/assets/minus.png'
+import car from '../../../../public/assets/car.png'
+import trees from '../../../../public/assets/trees.png'
 
 export default function Page3() {
 	const t = useTranslations()
@@ -35,16 +38,28 @@ export default function Page3() {
 			<div className='content-wrapper'>
 				{/* col 1 */}
 				<article>
-					<div className='card'>
-						<h3>{t('col1-1-h')}</h3>
-						<p>
-							{productionData?.monthlyCoffeeUsage?.toFixed(2) ||
-								0}{' '}
-							kg
-						</p>
+					<div className='card-row-wrapper'>
+						<div className='card square'>
+							<h5>{t('col1-1-h')}</h5>
+							<p>
+								{productionData?.monthlyCoffeeUsage?.toFixed(
+									2
+								) || 0}{' '}
+								kg
+							</p>
+						</div>
+						<div className='card square'>
+							<h5>Expected monthly carbon emissions</h5>
+							<p>
+								{productionData?.monthlyCoffeeUsage?.toFixed(
+									2
+								) || 0}{' '}
+								kg
+							</p>
+						</div>
 					</div>
 					<div className='card'>
-						<h3>{t('col1-2-h')}</h3>
+						<h5>{t('col1-2-h')}</h5>
 						<div className='gauge-container'>
 							<div className='gauge'>
 								<div
@@ -69,7 +84,7 @@ export default function Page3() {
 
 				{/* col 2 */}
 				<article className='card'>
-					<h3>{t('col2-h')}</h3>
+					<h5>{t('col2-h')}</h5>
 					<EmissionsBreakdown
 						productionData={productionData}
 						transportData={transportData}
@@ -81,7 +96,7 @@ export default function Page3() {
 
 				{/* col 3 */}
 				<article className='card'>
-					<h3>{t('col3-h')}</h3>
+					<h5>{t('col3-h')}</h5>
 					<EmissionsBreakdown
 						productionData={productionData}
 						transportData={transportData}
@@ -93,25 +108,69 @@ export default function Page3() {
 
 				{/* col 4 */}
 				<article>
-					<div className='card'>
-						<h3>{t('col4-1')}</h3>
-						<p>--data-- kg</p>
+					<div className='card accent h180'>
+						<h5>
+							{t.rich('col4-1', {
+								br: () => <br />
+							})}
+						</h5>
+						<div className='col4-1'>
+							<p>--data-- kg</p>
+							<Image
+								src={minus}
+								width={90}
+								height={90}
+								alt='minus icon'
+							/>
+						</div>
 					</div>
-					<div>{t('col4-2')}</div>
-					<div className='card'>
-						<h3>
-                        {t('col4-3')}
-						</h3>
-						<p>--data-- km</p>
+					<div className='font-20'>
+						{t.rich('col4-2', {
+							br: () => <br />
+						})}
 					</div>
-					<div>{t('col4-4')}</div>
-					<div className='card'>
-						<h3>
-                        {t('col4-5')}
-						</h3>
-						<p>--data-- {t('trees')}</p>
+					<div className='card h180'>
+						<h5>
+							{t.rich('col4-3', {
+								br: () => <br />
+							})}
+						</h5>
+						<div className='row-wrapper col4-3'>
+							<p>--data-- km</p>
+							<Image
+								src={car}
+								width={132.6}
+								height={61.8}
+								alt='car icon'
+							/>
+						</div>
 					</div>
-					<div>{t('col4-6')}</div>
+					<div className='font-12'>
+						{t.rich('col4-4', {
+							br: () => <br />
+						})}
+					</div>
+					<div className='card h180'>
+						<h5>
+							{t.rich('col4-5', {
+								br: () => <br />
+							})}
+						</h5>
+						<div className='row-wrapper col4-5'>
+							<p>--data-- {t('trees')}</p>
+							<Image
+								src={trees}
+								width={94.8}
+								height={109}
+								alt='icon of trees'
+							/>
+						</div>
+					</div>
+					<div className='font-12'>
+						{t.rich('col4-6', {
+							br: () => <br />
+						})}
+					</div>
 				</article>
 			</div>
 
@@ -131,7 +190,7 @@ export default function Page3() {
 						gap: '20px'
 					}}>
 					<div className='stage-column' style={{ flex: 1 }}>
-						<h3>Monthly Coffee Usage</h3>
+						<h5>Monthly Coffee Usage</h5>
 						<p>
 							{productionData?.monthlyCoffeeUsage?.toFixed(2) ||
 								0}{' '}
@@ -140,7 +199,7 @@ export default function Page3() {
 					</div>
 
 					<div className='stage-column' style={{ flex: 1 }}>
-						<h3>The level of carbon emissions I use</h3>
+						<h5>The level of carbon emissions I use</h5>
 						<div className='gauge-container'>
 							<div className='gauge'>
 								<div
@@ -175,7 +234,7 @@ export default function Page3() {
 						gap: '20px'
 					}}>
 					<div className='stage-column' style={{ flex: 1 }}>
-						<h3>Expected Monthly Carbon Emissions</h3>
+						<h5>Expected Monthly Carbon Emissions</h5>
 						<EmissionsBreakdown
 							productionData={productionData}
 							transportData={transportData}
@@ -196,10 +255,10 @@ export default function Page3() {
 						gap: '20px'
 					}}>
 					<div className='stage-column' style={{ flex: 1 }}>
-						<h3>
+						<h5>
 							Monthly carbon emissions when using carbon-reducing
 							coffee
-						</h3>
+						</h5>
 						<EmissionsBreakdown
 							productionData={productionData}
 							transportData={transportData}
@@ -220,26 +279,26 @@ export default function Page3() {
 						gap: '20px'
 					}}>
 					<div className='stage-column' style={{ flex: 1 }}>
-						<h3>
+						<h5>
 							When applying carbon-reducing coffee, how much will
 							carbon emissions be reduced each Month?
-						</h3>
+						</h5>
 						<p>Placeholder for data</p>
 					</div>
 
 					<div className='stage-column' style={{ flex: 1 }}>
-						<h3>
+						<h5>
 							What is the equivalent travel distance for carbon
 							emissions?
-						</h3>
+						</h5>
 						<p>Placeholder for data</p>
 					</div>
 
 					<div className='stage-column' style={{ flex: 1 }}>
-						<h3>
+						<h5>
 							What is the equivalent travel distance for carbon
 							reduction?
-						</h3>
+						</h5>
 						<p>Placeholder for data</p>
 					</div>
 				</div>
