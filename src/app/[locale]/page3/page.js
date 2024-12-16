@@ -126,7 +126,13 @@ export default function Page3() {
 							})}
 						</h5>
 						<div className='col4-1'>
-							<p>--data-- kg</p>
+							<CarbonReducingEmissions
+								productionData={productionData}
+								transportData={transportData}
+								processingData={processingData}
+								extractionData={extractionData}
+								disposalData={disposalData}
+							/>
 							<Image
 								src={minus}
 								width={90}
@@ -147,7 +153,13 @@ export default function Page3() {
 							})}
 						</h5>
 						<div className='row-wrapper col4-3'>
-							<p>--data-- km</p>
+							<TravelDistanceEquivalent
+								productionData={productionData}
+								transportData={transportData}
+								processingData={processingData}
+								extractionData={extractionData}
+								disposalData={disposalData}
+							/>
 							<Image
 								src={car}
 								width={132.6}
@@ -168,7 +180,16 @@ export default function Page3() {
 							})}
 						</h5>
 						<div className='row-wrapper col4-5'>
-							<p>--data-- {t('trees')}</p>
+							<p>
+								<PineTreeEquivalent
+									productionData={productionData}
+									transportData={transportData}
+									processingData={processingData}
+									extractionData={extractionData}
+									disposalData={disposalData}
+								/>{' '}
+								{t('trees')}
+							</p>
 							<Image
 								src={trees}
 								width={94.8}

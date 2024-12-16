@@ -1,45 +1,49 @@
-import React, { useMemo } from 'react';
+import React, { useMemo } from 'react'
 
 const TravelDistanceEquivalent = ({
-  productionData = {},
-  transportData = {},
-  processingData = {},
-  extractionData = {},
-  disposalData = {}
+	productionData = {},
+	transportData = {},
+	processingData = {},
+	extractionData = {},
+	disposalData = {}
 }) => {
-  const calculations = useMemo(() => {
-    // First calculate the emissions difference like in the first component
-    const monthlyUsage = productionData?.monthlyCoffeeUsage || 0;
-    
-    const userEmissionsPerKg = (
-      (productionData?.carbonEmissionsPerKg || 0) +
-      (transportData?.totalEmissions || 0) +
-      (processingData?.totalEmissions || 0) +
-      (extractionData?.totalEmissions || 0) +
-      (disposalData?.totalEmissions || 0)
-    );
+	const calculations = useMemo(() => {
+		// First calculate the emissions difference like in the first component
+		const monthlyUsage = productionData?.monthlyCoffeeUsage || 0
 
-    const greenCoffeeEmissionsPerKg = -1.28;
-    const userMonthlyEmissions = userEmissionsPerKg * monthlyUsage;
-    const greenCoffeeMonthlyEmissions = greenCoffeeEmissionsPerKg * monthlyUsage;
-    const monthlyReduction = userMonthlyEmissions - greenCoffeeMonthlyEmissions;
+		const userEmissionsPerKg =
+			(productionData?.carbonEmissionsPerKg || 0) +
+			(transportData?.totalEmissions || 0) +
+			(processingData?.totalEmissions || 0) +
+			(extractionData?.totalEmissions || 0) +
+			(disposalData?.totalEmissions || 0)
 
-    // Convert to travel distance
-    // From PDF: 16.04 km/L for gasoline vehicles and 2.097 kgCO2/L
-    const kmPerKgCO2 = 16.04 / 2.097;
-    const equivalentDistance = monthlyReduction * kmPerKgCO2;
+		const greenCoffeeEmissionsPerKg = -1.28
+		const userMonthlyEmissions = userEmissionsPerKg * monthlyUsage
+		const greenCoffeeMonthlyEmissions =
+			greenCoffeeEmissionsPerKg * monthlyUsage
+		const monthlyReduction =
+			userMonthlyEmissions - greenCoffeeMonthlyEmissions
 
-    return {
-      equivalentDistance
-    };
-  }, [productionData, transportData, processingData, extractionData, disposalData]);
+		// Convert to travel distance
+		// From PDF: 16.04 km/L for gasoline vehicles and 2.097 kgCO2/L
+		const kmPerKgCO2 = 16.04 / 2.097
+		const equivalentDistance = monthlyReduction * kmPerKgCO2
 
-  return (
-    <div>
-      <h3>What is the equivalent travel distance for carbon emissions?</h3>
-      <div>{Math.round(calculations.equivalentDistance).toLocaleString()} km</div>
-    </div>
-  );
-};
+		return {
+			equivalentDistance
+		}
+	}, [
+		productionData,
+		transportData,
+		processingData,
+		extractionData,
+		disposalData
+	])
 
-export default TravelDistanceEquivalent;
+	return (
+		<p>{Math.round(calculations.equivalentDistance).toLocaleString()} km</p>
+	)
+}
+
+export default TravelDistanceEquivalent
