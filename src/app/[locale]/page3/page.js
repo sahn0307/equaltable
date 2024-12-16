@@ -43,7 +43,7 @@ export default function Page3() {
 				<article>
 					<div className='card-row-wrapper'>
 						<div className='card square'>
-							<h5>{t('col1-1-1-h')}</h5>
+							<h5>{t('col1-1-h')}</h5>
 							<p>
 								{productionData?.monthlyCoffeeUsage?.toFixed(
 									2
@@ -52,7 +52,7 @@ export default function Page3() {
 							</p>
 						</div>
 						<div className='card square'>
-							<h5>{t('col1-1-2-h')}</h5>
+							<h5>Expected monthly carbon emissions</h5>
 							<p>
 								{productionData?.monthlyCoffeeUsage?.toFixed(
 									2
@@ -61,7 +61,7 @@ export default function Page3() {
 							</p>
 						</div>
 					</div>
-					<div className='card col1-gague'>
+					<div className='card'>
 						<h5>{t('col1-2-h')}</h5>
 						<div className='gauge-container'>
 							<div className='gauge'>
@@ -87,11 +87,7 @@ export default function Page3() {
 
 				{/* col 2 */}
 				<article className='card'>
-					<h5>
-						{t.rich('col2-h', {
-							br: () => <br />
-						})}
-					</h5>
+					<h5>{t('col2-h')}</h5>
 					<EmissionsBreakdown
 						productionData={productionData}
 						transportData={transportData}
@@ -103,11 +99,7 @@ export default function Page3() {
 
 				{/* col 3 */}
 				<article className='card'>
-					<h5>
-						{t.rich('col3-h', {
-							br: () => <br />
-						})}
-					</h5>
+					<h5>{t('col3-h')}</h5>
 					<EmissionsBreakdown
 						productionData={productionData}
 						transportData={transportData}
