@@ -751,6 +751,13 @@ input[type="number"]::-webkit-outer-spin-button {
 .square {
   width: 198px;
   height: 150px;
+  padding: 36px 22px 36px 26px;
+  p {
+    margin-top: 14px;
+  }
+}
+.col1-gague {
+  height: 610px;
 }
 .h180 {
   height: 180px;
