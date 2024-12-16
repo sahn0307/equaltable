@@ -1,11 +1,31 @@
 import createNextIntlPlugin from 'next-intl/plugin'
+import path from 'path'
+import sass from 'sass'
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.js')
 
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-	// Remove the i18n property to avoid conflicts
-    // we are using: app routing and sub-path routing
+  webpack: (config, { isServer }) => {
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        'postcss-loader',
+        {
+          loader: 'sass-loader',
+          options: {
+            implementation: sass,
+            sassOptions: {
+              fiber: false,
+            },
+          },
+        },
+      ],
+    })
+
+    return config
+  },
 }
 
 export default withNextIntl(nextConfig)
