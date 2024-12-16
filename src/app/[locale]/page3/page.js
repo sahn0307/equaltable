@@ -4,6 +4,9 @@ import { useEmissionsContext } from '../../context/EmissionsContext'; // Access 
 import LocaleSwitch from '../../components/LocaleSwitch';
 import { Link } from '../../../i18n/routing'
 import EmissionsBreakdown from '../../components/EmissionsBreakdown';
+import CarbonReducingEmissions from '../../components/CarbonReducingEmissions';
+import TravelDistanceEquivalent from '../../components/TravelDistanceEquivalent';
+import PineTreeEquivalent from '../../components/PineTreeEquivalent';
 
 export default function Page3() {
     const {
@@ -94,17 +97,33 @@ export default function Page3() {
                 <div className="column" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
                     <div className="stage-column" style={{ flex: 1 }}>
                         <h3>When applying carbon-reducing coffee, how much will carbon emissions be reduced each Month?</h3>
-                        <p>Placeholder for data</p>
+                            <CarbonReducingEmissions 
+                                productionData={productionData}
+                                transportData={transportData}
+                                processingData={processingData}
+                                extractionData={extractionData}
+                                disposalData={disposalData}
+                            />
                     </div>
 
                     <div className="stage-column" style={{ flex: 1 }}>
-                        <h3>What is the equivalent travel distance for carbon emissions?</h3>
-                        <p>Placeholder for data</p>
+                        <TravelDistanceEquivalent 
+                            productionData={productionData}
+                            transportData={transportData}
+                            processingData={processingData}
+                            extractionData={extractionData}
+                            disposalData={disposalData}
+                        />
                     </div>
 
                     <div className="stage-column" style={{ flex: 1 }}>
-                        <h3>What is the equivalent travel distance for carbon reduction?</h3>
-                        <p>Placeholder for data</p>
+                        <PineTreeEquivalent 
+                            productionData={productionData}
+                            transportData={transportData}
+                            processingData={processingData}
+                            extractionData={extractionData}
+                            disposalData={disposalData}
+                        />
                     </div>
                 </div>
             </div>
