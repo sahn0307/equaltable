@@ -6,6 +6,7 @@ import { Link } from '../../../i18n/routing'
 import EmissionsBreakdown from '../../components/EmissionsBreakdown';
 import CarbonReducingEmissions from '../../components/CarbonReducingEmissions';
 import TravelDistanceEquivalent from '../../components/TravelDistanceEquivalent';
+import PineTreeEquivalent from '../../components/PineTreeEquivalent';
 
 export default function Page3() {
     const {
@@ -116,8 +117,13 @@ export default function Page3() {
                     </div>
 
                     <div className="stage-column" style={{ flex: 1 }}>
-                        <h3>What is the equivalent travel distance for carbon reduction?</h3>
-                        <p>Placeholder for data</p>
+                        <PineTreeEquivalent 
+                            productionData={productionData}
+                            transportData={transportData}
+                            processingData={processingData}
+                            extractionData={extractionData}
+                            disposalData={disposalData}
+                        />
                     </div>
                 </div>
             </div>
