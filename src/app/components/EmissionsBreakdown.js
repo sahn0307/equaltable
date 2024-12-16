@@ -12,22 +12,77 @@ const EmissionsBreakdown = ({
   const chartInstance = useRef(null);
 
   const calculations = useMemo(() => {
-    // [Previous calculations remain the same]
+    // Production emissions (coffee cultivation)
     const productionEmissions = productionData?.carbonEmissionsPerKg || 0;
-    const transportEmissions = /* [Previous transport calculation] */ 0;
-    const processingEmissions = /* [Previous processing calculation] */ 0;
-    const extractionEmissions = /* [Previous extraction calculation] */ 0;
-    const disposalEmissions = /* [Previous disposal calculation] */ 0;
+
+    // Transport emissions calculation
+    const farmToPortEmission = (transportData?.transportType?.farmToPort === 'truck' ? 0.062 : 0.602);
+    const portToDomesticEmission = (transportData?.transportType?.portToDomestic === 'truck' ? 0.062 : 0.602);
+    const domesticEmission = (transportData?.transportType?.domestic === 'truck' ? 0.062 : 0.602);
+
+    const transportEmissions = (
+      ((transportData?.farmToPortDistance || 0) * farmToPortEmission) +
+      ((transportData?.portToDomesticDistance || 0) * portToDomesticEmission) +
+      ((transportData?.domesticDistance || 0) * domesticEmission)
+    );
+
+    // Processing emissions
+    const processingPower = processingData?.powerConsumption || 0;
+    const processingTime = processingData?.usageTime || 0;
+    const processingQuantity = processingData?.productionQuantity || 1;
+    const gasConsumption = processingData?.gasConsumption || 0;
+    
+    const processingEmissions = (
+      ((processingData?.roasterType === 'electric' ? 
+        (processingPower * processingTime) : 
+        (gasConsumption * processingTime)) / processingQuantity) +
+      (processingData?.smokeEliminator === 'yes' ? 0.1 : 0)
+    );
+
+    // Extraction emissions
+    const extractionPower = extractionData?.powerConsumption || 0;
+    const extractionTime = extractionData?.usageTime || 0;
+    const extractionQuantity = extractionData?.productionQuantity || 1;
+    
+    const extractionEmissions = (
+      ((extractionPower * extractionTime) / extractionQuantity) +
+      (extractionData?.extractorPower === 'yes' ? (extractionData?.extractorPowerConsumption || 0) : 0)
+    );
+
+    // Disposal emissions
+    const disposalEmissions = (
+      (disposalData?.upcyclingStatus === 'no' ? (disposalData?.coffeeWasteEmissions || 0) : 0) +
+      (disposalData?.packagingUsed === 'yes' ? (disposalData?.packagingEmissions || 0) : 0)
+    );
+
     const total = productionEmissions + transportEmissions + processingEmissions + 
                  extractionEmissions + disposalEmissions;
 
+    // Calculate actual percentages
+    const getPercentage = (value) => total === 0 ? 0 : (value / total * 100);
+
     return {
       stages: {
-        'Production Stage': { value: productionEmissions, percentage: 50 },
-        'Transportation Stage': { value: transportEmissions, percentage: 25 },
-        'Processing Stage': { value: processingEmissions, percentage: 15 },
-        'Extraction Stage': { value: extractionEmissions, percentage: 10 },
-        'Disposal Stage': { value: disposalEmissions, percentage: 10 }
+        'Production Stage': { 
+          value: productionEmissions, 
+          percentage: getPercentage(productionEmissions)
+        },
+        'Transportation Stage': { 
+          value: transportEmissions, 
+          percentage: getPercentage(transportEmissions)
+        },
+        'Processing Stage': { 
+          value: processingEmissions, 
+          percentage: getPercentage(processingEmissions)
+        },
+        'Extraction Stage': { 
+          value: extractionEmissions, 
+          percentage: getPercentage(extractionEmissions)
+        },
+        'Disposal Stage': { 
+          value: disposalEmissions, 
+          percentage: getPercentage(disposalEmissions)
+        }
       },
       total,
       chartData: {
@@ -55,7 +110,7 @@ const EmissionsBreakdown = ({
           tension: 0,
           pointRadius: 4,
           pointBackgroundColor: 'rgb(251, 146, 60)',
-          label: '' // Empty label to remove 'undefined'
+          label: ''
         }]
       }
     };
@@ -145,7 +200,7 @@ const EmissionsBreakdown = ({
         {Object.entries(calculations.stages).map(([stage, { value, percentage }]) => (
           <div key={stage} className="flex items-center justify-between text-sm">
             <span className="text-gray-700">{stage}</span>
-            <span className="text-gray-500">{percentage}%</span>
+            <span className="text-gray-500">{percentage.toFixed(1)}%</span>
           </div>
         ))}
       </div>

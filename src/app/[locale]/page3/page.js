@@ -5,6 +5,9 @@ import { Link } from '../../../i18n/routing'
 import { useEmissionsContext } from '../../context/EmissionsContext'
 import LocaleSwitch from '../../components/LocaleSwitch'
 import EmissionsBreakdown from '../../components/EmissionsBreakdown'
+import CarbonReducingEmissions from '../../components/CarbonReducingEmissions'
+import TravelDistanceEquivalent from '../../components/TravelDistanceEquivalent'
+import PineTreeEquivalent from '../../components/PineTreeEquivalent'
 import minus from '../../../../public/assets/minus.png'
 import car from '../../../../public/assets/car.png'
 import trees from '../../../../public/assets/trees.png'
@@ -116,7 +119,7 @@ export default function Page3() {
 
 				{/* col 4 */}
 				<article>
-					<div className='card accent h180'>
+					<div className='card p4-accent h180'>
 						<h5>
 							{t.rich('col4-1', {
 								br: () => <br />
@@ -291,7 +294,13 @@ export default function Page3() {
 							When applying carbon-reducing coffee, how much will
 							carbon emissions be reduced each Month?
 						</h5>
-						<p>Placeholder for data</p>
+						<CarbonReducingEmissions
+							productionData={productionData}
+							transportData={transportData}
+							processingData={processingData}
+							extractionData={extractionData}
+							disposalData={disposalData}
+						/>
 					</div>
 
 					<div className='stage-column' style={{ flex: 1 }}>
@@ -299,7 +308,13 @@ export default function Page3() {
 							What is the equivalent travel distance for carbon
 							emissions?
 						</h5>
-						<p>Placeholder for data</p>
+						<TravelDistanceEquivalent
+							productionData={productionData}
+							transportData={transportData}
+							processingData={processingData}
+							extractionData={extractionData}
+							disposalData={disposalData}
+						/>
 					</div>
 
 					<div className='stage-column' style={{ flex: 1 }}>
@@ -307,7 +322,13 @@ export default function Page3() {
 							What is the equivalent travel distance for carbon
 							reduction?
 						</h5>
-						<p>Placeholder for data</p>
+						<PineTreeEquivalent
+							productionData={productionData}
+							transportData={transportData}
+							processingData={processingData}
+							extractionData={extractionData}
+							disposalData={disposalData}
+						/>
 					</div>
 				</div>
 			</div>
