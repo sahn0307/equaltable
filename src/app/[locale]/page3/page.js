@@ -77,7 +77,11 @@ export default function Page3() {
 								<span>30</span>
 							</div>
 						</div>
-						<p>
+						<p className='notes'>{t('gague-grade')}</p>
+						<p className='notes'>{t('gague-key-h')}</p>
+						<p className='notes'>{t('gague-key')}</p>
+
+						<p className='notes'>
 							<Link href='/page4' className='link'>
 								{t('p4-link')}
 							</Link>
@@ -99,6 +103,11 @@ export default function Page3() {
 						extractionData={extractionData}
 						disposalData={disposalData}
 					/>
+					<p className='notes'>
+						{t.rich('col2-info', {
+							br: () => <br />
+						})}
+					</p>
 				</article>
 
 				{/* col 3 */}
@@ -115,6 +124,11 @@ export default function Page3() {
 						extractionData={extractionData}
 						disposalData={disposalData}
 					/>
+					<p className='notes'>
+						{t.rich('col3-info', {
+							br: () => <br />
+						})}
+					</p>
 				</article>
 
 				{/* col 4 */}

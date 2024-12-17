@@ -764,6 +764,10 @@ input[type="number"]::-webkit-outer-spin-button {
     font-size: 28px;
     font-weight: $medium;
   }
+  .notes {
+    font-size: 10px;
+    font-weight: $regular;
+  }
 }
 .card-row-wrapper {
   display: flex;
@@ -780,6 +784,10 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .col1-gague {
   height: 610px;
+  .notes {
+    font-size: 10px;
+    font-weight: $regular;
+  }
 }
 .h180 {
   height: 180px;
@@ -820,6 +828,11 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .col4-5 {
   margin-top: -34px;
+}
+// temp
+.notes {
+  font-size: 10px;
+  font-weight: $regular;
 }
 
 //gauge styling
