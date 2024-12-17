@@ -785,14 +785,14 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .col1-gague {
   height: 610px;
-  .notes {
+  .grade {
     font-size: 10px;
     font-weight: $regular;
+    text-align: center;
   }
   .key {
     border-top: 1px solid $hr;
     border-bottom: 1px solid $hr;
-    // color: $text;
     p {
       font-size: 9px;
       color: $text;
@@ -801,6 +801,15 @@ input[type="number"]::-webkit-outer-spin-button {
       font-size: 10px;
       font-weight: $bold;
       text-align: center;
+    }
+  }
+  .page-link {
+    a {
+      font-size: 14px;
+      text-decoration: none;
+      // color: $dk-grey;
+      color: $accent;
+      cursor: pointer;
     }
   }
 }

@@ -8,6 +8,7 @@ import EmissionsBreakdown from '../../components/EmissionsBreakdown'
 import CarbonReducingEmissions from '../../components/CarbonReducingEmissions'
 import TravelDistanceEquivalent from '../../components/TravelDistanceEquivalent'
 import PineTreeEquivalent from '../../components/PineTreeEquivalent'
+import chevron from '../../../../public/assets/chevron-accent.png'
 import minus from '../../../../public/assets/minus.png'
 import car from '../../../../public/assets/car.png'
 import trees from '../../../../public/assets/trees.png'
@@ -77,7 +78,7 @@ export default function Page3() {
 								<span>30</span>
 							</div>
 						</div>
-						<p className='notes'>
+						<p className='grade'>
 							{t.rich('gague-grade', {
 								br: () => <br />
 							})}
@@ -88,16 +89,20 @@ export default function Page3() {
 									br: () => <br />
 								})}
 							</p>
-							<p className='notes'>
+							<p>
 								{t.rich('gague-key', {
 									br: () => <br />
 								})}
 							</p>
 						</div>
-						<p className='notes'>
-							<Link href='/page4' className='link'>
-								{t('p4-link')}
-							</Link>
+						<p className='page-link'>
+							<Link href='/page4'>{t('p4-link')}</Link>
+							<Image
+								src={chevron}
+								width={4}
+								height={8}
+								alt='chevron icon'
+							/>
 						</p>
 					</div>
 				</article>
