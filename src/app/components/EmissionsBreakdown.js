@@ -204,10 +204,6 @@ const EmissionsBreakdown = ({
           </div>
         ))}
       </div>
-      
-      <div className="mt-4 text-xs text-gray-500">
-        The graph represents carbon emissions per kilogram of green beans
-      </div>
     </div>
   );
 };
