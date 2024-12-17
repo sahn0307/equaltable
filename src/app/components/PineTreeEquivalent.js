@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslations } from 'next-intl';
 
 const PineTreeEquivalent = ({
   productionData = {},
@@ -29,16 +30,17 @@ const PineTreeEquivalent = ({
     const annualReduction = monthlyReduction * 12; // Convert monthly to annual
     const equivalentTrees = annualReduction / 8.1;
 
+    const t = useTranslations();
+
     return {
       equivalentTrees
     };
   }, [productionData, transportData, processingData, extractionData, disposalData]);
 
   return (
-    <div>
-      <h3>What is the equivalent travel distance for carbon reduction?</h3>
-      <div>{Math.round(calculations.equivalentTrees).toLocaleString()} pine trees</div>
-    </div>
+    <>
+      {Math.round(calculations.equivalentTrees).toLocaleString()}
+    </>
   );
 };
 
