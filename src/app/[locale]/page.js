@@ -2,7 +2,6 @@
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '../../i18n/routing'
-import ImageWrapper from '../components/ImageWrapper'
 import { useEmissionsContext } from '../context/EmissionsContext'
 import LocaleSwitch from '../components/LocaleSwitch'
 import logo from '../../../public/assets/logo.png'
@@ -78,12 +77,13 @@ export default function Page1() {
 					{/* Simple Check Button */}
 					<Link href='/page3' passHref>
 						<button type='button' className='p1-button'>
-							<ImageWrapper
+							<Image
 								className='b1'
 								src={simple}
 								width={45}
 								height={62}
 								alt='document icon'
+								priority={true}
 							/>
 							<div className='bottom'>
 								<div className='title-group'>
@@ -110,12 +110,13 @@ export default function Page1() {
 					{/* Detailed Check Button */}
 					<Link href='/page2' passHref>
 						<button type='button' className='p1-button'>
-							<ImageWrapper
+							<Image
 								className='b2'
 								src={detail}
 								width={76}
 								height={68}
 								alt='pencil checking icon'
+								priority={true}
 							/>
 							<div className='bottom'>
 								<div className='title-group'>

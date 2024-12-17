@@ -480,21 +480,20 @@ h1 {
   }
 }
 
-.image-container {
-  position: relative;
-  display: inline-block;
-  
+.button-group {
   img {
-    width: 100%;
-    height: auto;
+    position: relative;
     display: block;
+    width: 100%;
+  
+    &.b1 {
+      max-width: 45px;
+    }
+  
+    &.b2 {
+      max-width: 76px;
+    }
   }
-}
-.b1 {
-  max-width: 45px;
-}
-.b2 {
-  max-width: 76px;
 }
 
 
