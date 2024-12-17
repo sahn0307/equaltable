@@ -114,9 +114,32 @@ const EmissionsBreakdown = ({
         }]
       }
     };
-  }, [productionData, transportData, processingData, extractionData, disposalData]);
+  }, [
+    productionData?.carbonEmissionsPerKg,
+    transportData?.transportType?.farmToPort,
+    transportData?.transportType?.portToDomestic,
+    transportData?.transportType?.domestic,
+    transportData?.farmToPortDistance,
+    transportData?.portToDomesticDistance,
+    transportData?.domesticDistance,
+    processingData?.powerConsumption,
+    processingData?.usageTime,
+    processingData?.productionQuantity,
+    processingData?.gasConsumption,
+    processingData?.roasterType,
+    processingData?.smokeEliminator,
+    extractionData?.powerConsumption,
+    extractionData?.usageTime,
+    extractionData?.productionQuantity,
+    extractionData?.extractorPower,
+    extractionData?.extractorPowerConsumption,
+    disposalData?.upcyclingStatus,
+    disposalData?.coffeeWasteEmissions,
+    disposalData?.packagingUsed,
+    disposalData?.packagingEmissions
+  ]);
 
-  const config = {
+  const config = useMemo(() => ({
     type: 'line',
     data: calculations.chartData,
     options: {
@@ -168,7 +191,7 @@ const EmissionsBreakdown = ({
         }
       }
     }
-  };
+  }), [calculations.chartData]);
 
   useEffect(() => {
     if (chartInstance.current) {
@@ -184,7 +207,7 @@ const EmissionsBreakdown = ({
         chartInstance.current.destroy();
       }
     };
-  }, [calculations]);
+  }, [config]);
 
   return (
     <div className="bg-white rounded-lg p-6">
