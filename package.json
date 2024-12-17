@@ -15,12 +15,15 @@
     "pretendard": "^1.3.9",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
-    "sass-loader": "^16.0.4",
     "scss": "^0.2.4"
   },
   "devDependencies": {
+    "css-loader": "^7.1.2",
     "eslint": "^9.16.0",
     "eslint-config-next": "^15.0.4",
-    "sass": "^1.82.0"
+    "postcss-loader": "^8.1.1",
+    "sass": "^1.83.0",
+    "sass-loader": "^16.0.4",
+    "style-loader": "^4.0.0"
   }
 }
