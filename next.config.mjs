@@ -1,16 +1,27 @@
 import createNextIntlPlugin from 'next-intl/plugin'
-import path from 'path'
-import sass from 'sass'
+import * as sass from 'sass'
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.js')
 
 const nextConfig = {
-  webpack: (config, { isServer }) => {
+  sassOptions: {
+    implementation: sass,
+    includePaths: ['./src/app/styles'],
+  },
+  webpack: (config) => {
     config.module.rules.push({
       test: /\.scss$/,
       use: [
         'style-loader',
-        'css-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            modules: {
+              auto: true,
+              localIdentName: '[local]--[hash:base64:5]',
+            },
+          },
+        },
         'postcss-loader',
         {
           loader: 'sass-loader',
@@ -23,7 +34,6 @@ const nextConfig = {
         },
       ],
     })
-
     return config
   },
 }

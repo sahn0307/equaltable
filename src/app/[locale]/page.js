@@ -1,7 +1,8 @@
 'use client'
 import { useTranslations } from 'next-intl'
-import { Link } from '../../i18n/routing'
 import Image from 'next/image'
+import { Link } from '../../i18n/routing'
+import ImageWrapper from '../components/ImageWrapper'
 import { useEmissionsContext } from '../context/EmissionsContext'
 import LocaleSwitch from '../components/LocaleSwitch'
 import logo from '../../../public/assets/logo.png'
@@ -77,7 +78,7 @@ export default function Page1() {
 					{/* Simple Check Button */}
 					<Link href='/page3' passHref>
 						<button type='button' className='p1-button'>
-							<Image
+							<ImageWrapper
 								className='b1'
 								src={simple}
 								width={45}
@@ -87,9 +88,19 @@ export default function Page1() {
 							<div className='bottom'>
 								<div className='title-group'>
 									{t.rich('easy-check-title', {
-										accent: (chunks) => <p className='title accent bold'>{chunks}</p>,
-										bold: (chunks) => <p className='title bold'>{chunks}</p>,
-										row: (chunks) => <div className='row'>{chunks}</div>
+										accent: (chunks) => (
+											<p className='title accent bold'>
+												{chunks}
+											</p>
+										),
+										bold: (chunks) => (
+											<p className='title bold'>
+												{chunks}
+											</p>
+										),
+										row: (chunks) => (
+											<div className='row'>{chunks}</div>
+										)
 									})}
 								</div>
 								<p className='small'>{t('button-2-desc')}</p>
@@ -99,7 +110,7 @@ export default function Page1() {
 					{/* Detailed Check Button */}
 					<Link href='/page2' passHref>
 						<button type='button' className='p1-button'>
-							<Image
+							<ImageWrapper
 								className='b2'
 								src={detail}
 								width={76}
@@ -109,9 +120,19 @@ export default function Page1() {
 							<div className='bottom'>
 								<div className='title-group'>
 									{t.rich('detail-check-title', {
-										accent: (chunks) => <div className='title accent bold'>{chunks}</div>,
-										bold: (chunks) => <div className='title bold'>{chunks}</div>,
-										row: (chunks) => <div className='row'>{chunks}</div>
+										accent: (chunks) => (
+											<div className='title accent bold'>
+												{chunks}
+											</div>
+										),
+										bold: (chunks) => (
+											<div className='title bold'>
+												{chunks}
+											</div>
+										),
+										row: (chunks) => (
+											<div className='row'>{chunks}</div>
+										)
 									})}
 								</div>
 								<p className='small'>{t('button-2-desc')}</p>

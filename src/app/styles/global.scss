@@ -480,6 +480,24 @@ h1 {
   }
 }
 
+.image-container {
+  position: relative;
+  display: inline-block;
+  
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+.b1 {
+  max-width: 45px;
+}
+.b2 {
+  max-width: 76px;
+}
+
+
 .data-consent {
   width: 694px;
   height: 87px;
