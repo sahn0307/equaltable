@@ -237,11 +237,6 @@ export default function Page3() {
 					</div>
 				</article>
 			</div>
-
-			<br />
-			<br />
-			<br />
-			
 		</section>
 	)
 }
