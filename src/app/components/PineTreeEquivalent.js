@@ -8,6 +8,8 @@ const PineTreeEquivalent = ({
   extractionData = {},
   disposalData = {}
 }) => {
+  const t = useTranslations();
+
   const calculations = useMemo(() => {
     // First calculate the emissions difference like in previous components
     const monthlyUsage = productionData?.monthlyCoffeeUsage || 0;
@@ -29,8 +31,6 @@ const PineTreeEquivalent = ({
     // From PDF: One 30-year-old pine tree absorbs 8.1 kg CO2 per year
     const annualReduction = monthlyReduction * 12; // Convert monthly to annual
     const equivalentTrees = annualReduction / 8.1;
-
-    const t = useTranslations();
 
     return {
       equivalentTrees
