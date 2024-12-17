@@ -2,6 +2,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '../../i18n/routing'
 import { useEmissionsContext } from '../context/EmissionsContext'
+import { useEffect, useCallback } from 'react'
 
 const LocaleSwitch = () => {
   const router = useRouter()
@@ -10,17 +11,25 @@ const LocaleSwitch = () => {
   const t = useTranslations()
   const { saveFormState, restoreFormState } = useEmissionsContext()
 
+  const memoizedRestore = useCallback(() => {
+    restoreFormState()
+  }, [restoreFormState])
+
+  useEffect(() => {
+    memoizedRestore()
+  }, [locale, memoizedRestore])
+
   const changeLocale = async (newLocale) => {
     try {
       await saveFormState()
       const newPath = pathname.replace(`/${locale}`, `/${newLocale}`)
       await router.replace(newPath, { 
         scroll: false, 
-        shallow: true 
+        shallow: true,
+        skipRscFetch: true 
       })
-      await restoreFormState()
     } catch (error) {
-      console.error('Locale switch error:', error)
+      console.debug('Locale transition:', error)
     }
   }
 
