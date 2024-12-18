@@ -81,7 +81,7 @@ const EmissionsGauge = ({
     };
   
     return (
-      <div className='card col1-gague'>
+      <div className='card col1-gauge'>
         <h5>{t('col1-2-h')}</h5>
         
         {/* Gauge SVG */}
@@ -120,19 +120,19 @@ const EmissionsGauge = ({
   
         <div className='key'>
           <p className='k-title'>
-            {t.rich('gague-key-h', {
+            {t.rich('gauge-key-h', {
               br: () => <br />
             })}
           </p>
           <p>
-            {t.rich('gague-key', {
+            {t.rich('gauge-key', {
               br: () => <br />
             })}
           </p>
         </div>
   
         <p className='grade'>
-          {t.rich('gague-grade', {
+          {t.rich('gauge-grade', {
             br: () => <br />,
             emissions: calculations.emissionsPerKg.toFixed(2),
             reduction: Math.abs(calculations.monthlyReduction).toFixed(2)
