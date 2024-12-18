@@ -131,6 +131,8 @@ export default function Page3() {
 								width={90}
 								height={90}
 								alt='minus icon'
+								priority={true}
+								className='four1'
 							/>
 						</div>
 					</div>
@@ -158,6 +160,8 @@ export default function Page3() {
 								width={132.6}
 								height={61.8}
 								alt='car icon'
+								priority={true}
+								className='four3'
 							/>
 						</div>
 					</div>
@@ -188,6 +192,8 @@ export default function Page3() {
 								width={94.8}
 								height={109}
 								alt='icon of trees'
+								priority={true}
+								className='four5'
 							/>
 						</div>
 					</div>
