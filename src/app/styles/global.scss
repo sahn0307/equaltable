@@ -815,7 +815,10 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .h180 {
   height: 180px;
-  padding-top: 28px;
+  padding: 28px 30px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
 }
 .p4-accent {
   padding: 28px 41px 25px 29px;
@@ -823,7 +826,7 @@ input[type="number"]::-webkit-outer-spin-button {
   color: $white;
 }
 .col4-1 {
-  margin-top: -22px;
+  margin-top: -18px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
