@@ -8,6 +8,8 @@ import EmissionsBreakdown from '../../components/EmissionsBreakdown'
 import CarbonReducingEmissions from '../../components/CarbonReducingEmissions'
 import TravelDistanceEquivalent from '../../components/TravelDistanceEquivalent'
 import PineTreeEquivalent from '../../components/PineTreeEquivalent'
+import ExpectedMonthlyEmissions from '../../components/ExpectedMonthlyEmissions'
+import EmissionsGauge from '../../components/EmissionsGauge'
 import chevron from '../../../../public/assets/chevron-accent.png'
 import minus from '../../../../public/assets/minus.png'
 import car from '../../../../public/assets/car.png'
@@ -22,13 +24,7 @@ export default function Page3() {
 		processingData,
 		extractionData,
 		disposalData
-	} = useEmissionsContext() // Access the context data
-
-	// Placeholder calculations for total emissions
-	const totalEmissions = 0 // Replace with actual calculation logic
-	const clampedEmissions = 0 // Placeholder
-	const normalizedPosition = 0 // Placeholder
-	const grade = 'A' // Placeholder
+	} = useEmissionsContext()
 
 	return (
 		<section className='page3-wrapper'>
@@ -46,65 +42,30 @@ export default function Page3() {
 						<div className='card square'>
 							<h5>{t('col1-1-1-h')}</h5>
 							<p>
-								{productionData?.monthlyCoffeeUsage?.toFixed(
-									2
-								) || 0}{' '}
-								kg
+								{productionData?.monthlyCoffeeUsage?.toFixed(2) || 0} kg
 							</p>
 						</div>
 						<div className='card square'>
 							<h5>{t('col1-1-2-h')}</h5>
 							<p>
-								{productionData?.monthlyCoffeeUsage?.toFixed(
-									2
-								) || 0}{' '}
-								kg
-							</p>
-						</div>
-					</div>
-					<div className='card col1-gague'>
-						<h5>{t('col1-2-h')}</h5>
-						<div className='gauge-container'>
-							<div className='gauge'>
-								<div
-									className='gauge-pointer'
-									style={{
-										left: `${normalizedPosition}%`
-									}}
+								<ExpectedMonthlyEmissions 
+									productionData={productionData}
+									transportData={transportData}
+									processingData={processingData}
+									extractionData={extractionData}
+									disposalData={disposalData}
 								/>
-							</div>
-							<div className='gauge-labels'>
-								<span>-30</span>
-								<span>30</span>
-							</div>
-						</div>
-						<p className='grade'>
-							{t.rich('gague-grade', {
-								br: () => <br />
-							})}
-						</p>
-						<div className='key'>
-							<p className='k-title'>
-								{t.rich('gague-key-h', {
-									br: () => <br />
-								})}
-							</p>
-							<p>
-								{t.rich('gague-key', {
-									br: () => <br />
-								})}
 							</p>
 						</div>
-						<p className='page-link'>
-							<Link href='/page4'>{t('p4-link')}</Link>
-							<Image
-								src={chevron}
-								width={4}
-								height={8}
-								alt='chevron icon'
-							/>
-						</p>
 					</div>
+					<EmissionsGauge 
+						productionData={productionData}
+						transportData={transportData}
+						processingData={processingData}
+						extractionData={extractionData}
+						disposalData={disposalData}
+						chevronImage={chevron}
+					/>
 				</article>
 
 				{/* col 2 */}
