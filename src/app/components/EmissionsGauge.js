@@ -85,6 +85,34 @@ const EmissionsGauge = ({
     ].join(" ")
   }
 
+  const getEndAngle = (grade, emissionsPerKg) => {
+    const MIN_EMISSIONS = -30
+    const MAX_EMISSIONS = 30
+    let endAngle
+
+    switch (grade) {
+        case 'A':
+            endAngle = 90
+            break
+        case 'B':
+            // endAngle = ((emissionsPerKg / 2.3) * 90) // 0 to 2.3 maps to 0 to 90 degrees
+            endAngle = 90 + ((emissionsPerKg / 2.3) * 45)
+            break
+        case 'C':
+            endAngle = 135 + ((emissionsPerKg - 2.3) / (16 - 2.3)) * 45 
+            // endAngle = 90 + ((emissionsPerKg - 2.3) / (16 - 2.3)) * 90 // 2.3 to 16 maps to 90 to 180 degrees
+            break
+        case 'D':
+            endAngle = 180 + ((emissionsPerKg - 16) / (MAX_EMISSIONS - 16)) * 180 
+            // endAngle = 180 + ((emissionsPerKg - 16) / (MAX_EMISSIONS - 16)) * 180 // 16 to MAX_EMISSIONS maps to 180 to 360 degrees
+            break
+        default:
+            endAngle = 90
+    }
+
+    return endAngle
+}
+
 	return (
 		<div className='col1-gauge'>
 			<h5>{t('col1-2-h')}</h5>
@@ -104,34 +132,44 @@ const EmissionsGauge = ({
         {/* Filled arc based on value */}
         <path
           d={describeArc(
-            165, 
-            169, 
-            124, 
-            180, 
-            calculations.grade === 'D' ? 180 - calculations.normalizedAngle : 0 - calculations.normalizedAngle // Conditional endAngle
+            165,
+            169,
+            124,
+            180,
+            getEndAngle(calculations.grade, calculations.emissionsPerKg) // Conditional endAngle
+            // getEndAngle(calculations.grade, calculations.normalizedAngle) // Conditional endAngle
+            // calculations.grade === 'D' ? 180 - calculations.normalizedAngle : 0 - calculations.normalizedAngle // Conditional endAngle
           )}
           fill='none'
           stroke={calculations.color}
           strokeWidth='19'
         />
 
-					{/* Scale labels */}
-          <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='translate(22.909 157.847)' />
+					{/* Scale labels & markers */}
+
+          {/* -30, 30 */}
+          <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='translate(22.909 157.847)' /> 
           <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='translate(301.909 157.847)' />
+          {/* 0 */}
           <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='rotate(90 75.031 93.378)' />
+          {/* -5, 5 */}
           <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='rotate(74.99 50.99 96.916)' />
           <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='rotate(105.01 93.388 90.615)' />
+          {/* -10, 10 */}
           <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='rotate(60 17.255 101.763)' />
           <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='rotate(120 108.388 88.537)' />
           <g>
+            {/* -15, 15 */}
             <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='rotate(45 -36.584 109.578)' />
             <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='rotate(135 121.263 86.668)' />
           </g>
           <g>
+            {/* -20, 20 */}
             <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='rotate(30 -140.592 124.672)' />
             <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='rotate(150 132.807 84.993)' />
           </g>
           <g>
+            {/* -25, 25 */}
             <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='rotate(14.98 -445.654 168.283)' />
             <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='rotate(165.02 143.485 83.421)' />
           </g>
