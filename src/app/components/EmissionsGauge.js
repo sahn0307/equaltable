@@ -62,96 +62,96 @@ const EmissionsGauge = ({
   
     // SVG arc calculation functions
     const describeArc = (x, y, radius, startAngle, endAngle) => {
-      const start = {
-        x: x + radius * Math.cos(Math.PI * (startAngle / 180)),
-        y: y + radius * Math.sin(Math.PI * (startAngle / 180))
-      };
-      
-      const end = {
-        x: x + radius * Math.cos(Math.PI * (endAngle / 180)),
-        y: y + radius * Math.sin(Math.PI * (endAngle / 180))
-      };
-  
-      const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
-  
-      return [
-        "M", start.x, start.y,
-        "A", radius, radius, 0, largeArcFlag, 1, end.x, end.y
-      ].join(" ");
-    };
-  
-    return (
-      <div className='card col1-gague'>
-        <h5>{t('col1-2-h')}</h5>
+        const start = {
+          x: x + radius * Math.cos(Math.PI * (startAngle / 180)),
+          y: y + radius * Math.sin(Math.PI * (startAngle / 180))
+        };
         
-        {/* Gauge SVG */}
-        <div style={{ position: 'relative', width: '300px', height: '200px', margin: '0 auto' }}>
-          <svg viewBox="0 0 300 200">
-            {/* Background arc */}
-            <path
-              d={describeArc(150, 100, 80, 180, 0)}
-              fill="none"
-              stroke="#e5e7eb"
-              strokeWidth="20"
-            />
-            
-            {/* Filled arc based on value */}
-            <path
-              d={describeArc(150, 100, 80, 180, 0 - calculations.normalizedAngle)}
-              fill="none"
-              stroke={calculations.color}
-              strokeWidth="20"
-            />
-            
-            {/* Scale labels */}
-            <text x="40" y="100" textAnchor="middle" fill="#6b7280">-30</text>
-            <text x="150" y="10" textAnchor="middle" fill="#6b7280">0</text>
-            <text x="260" y="100" textAnchor="middle" fill="#6b7280">30</text>
-            
-            {/* Grade and emissions display */}
-            <text x="150" y="90" textAnchor="middle" fontSize="24" fontWeight="bold">
-              Grade {calculations.grade}
-            </text>
-            <text x="150" y="120" textAnchor="middle" fontSize="18">
-              {calculations.emissionsPerKg.toFixed(2)}kg
-            </text>
-          </svg>
-        </div>
-  
-        <div className='key'>
-          <p className='k-title'>
-            {t.rich('gague-key-h', {
-              br: () => <br />
+        const end = {
+          x: x + radius * Math.cos(Math.PI * (endAngle / 180)),
+          y: y + radius * Math.sin(Math.PI * (endAngle / 180))
+        };
+    
+        const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+    
+        return [
+          "M", start.x, start.y,
+          "A", radius, radius, 0, largeArcFlag, 1, end.x, end.y
+        ].join(" ");
+      };
+    
+      return (
+        <div className='card col1-gague'>
+          <h5>{t('col1-2-h')}</h5>
+          
+          {/* Gauge SVG */}
+          <div style={{ position: 'relative', width: '400px', height: '250px', margin: '0 auto' }}>
+            <svg viewBox="0 0 400 250">
+              {/* Background arc */}
+              <path
+                d={describeArc(200, 125, 100, 180, 0)}
+                fill="none"
+                stroke="#e5e7eb"
+                strokeWidth="12"
+              />
+              
+              {/* Filled arc based on value */}
+              <path
+                d={describeArc(200, 125, 100, 180, 0 - calculations.normalizedAngle)}
+                fill="none"
+                stroke={calculations.color}
+                strokeWidth="12"
+              />
+              
+              {/* Scale labels */}
+              <text x="80" y="125" textAnchor="middle" fill="#6b7280">-30</text>
+              <text x="200" y="15" textAnchor="middle" fill="#6b7280">0</text>
+              <text x="320" y="125" textAnchor="middle" fill="#6b7280">30</text>
+              
+              {/* Grade and emissions display */}
+              <text x="200" y="115" textAnchor="middle" fontSize="28" fontWeight="bold">
+                Grade {calculations.grade}
+              </text>
+              <text x="200" y="145" textAnchor="middle" fontSize="20">
+                {calculations.emissionsPerKg.toFixed(2)}kg
+              </text>
+            </svg>
+          </div>
+    
+          <div className='key'>
+            <p className='k-title'>
+              {t.rich('gague-key-h', {
+                br: () => <br />
+              })}
+            </p>
+            <p>
+              {t.rich('gague-key', {
+                br: () => <br />
+              })}
+            </p>
+          </div>
+    
+          <p className='grade'>
+            {t.rich('gague-grade', {
+              br: () => <br />,
+              emissions: calculations.emissionsPerKg.toFixed(2),
+              reduction: Math.abs(calculations.monthlyReduction).toFixed(2)
             })}
           </p>
-          <p>
-            {t.rich('gague-key', {
-              br: () => <br />
-            })}
+    
+          <p className='page-link'>
+            <Link href='/page4'>{t('p4-link')}</Link>
+            {chevronImage && (
+              <Image
+                src={chevronImage}
+                width={4}
+                height={8}
+                alt='chevron icon'
+              />
+            )}
           </p>
         </div>
-  
-        <p className='grade'>
-          {t.rich('gague-grade', {
-            br: () => <br />,
-            emissions: calculations.emissionsPerKg.toFixed(2),
-            reduction: Math.abs(calculations.monthlyReduction).toFixed(2)
-          })}
-        </p>
-  
-        <p className='page-link'>
-          <Link href='/page4'>{t('p4-link')}</Link>
-          {chevronImage && (
-            <Image
-              src={chevronImage}
-              width={4}
-              height={8}
-              alt='chevron icon'
-            />
-          )}
-        </p>
-      </div>
-    );
+      );
   };
   
   export default EmissionsGauge;
