@@ -1,0 +1,37 @@
+<svg viewBox="0 0 326 169" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"
+    stroke-linejoin="round" stroke-miterlimit="2"><text font-family="'LucidaGrande-Bold','Lucida Grande',sans-serif"
+        font-weight="600" font-size="28" fill="#131523" transform="translate(112.354 131.847)">Grade C</text><text
+        font-family="'LucidaGrande-Bold','Lucida Grande',sans-serif" font-weight="600" font-size="17" fill="#131523"
+        transform="translate(133.865 153.847)">15.33kg</text>
+    <path
+        d="M55.658 167.542H39.909a124.113 124.113 0 0121.294-69.715 125.048 125.048 0 0154.859-45.173c38.781-16.414 83.353-12.082 118.247 11.494a125.389 125.389 0 0127.589 25.418l-13.86 8a111.948 111.948 0 00-6.447-7.022 108.922 108.922 0 00-77.045-31.943c-59.733 0-108.885 49.152-108.885 108.885v.052l-.003.004z"
+        fill="#d16e11" fill-rule="nonzero" />
+    <path
+        d="M290.935 168.854h-15.744a108.076 108.076 0 00-25.5-69.975l13.86-8a124.663 124.663 0 0117.59 29.441 123.912 123.912 0 019.8 48.533l-.006.001z"
+        fill="#f1f3f2" fill-rule="nonzero" />
+    <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="translate(22.909 157.847)" />
+    <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="translate(301.909 157.847)" />
+    <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="rotate(90 75.031 93.378)" />
+    <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="rotate(74.99 50.99 96.916)" />
+    <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="rotate(105.01 93.388 90.615)" />
+    <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="rotate(60 17.255 101.763)" />
+    <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="rotate(120 108.388 88.537)" />
+    <g>
+        <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="rotate(45 -36.584 109.578)" />
+        <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="rotate(135 121.263 86.668)" />
+    </g>
+    <g>
+        <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="rotate(30 -140.592 124.672)" />
+        <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="rotate(150 132.807 84.993)" />
+    </g>
+    <g>
+        <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="rotate(14.98 -445.654 168.283)" />
+        <circle cx="3" cy="3" r="3" fill="#f1f3f2" transform="rotate(165.02 143.485 83.421)" />
+    </g>
+    <g><text font-family="'HelveticaNeue-Medium','Helvetica Neue',sans-serif" font-weight="500" font-size="11"
+            fill="#f1f3f2" transform="translate(162.001 7.854)">0</text></g>
+    <g><text font-family="'HelveticaNeue-Medium','Helvetica Neue',sans-serif" font-weight="500" font-size="11"
+            fill="#f1f3f2" transform="translate(313.522 164.854)">30</text></g>
+    <g><text font-family="'HelveticaNeue-Medium','Helvetica Neue',sans-serif" font-weight="500" font-size="11"
+            fill="#f1f3f2" transform="translate(-.539 164.854)">-30</text></g>
+</svg>

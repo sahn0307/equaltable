@@ -107,6 +107,7 @@
 	"col1-1-1-h": "Monthly coffee usage",
 	"col1-1-2-h": "Expected monthly carbon emissions",
 	"col1-2-h": "The level of carbon emissions I use",
+	"grade": "Grade {grade}",
 	"gauge-grade": "This grade indicates that {emissions} kg of carbon is emitted per 1 kg of coffee beans.<br></br>If the monthly coffee consumption is replaced with carbon-reducing coffee, <br></br>it can reduce carbon emissions by {reduction} kg.",
 	"gauge-key-h": "The grade below is divided into 4 stages based on carbon<br></br>emissions per kilogram of beans.",
 	"gauge-key": "• Grade A (Green): 0kg or less. Carbon neutral or carbon absorbing stage. <br></br>• Grade B (Yellow): Emits between 0 kg and 2.3 kg of carbon but is easy to improve. <br></br>• Grade C (Orange): Emits between 2.3 kg and 16 kg, representing the typical carbon<br></br>emission level of regular coffee beans, requiring carbon reduction<br></br>throughout the entire process. <br></br>• Grade D (Red): Emits more than 16 kg, indicating a higher carbon emission level<br></br>than regular coffee beans, requiring carbon reduction throughout<br></br>the entire process.",
