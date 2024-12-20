@@ -792,7 +792,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 .col1-gauge {
-  padding: 35px 23px;
+  padding: 35px 25px;
   height: 610px;
   display: flex;
   flex-flow: column nowrap;
@@ -812,7 +812,7 @@ input[type="number"]::-webkit-outer-spin-button {
     align-self: center;
     border-top: 1px solid $hr;
     border-bottom: 1px solid $hr;
-    background: aliceblue;
+
     p {
       font-size: 9px;
       color: $text;
@@ -825,8 +825,6 @@ input[type="number"]::-webkit-outer-spin-button {
     }
     .key-text {
       margin-bottom: 15px;
-      background: lightsteelblue;
-      align-items: center;
     }
     .key-row {
       display: flex;
@@ -835,12 +833,10 @@ input[type="number"]::-webkit-outer-spin-button {
     .w84 {
       display: block;
       width: 84px;
-      background: yellow;
     }
     .w278 {
       display:block;
-      width: 278px;
-      background: lemonchiffon;
+      width: 263px;
     }
   }
   .page-link {
