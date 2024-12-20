@@ -77,23 +77,49 @@ const EmissionsGauge = ({ productionData = {}, transportData = {}, processingDat
 						br: () => <br />
 					})}
 				</p>
-				<p>
-					{t.rich('gauge-key', {
-						br: () => <br />
-					})}
+				<p className='key-text'>
+          <div className='key-row'>
+            {t.rich('key-a', {
+              color: (chunks) => (<span className='w84'>{chunks}</span>),
+              desc: (chunks) => (<span className='w278'>{chunks}</span>),
+              br: () => <br />, 
+            })}
+          </div>
+          <div className='key-row'>
+            {t.rich('key-b', {
+              color: (chunks) => (<span className='w84'>{chunks}</span>),
+              desc: (chunks) => (<span className='w278'>{chunks}</span>),
+              br: () => <br />, 
+            })}
+          </div>
+          <div className='key-row'>
+            {t.rich('key-c', {
+              color: (chunks) => (<span className='w84'>{chunks}</span>),
+              desc: (chunks) => (<span className='w278'>{chunks}</span>),
+              br: () => <br />, 
+            })}
+          </div>
+          <div className='key-row'>
+            {t.rich('key-d', {
+              color: (chunks) => (<span className='w84'>{chunks}</span>),
+              desc: (chunks) => (<span className='w278'>{chunks}</span>),
+              br: () => <br />, 
+            })}
+          </div>
 				</p>
 			</div>
 
 			<p className='page-link'>
-				<Link href='/page4'>{t('p4-link')}</Link>
-				{chevronImage && (
-					<Image
-						src={chevronImage}
-						width={4}
-						height={8}
-						alt='chevron icon'
-					/>
-				)}
+				<Link href='/page4'>{t('p4-link')}
+          {chevronImage && (
+            <Image
+              src={chevronImage}
+              width={4}
+              height={8}
+              alt='chevron icon'
+            />
+          )}
+        </Link>
 			</p>
 		</div>
 	)
