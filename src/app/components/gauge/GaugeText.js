@@ -16,16 +16,23 @@ export const GaugeText = React.memo(({ t, grade, emissionsPerKg }) => (
       fontWeight='500' 
       fontSize='28' 
       fill='#131523' 
-      transform='translate(112.354 131.847)'
+      textAnchor="middle"
+      x="165"
+      y="131.847"
     >
-      {t.rich('grade', { grade })}
+      {t.rich('grade', { 
+        grade,
+        space: () => ' ',
+        })}
     </text>
     <text 
       fontFamily="'Roboto','Pretendard','Arial', sans-serif" 
       fontWeight='500' 
       fontSize='17' 
       fill='#131523' 
-      transform='translate(133.865 153.847)'
+      textAnchor="middle"
+      x="165"
+      y="153.847"
     >
       {emissionsPerKg.toFixed(2)}kg
     </text>
