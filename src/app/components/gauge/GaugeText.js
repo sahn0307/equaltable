@@ -38,3 +38,5 @@ export const GaugeText = React.memo(({ t, grade, emissionsPerKg }) => (
     </text>
   </>
 ))
+
+GaugeText.displayName = 'GaugeText'
