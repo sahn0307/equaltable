@@ -63,13 +63,13 @@ const EmissionsGauge = ({ productionData = {}, transportData = {}, processingDat
 				</svg>
 			</figure>
 
-      <p className='grade'>
+      <div className='grade'>
 				{t.rich('gauge-grade', {
 					br: () => <br />,
 					emissions: emissionsPerKg.toFixed(2),
 					reduction: Math.abs(monthlyReduction).toFixed(2)
 				})}
-			</p>
+			</div>
 
 			<div className='key'>
 				<p className='k-title'>
@@ -77,7 +77,7 @@ const EmissionsGauge = ({ productionData = {}, transportData = {}, processingDat
 						br: () => <br />
 					})}
 				</p>
-				<p className='key-text'>
+				<div className='key-text'>
           <div className='key-row'>
             {t.rich('key-a', {
               color: (chunks) => (<span className='w84'>{chunks}</span>),
@@ -106,11 +106,12 @@ const EmissionsGauge = ({ productionData = {}, transportData = {}, processingDat
               br: () => <br />, 
             })}
           </div>
-				</p>
+				</div>
 			</div>
 
-			<p className='page-link'>
-				<Link href='/page4'>{t('p4-link')}
+			<div className='page-link'>
+				<Link href='/page4'>
+          <span>{t('p4-link')}</span>
           {chevronImage && (
             <Image
               src={chevronImage}
@@ -120,7 +121,7 @@ const EmissionsGauge = ({ productionData = {}, transportData = {}, processingDat
             />
           )}
         </Link>
-			</p>
+			</div>
 		</div>
 	)
 }
