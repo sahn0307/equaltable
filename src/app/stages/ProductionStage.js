@@ -19,7 +19,7 @@ export default function ProductionStage({
                 carbonEmissionsPerKg: DEFAULT_EMISSIONS
             }))
         }
-    }, [])
+    }, [productionData.carbonEmissionsPerKg, setProductionData])
 
     // Handle input changes for production stage
     const handleInputChange = (e) => {

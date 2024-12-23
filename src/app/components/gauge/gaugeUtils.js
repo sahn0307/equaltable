@@ -58,3 +58,5 @@ export const GaugePath = React.memo(({ d, color }) => (
     strokeWidth={GAUGE_CONSTANTS.strokeWidth}
   />
 ))
+
+GaugePath.displayName = 'GaugePath'
