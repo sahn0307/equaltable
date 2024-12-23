@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const GaugeMarkers = React.memo(() => (
+const GaugeMarkers = React.memo(() => (
   <>
     {/* -30, 30 */}
     <circle cx='3' cy='3' r='3' fill='#f1f3f2' transform='translate(22.909 157.847)' /> 
@@ -30,3 +30,6 @@ export const GaugeMarkers = React.memo(() => (
     </g>
   </>
 ))
+
+GaugeMarkers.displayName = 'GaugeMarkers'
+export { GaugeMarkers }
