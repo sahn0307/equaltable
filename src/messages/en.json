@@ -1,7 +1,7 @@
 {
 	"English": "English",
 	"Korean": "한국어",
-	"home": "home",
+	"reset": "Reset",
 	"p1-header": "Measure the carbon emissions of coffee",
 	"p1-desc": "This is a carbon emissions calculator that allows you to know the carbon emissions of the coffee you use",
 	"input-default-kg": "Enter monthly coffee usage",

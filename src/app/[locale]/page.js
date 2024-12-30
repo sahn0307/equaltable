@@ -23,37 +23,7 @@ export default function Page1() {
 	return (
 		<section className='centered-wrapper'>
 			<div className='flex-row'>
-				<div className='brand-wrapper'>
-					<Image
-						src={logo}
-						width={40}
-						height={32}
-						className='brand-logo'
-						alt='Equal Table logo'
-					/>
-					<p className='brand-name'>내일의 커피</p>
-				</div>
 				<LocaleSwitch />
-			</div>
-
-			<div className='progress-static'>
-				<div className='progress-bar'>
-					<div className='progress-step'>
-						<div className='circle completed'>1</div>
-						<div className='line completed' />
-					</div>
-					<div className='progress-step'>
-						<div className='circle'>2</div>
-						<div className='line' />
-					</div>
-					<div className='progress-step'>
-						<div className='circle'>3</div>
-						<div className='line' />
-					</div>
-					<div className='progress-step'>
-						<div className='circle'>4</div>
-					</div>
-				</div>
 			</div>
 			<div className='page1-header'>
 				<h1>{t('p1-header')}</h1>
