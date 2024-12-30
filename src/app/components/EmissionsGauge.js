@@ -77,35 +77,35 @@ const EmissionsGauge = ({ productionData = {}, transportData = {}, processingDat
 						br: () => <br />
 					})}
 				</p>
-				<p className='key-text'>
-          <div className='key-row'>
+				<p className='key-text p-style'>
+          <span className='key-row'>
             {t.rich('key-a', {
               color: (chunks) => (<span className='w84'>{chunks}</span>),
               desc: (chunks) => (<span className='w278'>{chunks}</span>),
               br: () => <br />, 
             })}
-          </div>
-          <div className='key-row'>
+          </span>
+          <span className='key-row'>
             {t.rich('key-b', {
               color: (chunks) => (<span className='w84'>{chunks}</span>),
               desc: (chunks) => (<span className='w278'>{chunks}</span>),
               br: () => <br />, 
             })}
-          </div>
-          <div className='key-row'>
+          </span>
+          <span className='key-row'>
             {t.rich('key-c', {
               color: (chunks) => (<span className='w84'>{chunks}</span>),
               desc: (chunks) => (<span className='w278'>{chunks}</span>),
               br: () => <br />, 
             })}
-          </div>
-          <div className='key-row'>
+          </span>
+          <span className='key-row'>
             {t.rich('key-d', {
               color: (chunks) => (<span className='w84'>{chunks}</span>),
               desc: (chunks) => (<span className='w278'>{chunks}</span>),
               br: () => <br />, 
             })}
-          </div>
+          </span>
 				</p>
 			</div>
 
