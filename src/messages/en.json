@@ -128,5 +128,7 @@
 	"col4-6": "* Based on a 30-year-old pine tree in the Gangwon region,<br></br>the annual carbon absorption amount is 8.1 kg.",
 	"roaster-power-label": "Roaster Power (kW)",
   	"gasConsumption-label": "Gas (m³/hr)",
-  	"smokeEliminator-power-label": "Smoke Eliminator Power (kW)"
+  	"smokeEliminator-power-label": "Smoke Eliminator Power (kW)",
+	 "extractorUsageTime-label": "Extractor Usage Time (hr)",
+  	"extractorProductionQty-label": "Extractor Production Quantity (kg)"
 }
