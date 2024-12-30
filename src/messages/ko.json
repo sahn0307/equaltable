@@ -128,5 +128,7 @@
 	"col4-6": "* 30년생 강원지방 소나무 1그루를 기준 연간 탄소흡수량이 8.1kg 입니다.",
 	"roaster-power-label": "로스터기 소비전력 (kW)",
 	"gasConsumption-label": "가스 사용량 (m³/hr)",
-	"smokeEliminator-power-label": "스모크 일리미네이터 전력 (kW)"
+	"smokeEliminator-power-label": "스모크 일리미네이터 전력 (kW)",
+	"extractorUsageTime-label": "추출기구사용 시간 (hr)",
+  	"extractorProductionQty-label": "추출기구 생산량 (kg)"
 }
