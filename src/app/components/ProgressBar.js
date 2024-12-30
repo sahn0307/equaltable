@@ -8,8 +8,7 @@ function ProgressBar({ stagesCompleted }) {
         'Transportation Stage',
         'Processing Stage',
         'Extraction Stage',
-        'Disposal Stage',
-        'Check results'
+        'Disposal Stage'
     ]
 
     return (
