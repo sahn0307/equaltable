@@ -107,7 +107,7 @@
 	"dis-ind-p": "Check the packaging and recycle coffee grounds. Check the eco-friendliness and recyclability of the product's packaging, and use the leftover coffee grounds for fertilizer, air fresheners, or send them to upcycling companies.",
 	"p3-header": "Compare the monthly carbon emissions of the coffee I use with carbon-reducing coffee",
 	"p3-p": "Check the monthly carbon emissions from the coffee I use and the expected monthly carbon reduction when switching to carbon-reducing coffee made by ‘Naeil Coffee'",
-	"col1-1-1-h": "Monthly coffee usage",
+	"col1-1-1-h": "Monthly Coffee Bean Usage",
 	"col1-1-2-h": "Expected monthly carbon emissions",
 	"col1-2-h": "The level of carbon emissions I use",
 	"grade": "Grade {grade}",
@@ -132,6 +132,6 @@
 	"roaster-power-label": "Roaster Power (kW)",
   	"gasConsumption-label": "Gas (m³/hr)",
   	"smokeEliminator-power-label": "Smoke Eliminator Power (kW)",
-	 "extractorUsageTime-label": "Extractor Usage Time (hr)",
+	"extractorUsageTime-label": "Extractor Usage Time (hr)",
   	"extractorProductionQty-label": "Extractor Production Quantity (kg)"
 }
