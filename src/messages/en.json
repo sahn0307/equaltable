@@ -128,5 +128,10 @@
 	"col4-4": "* The travel distance criterion is based on gasoline vehicles.<br></br>Carbon dioxide emissions from transportation based on gasoline:<br></br>travel distance / 16.04 * 2.097",
 	"col4-5": "What is the equivalent travel distance<br></br>for carbon reduction?",
 	"trees": "pine trees",
-	"col4-6": "* Based on a 30-year-old pine tree in the Gangwon region,<br></br>the annual carbon absorption amount is 8.1 kg."
+	"col4-6": "* Based on a 30-year-old pine tree in the Gangwon region,<br></br>the annual carbon absorption amount is 8.1 kg.",
+	"roaster-power-label": "Roaster Power (kW)",
+  	"gasConsumption-label": "Gas (m³/hr)",
+  	"smokeEliminator-power-label": "Smoke Eliminator Power (kW)",
+	 "extractorUsageTime-label": "Extractor Usage Time (hr)",
+  	"extractorProductionQty-label": "Extractor Production Quantity (kg)"
 }
