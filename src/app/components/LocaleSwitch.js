@@ -49,7 +49,7 @@ const LocaleSwitch = () => {
         style={{ color: locale === 'ko' ? '#D16E11' : 'inherit' }}>
         {t('Korean')}
       </button>
-      <Link href='/' locale={locale}>{t('home')}</Link>
+      <Link href='/' locale={locale}>{t('reset')}</Link>
     </div>
   )
 }

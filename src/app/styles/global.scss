@@ -91,8 +91,11 @@ p {
   flex: 1;
   .footnote {
     margin-top: 21px;
-    font-size: 10px;
-    color: $text;
+    font-size: 11px;
+    color: $dk-grey;
+    p {
+      color: $dk-grey;
+    }
   }
 }
 
@@ -265,6 +268,7 @@ input[type="radio"]:checked::before {
   }
   p {
     font-size: 28px;
+    font-weight: $medium;
     color: $form-title;
   }
 }
@@ -345,6 +349,7 @@ input[type="radio"]:checked::before {
   color: $white;
   display: flex;
   background-color: $accent;
+  // background-color: $text; //disabled
   flex-flow: row nowrap;
   align-items: center;
   border: none;

@@ -17,9 +17,9 @@ export default function Page() {
 		<section className='page-wrapper'>
 			<div className='page-header'>
 				<div className='left'>
-					<h2>{t('p2-header')}</h2>
-					<p>{t('p2-para1')}</p>
-					<p>{t('p2-para2')}</p>
+					<h2>{t('p4-header')}</h2>
+					<p>{t('p4-para1')}</p>
+					<p>{t('p4-para2')}</p>
 				</div>
 				<LocaleSwitch />
 			</div>
