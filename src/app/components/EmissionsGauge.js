@@ -63,13 +63,13 @@ const EmissionsGauge = ({ productionData = {}, transportData = {}, processingDat
 				</svg>
 			</figure>
 
-      <div className='grade'>
+      <p className='grade'>
 				{t.rich('gauge-grade', {
 					br: () => <br />,
 					emissions: emissionsPerKg.toFixed(2),
 					reduction: Math.abs(monthlyReduction).toFixed(2)
 				})}
-			</div>
+			</p>
 
 			<div className='key'>
 				<p className='k-title'>
@@ -77,41 +77,40 @@ const EmissionsGauge = ({ productionData = {}, transportData = {}, processingDat
 						br: () => <br />
 					})}
 				</p>
-				<div className='key-text'>
-          <div className='key-row'>
+				<p className='key-text p-style'>
+          <span className='key-row'>
             {t.rich('key-a', {
               color: (chunks) => (<span className='w84'>{chunks}</span>),
               desc: (chunks) => (<span className='w278'>{chunks}</span>),
               br: () => <br />, 
             })}
-          </div>
-          <div className='key-row'>
+          </span>
+          <span className='key-row'>
             {t.rich('key-b', {
               color: (chunks) => (<span className='w84'>{chunks}</span>),
               desc: (chunks) => (<span className='w278'>{chunks}</span>),
               br: () => <br />, 
             })}
-          </div>
-          <div className='key-row'>
+          </span>
+          <span className='key-row'>
             {t.rich('key-c', {
               color: (chunks) => (<span className='w84'>{chunks}</span>),
               desc: (chunks) => (<span className='w278'>{chunks}</span>),
               br: () => <br />, 
             })}
-          </div>
-          <div className='key-row'>
+          </span>
+          <span className='key-row'>
             {t.rich('key-d', {
               color: (chunks) => (<span className='w84'>{chunks}</span>),
               desc: (chunks) => (<span className='w278'>{chunks}</span>),
               br: () => <br />, 
             })}
-          </div>
-				</div>
+          </span>
+				</p>
 			</div>
 
-			<div className='page-link'>
-				<Link href='/page4'>
-          <span>{t('p4-link')}</span>
+			<p className='page-link'>
+				<Link href='/page4'>{t('p4-link')}
           {chevronImage && (
             <Image
               src={chevronImage}
@@ -121,7 +120,7 @@ const EmissionsGauge = ({ productionData = {}, transportData = {}, processingDat
             />
           )}
         </Link>
-			</div>
+			</p>
 		</div>
 	)
 }
