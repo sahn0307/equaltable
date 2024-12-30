@@ -12,13 +12,11 @@ export const EmissionsProvider = ({ children }) => {
    ****************************************************/
   const [productionData, setProductionData] = useState({
     monthlyCoffeeUsage: 0,
-    // Updated default to 1.56 (instead of 1.64)
     carbonEmissionsPerKg: 1.56,
   });
 
   /****************************************************
    * 2) TRANSPORT STAGE
-   * (No changes mentioned, so we keep as-is)
    ****************************************************/
   const [transportData, setTransportData] = useState({
     farmToPortDistance: 0,
@@ -33,7 +31,6 @@ export const EmissionsProvider = ({ children }) => {
 
   /****************************************************
    * 3) PROCESSING STAGE
-   * Updated fields to match new roaster logic
    ****************************************************/
   const [processingData, setProcessingData] = useState({
     roasterType: 'electric',           // 'electric' or 'gas'
@@ -50,7 +47,6 @@ export const EmissionsProvider = ({ children }) => {
 
   /****************************************************
    * 4) EXTRACTION STAGE
-   * Includes new fields: extractorUsageTime, extractorProductionQuantity
    ****************************************************/
   const [extractionData, setExtractionData] = useState({
     grinderType: 'electric',           // 'electric' or 'manual'
@@ -65,7 +61,6 @@ export const EmissionsProvider = ({ children }) => {
 
   /****************************************************
    * 5) DISPOSAL STAGE
-   * Removed all fields except upcyclingStatus
    ****************************************************/
   const [disposalData, setDisposalData] = useState({
     upcyclingStatus: 'yes',  // 'yes' or 'no'
