@@ -1,7 +1,7 @@
 {
 	"English": "English",
 	"Korean": "한국어",
-	"home": "Reset",
+	"reset": "Reset",
 	"p1-header": "커피의 탄소배출량을 측정해보세요.",
 	"p1-desc": "내가 사용하는 커피의 탄소배출량을 알 수 있는 탄소배출 계산기입니다.",
 	"input-default-kg": "월 커피 사용량 입력",
