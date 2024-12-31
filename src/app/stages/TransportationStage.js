@@ -245,7 +245,7 @@ export default function TransportationStage({
           <br />
         </div>
         <a
-          href='https://example.com'
+          href='https://www.searates.com/distance-time'
           target='_blank'
           className='external-link'
         >
