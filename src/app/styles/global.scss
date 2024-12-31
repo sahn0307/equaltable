@@ -57,7 +57,6 @@ h3.completed {
 }
 p {
   color: $mid-grey;
-  line-height: 1.6;
 }
 
 // Page 2
@@ -614,7 +613,7 @@ h1 {
   width: 1719px;
   .card {
     margin-right: 24px;
-    padding: 0 25px;
+    padding: 25px;
     width: 325px;
     background: $white;
     border-radius: 6px;
@@ -624,6 +623,30 @@ h1 {
       color: $text;
       line-height: 1.4;
     }
+    .scroll-card {
+      flex-grow: 1;
+      padding-right: 10px;
+      overflow-y: scroll;
+    }
+    /* Style the scrollbar for WebKit browsers */
+  .scroll-card::-webkit-scrollbar {
+    width: 3px;
+  }
+  .scroll-card::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .scroll-card::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+  }
+  .scroll-card::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  /* Style the scrollbar for Firefox */
+  .scroll-card{
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+  }
   }
   .h150 {
     height: 150px;
@@ -637,6 +660,9 @@ h1 {
     }
     span {
       color: $accent;
+    }
+    .txt {
+      height: 57px;
     }
   }
   .h180 {
