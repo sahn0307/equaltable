@@ -107,22 +107,22 @@ p {
 }
 /* Style the scrollbar for WebKit browsers */
 .scroll::-webkit-scrollbar {
-  width: 3px; /* Set the width of the scrollbar */
+  width: 3px;
 }
 .scroll::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Set the background of the scrollbar track */
+  background: #f1f1f1;
 }
 .scroll::-webkit-scrollbar-thumb {
-  background: #888; /* Set the color of the scrollbar thumb */
+  background: #888;
   border-radius: 3px;
 }
 .scroll::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Set the color of the scrollbar thumb on hover */
+  background: #555;
 }
 /* Style the scrollbar for Firefox */
 .scroll {
-  scrollbar-width: thin; /* Set the width of the scrollbar */
-  scrollbar-color: #888 #f1f1f1; /* Set the color of the scrollbar thumb and track */
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
 }
 
 .bold {
@@ -569,7 +569,6 @@ h1 {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: baseline;
-  // background: darkblue;
 }
 .col {
   width: 325px;
@@ -692,6 +691,7 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 /* Remove spinners from number input fields */
 input[type="number"] {
   -moz-appearance: textfield; /* Remove for Firefox */
