@@ -261,9 +261,10 @@ input[type="radio"]:checked::before {
   bottom: 0;
   z-index: 10;
   h4 {
+    margin-bottom: 5px;
     font-size: 12px;
-    color: $dk-grey;
     font-weight: $regular;
+    color: $dk-grey;
   }
   p {
     font-size: 28px;

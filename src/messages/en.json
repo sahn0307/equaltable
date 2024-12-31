@@ -46,6 +46,7 @@
 	"ship": "Ship",
 	"q5": "Distance from the airport or port to the roasting factory",
 	"f-2": "Please enter the distance between each unit. If you are unsure of the distance, you can use the site below to help measure it. It is measured based on a 20F container for ships.",
+	"f-2-2": "If both truck and train are used multiple times, please choose one to sum up the distance for the truck and the other to sum up the distance for the train.",
 	"external-link": "Distance measurement site",
 	"q6": "Type of roaster",
 	"Electric": "Electric",

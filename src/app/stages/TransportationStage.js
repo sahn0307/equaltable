@@ -242,10 +242,12 @@ export default function TransportationStage({
         <div className='footnote'>
           <p>{t('f-2')}</p>
           <br />
+          <p>{t('f-2-2')}</p>
+          <br />
           <br />
         </div>
         <a
-          href='https://example.com'
+          href='https://www.searates.com/distance-time'
           target='_blank'
           className='external-link'
         >
