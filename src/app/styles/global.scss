@@ -57,7 +57,6 @@ h3.completed {
 }
 p {
   color: $mid-grey;
-  line-height: 1.6;
 }
 
 // Page 2
@@ -108,22 +107,22 @@ p {
 }
 /* Style the scrollbar for WebKit browsers */
 .scroll::-webkit-scrollbar {
-  width: 3px; /* Set the width of the scrollbar */
+  width: 3px;
 }
 .scroll::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Set the background of the scrollbar track */
+  background: #f1f1f1;
 }
 .scroll::-webkit-scrollbar-thumb {
-  background: #888; /* Set the color of the scrollbar thumb */
+  background: #888;
   border-radius: 3px;
 }
 .scroll::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Set the color of the scrollbar thumb on hover */
+  background: #555;
 }
 /* Style the scrollbar for Firefox */
 .scroll {
-  scrollbar-width: thin; /* Set the width of the scrollbar */
-  scrollbar-color: #888 #f1f1f1; /* Set the color of the scrollbar thumb and track */
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
 }
 
 .bold {
@@ -572,6 +571,7 @@ h1 {
   align-items: baseline;
 }
 .col {
+  width: 325px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -588,12 +588,6 @@ h1 {
     background: $white;
     z-index: 1;
   }
-}
-.col:first-of-type {
-  margin-left: 86px;
-}
-.col:last-of-type {
-  margin-right: 86px;
 }
 .psudo-progress {
   .bar {
@@ -618,16 +612,40 @@ h1 {
   width: 1719px;
   .card {
     margin-right: 24px;
-    padding: 0 25px;
+    padding: 25px;
     width: 325px;
     background: $white;
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     p {
-      font-size: 10px;
+      font-size: 12px;
       color: $text;
       line-height: 1.4;
     }
+    .scroll-card {
+      flex-grow: 1;
+      padding-right: 10px;
+      overflow-y: scroll;
+    }
+    /* Style the scrollbar for WebKit browsers */
+  .scroll-card::-webkit-scrollbar {
+    width: 3px;
+  }
+  .scroll-card::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .scroll-card::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+  }
+  .scroll-card::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  /* Style the scrollbar for Firefox */
+  .scroll-card{
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+  }
   }
   .h150 {
     height: 150px;
@@ -635,11 +653,15 @@ h1 {
     .card-title {
       margin-bottom: 11px;
       font-size: 17px;
+      font-weight: $bold;
       color: $dk-grey;
       line-height: 1.3;
     }
     span {
       color: $accent;
+    }
+    .txt {
+      height: 57px;
     }
   }
   .h180 {
@@ -655,7 +677,8 @@ h1 {
   background: $text;
   height: 25.3px;
   margin: 13px 0;
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: $medium;
   color: $white;
   border-radius: 6px;
   text-align: center;
@@ -668,6 +691,7 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 /* Remove spinners from number input fields */
 input[type="number"] {
   -moz-appearance: textfield; /* Remove for Firefox */

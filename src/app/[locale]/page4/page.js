@@ -87,10 +87,10 @@ export default function Page() {
 
 			<div className='card-row row'>
 				<div className='card h180'>
-					<p>{t('prod-info')}</p>
+					<p className='scroll-card'>{t('prod-info')}</p>
 				</div>
 				<div className='card h180'>
-					<p>{t('trans-info')}</p>
+					<p className='scroll-card'>{t('trans-info')}</p>
 				</div>
 				<div className='card h180'>
 					<p>{t('process-info')}</p>
@@ -99,7 +99,7 @@ export default function Page() {
 					<p>{t('ext-info')}</p>
 				</div>
 				<div className='card h180'>
-					<p>{t('dis-info')}</p>
+					<p className='scroll-card'>{t('dis-info')}</p>
 				</div>
 			</div>
 			<div className='card-div'>{t('row-2')}</div>
@@ -111,7 +111,7 @@ export default function Page() {
 							br: () => <br />
 						})}
 					</p>
-					<p>{t('prod-p')}</p>
+					<p className='txt scroll-card'>{t('prod-p')}</p>
 				</div>
 				<div className='card h150'>
 					<p className='card-title'>
@@ -168,7 +168,7 @@ export default function Page() {
 							br: () => <br />
 						})}
 					</p>
-					<p>{t('trans-ind-p')}</p>
+					<p className='txt scroll-card'>{t('trans-ind-p')}</p>
 				</div>
 				<div className='card h150'>
 					<p className='card-title'>
@@ -186,7 +186,7 @@ export default function Page() {
 							br: () => <br />
 						})}
 					</p>
-					<p>{t('ext-ind-p')}</p>
+					<p className='txt scroll-card'>{t('ext-ind-p')}</p>
 				</div>
 				<div className='card h150'>
 					<p className='card-title'>
@@ -195,7 +195,7 @@ export default function Page() {
 							br: () => <br />
 						})}
 					</p>
-					<p>{t('dis-ind-p')}</p>
+					<p className='txt scroll-card'>{t('dis-ind-p')}</p>
 				</div>
 			</div>
 		</section>
