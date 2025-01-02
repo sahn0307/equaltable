@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '../../../i18n/routing'
@@ -31,18 +31,29 @@ export default function Home() {
 		setDisposalData
 	} = useEmissionsContext() // Access the context
 
-	// State to track the completion status of each stage
-	const [isProductionStageCompleted, setProductionStageCompleted] =
-		useState(false)
-	const [isTransportStageCompleted, setTransportStageCompleted] =
-		useState(false)
-	const [isProcessingStageCompleted, setProcessingStageCompleted] =
-		useState(false)
-	const [isExtractionStageCompleted, setExtractionStageCompleted] =
-		useState(false)
-	const [isDisposalStageCompleted, setDisposalStageCompleted] =
-		useState(false)
+	// Stage Progress
+	const [isProductionStageCompleted, setProductionStageCompleted] = useState(false)
+	const [isTransportStageCompleted, setTransportStageCompleted] = useState(false)
+	const [isProcessingStageCompleted, setProcessingStageCompleted] = useState(false)
+	const [isExtractionStageCompleted, setExtractionStageCompleted] = useState(false)
+	const [isDisposalStageCompleted, setDisposalStageCompleted] = useState(false)
 
+	const allStagesComplete = () => {
+		return (
+			isProductionStageCompleted &&
+			isTransportStageCompleted &&
+			isProcessingStageCompleted &&
+			isExtractionStageCompleted &&
+			isDisposalStageCompleted
+		)
+	}
+
+	  // Reset completion states when component mounts
+	  useEffect(() => {
+		setDisposalStageCompleted(false)
+	  }, [])
+
+	
 	return (
 		<>
 			<div className='page-header'>
@@ -99,8 +110,16 @@ export default function Home() {
 						isDisposalStageCompleted
 					]}
 				/>
-				{/* Button to navigate to page3 */}
-				<Link href='/page3' className='calculate-button'>
+				{/* Button to page3 */}
+				<Link 
+					href={allStagesComplete() ? '/page3' : '#'} 
+					className={`calculate-button ${!allStagesComplete() ? 'disabled' : ''}`}
+					onClick={(e) => {
+						if (!allStagesComplete()) {
+						e.preventDefault()
+						}
+					}}
+				>
 					<span>{t('p2-button')}</span>
 					<Image
 						src={chevronwht}

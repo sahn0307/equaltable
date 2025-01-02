@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
@@ -38,10 +37,9 @@ export default function DisposalStage({
 
   // Check if stage is complete (upcyclingStatus must be 'yes' or 'no')
   useEffect(() => {
-    const { upcyclingStatus = '' } = disposalData
-    const completed = upcyclingStatus === 'yes' || upcyclingStatus === 'no'
-    setIsCompleted(completed)
-    setStageCompleted(completed)
+    const isValid = disposalData?.upcyclingStatus !== undefined && disposalData?.upcyclingStatus !== ''
+    setIsCompleted(isValid)
+    setStageCompleted(isValid)
   }, [disposalData, setStageCompleted])
 
   return (
@@ -53,7 +51,6 @@ export default function DisposalStage({
         }
       })}
       <article className='scroll'>
-        <div className='question-container'>
           {/* Upcycling Status (Yes/No) */}
           <div className='question-group'>
             <div className='question-row'>
@@ -82,9 +79,7 @@ export default function DisposalStage({
               </div>
             </div>
           </div>
-        </div>
       </article>
-
       {/* Monthly Carbon Emissions Display */}
       <div className='carbon-summary'>
         <h4>{t('carbon-summary-title')}</h4>

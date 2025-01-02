@@ -145,84 +145,81 @@ export default function ExtractionStage({
           return <h3 className={className}>{chunks}</h3>
         }
       })}
-
       <article className='scroll'>
-        {/* Grinder Type */}
-        <div className='question-group'>
-          <div className='question-row'>
-            <label>{t('q12')}</label>
-            <div className='radio-group'>
-              <label>
-                <input
-                  type='radio'
-                  name='grinderType'
-                  value='electric'
-                  checked={extractionData.grinderType === 'electric'}
-                  onChange={handleRadioChange}
-                />
-                {t('extract-el')}
-              </label>
-              <label>
-                <input
-                  type='radio'
-                  name='grinderType'
-                  value='manual'
-                  checked={extractionData.grinderType === 'manual'}
-                  onChange={handleRadioChange}
-                />
-                {t('Manual')}
-              </label>
+        <div className='question-container'>
+          {/* Grinder Type */}
+          <div className='question-group'>
+            <div className='question-row'>
+              <label>{t('q12')}</label>
+              <div className='radio-group'>
+                <label>
+                  <input
+                    type='radio'
+                    name='grinderType'
+                    value='electric'
+                    checked={extractionData.grinderType === 'electric'}
+                    onChange={handleRadioChange}
+                  />
+                  {t('extract-el')}
+                </label>
+                <label>
+                  <input
+                    type='radio'
+                    name='grinderType'
+                    value='manual'
+                    checked={extractionData.grinderType === 'manual'}
+                    onChange={handleRadioChange}
+                  />
+                  {t('Manual')}
+                </label>
+              </div>
             </div>
           </div>
+          {/* Grinder Fields */}
+          {extractionData.grinderType === 'electric' && (
+            <>
+              <div className='question-group'>
+                <label>{t('q13')}</label>
+                <div className='row-group'>
+                  <input
+                    type='number'
+                    name='powerConsumption'
+                    value={extractionData.powerConsumption ?? 0}
+                    onChange={handleInputChange}
+                    placeholder={t('input-default')}
+                  />
+                  <span className='unit'>kW</span>
+                </div>
+              </div>
+              <div className='question-group'>
+                <label>{t('q14')}</label>
+                <div className='row-group'>
+                  <input
+                    type='number'
+                    name='usageTime'
+                    value={extractionData.usageTime ?? 0}
+                    onChange={handleInputChange}
+                    placeholder={t('input-default')}
+                  />
+                  <span className='unit'>hr</span>
+                </div>
+              </div>
+              <div className='question-group'>
+                <label>{t('q15')}</label>
+                <div className='row-group'>
+                  <input
+                    type='number'
+                    name='productionQuantity'
+                    value={extractionData.productionQuantity ?? 0}
+                    onChange={handleInputChange}
+                    placeholder={t('input-default')}
+                  />
+                  <span className='unit'>kg</span>
+                </div>
+              </div>
+            </>
+          )}
         </div>
-
-        {/* Grinder Fields */}
-        {extractionData.grinderType === 'electric' && (
-          <>
-            <div className='question-group'>
-              <label>{t('q13')}</label>
-              <div className='row-group'>
-                <input
-                  type='number'
-                  name='powerConsumption'
-                  value={extractionData.powerConsumption ?? 0}
-                  onChange={handleInputChange}
-                  placeholder={t('input-default')}
-                />
-                <span className='unit'>kW</span>
-              </div>
-            </div>
-
-            <div className='question-group'>
-              <label>{t('q14')}</label>
-              <div className='row-group'>
-                <input
-                  type='number'
-                  name='usageTime'
-                  value={extractionData.usageTime ?? 0}
-                  onChange={handleInputChange}
-                  placeholder={t('input-default')}
-                />
-                <span className='unit'>hr</span>
-              </div>
-            </div>
-
-            <div className='question-group'>
-              <label>{t('q15')}</label>
-              <div className='row-group'>
-                <input
-                  type='number'
-                  name='productionQuantity'
-                  value={extractionData.productionQuantity ?? 0}
-                  onChange={handleInputChange}
-                  placeholder={t('input-default')}
-                />
-                <span className='unit'>kg</span>
-              </div>
-            </div>
-          </>
-        )}
-
         {/* Extractor */}
         <div className='question-group'>
           <div className='question-row'>
