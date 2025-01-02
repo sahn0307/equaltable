@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
@@ -53,7 +52,6 @@ export default function DisposalStage({
         }
       })}
       <article className='scroll'>
-        <div className='question-container'>
           {/* Upcycling Status (Yes/No) */}
           <div className='question-group'>
             <div className='question-row'>
@@ -82,9 +80,7 @@ export default function DisposalStage({
               </div>
             </div>
           </div>
-        </div>
       </article>
-
       {/* Monthly Carbon Emissions Display */}
       <div className='carbon-summary'>
         <h4>{t('carbon-summary-title')}</h4>
