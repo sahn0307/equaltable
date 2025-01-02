@@ -1,49 +1,52 @@
 import React, { useMemo } from 'react'
 
 const TravelDistanceEquivalent = ({
-	productionData = {},
-	transportData = {},
-	processingData = {},
-	extractionData = {},
-	disposalData = {}
+  productionData = {},
+  transportData = {},
+  processingData = {},
+  extractionData = {},
+  disposalData = {}
 }) => {
-	const calculations = useMemo(() => {
-		// First calculate the emissions difference like in the first component
-		const monthlyUsage = productionData?.monthlyCoffeeUsage || 0
+  const calculations = useMemo(() => {
+    // 1) Calculate monthly reduction (A)
+    const monthlyUsage = productionData?.monthlyCoffeeUsage || 0
 
-		const userEmissionsPerKg =
-			(productionData?.carbonEmissionsPerKg || 0) +
-			(transportData?.totalEmissions || 0) +
-			(processingData?.totalEmissions || 0) +
-			(extractionData?.totalEmissions || 0) +
-			(disposalData?.totalEmissions || 0)
+    const userEmissionsPerKg =
+      (productionData?.carbonEmissionsPerKg || 0) +
+      (transportData?.totalEmissions || 0) +
+      (processingData?.totalEmissions || 0) +
+      (extractionData?.totalEmissions || 0) +
+      (disposalData?.totalEmissions || 0)
 
-		const greenCoffeeEmissionsPerKg = -1.28
-		const userMonthlyEmissions = userEmissionsPerKg * monthlyUsage
-		const greenCoffeeMonthlyEmissions =
-			greenCoffeeEmissionsPerKg * monthlyUsage
-		const monthlyReduction =
-			userMonthlyEmissions - greenCoffeeMonthlyEmissions
+    const userMonthlyEmissions = userEmissionsPerKg * monthlyUsage
 
-		// Convert to travel distance
-		// From PDF: 16.04 km/L for gasoline vehicles and 2.097 kgCO2/L
-		const kmPerKgCO2 = 16.04 / 2.097
-		const equivalentDistance = monthlyReduction * kmPerKgCO2
+    // Green coffee reference is -1.28 per kg
+    const greenCoffeeMonthlyEmissions = -1.28 * monthlyUsage
 
-		return {
-			equivalentDistance
-		}
-	}, [
-		productionData,
-		transportData,
-		processingData,
-		extractionData,
-		disposalData
-	])
+    // A = userMonthlyEmissions - greenCoffeeMonthlyEmissions
+    const A = userMonthlyEmissions - greenCoffeeMonthlyEmissions
 
-	return (
-		<p>{Math.round(calculations.equivalentDistance).toLocaleString()} km</p>
-	)
+    // 2) Convert to travel distance:
+    // B = A * (16.04 * 2.097)
+    const B = A * (16.04 * 2.097)
+
+    return {
+      equivalentDistance: B
+    }
+  }, [
+    productionData,
+    transportData,
+    processingData,
+    extractionData,
+    disposalData
+  ])
+
+  // Display B as a whole number (rounded) + "km"
+  return (
+    <p>
+      {Math.round(calculations.equivalentDistance).toLocaleString()} km
+    </p>
+  )
 }
 
 export default TravelDistanceEquivalent
