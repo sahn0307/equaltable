@@ -177,7 +177,7 @@ export default function ExtractionStage({
           </div>
           {/* Grinder Fields */}
           {extractionData.grinderType === 'electric' && (
-            <div>
+            <>
               <div className='question-group'>
                 <label>{t('q13')}</label>
                 <div className='row-group'>
@@ -217,7 +217,7 @@ export default function ExtractionStage({
                   <span className='unit'>kg</span>
                 </div>
               </div>
-            </div>
+            </>
           )}
         </div>
         {/* Extractor */}
