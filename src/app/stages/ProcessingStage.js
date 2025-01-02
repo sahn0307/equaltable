@@ -182,17 +182,17 @@ export default function ProcessingStage({
               For both electric and gas roasters
           ------------------------------------- */}
           <div className='question-group'>
-            <label>
-              {t('roaster-power-label') /* e.g. "로스터기 소비전력 (kW)" */}
-            </label>
-            <input
-              type='number'
-              name='roasterPower'
-              value={processingData.roasterPower || ''}
-              onChange={handleInputChange}
-              placeholder={t('input-default')}
-            />
-            <span className='unit'>kW</span>
+            <label>{t('roaster-power-label') /* e.g. "로스터기 소비전력 (kW)" */}</label>
+            <div className='row-group'>
+              <input
+                type='number'
+                name='roasterPower'
+                value={processingData.roasterPower || ''}
+                onChange={handleInputChange}
+                placeholder={t('input-default')}
+                />
+              <span className='unit'>kW</span>
+            </div>
           </div>
           {/* -------------------------------------
               If roasterType = gas => Gas Consumption
