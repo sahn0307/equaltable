@@ -63,7 +63,7 @@ export const EmissionsProvider = ({ children }) => {
    * 5) DISPOSAL STAGE
    ****************************************************/
   const [disposalData, setDisposalData] = useState({
-    upcyclingStatus: 'yes',  // 'yes' or 'no'
+    upcyclingStatus: '',  // 'yes' or 'no'; initialize as empty string
   });
 
   /****************************************************

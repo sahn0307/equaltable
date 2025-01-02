@@ -37,10 +37,9 @@ export default function DisposalStage({
 
   // Check if stage is complete (upcyclingStatus must be 'yes' or 'no')
   useEffect(() => {
-    const { upcyclingStatus = '' } = disposalData
-    const completed = upcyclingStatus === 'yes' || upcyclingStatus === 'no'
-    setIsCompleted(completed)
-    setStageCompleted(completed)
+    const isValid = disposalData?.upcyclingStatus !== undefined && disposalData?.upcyclingStatus !== ''
+    setIsCompleted(isValid)
+    setStageCompleted(isValid)
   }, [disposalData, setStageCompleted])
 
   return (

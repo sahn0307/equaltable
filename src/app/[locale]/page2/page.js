@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '../../../i18n/routing'
@@ -32,16 +32,11 @@ export default function Home() {
 	} = useEmissionsContext() // Access the context
 
 	// Stage Progress
-	const [isProductionStageCompleted, setProductionStageCompleted] =
-		useState(false)
-	const [isTransportStageCompleted, setTransportStageCompleted] =
-		useState(false)
-	const [isProcessingStageCompleted, setProcessingStageCompleted] =
-		useState(false)
-	const [isExtractionStageCompleted, setExtractionStageCompleted] =
-		useState(false)
-	const [isDisposalStageCompleted, setDisposalStageCompleted] =
-		useState(false)
+	const [isProductionStageCompleted, setProductionStageCompleted] = useState(false)
+	const [isTransportStageCompleted, setTransportStageCompleted] = useState(false)
+	const [isProcessingStageCompleted, setProcessingStageCompleted] = useState(false)
+	const [isExtractionStageCompleted, setExtractionStageCompleted] = useState(false)
+	const [isDisposalStageCompleted, setDisposalStageCompleted] = useState(false)
 
 	const allStagesComplete = () => {
 		return (
@@ -52,6 +47,11 @@ export default function Home() {
 			isDisposalStageCompleted
 		)
 	}
+
+	  // Reset completion states when component mounts
+	  useEffect(() => {
+		setDisposalStageCompleted(false)
+	  }, [])
 
 	
 	return (
