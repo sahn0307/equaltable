@@ -134,5 +134,12 @@
 	"gasConsumption-label": "가스 사용량 (m³/hr)",
 	"smokeEliminator-power-label": "스모크 일리미네이터 전력 (kW)",
 	"extractorUsageTime-label": "추출기구사용 시간 (hr)",
-  	"extractorProductionQty-label": "추출기구 생산량 (kg)"
+  	"extractorProductionQty-label": "추출기구 생산량 (kg)",
+	"aria-needs-usage": "Please enter monthly coffee usage to proceed",
+	"aria-needs-consent": "Please accept data consent to proceed",
+	"aria-needs-production": "Please complete the Production stage to proceed",
+	"aria-needs-transport": "Please complete the Transportation stage to proceed", 
+	"aria-needs-processing": "Please complete the Processing stage to proceed",
+	"aria-needs-extraction": "Please complete the Extraction stage to proceed",
+	"aria-needs-disposal": "Please complete the Disposal stage to proceed"
 }

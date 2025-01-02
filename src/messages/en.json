@@ -134,5 +134,12 @@
   	"gasConsumption-label": "Gas (m³/hr)",
   	"smokeEliminator-power-label": "Smoke Eliminator Power (kW)",
 	"extractorUsageTime-label": "Extractor Usage Time (hr)",
-  	"extractorProductionQty-label": "Extractor Production Quantity (kg)"
+  	"extractorProductionQty-label": "Extractor Production Quantity (kg)",
+	"aria-needs-usage": "Please enter monthly coffee usage to proceed",
+	"aria-needs-consent": "Please accept data consent to proceed",
+	"aria-needs-production": "Please complete the Production stage to proceed",
+	"aria-needs-transport": "Please complete the Transportation stage to proceed", 
+	"aria-needs-processing": "Please complete the Processing stage to proceed",
+	"aria-needs-extraction": "Please complete the Extraction stage to proceed",
+	"aria-needs-disposal": "Please complete the Disposal stage to proceed"
 }
