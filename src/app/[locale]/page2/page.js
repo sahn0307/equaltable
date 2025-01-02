@@ -31,7 +31,7 @@ export default function Home() {
 		setDisposalData
 	} = useEmissionsContext() // Access the context
 
-	// State to track the completion status of each stage
+	// Stage Progress
 	const [isProductionStageCompleted, setProductionStageCompleted] =
 		useState(false)
 	const [isTransportStageCompleted, setTransportStageCompleted] =
@@ -43,6 +43,17 @@ export default function Home() {
 	const [isDisposalStageCompleted, setDisposalStageCompleted] =
 		useState(false)
 
+	const allStagesComplete = () => {
+		return (
+			isProductionStageCompleted &&
+			isTransportStageCompleted &&
+			isProcessingStageCompleted &&
+			isExtractionStageCompleted &&
+			isDisposalStageCompleted
+		)
+	}
+
+	
 	return (
 		<>
 			<div className='page-header'>
@@ -99,8 +110,16 @@ export default function Home() {
 						isDisposalStageCompleted
 					]}
 				/>
-				{/* Button to navigate to page3 */}
-				<Link href='/page3' className='calculate-button'>
+				{/* Button to page3 */}
+				<Link 
+					href={allStagesComplete() ? '/page3' : '#'} 
+					className={`calculate-button ${!allStagesComplete() ? 'disabled' : ''}`}
+					onClick={(e) => {
+						if (!allStagesComplete()) {
+						e.preventDefault()
+						}
+					}}
+				>
 					<span>{t('p2-button')}</span>
 					<Image
 						src={chevronwht}

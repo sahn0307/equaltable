@@ -350,7 +350,6 @@ input[type="radio"]:checked::before {
   color: $white;
   display: flex;
   background-color: $accent;
-  // background-color: $text; //disabled
   flex-flow: row nowrap;
   align-items: center;
   border: none;
@@ -363,6 +362,11 @@ input[type="radio"]:checked::before {
   span {
     margin-right: 8px;
   }
+}
+.calculate-button.disabled {
+  opacity: 0.6;
+  background-color: $text;
+  cursor: not-allowed;
 }
 
 // page 1
