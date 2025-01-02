@@ -48,12 +48,20 @@ export default function Home() {
 		)
 	}
 
-	  // Reset completion states when component mounts
-	  useEffect(() => {
-		setDisposalStageCompleted(false)
-	  }, [])
+	// Reset completion states when component mounts
+	useEffect(() => {
+	setDisposalStageCompleted(false)
+	}, [])
 
-	
+	const getAriaLabel = () => {
+		if (!isProductionStageCompleted) return t('aria-needs-production')
+		if (!isTransportStageCompleted) return t('aria-needs-transport')
+		if (!isProcessingStageCompleted) return t('aria-needs-processing')
+		if (!isExtractionStageCompleted) return t('aria-needs-extraction')
+		if (!isDisposalStageCompleted) return t('aria-needs-disposal')
+		return ''
+	  }	
+
 	return (
 		<>
 			<div className='page-header'>
@@ -114,6 +122,8 @@ export default function Home() {
 				<Link 
 					href={allStagesComplete() ? '/page3' : '#'} 
 					className={`calculate-button ${!allStagesComplete() ? 'disabled' : ''}`}
+					aria-disabled={!allStagesComplete()}
+					aria-label={!allStagesComplete() ? getAriaLabel() : undefined}
 					onClick={(e) => {
 						if (!allStagesComplete()) {
 						e.preventDefault()

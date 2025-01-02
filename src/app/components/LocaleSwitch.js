@@ -33,6 +33,10 @@ const LocaleSwitch = () => {
     }
   }
 
+  const handleReset = () => {
+    window.location.href = '/' // force a full page refresh
+  }
+
   return (
     <div className='switch' role='region' aria-label='language switcher'>
       <button
@@ -49,7 +53,13 @@ const LocaleSwitch = () => {
         style={{ color: locale === 'ko' ? '#D16E11' : 'inherit' }}>
         {t('Korean')}
       </button>
-      <Link href='/' locale={locale}>{t('reset')}</Link>
+      <Link 
+        href='/' 
+        locale={locale}
+        onClick={() => window.location.href = '/'}
+      >
+        {t('reset')}
+      </Link>
     </div>
   )
 }

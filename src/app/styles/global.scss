@@ -489,17 +489,21 @@ h1 {
     align-items: baseline;
   }
 }
+.disabled-link {
+  cursor: not-allowed;
+}
+.p1-button.disabled {
+  cursor: not-allowed;
+}
 
 .button-group {
   img {
     position: relative;
     display: block;
     height: auto;
-  
     &.b1 {
       max-width: 45px;
     }
-  
     &.b2 {
       max-width: 76px;
     }
