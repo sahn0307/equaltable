@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
@@ -146,113 +145,109 @@ export default function ProcessingStage({
           return <h3 className={className}>{chunks}</h3>
         }
       })}
-
       <article className='scroll'>
-        {/* -------------------------------------
-            Type of Roaster
-        ------------------------------------- */}
-        <div className='question-group'>
-          <div className='question-row'>
-            <label>{t('q6')}</label>
-            <div className='radio-group'>
-              <label>
-                <input
-                  type='radio'
-                  name='roasterType'
-                  value='electric'
-                  checked={processingData.roasterType === 'electric'}
-                  onChange={handleRadioChange}
-                />
-                {t('Electric')}
-              </label>
-              <label>
-                <input
-                  type='radio'
-                  name='roasterType'
-                  value='gas'
-                  checked={processingData.roasterType === 'gas'}
-                  onChange={handleRadioChange}
-                />
-                {t('Gas')}
-              </label>
+        <div className='question-container'>
+          {/* -------------------------------------
+              Type of Roaster
+          ------------------------------------- */}
+          <div className='question-group'>
+            <div className='question-row'>
+              <label>{t('q6')}</label>
+              <div className='radio-group'>
+                <label>
+                  <input
+                    type='radio'
+                    name='roasterType'
+                    value='electric'
+                    checked={processingData.roasterType === 'electric'}
+                    onChange={handleRadioChange}
+                  />
+                  {t('Electric')}
+                </label>
+                <label>
+                  <input
+                    type='radio'
+                    name='roasterType'
+                    value='gas'
+                    checked={processingData.roasterType === 'gas'}
+                    onChange={handleRadioChange}
+                  />
+                  {t('Gas')}
+                </label>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* -------------------------------------
-            Roaster Power Consumption (kW)
-            For both electric and gas roasters
-        ------------------------------------- */}
-        <div className='question-group'>
-          <label>
-            {t('roaster-power-label') /* e.g. "로스터기 소비전력 (kW)" */}
-          </label>
-          <input
-            type='number'
-            name='roasterPower'
-            value={processingData.roasterPower || ''}
-            onChange={handleInputChange}
-            placeholder={t('input-default')}
-          />
-          <span className='unit'>kW</span>
-        </div>
-
-        {/* -------------------------------------
-            If roasterType = gas => Gas Consumption
-            (now in m³/hr, not kcal/hr)
-        ------------------------------------- */}
-        {processingData.roasterType === 'gas' && (
+          {/* -------------------------------------
+              Roaster Power Consumption (kW)
+              For both electric and gas roasters
+          ------------------------------------- */}
           <div className='question-group'>
-            <label>{t('gasConsumption-label') /* e.g. "Gas (m³/hr)" */}</label>
+            <label>
+              {t('roaster-power-label') /* e.g. "로스터기 소비전력 (kW)" */}
+            </label>
+            <input
+              type='number'
+              name='roasterPower'
+              value={processingData.roasterPower || ''}
+              onChange={handleInputChange}
+              placeholder={t('input-default')}
+            />
+            <span className='unit'>kW</span>
+          </div>
+          {/* -------------------------------------
+              If roasterType = gas => Gas Consumption
+              (now in m³/hr, not kcal/hr)
+          ------------------------------------- */}
+          {processingData.roasterType === 'gas' && (
+            <div className='question-group'>
+              <label>{t('gasConsumption-label') /* e.g. "Gas (m³/hr)" */}</label>
+              <div className='row-group'>
+                <input
+                  type='number'
+                  name='gasConsumption'
+                  value={processingData.gasConsumption || ''}
+                  onChange={handleInputChange}
+                  placeholder={t('input-default')}
+                />
+                <span className='unit'>m³/hr</span>
+              </div>
+            </div>
+          )}
+          {/* -------------------------------------
+              Usage Time (hr)
+              - For electric roaster, used in the formula
+              - For gas roaster, also used
+          ------------------------------------- */}
+          <div className='question-group'>
+            <label>{t('q9')}</label>
             <div className='row-group'>
               <input
                 type='number'
-                name='gasConsumption'
-                value={processingData.gasConsumption || ''}
+                name='usageTime'
+                value={processingData.usageTime || ''}
                 onChange={handleInputChange}
                 placeholder={t('input-default')}
               />
-              <span className='unit'>m³/hr</span>
+              <span className='unit'>hr</span>
             </div>
           </div>
-        )}
-
-        {/* -------------------------------------
-            Usage Time (hr)
-            - For electric roaster, used in the formula
-            - For gas roaster, also used
-        ------------------------------------- */}
-        <div className='question-group'>
-          <label>{t('q9')}</label>
-          <div className='row-group'>
-            <input
-              type='number'
-              name='usageTime'
-              value={processingData.usageTime || ''}
-              onChange={handleInputChange}
-              placeholder={t('input-default')}
-            />
-            <span className='unit'>hr</span>
+          {/* -------------------------------------
+              Production Quantity (kg)
+          ------------------------------------- */}
+          <div className='question-group'>
+            <label>{t('q10')}</label>
+            <div className='row-group'>
+              <input
+                type='number'
+                name='productionQuantity'
+                value={processingData.productionQuantity || ''}
+                onChange={handleInputChange}
+                placeholder={t('input-default')}
+              />
+              <span className='unit'>kg</span>
+            </div>
           </div>
         </div>
-
-        {/* -------------------------------------
-            Production Quantity (kg)
-        ------------------------------------- */}
-        <div className='question-group'>
-          <label>{t('q10')}</label>
-          <div className='row-group'>
-            <input
-              type='number'
-              name='productionQuantity'
-              value={processingData.productionQuantity || ''}
-              onChange={handleInputChange}
-              placeholder={t('input-default')}
-            />
-            <span className='unit'>kg</span>
-          </div>
-        </div>
-
         {/* -------------------------------------
             Smoke Eliminator / Afterburner / None
         ------------------------------------- */}
@@ -328,7 +323,6 @@ export default function ProcessingStage({
           - If you still want them, keep them, but re-label the unit carefully.
         */}
       </article>
-
       {/* -------------------------------------
           Monthly Carbon Emissions Display
       ------------------------------------- */}
