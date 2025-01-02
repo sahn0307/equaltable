@@ -1,14 +1,16 @@
 // src/app/components/ProgressBar.js
-import React from 'react'
+import { useTranslations } from 'next-intl'
 
 function ProgressBar({ stagesCompleted }) {
+    const t = useTranslations()
+
     const stages = [
-        'Monthly usage entry completed',
-        'Production Stage',
-        'Transportation Stage',
-        'Processing Stage',
-        'Extraction Stage',
-        'Disposal Stage'
+        t('stg-1'),
+        t('stg-2'),
+        t('stg-3'),
+        t('stg-4'),
+        t('stg-5'),
+        t('stg-6')
     ]
 
     return (
