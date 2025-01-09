@@ -1,36 +1,17 @@
-import React, { useMemo } from 'react';
+import React from 'react';
+import { useEmissionsContext } from '../context/EmissionsContext';
 
-const ExpectedMonthlyEmissions = ({
-  productionData = {},
-  transportData = {},
-  processingData = {},
-  extractionData = {},
-  disposalData = {}
-}) => {
-  const calculations = useMemo(() => {
-    // Get monthly coffee usage
-    const monthlyUsage = productionData?.monthlyCoffeeUsage || 0;
+const ExpectedMonthlyEmissions = () => {
+  const { productionData, calculateAllPerKg } = useEmissionsContext();
+  const { totalPerKg } = calculateAllPerKg();
 
-    // Calculate total emissions per kg
-    const emissionsPerKg = (
-      (productionData?.carbonEmissionsPerKg || 0) +
-      (transportData?.totalEmissions || 0) +
-      (processingData?.totalEmissions || 0) +
-      (extractionData?.totalEmissions || 0) +
-      (disposalData?.totalEmissions || 0)
-    );
-
-    // Calculate total monthly emissions
-    const monthlyEmissions = monthlyUsage * emissionsPerKg;
-
-    return {
-      monthlyEmissions
-    };
-  }, [productionData, transportData, processingData, extractionData, disposalData]);
+  // multiply totalPerKg by monthlyCoffeeUsage for monthly total
+  const monthlyUsage = productionData?.monthlyCoffeeUsage || 0;
+  const monthlyEmissions = monthlyUsage * totalPerKg;
 
   return (
     <>
-      {calculations.monthlyEmissions.toFixed(2)} kg
+      {monthlyEmissions.toFixed(2)} kg
     </>
   );
 };
