@@ -1,234 +1,138 @@
-import React, { useMemo, useEffect, useRef } from 'react';
-import Chart from 'chart.js';
+'use client'
 
-const EmissionsBreakdown = ({ 
-  productionData = {},
-  transportData = {},
-  processingData = {},
-  extractionData = {},
-  disposalData = {}
-}) => {
-  const chartRef = useRef(null);
-  const chartInstance = useRef(null);
+import { useMemo, useRef } from 'react'
+import 'chart.js/auto'
+import { Line } from 'react-chartjs-2'
+import { useEmissionsContext } from '../context/EmissionsContext'
 
-  const calculations = useMemo(() => {
-    // Production emissions (coffee cultivation)
-    const productionEmissions = productionData?.carbonEmissionsPerKg || 0;
+export default function EmissionsBreakdown() {
+  const { productionData, calculateAllPerKg } = useEmissionsContext()
+  const chartRef = useRef(null)
 
-    // Transport emissions calculation
-    const farmToPortEmission = (transportData?.transportType?.farmToPort === 'truck' ? 0.062 : 0.602);
-    const portToDomesticEmission = (transportData?.transportType?.portToDomestic === 'truck' ? 0.062 : 0.602);
-    const domesticEmission = (transportData?.transportType?.domestic === 'truck' ? 0.062 : 0.602);
+  const {
+    productionPerKg,
+    transportPerKg,
+    processingPerKg,
+    extractionPerKg,
+    disposalPerKg,
+    totalPerKg
+  } = calculateAllPerKg()
 
-    const transportEmissions = (
-      ((transportData?.farmToPortDistance || 0) * farmToPortEmission) +
-      ((transportData?.portToDomesticDistance || 0) * portToDomesticEmission) +
-      ((transportData?.domesticDistance || 0) * domesticEmission)
-    );
+  const stageValues = [
+    productionPerKg,
+    productionPerKg + transportPerKg,
+    productionPerKg + transportPerKg + processingPerKg,
+    productionPerKg + transportPerKg + processingPerKg + extractionPerKg,
+    productionPerKg + transportPerKg + processingPerKg + extractionPerKg + disposalPerKg
+  ]
 
-    // Processing emissions
-    const processingPower = processingData?.powerConsumption || 0;
-    const processingTime = processingData?.usageTime || 0;
-    const processingQuantity = processingData?.productionQuantity || 1;
-    const gasConsumption = processingData?.gasConsumption || 0;
-    
-    const processingEmissions = (
-      ((processingData?.roasterType === 'electric' ? 
-        (processingPower * processingTime) : 
-        (gasConsumption * processingTime)) / processingQuantity) +
-      (processingData?.smokeEliminator === 'yes' ? 0.1 : 0)
-    );
+  const stageLabels = [
+    'Production Stage',
+    'Transportation Stage',
+    'Processing Stage',
+    'Extraction Stage',
+    'Disposal Stage'
+  ]
 
-    // Extraction emissions
-    const extractionPower = extractionData?.powerConsumption || 0;
-    const extractionTime = extractionData?.usageTime || 0;
-    const extractionQuantity = extractionData?.productionQuantity || 1;
-    
-    const extractionEmissions = (
-      ((extractionPower * extractionTime) / extractionQuantity) +
-      (extractionData?.extractorPower === 'yes' ? (extractionData?.extractorPowerConsumption || 0) : 0)
-    );
+  const colors = [
+    'rgba(251,146,60,0.2)',
+    'rgba(251,146,60,0.4)',
+    'rgba(251,146,60,0.6)',
+    'rgba(251,146,60,0.8)',
+    'rgba(251,146,60,1)'
+  ]
 
-    // Disposal emissions
-    const disposalEmissions = (
-      (disposalData?.upcyclingStatus === 'no' ? (disposalData?.coffeeWasteEmissions || 0) : 0) +
-      (disposalData?.packagingUsed === 'yes' ? (disposalData?.packagingEmissions || 0) : 0)
-    );
+  const data = useMemo(() => ({
+    labels: ['', '', '', '', ''],
+    datasets: [
+      {
+        data: stageValues,
+        fill: true,
+        tension: 0, // Set to 0 for linear lines
+        borderColor: '#FB923C',
+        pointBackgroundColor: colors,
+        pointRadius: 6,
+        backgroundColor(ctx) {
+          const { chart, ctx: canvasCtx, chartArea } = ctx.chart
+          if (!chartArea) return 'rgba(251,146,60,0.2)'
 
-    const total = productionEmissions + transportEmissions + processingEmissions + 
-                 extractionEmissions + disposalEmissions;
-
-    // Calculate actual percentages
-    const getPercentage = (value) => total === 0 ? 0 : (value / total * 100);
-
-    return {
-      stages: {
-        'Production Stage': { 
-          value: productionEmissions, 
-          percentage: getPercentage(productionEmissions)
-        },
-        'Transportation Stage': { 
-          value: transportEmissions, 
-          percentage: getPercentage(transportEmissions)
-        },
-        'Processing Stage': { 
-          value: processingEmissions, 
-          percentage: getPercentage(processingEmissions)
-        },
-        'Extraction Stage': { 
-          value: extractionEmissions, 
-          percentage: getPercentage(extractionEmissions)
-        },
-        'Disposal Stage': { 
-          value: disposalEmissions, 
-          percentage: getPercentage(disposalEmissions)
+          const gradient = canvasCtx.createLinearGradient(
+            0, chartArea.bottom,
+            0, chartArea.top
+          )
+          gradient.addColorStop(0, 'rgba(251, 146, 60, 0.2)')
+          gradient.addColorStop(1, 'rgba(251, 146, 60, 0.6)')
+          return gradient
         }
-      },
-      total,
-      chartData: {
-        labels: ['', '', '', '', ''],
-        datasets: [{
-          data: [
-            productionEmissions,
-            productionEmissions + transportEmissions,
-            productionEmissions + transportEmissions + processingEmissions,
-            productionEmissions + transportEmissions + processingEmissions + extractionEmissions,
-            total
-          ],
-          fill: true,
-          backgroundColor: (context) => {
-            const chart = context.chart;
-            const { ctx, chartArea } = chart;
-            if (!chartArea) return;
-            
-            const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-            gradient.addColorStop(0, 'rgba(251, 146, 60, 0.2)');
-            gradient.addColorStop(1, 'rgba(251, 146, 60, 0.6)');
-            return gradient;
-          },
-          borderColor: 'rgb(251, 146, 60)',
-          tension: 0,
-          pointRadius: 4,
-          pointBackgroundColor: 'rgb(251, 146, 60)',
-          label: ''
-        }]
       }
-    };
-  }, [
-    productionData?.carbonEmissionsPerKg,
-    transportData?.transportType?.farmToPort,
-    transportData?.transportType?.portToDomestic,
-    transportData?.transportType?.domestic,
-    transportData?.farmToPortDistance,
-    transportData?.portToDomesticDistance,
-    transportData?.domesticDistance,
-    processingData?.powerConsumption,
-    processingData?.usageTime,
-    processingData?.productionQuantity,
-    processingData?.gasConsumption,
-    processingData?.roasterType,
-    processingData?.smokeEliminator,
-    extractionData?.powerConsumption,
-    extractionData?.usageTime,
-    extractionData?.productionQuantity,
-    extractionData?.extractorPower,
-    extractionData?.extractorPowerConsumption,
-    disposalData?.upcyclingStatus,
-    disposalData?.coffeeWasteEmissions,
-    disposalData?.packagingUsed,
-    disposalData?.packagingEmissions
-  ]);
+    ]
+  }), [stageValues, colors])
 
-  const config = useMemo(() => ({
-    type: 'line',
-    data: calculations.chartData,
-    options: {
-      maintainAspectRatio: false,
-      responsive: true,
-      plugins: {
-        title: {
-          display: false
-        },
-        legend: {
-          display: false
-        },
-        tooltip: {
-          enabled: false
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          grid: {
-            color: 'rgba(0, 0, 0, 0.1)',
-            drawBorder: false,
-            drawTicks: false,
-            display: false
-          },
-          ticks: {
-            padding: 10,
-            color: "#6B7280",
-            font: {
-              size: 11
-            }
-          }
-        },
-        x: {
-          grid: {
-            display: false
-          },
-          ticks: {
-            display: false
-          },
-          border: {
-            display: false
+  const options = useMemo(() => ({
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        enabled: true,
+        callbacks: {
+          label: (context) => {
+            const idx = context.dataIndex
+            return `${stageLabels[idx]}: ${(stageValues[idx] - (stageValues[idx - 1] || 0)).toFixed(2)} kg CO₂`
           }
         }
+      }
+    },
+    scales: {
+      x: {
+        display: false,
+        grid: { display: false }
       },
-      elements: {
-        line: {
-          borderWidth: 2
+      y: {
+        grid: {
+          color: 'rgba(0, 0, 0, 0.1)'
+        },
+        ticks: {
+          // stepsize:1,
+          maxTicksLimit: 10, // Limit the number of ticks to 7
+          callback: (value) => value.toFixed(0), // Display whole numbers only
+          color: '#4B5563',
+          font: { size: 12 }
         }
       }
-    }
-  }), [calculations.chartData]);
-
-  useEffect(() => {
-    if (chartInstance.current) {
-      chartInstance.current.destroy();
-    }
-
-    if (chartRef.current) {
-      chartInstance.current = new Chart(chartRef.current, config);
-    }
-
-    return () => {
-      if (chartInstance.current) {
-        chartInstance.current.destroy();
+    },
+    elements: {
+      line: {
+        borderWidth: 2
       }
-    };
-  }, [config]);
+    }
+  }), [stageLabels, stageValues])
 
   return (
-    <div className="bg-white rounded-lg p-6">
-      <div className="text-lg font-semibold mb-2">
-        {calculations.total.toFixed(2)} kg
+    <div className="bg-white p-4 rounded-lg shadow" style={{ maxWidth: '350px' }}>
+      <p className="text-2xl font-bold mb-4">{totalPerKg.toFixed(2)} kg</p>
+
+      <div style={{ height: 300 }} className="mb-4">
+        <Line ref={chartRef} data={data} options={options} />
       </div>
-      
-      <div className="h-64 mb-6">
-        <canvas ref={chartRef}></canvas>
-      </div>
-      
-      <div className="space-y-4">
-        {Object.entries(calculations.stages).map(([stage, { value, percentage }]) => (
-          <div key={stage} className="flex items-center justify-between text-sm">
-            <span className="text-gray-700">{stage}</span>
-            <span className="text-gray-500">{percentage.toFixed(1)}%</span>
-          </div>
-        ))}
+
+      <div className="text-sm space-y-2">
+        {stageLabels.map((label, idx) => {
+          const pct = ((stageValues[idx] - (stageValues[idx - 1] || 0)) / totalPerKg) * 100
+          return (
+            <div key={idx} className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <span
+                  className="inline-block w-4 h-4 rounded"
+                  style={{ backgroundColor: colors[idx] }}
+                />
+                <span>{label}</span>
+              </div>
+              <span className="text-gray-600">{pct.toFixed(0)}%</span>
+            </div>
+          )
+        })}
       </div>
     </div>
-  );
-};
-
-export default EmissionsBreakdown;
+  )
+}
