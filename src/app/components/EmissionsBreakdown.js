@@ -18,29 +18,29 @@ export default function EmissionsBreakdown() {
     totalPerKg
   } = calculateAllPerKg()
 
-  const stageValues = useMemo(() => [
+  const stageValues = [
     productionPerKg,
     productionPerKg + transportPerKg,
     productionPerKg + transportPerKg + processingPerKg,
     productionPerKg + transportPerKg + processingPerKg + extractionPerKg,
     productionPerKg + transportPerKg + processingPerKg + extractionPerKg + disposalPerKg
-  ], [productionPerKg, transportPerKg, processingPerKg, extractionPerKg, disposalPerKg])
+  ]
 
-  const stageLabels = useMemo(() => [
+  const stageLabels = [
     'Production Stage',
     'Transportation Stage',
     'Processing Stage',
     'Extraction Stage',
     'Disposal Stage'
-  ], [])
+  ]
 
-  const colors = useMemo(() => [
+  const colors = [
     'rgba(251,146,60,0.2)',
     'rgba(251,146,60,0.4)',
     'rgba(251,146,60,0.6)',
     'rgba(251,146,60,0.8)',
     'rgba(251,146,60,1)'
-  ], [])
+  ]
 
   const data = useMemo(() => ({
     labels: ['', '', '', '', ''],
@@ -48,7 +48,7 @@ export default function EmissionsBreakdown() {
       {
         data: stageValues,
         fill: true,
-        tension: 0.3,
+        tension: 0, // Set to 0 for linear lines
         borderColor: '#FB923C',
         pointBackgroundColor: colors,
         pointRadius: 6,
@@ -117,12 +117,12 @@ export default function EmissionsBreakdown() {
             <div key={idx} className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <span
-                  className="inline-block w-4 h-4 rounded-sm"
+                  className="inline-block w-4 h-4 rounded"
                   style={{ backgroundColor: colors[idx] }}
                 />
                 <span>{label}</span>
               </div>
-              <span>{pct.toFixed(0)}%</span>
+              <span className="text-gray-600">{pct.toFixed(0)}%</span>
             </div>
           )
         })}
