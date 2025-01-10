@@ -56,7 +56,10 @@ export default function EmissionsBreakdown() {
           const { chart, ctx: canvasCtx, chartArea } = ctx.chart
           if (!chartArea) return 'rgba(251,146,60,0.2)'
 
-          const gradient = canvasCtx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top)
+          const gradient = canvasCtx.createLinearGradient(
+            0, chartArea.bottom,
+            0, chartArea.top
+          )
           gradient.addColorStop(0, 'rgba(251, 146, 60, 0.2)')
           gradient.addColorStop(1, 'rgba(251, 146, 60, 0.6)')
           return gradient
@@ -90,6 +93,9 @@ export default function EmissionsBreakdown() {
           color: 'rgba(0, 0, 0, 0.1)'
         },
         ticks: {
+          // stepsize:1,
+          maxTicksLimit: 10, // Limit the number of ticks to 7
+          callback: (value) => value.toFixed(0), // Display whole numbers only
           color: '#4B5563',
           font: { size: 12 }
         }
@@ -106,7 +112,7 @@ export default function EmissionsBreakdown() {
     <div className="bg-white p-4 rounded-lg shadow" style={{ maxWidth: '350px' }}>
       <p className="text-2xl font-bold mb-4">{totalPerKg.toFixed(2)} kg</p>
 
-      <div style={{ height: 200 }} className="mb-4">
+      <div style={{ height: 300 }} className="mb-4">
         <Line ref={chartRef} data={data} options={options} />
       </div>
 
