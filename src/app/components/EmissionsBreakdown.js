@@ -4,10 +4,12 @@ import { useMemo, useRef } from 'react'
 import 'chart.js/auto'
 import { Line } from 'react-chartjs-2'
 import { useEmissionsContext } from '../context/EmissionsContext'
+import { useTranslations } from 'next-intl'
 
 export default function EmissionsBreakdown() {
   const { productionData, calculateAllPerKg } = useEmissionsContext()
   const chartRef = useRef(null)
+  const t = useTranslations()
 
   const {
     productionPerKg,
@@ -27,11 +29,12 @@ export default function EmissionsBreakdown() {
   ]
 
   const stageLabels = [
-    'Production Stage',
-    'Transportation Stage',
-    'Processing Stage',
-    'Extraction Stage',
-    'Disposal Stage'
+    t('stg-1'),
+    t('stg-2'),
+    t('stg-3'),
+    t('stg-4'),
+    t('stg-5'),
+    t('stg-6')
   ]
 
   const colors = [
