@@ -113,7 +113,7 @@ export default function EmissionsBreakdown() {
   return (
     <div className='line-graph-wrapper'>
 {/* calculated total percentage */}
-      <p className='whatis'>{totalPerKg.toFixed(2)} kg</p>
+      <p className='kg'>{totalPerKg.toFixed(2)} kg</p>
 
 
 {/* graph */}

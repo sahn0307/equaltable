@@ -945,20 +945,25 @@ figure {
   max-width: 350px;
   background: paleturquoise;
 }
+.kg {
+  margin-bottom: 81px;
+  background: snow;
+}
 .line-graph-container {
   height: 300px;
 }
 .graph-index {
+  margin-top: 69px;
   background: snow;
 }
 .test {
   background: cyan;
 }
-.test2 {
-  background: lightgoldenrodyellow;
-}
+// .test2 {
+//   background: lightgoldenrodyellow;
+// }
 .test3 {
-  // background: palevioletred; 
+  background: palevioletred; 
 }
 .row-nowrap {
   display: flex;
@@ -966,13 +971,7 @@ figure {
 }
 .color-chip {
   background: lightgreen;
-  width: 30px;
-  height: 30px;
-  // border: 1px solid black;
-}
-.whatis {
-  background: lightgreen;
-  // width: 30px;
-  // height: 30px;
-  // border: 1px solid black;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
 }
