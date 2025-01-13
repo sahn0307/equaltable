@@ -4,10 +4,12 @@ import { useMemo, useRef } from 'react'
 import 'chart.js/auto'
 import { Line } from 'react-chartjs-2'
 import { useEmissionsContext } from '../context/EmissionsContext'
+import { useTranslations } from 'next-intl'
 
 export default function EmissionsBreakdown() {
   const { productionData, calculateAllPerKg } = useEmissionsContext()
   const chartRef = useRef(null)
+  const t = useTranslations()
 
   const {
     productionPerKg,
@@ -27,19 +29,19 @@ export default function EmissionsBreakdown() {
   ]
 
   const stageLabels = [
-    'Production Stage',
-    'Transportation Stage',
-    'Processing Stage',
-    'Extraction Stage',
-    'Disposal Stage'
+    t('stg-2'),
+    t('stg-3'),
+    t('stg-4'),
+    t('stg-5'),
+    t('stg-6')
   ]
 
   const colors = [
-    'rgba(251,146,60,0.2)',
-    'rgba(251,146,60,0.4)',
-    'rgba(251,146,60,0.6)',
-    'rgba(251,146,60,0.8)',
-    'rgba(251,146,60,1)'
+    '#FFC198',
+    '#FF9550',
+    '#FE6400',
+    '#FE6400',
+    '#C15610'
   ]
 
   const data = useMemo(() => ({
@@ -50,8 +52,10 @@ export default function EmissionsBreakdown() {
         fill: true,
         tension: 0, // Set to 0 for linear lines
         borderColor: '#FB923C',
+        borderWidth: 0,
         pointBackgroundColor: colors,
-        pointRadius: 6,
+        pointRadius: 5,
+        pointBorderWidth: 0,
         backgroundColor(ctx) {
           const { chart, ctx: canvasCtx, chartArea } = ctx.chart
           if (!chartArea) return 'rgba(251,146,60,0.2)'
@@ -60,7 +64,7 @@ export default function EmissionsBreakdown() {
             0, chartArea.bottom,
             0, chartArea.top
           )
-          gradient.addColorStop(0, 'rgba(251, 146, 60, 0.2)')
+          gradient.addColorStop(0, '#fff')
           gradient.addColorStop(1, 'rgba(251, 146, 60, 0.6)')
           return gradient
         }
@@ -109,26 +113,26 @@ export default function EmissionsBreakdown() {
   }), [stageLabels, stageValues])
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow" style={{ maxWidth: '350px' }}>
-      <p className="text-2xl font-bold mb-4">{totalPerKg.toFixed(2)} kg</p>
+    <div className='line-graph-wrapper'>
+      <p className='kg'>{totalPerKg.toFixed(2)} kg</p>
 
-      <div style={{ height: 300 }} className="mb-4">
+{/* graph */}
+      <div className="line-graph-container">
         <Line ref={chartRef} data={data} options={options} />
       </div>
 
-      <div className="text-sm space-y-2">
+
+{/* graph index */}
+      <div className="graph-index">
         {stageLabels.map((label, idx) => {
           const pct = ((stageValues[idx] - (stageValues[idx - 1] || 0)) / totalPerKg) * 100
           return (
-            <div key={idx} className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <span
-                  className="inline-block w-4 h-4 rounded"
-                  style={{ backgroundColor: colors[idx] }}
-                />
+            <div key={idx} className="row-nowrap">
+              <div className='group-container'>
+                <div className="color-chip" style={{ backgroundColor: colors[idx] }} />
                 <span>{label}</span>
               </div>
-              <span className="text-gray-600">{pct.toFixed(0)}%</span>
+              <span className='justify-right'>{pct.toFixed(0)}%</span>
             </div>
           )
         })}

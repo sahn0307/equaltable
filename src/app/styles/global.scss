@@ -817,6 +817,15 @@ input[type="number"]::-webkit-outer-spin-button {
     color: $dk-grey;
   }
 }
+.line-graph-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+.footnote-wrapper {
+  align-items: flex-end;
+}
 .card-row-wrapper {
   display: flex;
   flex-direction: row;
@@ -939,4 +948,47 @@ figure {
   height: 175px;
   margin: 20px 20px 45px 20px;
   display: block;
+}
+
+.line-graph-wrapper {
+  max-width: 350px;
+}
+.kg {
+  margin-top: 10px;
+  margin-bottom: 81px;
+}
+.line-graph-container {
+  height: 300px;
+  max-height: 265px;
+}
+.graph-index {
+  margin-top: 69px;
+}
+.row-nowrap {
+  margin-bottom: 14px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  span {
+    font-size: 14px;
+  }
+  .group-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+}
+.row-nowrap:last-of-type {
+  margin-bottom: 0;
+}
+.color-chip {
+  margin-right: 20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+.justify-right {
+  justify-content: flex-end;
+  font-weight: $bold;
 }
