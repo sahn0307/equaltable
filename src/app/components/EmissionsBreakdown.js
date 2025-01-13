@@ -111,31 +111,26 @@ export default function EmissionsBreakdown() {
   }), [stageLabels, stageValues])
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow" style={{ maxWidth: '350px' }}>
-
+    <div className='line-graph-wrapper'>
 {/* calculated total percentage */}
-      <p className="text-2xl font-bold mb-4">{totalPerKg.toFixed(2)} kg</p>
+      <p className='whatis'>{totalPerKg.toFixed(2)} kg</p>
 
 
 {/* graph */}
-      <div style={{ height: 300 }} className="mb-4">
+      <div className="line-graph-container">
         <Line ref={chartRef} data={data} options={options} />
       </div>
+
 
 {/* graph index */}
       <div className="graph-index">
         {stageLabels.map((label, idx) => {
           const pct = ((stageValues[idx] - (stageValues[idx - 1] || 0)) / totalPerKg) * 100
           return (
-            <div key={idx} className="test">
-              <div className="test2">
-                <div
-                  className="whatis"
-                  style={{ backgroundColor: colors[idx] }}
-                />
+            <div key={idx} className="row-nowrap">
+                <div className="color-chip" style={{ backgroundColor: colors[idx] }} />
                 <span>{label}</span>
-              </div>
-              <span className="test3">{pct.toFixed(0)}%</span>
+                <span className="test3">{pct.toFixed(0)}%</span>
             </div>
           )
         })}

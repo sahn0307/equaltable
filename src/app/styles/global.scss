@@ -941,8 +941,15 @@ figure {
   display: block;
 }
 
+.line-graph-wrapper {
+  max-width: 350px;
+  background: paleturquoise;
+}
+.line-graph-container {
+  height: 300px;
+}
 .graph-index {
-  background: hotpink;
+  background: snow;
 }
 .test {
   background: cyan;
@@ -951,11 +958,21 @@ figure {
   background: lightgoldenrodyellow;
 }
 .test3 {
-  background: palevioletred; 
+  // background: palevioletred; 
 }
-.whatis {
+.row-nowrap {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.color-chip {
   background: lightgreen;
   width: 30px;
   height: 30px;
-  border: 1px solid black;
+  // border: 1px solid black;
+}
+.whatis {
+  background: lightgreen;
+  // width: 30px;
+  // height: 30px;
+  // border: 1px solid black;
 }
