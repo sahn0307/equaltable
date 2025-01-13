@@ -64,7 +64,7 @@ export default function EmissionsBreakdown() {
             0, chartArea.bottom,
             0, chartArea.top
           )
-          gradient.addColorStop(0, 'rgba(251, 146, 60, 0.2)')
+          gradient.addColorStop(0, '#fff')
           gradient.addColorStop(1, 'rgba(251, 146, 60, 0.6)')
           return gradient
         }
