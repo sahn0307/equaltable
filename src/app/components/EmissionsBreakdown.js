@@ -37,11 +37,11 @@ export default function EmissionsBreakdown() {
   ]
 
   const colors = [
-    'rgba(251,146,60,0.2)',
-    'rgba(251,146,60,0.4)',
-    'rgba(251,146,60,0.6)',
-    'rgba(251,146,60,0.8)',
-    'rgba(251,146,60,1)'
+    '#FFC198',
+    '#FF9550',
+    '#FE6400',
+    '#FE6400',
+    '#C15610'
   ]
 
   const data = useMemo(() => ({
@@ -52,8 +52,10 @@ export default function EmissionsBreakdown() {
         fill: true,
         tension: 0, // Set to 0 for linear lines
         borderColor: '#FB923C',
+        borderWidth: 0,
         pointBackgroundColor: colors,
-        pointRadius: 6,
+        pointRadius: 5,
+        pointBorderWidth: 0,
         backgroundColor(ctx) {
           const { chart, ctx: canvasCtx, chartArea } = ctx.chart
           if (!chartArea) return 'rgba(251,146,60,0.2)'
@@ -112,9 +114,7 @@ export default function EmissionsBreakdown() {
 
   return (
     <div className='line-graph-wrapper'>
-{/* calculated total percentage */}
       <p className='kg'>{totalPerKg.toFixed(2)} kg</p>
-
 
 {/* graph */}
       <div className="line-graph-container">
@@ -128,9 +128,11 @@ export default function EmissionsBreakdown() {
           const pct = ((stageValues[idx] - (stageValues[idx - 1] || 0)) / totalPerKg) * 100
           return (
             <div key={idx} className="row-nowrap">
+              <div className='group-container'>
                 <div className="color-chip" style={{ backgroundColor: colors[idx] }} />
                 <span>{label}</span>
-                <span className="test3">{pct.toFixed(0)}%</span>
+              </div>
+              <span className='justify-right'>{pct.toFixed(0)}%</span>
             </div>
           )
         })}

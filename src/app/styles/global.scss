@@ -817,6 +817,15 @@ input[type="number"]::-webkit-outer-spin-button {
     color: $dk-grey;
   }
 }
+.line-graph-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+.footnote-wrapper {
+  align-items: flex-end;
+}
 .card-row-wrapper {
   display: flex;
   flex-direction: row;
@@ -943,35 +952,42 @@ figure {
 
 .line-graph-wrapper {
   max-width: 350px;
-  background: paleturquoise;
 }
 .kg {
   margin-bottom: 81px;
-  background: snow;
 }
 .line-graph-container {
   height: 300px;
+  max-height: 265px;
 }
 .graph-index {
   margin-top: 69px;
-  background: snow;
-}
-.test {
-  background: cyan;
-}
-// .test2 {
-//   background: lightgoldenrodyellow;
-// }
-.test3 {
-  background: palevioletred; 
 }
 .row-nowrap {
+  margin-bottom: 14px;
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  span {
+    font-size: 14px;
+  }
+  .group-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+}
+.row-nowrap:last-of-type {
+  margin-bottom: 0;
 }
 .color-chip {
-  background: lightgreen;
+  margin-right: 20px;
   width: 12px;
   height: 12px;
   border-radius: 2px;
+}
+.justify-right {
+  justify-content: flex-end;
+  font-weight: $bold;
 }

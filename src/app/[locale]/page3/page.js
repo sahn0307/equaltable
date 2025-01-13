@@ -70,44 +70,52 @@ export default function Page3() {
 
 				{/* col 2 */}
 				<article className='card'>
-					<h5>
-						{t.rich('col2-h', {
-							br: () => <br />
-						})}
-					</h5>
-					<EmissionsBreakdown
-						productionData={productionData}
-						transportData={transportData}
-						processingData={processingData}
-						extractionData={extractionData}
-						disposalData={disposalData}
-					/>
-					<p className='col-footnotes'>
-						{t.rich('col2-info', {
-							br: () => <br />
-						})}
-					</p>
+					<div className='line-graph-group'>
+						<h5>
+							{t.rich('col2-h', {
+								br: () => <br />
+							})}
+						</h5>
+						<EmissionsBreakdown
+							productionData={productionData}
+							transportData={transportData}
+							processingData={processingData}
+							extractionData={extractionData}
+							disposalData={disposalData}
+						/>
+					</div>
+					<div className='footnote-wrapper'>						
+						<p className='col-footnotes'>
+							{t.rich('col2-info', {
+								br: () => <br />
+							})}
+						</p>
+					</div>
 				</article>
 
 				{/* col 3 */}
 				<article className='card'>
-					<h5>
-						{t.rich('col3-h', {
-							br: () => <br />
-						})}
-					</h5>
-					<EmissionsBreakdown
-						productionData={productionData}
-						transportData={transportData}
-						processingData={processingData}
-						extractionData={extractionData}
-						disposalData={disposalData}
-					/>
-					<p className='col-footnotes'>
-						{t.rich('col3-info', {
-							br: () => <br />
-						})}
-					</p>
+					<div className='line-graph-group'>
+						<h5>
+							{t.rich('col3-h', {
+								br: () => <br />
+							})}
+						</h5>
+						<EmissionsBreakdown
+							productionData={productionData}
+							transportData={transportData}
+							processingData={processingData}
+							extractionData={extractionData}
+							disposalData={disposalData}
+						/>
+					</div>
+					<div className='footnote-wrapper'>
+						<p className='col-footnotes'>
+							{t.rich('col3-info', {
+								br: () => <br />
+							})}
+						</p>
+					</div>
 				</article>
 
 				{/* col 4 */}
