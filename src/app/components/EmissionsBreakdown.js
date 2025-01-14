@@ -20,29 +20,29 @@ export default function EmissionsBreakdown() {
     totalPerKg
   } = calculateAllPerKg()
 
-  const stageValues = [
+  const stageValues = useMemo(() => [
     productionPerKg,
     productionPerKg + transportPerKg,
     productionPerKg + transportPerKg + processingPerKg,
     productionPerKg + transportPerKg + processingPerKg + extractionPerKg,
     productionPerKg + transportPerKg + processingPerKg + extractionPerKg + disposalPerKg
-  ]
+  ], [productionPerKg, transportPerKg, processingPerKg, extractionPerKg, disposalPerKg])
 
-  const stageLabels = [
+  const stageLabels = useMemo(() => [
     t('stg-2'),
     t('stg-3'),
     t('stg-4'),
     t('stg-5'),
     t('stg-6')
-  ]
+  ], [t])
 
-  const colors = [
+  const colors = useMemo(() => [
     '#FFC198',
     '#FF9550',
     '#FE6400',
     '#FE6400',
     '#C15610'
-  ]
+  ], [])
 
   const data = useMemo(() => ({
     labels: ['', '', '', '', ''],
