@@ -9,15 +9,15 @@ export const useEmissionsContext = () => useContext(EmissionsContext);
 export const EmissionsProvider = ({ children }) => {
   // 1) PRODUCTION STAGE
   const [productionData, setProductionData] = useState({
-    monthlyCoffeeUsage: 0,
+    monthlyCoffeeUsage: '',
     carbonEmissionsPerKg: 1.56,
   });
 
   // 2) TRANSPORT STAGE
   const [transportData, setTransportData] = useState({
-    farmToPortDistance: 0,
-    portToDomesticDistance: 0,
-    domesticDistance: 0,
+    farmToPortDistance: '',
+    portToDomesticDistance: '',
+    domesticDistance: '',
     transportType: {
       farmToPort: 'truck',
       portToDomestic: 'flight',
@@ -28,27 +28,27 @@ export const EmissionsProvider = ({ children }) => {
   // 3) PROCESSING STAGE
   const [processingData, setProcessingData] = useState({
     roasterType: 'electric',
-    roasterPower: 0,
-    gasConsumption: 0,
-    usageTime: 0,
-    productionQuantity: 0,
+    roasterPower: '',
+    gasConsumption: '',
+    usageTime: '',
+    productionQuantity: '',
     smokeEliminator: 'notInUse',
-    smokeEliminatorPowerConsumption: 0,
-    afterburnerPowerConsumption: 0,
-    afterburnerGasConsumption: 0,
-    afterburnerUsageTime: 0,
+    smokeEliminatorPowerConsumption: '',
+    afterburnerPowerConsumption: '',
+    afterburnerGasConsumption: '',
+    afterburnerUsageTime: '',
   });
 
   // 4) EXTRACTION STAGE
   const [extractionData, setExtractionData] = useState({
     grinderType: 'electric',
-    powerConsumption: 0,
-    usageTime: 0,
-    productionQuantity: 0,
+    powerConsumption: '',
+    usageTime: '',
+    productionQuantity: '',
     extractorPower: 'yes',
-    extractorPowerConsumption: 0,
-    extractorUsageTime: 0,
-    extractorProductionQuantity: 0,
+    extractorPowerConsumption: '',
+    extractorUsageTime: '',
+    extractorProductionQuantity: '',
   });
 
   // 5) DISPOSAL STAGE
@@ -79,55 +79,47 @@ export const EmissionsProvider = ({ children }) => {
     // PROCESSING (per kg) - adapt your logic as needed
     const {
       roasterType,
-      roasterPower,
-      gasConsumption,
-      usageTime,
-      productionQuantity,
+      roasterPower = 0,
+      gasConsumption = 0,
+      usageTime = 0,
+      productionQuantity = 1,
       smokeEliminator,
-      // afterburner fields if you incorporate them
     } = processingData;
 
-    const qty = productionQuantity > 0 ? productionQuantity : 1;
     let roasterEmissions = 0;
 
     if (roasterType === 'electric') {
-      roasterEmissions = (roasterPower * usageTime) / qty;
+      roasterEmissions = (roasterPower * usageTime) / productionQuantity;
     } else {
-      roasterEmissions = (gasConsumption * usageTime) / qty;
+      roasterEmissions = (gasConsumption * usageTime) / productionQuantity;
     }
 
-    // If "notInUse", no extra, otherwise add something
+    // Smoke eliminator logic
     let smokeEliminatorExtra = 0;
     if (smokeEliminator !== 'notInUse') {
-      // Example placeholder
-      smokeEliminatorExtra = 0.1;
+      smokeEliminatorExtra = 0.1; // Placeholder for extra emissions
     }
 
     const processingPerKg = roasterEmissions + smokeEliminatorExtra;
 
-    // EXTRACTION (per kg) - adapt your logic
+    // EXTRACTION (per kg)
     const {
       grinderType,
       powerConsumption,
       usageTime: extUsageTime,
-      productionQuantity: extQuantity,
+      productionQuantity: extQuantity = 1,
       extractorPower,
       extractorPowerConsumption,
       extractorUsageTime,
-      extractorProductionQuantity,
     } = extractionData;
 
     let extractionPerKg = 0;
 
     if (grinderType === 'electric') {
-      const base = (powerConsumption * extUsageTime) / (extQuantity || 1);
-      // Add extra if extractorPower is 'yes'
-      const extra = extractorPower === 'yes' ? extractorPowerConsumption || 0 : 0;
-      // If you want to factor in extractorUsageTime, do so here
+      const base = (powerConsumption * extUsageTime) / extQuantity;
+      const extra =
+        extractorPower === 'yes' ? (extractorPowerConsumption || 0) : 0;
       extractionPerKg = base + extra;
-    } else {
-      // manual => 0 or your logic
-      extractionPerKg = 0;
     }
 
     // DISPOSAL (per kg)
@@ -157,7 +149,7 @@ export const EmissionsProvider = ({ children }) => {
     transportData,
     processingData,
     extractionData,
-    disposalData
+    disposalData,
   ]);
 
   /**************************************************************
@@ -206,7 +198,7 @@ export const EmissionsProvider = ({ children }) => {
         setExtractionData,
         disposalData,
         setDisposalData,
-        calculateAllPerKg, // <-- Exposed function
+        calculateAllPerKg,
         saveFormState,
         restoreFormState,
       }}
