@@ -78,6 +78,7 @@ export default function EmissionsBreakdown() {
     plugins: {
       legend: { display: false },
       tooltip: {
+        
         enabled: true,
         callbacks: {
           label: (context) => {
