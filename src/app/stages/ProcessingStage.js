@@ -90,7 +90,7 @@ export default function ProcessingStage({
         roasterPower !== null && // Explicitly check for null or empty
         usageTime !== '' &&
         usageTime !== null &&
-        productionQuantity > 0 &&
+        productionQuantity >= 0 &&
         (smokeEliminator === 'notInUse' ||
           (smokeEliminatorPowerConsumption !== '' &&
             smokeEliminatorPowerConsumption !== null));
