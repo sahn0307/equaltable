@@ -11,22 +11,19 @@ export default function EmissionsBreakdown() {
   const chartRef = useRef(null)
   const t = useTranslations()
 
-  const {
-    productionPerKg,
-    transportPerKg,
-    processingPerKg,
-    extractionPerKg,
-    disposalPerKg,
-    totalPerKg
-  } = calculateAllPerKg()
+  const { productionPerKg, transportPerKg, processingPerKg, extractionPerKg, disposalPerKg, totalPerKg } = calculateAllPerKg()
 
+  // Retrieve the user's monthly usage input
+  const monthlyUsage = productionData?.monthlyCoffeeUsage || 0
+
+  // Adjust values for monthly usage
   const stageValues = useMemo(() => [
     productionPerKg,
     productionPerKg + transportPerKg,
     productionPerKg + transportPerKg + processingPerKg,
     productionPerKg + transportPerKg + processingPerKg + extractionPerKg,
     productionPerKg + transportPerKg + processingPerKg + extractionPerKg + disposalPerKg
-  ], [productionPerKg, transportPerKg, processingPerKg, extractionPerKg, disposalPerKg])
+  ].map(value => value * monthlyUsage), [productionPerKg, transportPerKg, processingPerKg, extractionPerKg, disposalPerKg, monthlyUsage])
 
   const stageLabels = useMemo(() => [
     t('stg-2'),
@@ -50,7 +47,7 @@ export default function EmissionsBreakdown() {
       {
         data: stageValues,
         fill: true,
-        tension: 0, // Set to 0 for linear lines
+        tension: 0,
         borderColor: '#FB923C',
         borderWidth: 0,
         pointBackgroundColor: colors,
@@ -78,7 +75,6 @@ export default function EmissionsBreakdown() {
     plugins: {
       legend: { display: false },
       tooltip: {
-        
         enabled: true,
         callbacks: {
           label: (context) => {
@@ -98,9 +94,8 @@ export default function EmissionsBreakdown() {
           color: 'rgba(0, 0, 0, 0.1)'
         },
         ticks: {
-          // stepsize:1,
-          maxTicksLimit: 10, // Limit the number of ticks to 7
-          callback: (value) => value.toFixed(0), // Display whole numbers only
+          maxTicksLimit: 10,
+          callback: (value) => value.toFixed(0),
           color: '#4B5563',
           font: { size: 12 }
         }
@@ -115,18 +110,17 @@ export default function EmissionsBreakdown() {
 
   return (
     <div className='line-graph-wrapper'>
-      <p className='kg'>{totalPerKg.toFixed(2)} kg</p>
+      <p className='kg'>{(totalPerKg * monthlyUsage).toFixed(2)} kg</p>
 
-{/* graph */}
+      {/* graph */}
       <div className="line-graph-container">
         <Line ref={chartRef} data={data} options={options} />
       </div>
 
-
-{/* graph index */}
+      {/* graph index */}
       <div className="graph-index">
         {stageLabels.map((label, idx) => {
-          const pct = ((stageValues[idx] - (stageValues[idx - 1] || 0)) / totalPerKg) * 100
+          const pct = ((stageValues[idx] - (stageValues[idx - 1] || 0)) / (totalPerKg * monthlyUsage)) * 100
           return (
             <div key={idx} className="row-nowrap">
               <div className='group-container'>

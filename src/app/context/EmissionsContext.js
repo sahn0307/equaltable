@@ -7,13 +7,17 @@ const EmissionsContext = createContext();
 export const useEmissionsContext = () => useContext(EmissionsContext);
 
 export const EmissionsProvider = ({ children }) => {
-  // 1) PRODUCTION STAGE
+  /**************************************************************
+   * 1) PRODUCTION STAGE
+   **************************************************************/
   const [productionData, setProductionData] = useState({
     monthlyCoffeeUsage: '',
-    carbonEmissionsPerKg: 1.56,
+    carbonEmissionsPerKg: 1.56
   });
 
-  // 2) TRANSPORT STAGE
+  /**************************************************************
+   * 2) TRANSPORT STAGE
+   **************************************************************/
   const [transportData, setTransportData] = useState({
     farmToPortDistance: '',
     portToDomesticDistance: '',
@@ -21,11 +25,13 @@ export const EmissionsProvider = ({ children }) => {
     transportType: {
       farmToPort: 'truck',
       portToDomestic: 'flight',
-      domestic: 'truck',
-    },
+      domestic: 'truck'
+    }
   });
 
-  // 3) PROCESSING STAGE
+  /**************************************************************
+   * 3) PROCESSING STAGE
+   **************************************************************/
   const [processingData, setProcessingData] = useState({
     roasterType: 'electric',
     roasterPower: '',
@@ -36,99 +42,168 @@ export const EmissionsProvider = ({ children }) => {
     smokeEliminatorPowerConsumption: '',
     afterburnerPowerConsumption: '',
     afterburnerGasConsumption: '',
-    afterburnerUsageTime: '',
+    afterburnerUsageTime: ''
   });
 
-  // 4) EXTRACTION STAGE
+  /**************************************************************
+   * 4) EXTRACTION STAGE (UPDATED)
+   **************************************************************/
   const [extractionData, setExtractionData] = useState({
     grinderType: 'electric',
     powerConsumption: '',
     usageTime: '',
     productionQuantity: '',
-    extractorPower: 'yes',
+    extractorPower: 'no',
     extractorPowerConsumption: '',
     extractorUsageTime: '',
-    extractorProductionQuantity: '',
-  });
-
-  // 5) DISPOSAL STAGE
-  const [disposalData, setDisposalData] = useState({
-    upcyclingStatus: '', // 'yes' or 'no'
+    extractorProductionQuantity: ''
   });
 
   /**************************************************************
-   *                 SHARED CALCULATION FUNCTION
+   * 5) DISPOSAL STAGE
+   **************************************************************/
+  const [disposalData, setDisposalData] = useState({
+    upcyclingStatus: '' // 'yes' or 'no'
+  });
+
+  /**************************************************************
+   *  HELPER for Transport: get the correct factor per segment & mode
+   **************************************************************/
+  const getTransportEmissionFactor = (segment, mode) => {
+    if (segment === 'farmToPort') {
+      if (mode === 'truck') return 0.13;
+      if (mode === 'train') return 0.0132;
+    } else if (segment === 'portToDomestic') {
+      if (mode === 'flight') return 0.7971;
+      if (mode === 'ship') return 0.0255;
+    } else if (segment === 'domestic') {
+      if (mode === 'truck') return 0.1942;
+      if (mode === 'train') return 0.03507;
+    }
+    return 0;
+  };
+
+  /**************************************************************
+   *            MASTER CALCULATION (PER KG) ACROSS ALL STAGES
    **************************************************************/
   const calculateAllPerKg = useCallback(() => {
-    // PRODUCTION (per kg)
+    // ---------------- PRODUCTION (per kg) ----------------
     const productionPerKg = productionData.carbonEmissionsPerKg || 0;
 
-    // TRANSPORT (per kg) - example logic
-    const farmFactor =
-      transportData.transportType?.farmToPort === 'truck' ? 0.062 : 0.602;
-    const portFactor =
-      transportData.transportType?.portToDomestic === 'truck' ? 0.062 : 0.602;
-    const domesticFactor =
-      transportData.transportType?.domestic === 'truck' ? 0.062 : 0.602;
+    // ---------------- TRANSPORT (per kg) -----------------
+    const {
+      farmToPortDistance = 0,
+      portToDomesticDistance = 0,
+      domesticDistance = 0,
+      transportType = {}
+    } = transportData;
 
-    const transportPerKg =
-      (transportData.farmToPortDistance || 0) * farmFactor +
-      (transportData.portToDomesticDistance || 0) * portFactor +
-      (transportData.domesticDistance || 0) * domesticFactor;
+    const { farmToPort, portToDomestic, domestic } = transportType || {};
 
-    // PROCESSING (per kg) - adapt your logic as needed
+    const A = parseFloat(farmToPortDistance) || 0;
+    const B = parseFloat(portToDomesticDistance) || 0;
+    const C = parseFloat(domesticDistance) || 0;
+
+    const farmFactor = getTransportEmissionFactor('farmToPort', farmToPort);
+    const portFactor = getTransportEmissionFactor('portToDomestic', portToDomestic);
+    const domFactor = getTransportEmissionFactor('domestic', domestic);
+
+    const totalTransportSegments = A * farmFactor + B * portFactor + C * domFactor;
+    const transportPerKg = (totalTransportSegments * 1.34) / 1000;
+
+    // ---------------- PROCESSING (per kg) ----------------
     const {
       roasterType,
       roasterPower = 0,
       gasConsumption = 0,
       usageTime = 0,
       productionQuantity = 1,
-      smokeEliminator,
+      smokeEliminatorPowerConsumption = 0
     } = processingData;
 
-    let roasterEmissions = 0;
-
+    let processingPerKg = 0;
+    // Same logic from your updated ProcessingStage
     if (roasterType === 'electric') {
-      roasterEmissions = (roasterPower * usageTime) / productionQuantity;
-    } else {
-      roasterEmissions = (gasConsumption * usageTime) / productionQuantity;
+      // Electric: ((roasterPower + smokeElim) * usageTime * 0.4951)/productionQuantity
+      processingPerKg =
+        (((parseFloat(roasterPower) || 0) +
+          (parseFloat(smokeEliminatorPowerConsumption) || 0)) *
+          (parseFloat(usageTime) || 0) *
+          0.4951) /
+        (parseFloat(productionQuantity) || 1);
+    } else if (roasterType === 'gas') {
+      // Gas: electricPart + gasPart
+      const electricPart =
+        (((parseFloat(roasterPower) || 0) +
+          (parseFloat(smokeEliminatorPowerConsumption) || 0)) *
+          (parseFloat(usageTime) || 0) *
+          0.4951) /
+        (parseFloat(productionQuantity) || 1);
+
+      const gasPart = (parseFloat(gasConsumption) || 0) * 0.00157794;
+      processingPerKg = electricPart + gasPart;
     }
 
-    // Smoke eliminator logic
-    let smokeEliminatorExtra = 0;
-    if (smokeEliminator !== 'notInUse') {
-      smokeEliminatorExtra = 0.1; // Placeholder for extra emissions
-    }
-
-    const processingPerKg = roasterEmissions + smokeEliminatorExtra;
-
-    // EXTRACTION (per kg)
+    // ---------------- EXTRACTION (per kg) ---------------
     const {
       grinderType,
       powerConsumption,
       usageTime: extUsageTime,
-      productionQuantity: extQuantity = 1,
+      productionQuantity: extQty,
       extractorPower,
       extractorPowerConsumption,
       extractorUsageTime,
+      extractorProductionQuantity
     } = extractionData;
 
     let extractionPerKg = 0;
+    // The updated formula from your new ExtractionStage:
+    // EF = 0.4951
+    const EF = 0.4951;
+
+    // Short references:
+    const gA = parseFloat(powerConsumption) || 0;         // Grinder power
+    const gB = parseFloat(extUsageTime) || 0;             // Grinder usage time
+    const gC = parseFloat(extQty) || 0;                   // Grinder production
+    const eD = parseFloat(extractorPowerConsumption) || 0;// Extractor power
+    const eE = parseFloat(extractorUsageTime) || 0;       // Extractor usage time
+    const eF = parseFloat(extractorProductionQuantity) || 0; // Extractor production
 
     if (grinderType === 'electric') {
-      const base = (powerConsumption * extUsageTime) / extQuantity;
-      const extra =
-        extractorPower === 'yes' ? (extractorPowerConsumption || 0) : 0;
-      extractionPerKg = base + extra;
+      if (extractorPower === 'yes') {
+        // Electric + Extractor
+        // = (gA * EF * gB)/gC + (eD * EF * eE)/eF if gC>0 & eF>0
+        if (gC > 0 && eF > 0) {
+          extractionPerKg = (gA * EF * gB) / gC + (eD * EF * eE) / eF;
+        } else if (gC > 0) {
+          // partial if eF=0 => only do the first half
+          extractionPerKg = (gA * EF * gB) / gC;
+        }
+      } else {
+        // Electric + No extractor
+        if (gC > 0) {
+          extractionPerKg = (gA * EF * gB) / gC;
+        }
+      }
+    } else if (grinderType === 'manual') {
+      // Manual
+      if (extractorPower === 'yes') {
+        // If eF>0 => (eD * EF * eE)/eF
+        if (eF > 0) {
+          extractionPerKg = (eD * EF * eE) / eF;
+        }
+      } else {
+        extractionPerKg = 0;
+      }
     }
 
-    // DISPOSAL (per kg)
+    // ---------------- DISPOSAL (per kg) -----------------
     let disposalPerKg = 0;
     if (disposalData.upcyclingStatus === 'no') {
-      disposalPerKg += 0.34; // Example: coffeeWasteEmissions = 0.34
+      disposalPerKg = 0.34;
     }
 
-    // Sum them
+    // ---------------- SUM TOTAL (per kg) ----------------
     const totalPerKg =
       productionPerKg +
       transportPerKg +
@@ -142,18 +217,18 @@ export const EmissionsProvider = ({ children }) => {
       processingPerKg,
       extractionPerKg,
       disposalPerKg,
-      totalPerKg,
+      totalPerKg
     };
   }, [
     productionData,
     transportData,
     processingData,
     extractionData,
-    disposalData,
+    disposalData
   ]);
 
   /**************************************************************
-   *                   FORM STATE PERSISTENCE
+   *               SAVE & RESTORE STATE
    **************************************************************/
   const saveFormState = useCallback(() => {
     const formState = {
@@ -161,7 +236,7 @@ export const EmissionsProvider = ({ children }) => {
       transportData,
       processingData,
       extractionData,
-      disposalData,
+      disposalData
     };
     sessionStorage.setItem('formState', JSON.stringify(formState));
   }, [
@@ -169,7 +244,7 @@ export const EmissionsProvider = ({ children }) => {
     transportData,
     processingData,
     extractionData,
-    disposalData,
+    disposalData
   ]);
 
   const restoreFormState = useCallback(() => {
@@ -185,6 +260,9 @@ export const EmissionsProvider = ({ children }) => {
     }
   }, []);
 
+  /**************************************************************
+   *                CONTEXT PROVIDER RETURN
+   **************************************************************/
   return (
     <EmissionsContext.Provider
       value={{
@@ -200,7 +278,7 @@ export const EmissionsProvider = ({ children }) => {
         setDisposalData,
         calculateAllPerKg,
         saveFormState,
-        restoreFormState,
+        restoreFormState
       }}
     >
       {children}

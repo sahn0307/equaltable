@@ -39,12 +39,12 @@ export default function Page3() {
 				{/* col 1 */}
 				<article>
 					<div className='card-row-wrapper'>
-						<div className='card square'>
-							<h5>{t('col1-1-1-h')}</h5>
-							<p>
-								{productionData?.monthlyCoffeeUsage?.toFixed(2) || 0} kg
-							</p>
-						</div>
+					<div className='card square'>
+						<h5>{t('col1-1-1-h')}</h5>
+						<p>
+							{Number(productionData?.monthlyCoffeeUsage || 0).toFixed(2)} kg
+						</p>
+					</div>
 						<div className='card square'>
 							<h5>{t('col1-1-2-h')}</h5>
 							<p>
