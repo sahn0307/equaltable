@@ -257,8 +257,9 @@ input[type="radio"]:checked::before {
   border-top: 1.4px solid $hr;
   width: 270px;
   padding-top: 32px;
+  padding-bottom: 32px;
   align-items: flex-end;
-  position: sticky;
+  position: absolute;
   bottom: 0;
   z-index: 10;
   h4 {
