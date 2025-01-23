@@ -59,7 +59,7 @@ export default function ExtractionStage({
     const E = extractorUsageTime
     const F = extractorProductionQuantity
 
-    const EF = 0.4915
+    const EF = 0.4951
     let emissions = 0
 
     if (grinderType === 'electric') {
