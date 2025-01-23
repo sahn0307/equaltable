@@ -6,24 +6,68 @@ import { Line } from 'react-chartjs-2'
 import { useEmissionsContext } from '../context/EmissionsContext'
 import { useTranslations } from 'next-intl'
 
-export default function EmissionsBreakdown() {
+/**
+ * EmissionsBreakdown:
+ *  - By default, uses user data from EmissionsContext (calculateAllPerKg()).
+ *  - If `overrideStageValues` is passed, we skip the context result
+ *    and use the manually supplied per-stage values (productionPerKg, etc.).
+ *  - We also allow negative totals to produce negative or >100% percentages,
+ *    which can happen if the total net is negative (e.g., offsets).
+ */
+export default function EmissionsBreakdown({ overrideStageValues }) {
   const { productionData, calculateAllPerKg } = useEmissionsContext()
   const chartRef = useRef(null)
   const t = useTranslations()
 
-  const { productionPerKg, transportPerKg, processingPerKg, extractionPerKg, disposalPerKg, totalPerKg } = calculateAllPerKg()
+  // 1) Get normal stage values from context
+  let {
+    productionPerKg,
+    transportPerKg,
+    processingPerKg,
+    extractionPerKg,
+    disposalPerKg,
+    totalPerKg
+  } = calculateAllPerKg()
 
-  // Retrieve the user's monthly usage input
+  // 2) If overrideStageValues is provided, override the context results
+  if (overrideStageValues) {
+    const {
+      productionPerKg: oProd = 0,
+      transportPerKg: oTrans = 0,
+      processingPerKg: oProc = 0,
+      extractionPerKg: oExtr = 0,
+      disposalPerKg: oDisp = 0
+    } = overrideStageValues
+
+    productionPerKg = oProd
+    transportPerKg = oTrans
+    processingPerKg = oProc
+    extractionPerKg = oExtr
+    disposalPerKg = oDisp
+    totalPerKg = oProd + oTrans + oProc + oExtr + oDisp
+  }
+
+  // 3) The user’s monthly usage to convert to monthly totals
   const monthlyUsage = productionData?.monthlyCoffeeUsage || 0
 
-  // Adjust values for monthly usage
-  const stageValues = useMemo(() => [
+  // 4) Build an array of cumulative stage values, each multiplied by monthly usage
+  const stageValues = useMemo(() => {
+    const cumulativeVals = [
+      productionPerKg,
+      productionPerKg + transportPerKg,
+      productionPerKg + transportPerKg + processingPerKg,
+      productionPerKg + transportPerKg + processingPerKg + extractionPerKg,
+      productionPerKg + transportPerKg + processingPerKg + extractionPerKg + disposalPerKg
+    ]
+    return cumulativeVals.map(val => val * monthlyUsage)
+  }, [
     productionPerKg,
-    productionPerKg + transportPerKg,
-    productionPerKg + transportPerKg + processingPerKg,
-    productionPerKg + transportPerKg + processingPerKg + extractionPerKg,
-    productionPerKg + transportPerKg + processingPerKg + extractionPerKg + disposalPerKg
-  ].map(value => value * monthlyUsage), [productionPerKg, transportPerKg, processingPerKg, extractionPerKg, disposalPerKg, monthlyUsage])
+    transportPerKg,
+    processingPerKg,
+    extractionPerKg,
+    disposalPerKg,
+    monthlyUsage
+  ])
 
   const stageLabels = useMemo(() => [
     t('stg-2'),
@@ -41,6 +85,7 @@ export default function EmissionsBreakdown() {
     '#C15610'
   ], [])
 
+  // 5) ChartJS data
   const data = useMemo(() => ({
     labels: ['', '', '', '', ''],
     datasets: [
@@ -55,11 +100,14 @@ export default function EmissionsBreakdown() {
         pointBorderWidth: 0,
         backgroundColor(ctx) {
           const { chart, ctx: canvasCtx, chartArea } = ctx.chart
-          if (!chartArea) return 'rgba(251,146,60,0.2)'
-
+          if (!chartArea) {
+            return 'rgba(251,146,60,0.2)'
+          }
           const gradient = canvasCtx.createLinearGradient(
-            0, chartArea.bottom,
-            0, chartArea.top
+            0,
+            chartArea.bottom,
+            0,
+            chartArea.top
           )
           gradient.addColorStop(0, '#fff')
           gradient.addColorStop(1, 'rgba(251, 146, 60, 0.6)')
@@ -69,6 +117,7 @@ export default function EmissionsBreakdown() {
     ]
   }), [stageValues, colors])
 
+  // 6) Chart options & tooltips
   const options = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
@@ -79,7 +128,8 @@ export default function EmissionsBreakdown() {
         callbacks: {
           label: (context) => {
             const idx = context.dataIndex
-            return `${stageLabels[idx]}: ${(stageValues[idx] - (stageValues[idx - 1] || 0)).toFixed(2)} kg CO₂`
+            const diff = stageValues[idx] - (stageValues[idx - 1] || 0)
+            return `${stageLabels[idx]}: ${diff.toFixed(2)} kg CO₂`
           }
         }
       }
@@ -108,25 +158,34 @@ export default function EmissionsBreakdown() {
     }
   }), [stageLabels, stageValues])
 
+  // 7) Render
   return (
     <div className='line-graph-wrapper'>
+      {/* Show the total monthly emissions (can be negative if offsets) */}
       <p className='kg'>{(totalPerKg * monthlyUsage).toFixed(2)} kg</p>
 
-      {/* graph */}
+      {/* Chart */}
       <div className="line-graph-container">
         <Line ref={chartRef} data={data} options={options} />
       </div>
 
-      {/* graph index */}
+      {/* Legend / index with negative % support */}
       <div className="graph-index">
         {stageLabels.map((label, idx) => {
-          const pct = ((stageValues[idx] - (stageValues[idx - 1] || 0)) / (totalPerKg * monthlyUsage)) * 100
+          // Calculate the difference for this stage
+          const diff = stageValues[idx] - (stageValues[idx - 1] || 0)
+          const grandTotal = totalPerKg * monthlyUsage
+
+          // If grandTotal is 0, produce 0% to avoid dividing by 0
+          const pct = grandTotal === 0 ? 0 : (diff / grandTotal) * 100
+
           return (
             <div key={idx} className="row-nowrap">
               <div className='group-container'>
                 <div className="color-chip" style={{ backgroundColor: colors[idx] }} />
                 <span>{label}</span>
               </div>
+              {/* Negative totals or stage diffs now produce negative or >100% values */}
               <span className='justify-right'>{pct.toFixed(0)}%</span>
             </div>
           )
