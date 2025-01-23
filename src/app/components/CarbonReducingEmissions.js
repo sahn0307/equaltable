@@ -23,7 +23,7 @@ const CarbonReducingEmissions = ({
     const userMonthlyEmissions = userEmissionsPerKg * monthlyUsage
 
     // A = [user’s monthly carbon emission - (1.28 * monthly coffee usage)]
-    const A = userMonthlyEmissions - (1.28 * monthlyUsage)
+    const A = userMonthlyEmissions + (1.28 * monthlyUsage)
 
     return { A }
   }, [
