@@ -72,11 +72,11 @@ export const EmissionsProvider = ({ children }) => {
    **************************************************************/
   const getTransportEmissionFactor = (segment, mode) => {
     if (segment === 'farmToPort') {
-      if (mode === 'truck') return 0.13;
+      if (mode === 'truck') return 0.1942;
       if (mode === 'train') return 0.0132;
     } else if (segment === 'portToDomestic') {
       if (mode === 'flight') return 0.7971;
-      if (mode === 'ship') return 0.0255;
+      if (mode === 'ship') return 0.00902;
     } else if (segment === 'domestic') {
       if (mode === 'truck') return 0.1942;
       if (mode === 'train') return 0.03507;
