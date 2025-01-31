@@ -13,7 +13,7 @@ export default function ProductionStage({
 
   const DEFAULT_EMISSIONS = 1.56
 
-  // Set default value for carbonEmissionsPerKg immediately
+  // Set default value for carbonEmissionsPerKg
   useEffect(() => {
     if (productionData.carbonEmissionsPerKg == null) {
       setProductionData((prevData) => ({
@@ -23,12 +23,36 @@ export default function ProductionStage({
     }
   }, [productionData.carbonEmissionsPerKg, setProductionData])
 
-  // Handle input changes for production stage
+  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target
+
+    // Allow empty, "-", or "-." values temporarily
+    if (value === '' || value === '-' || value === '-.' || value === '.') {
+      setProductionData((prevData) => ({
+        ...prevData,
+        [name]: value // Temporarily store as a string
+      }))
+      return
+    }
+
+    // Allow only valid numeric inputs, prevent multiple decimals
+    if (/^-?\d*\.?\d*$/.test(value)) {
+      setProductionData((prevData) => ({
+        ...prevData,
+        [name]: value // Store as a string temporarily
+      }))
+    }
+  }
+
+  // Convert to number when input loses focus (onBlur event)
+  const handleBlur = (e) => {
+    const { name, value } = e.target
+    const parsedValue = parseFloat(value)
+
     setProductionData((prevData) => ({
       ...prevData,
-      [name]: parseFloat(value)
+      [name]: isNaN(parsedValue) ? DEFAULT_EMISSIONS : parsedValue
     }))
   }
 
@@ -57,11 +81,12 @@ export default function ProductionStage({
           <label>{t('q2')}</label>
           <div className='row-group'>
             <input
-              type='number'
+              type='text' // Allow decimals and "-"
               name='carbonEmissionsPerKg'
               placeholder={t('input-default')}
-              value={productionData.carbonEmissionsPerKg ?? DEFAULT_EMISSIONS}
+              value={productionData.carbonEmissionsPerKg ?? ''}
               onChange={handleInputChange}
+              onBlur={handleBlur} // Convert to number when focus is lost
             />
             <span className='unit'>kg</span>
           </div>
@@ -81,7 +106,13 @@ export default function ProductionStage({
       {/* Per kg Carbon Emissions Display */}
       <div className='carbon-summary'>
         <h4>{t('carbon-summary-title')}</h4>
-        <p>{(productionData.carbonEmissionsPerKg ?? DEFAULT_EMISSIONS).toFixed(2)} kg CO₂</p>
+        <p>
+          {(() => {
+            const value = parseFloat(productionData.carbonEmissionsPerKg);
+            return isNaN(value) ? DEFAULT_EMISSIONS.toFixed(2) : value.toFixed(2);
+          })()} kg CO₂
+        </p>
+
       </div>
     </section>
   )
