@@ -50,7 +50,7 @@ export default function TransportationStage({
     if (segment === 'farmToPort') {
       switch (type) {
         case 'truck':
-          return 0.13;
+          return 0.1942;
         case 'train':
           return 0.0132;
         default:
@@ -61,7 +61,7 @@ export default function TransportationStage({
         case 'flight':
           return 0.7971;
         case 'ship':
-          return 0.0255;
+          return 0.00902;
         default:
           return 0;
       }
