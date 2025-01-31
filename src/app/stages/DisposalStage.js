@@ -125,6 +125,14 @@ export default function DisposalStage({
             </div>
           </div>
         )}
+        <div className='footnote'>
+          <br />
+          <br />
+          <br />
+          <span className='bold'>{t('ref')}</span>
+          <p>{t('ref-1')}</p>
+          <br />
+        </div>
       </article>
 
       {/* Carbon Emissions Summary */}
