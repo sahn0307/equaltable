@@ -1,40 +1,27 @@
-import React, { useMemo } from 'react'
+import React, { useMemo } from 'react';
+import { useEmissionsContext } from '../context/EmissionsContext';
 
-const CarbonReducingEmissions = ({
-  productionData = {},
-  transportData = {},
-  processingData = {},
-  extractionData = {},
-  disposalData = {}
-}) => {
+const CarbonReducingEmissions = () => {
+  const { productionData, calculateAllPerKg } = useEmissionsContext();
+  const emissionsData = calculateAllPerKg(); // Retrieve emissions calculations
+
   const calculations = useMemo(() => {
     // Get monthly coffee usage
-    const monthlyUsage = productionData?.monthlyCoffeeUsage || 0
+    const monthlyUsage = productionData?.monthlyCoffeeUsage || 0;
+    
+    // Green coffee baseline emissions factor
+    const greenCoffeeEmissions = -1.28;
 
-    // Calculate user's total emissions per kg
-    const userEmissionsPerKg =
-      (productionData?.carbonEmissionsPerKg || 0) +
-      (transportData?.totalEmissions || 0) +
-      (processingData?.totalEmissions || 0) +
-      (extractionData?.totalEmissions || 0) +
-      (disposalData?.totalEmissions || 0)
+    // Ensure totalPerKg is valid
+    const totalPerKg = emissionsData?.totalPerKg || 0;
 
-    // Calculate user's monthly emissions
-    const userMonthlyEmissions = userEmissionsPerKg * monthlyUsage
+    // Calculate monthly reduction using correct formula
+    const monthlyReduction = (totalPerKg - greenCoffeeEmissions) * monthlyUsage;
 
-    // A = [user’s monthly carbon emission - (1.28 * monthly coffee usage)]
-    const A = userMonthlyEmissions + (1.28 * monthlyUsage)
+    return { monthlyReduction };
+  }, [productionData, emissionsData]);
 
-    return { A }
-  }, [
-    productionData,
-    transportData,
-    processingData,
-    extractionData,
-    disposalData
-  ])
+  return <p>{calculations.monthlyReduction.toFixed(2)} kg</p>;
+};
 
-  return <p>{calculations.A.toFixed(2)} kg</p>
-}
-
-export default CarbonReducingEmissions
+export default CarbonReducingEmissions;
