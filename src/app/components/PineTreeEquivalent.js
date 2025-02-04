@@ -1,48 +1,32 @@
-import React, { useMemo } from 'react'
+import React, { useMemo } from 'react';
+import { useEmissionsContext } from '../context/EmissionsContext';
 
-const PineTreeEquivalent = React.memo(({
-  productionData = {},
-  transportData = {},
-  processingData = {},
-  extractionData = {},
-  disposalData = {}
-}) => {
+const PineTreeEquivalent = React.memo(() => {
+  const { productionData, calculateAllPerKg } = useEmissionsContext();
+  const emissionsData = calculateAllPerKg(); // Retrieve emissions calculations
+
   const calculations = useMemo(() => {
-    // monthlyUsage = monthly coffee usage in kg
-    const monthlyUsage = productionData?.monthlyCoffeeUsage || 0
+    // Get monthly coffee usage
+    const monthlyUsage = productionData?.monthlyCoffeeUsage || 0;
 
-    // Sum of user emissions per kg
-    const userEmissionsPerKg =
-      (productionData?.carbonEmissionsPerKg || 0) +
-      (transportData?.totalEmissions || 0) +
-      (processingData?.totalEmissions || 0) +
-      (extractionData?.totalEmissions || 0) +
-      (disposalData?.totalEmissions || 0)
+    // Green coffee reference emissions factor
+    const greenCoffeeEmissions = -1.28;
 
-    // Convert user emissions to monthly total
-    const userMonthlyEmissions = userEmissionsPerKg * monthlyUsage
+    // Ensure totalPerKg is valid
+    const totalPerKg = emissionsData?.totalPerKg || 0;
 
-    // Green coffee reference: -1.28 per kg
-    const greenCoffeeMonthlyEmissions = -1.28 * monthlyUsage
+    // A = total emissions reduction (same as CarbonReducingEmissions)
+    const A = (totalPerKg - greenCoffeeEmissions) * monthlyUsage;
 
-    // A = user’s monthly difference
-    const A = userMonthlyEmissions - greenCoffeeMonthlyEmissions
+    // C = A / 8.1 (Pine Tree Equivalency)
+    const C = A / 8.1;
 
-    // C = A / 8.1
-    const C = A / 8.1
+    return { C };
+  }, [productionData, emissionsData]);
 
-    return { C }
-  }, [
-    productionData,
-    transportData,
-    processingData,
-    extractionData,
-    disposalData
-  ])
+  return <>{Math.round(calculations.C).toLocaleString()}</>;
+});
 
-  return <>{Math.round(calculations.C).toLocaleString()}</>
-})
+PineTreeEquivalent.displayName = 'PineTreeEquivalent';
 
-PineTreeEquivalent.displayName = 'PineTreeEquivalent'
-
-export default PineTreeEquivalent
+export default PineTreeEquivalent;
