@@ -1,52 +1,30 @@
-import React, { useMemo } from 'react'
+import React, { useMemo } from 'react';
+import { useEmissionsContext } from '../context/EmissionsContext';
 
-const TravelDistanceEquivalent = ({
-  productionData = {},
-  transportData = {},
-  processingData = {},
-  extractionData = {},
-  disposalData = {}
-}) => {
+const TravelDistanceEquivalent = () => {
+  const { productionData, calculateAllPerKg } = useEmissionsContext();
+  const emissionsData = calculateAllPerKg(); // Retrieve emissions calculations
+
   const calculations = useMemo(() => {
-    // 1) Calculate monthly reduction (A)
-    const monthlyUsage = productionData?.monthlyCoffeeUsage || 0
+    // Get monthly coffee usage
+    const monthlyUsage = productionData?.monthlyCoffeeUsage || 0;
 
-    const userEmissionsPerKg =
-      (productionData?.carbonEmissionsPerKg || 0) +
-      (transportData?.totalEmissions || 0) +
-      (processingData?.totalEmissions || 0) +
-      (extractionData?.totalEmissions || 0) +
-      (disposalData?.totalEmissions || 0)
+    // Green coffee reference emissions factor
+    const greenCoffeeEmissions = -1.28;
 
-    const userMonthlyEmissions = userEmissionsPerKg * monthlyUsage
+    // Ensure totalPerKg is valid
+    const totalPerKg = emissionsData?.totalPerKg || 0;
 
-    // Green coffee reference is -1.28 per kg
-    const greenCoffeeMonthlyEmissions = -1.28 * monthlyUsage
+    // A = total emissions reduction (same as CarbonReducingEmissions)
+    const A = (totalPerKg - greenCoffeeEmissions) * monthlyUsage;
 
-    // A = userMonthlyEmissions - greenCoffeeMonthlyEmissions
-    const A = userMonthlyEmissions - greenCoffeeMonthlyEmissions
+    // B = A * (16.04 / 2.097) -> Corrected formula
+    const B = (A * 16.04) / 2.097;
 
-    // 2) Convert to travel distance:
-    // B = A * (16.04 * 2.097)
-    const B = A * (16.04 * 2.097)
+    return { equivalentDistance: B };
+  }, [productionData, emissionsData]);
 
-    return {
-      equivalentDistance: B
-    }
-  }, [
-    productionData,
-    transportData,
-    processingData,
-    extractionData,
-    disposalData
-  ])
+  return <p>{Math.round(calculations.equivalentDistance).toLocaleString()} km</p>;
+};
 
-  // Display B as a whole number (rounded) + "km"
-  return (
-    <p>
-      {Math.round(calculations.equivalentDistance).toLocaleString()} km
-    </p>
-  )
-}
-
-export default TravelDistanceEquivalent
+export default TravelDistanceEquivalent;
