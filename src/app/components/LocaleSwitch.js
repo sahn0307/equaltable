@@ -1,67 +1,64 @@
-import { useRouter, usePathname } from 'next/navigation'
-import { useLocale, useTranslations } from 'next-intl'
-import { Link } from '../../i18n/routing'
-import { useEmissionsContext } from '../context/EmissionsContext'
-import { useEffect, useCallback } from 'react'
+import { useRouter, usePathname } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
+import { Link } from '../../i18n/routing';
+import { useEmissionsContext } from '../context/EmissionsContext';
+import { useEffect, useCallback } from 'react';
 
 const LocaleSwitch = () => {
-  const router = useRouter()
-  const pathname = usePathname()
-  const locale = useLocale()
-  const t = useTranslations()
-  const { saveFormState, restoreFormState } = useEmissionsContext()
+  const router = useRouter();
+  const pathname = usePathname();
+  const locale = useLocale();
+  const t = useTranslations();
+  const { saveFormState, restoreFormState } = useEmissionsContext();
 
   const memoizedRestore = useCallback(() => {
-    restoreFormState()
-  }, [restoreFormState])
+    console.log('Calling restoreFormState...');
+    if (restoreFormState) {
+      restoreFormState();
+    } else {
+      console.error('restoreFormState is not defined!');
+    }
+  }, [restoreFormState]);
 
   useEffect(() => {
-    memoizedRestore()
-  }, [locale, memoizedRestore])
+    memoizedRestore();
+  }, [locale, memoizedRestore]);
 
   const changeLocale = async (newLocale) => {
     try {
-      await saveFormState()
-      const newPath = pathname.replace(`/${locale}`, `/${newLocale}`)
-      await router.replace(newPath, { 
-        scroll: false, 
+      await saveFormState();
+      const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
+      await router.replace(newPath, {
+        scroll: false,
         shallow: true,
-        skipRscFetch: true 
-      })
+        skipRscFetch: true,
+      });
     } catch (error) {
-      console.debug('Locale transition:', error)
+      console.debug('Locale transition:', error);
     }
-  }
-
-  const handleReset = () => {
-    window.location.href = '/' // force a full page refresh
-  }
+  };
 
   return (
-    <div className='switch' role='region' aria-label='language switcher'>
+    <div className="switch" role="region" aria-label="language switcher">
       <button
-        className='b1'
         onClick={() => changeLocale('en')}
         disabled={locale === 'en'}
-        style={{ color: locale === 'en' ? '#D16E11' : 'inherit' }}>
+        style={{ color: locale === 'en' ? '#D16E11' : 'inherit' }}
+      >
         {t('English')}
       </button>
       <button
-        className='b2'
         onClick={() => changeLocale('ko')}
         disabled={locale === 'ko'}
-        style={{ color: locale === 'ko' ? '#D16E11' : 'inherit' }}>
+        style={{ color: locale === 'ko' ? '#D16E11' : 'inherit' }}
+      >
         {t('Korean')}
       </button>
-      <Link 
-        href='/' 
-        locale={locale}
-        onClick={() => window.location.href = '/'}
-      >
+      <Link href="/" locale={locale}>
         {t('reset')}
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default LocaleSwitch
+export default LocaleSwitch;
