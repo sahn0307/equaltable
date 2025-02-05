@@ -9,8 +9,9 @@ export const useEmissionsContext = () => useContext(EmissionsContext);
 export const EmissionsProvider = ({ children }) => {
   const [isSimpleAnalysis, setIsSimpleAnalysis] = useState(false);
   const setDetailedAnalysisMode = useCallback(() => {
-    setIsSimpleAnalysis(false); // Disable Simple Analysis mode
+    setIsSimpleAnalysis(false); // ✅ Toggle off Simple Analysis mode without modifying `productionData`
   }, []);
+  
   
   
 
@@ -223,7 +224,10 @@ export const EmissionsProvider = ({ children }) => {
   }, []);
   const saveFormState = useCallback(() => {
     const formState = {
-      productionData,
+      productionData: {
+        ...productionData,
+        monthlyCoffeeUsage: productionData.monthlyCoffeeUsage, // ✅ Ensure it’s explicitly saved
+      },
       transportData,
       processingData,
       extractionData,
@@ -234,6 +238,7 @@ export const EmissionsProvider = ({ children }) => {
     console.log('✅ Saving Form State:', formState);
     sessionStorage.setItem('formState', JSON.stringify(formState));
   }, [productionData, transportData, processingData, extractionData, disposalData, isSimpleAnalysis]);
+  
   
   
 

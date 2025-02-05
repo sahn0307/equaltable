@@ -100,14 +100,21 @@ export default function Page1() {
           </Link>
 
           {/* Detailed Emissions Button */}
-		  <Link
+			<Link
 			href={canProceed ? '/page2' : '#'}
 			onClick={(e) => {
 				if (!canProceed) {
 				e.preventDefault();
 				return;
 				}
-				setDetailedAnalysisMode(); // Toggle off Simple Analysis
+
+				// ✅ Preserve monthly coffee usage before switching
+				setProductionData((prev) => ({
+				...prev,
+				monthlyCoffeeUsage: prev.monthlyCoffeeUsage || 0, // Prevent accidental clearing
+				}));
+
+				// setDetailedAnalysisMode(); // ✅ Toggle off Simple Analysis
 			}}
 			className={!canProceed ? 'disabled-link' : ''}
 			aria-disabled={!canProceed}
@@ -134,6 +141,7 @@ export default function Page1() {
 				</div>
 			</button>
 			</Link>
+
 
         </div>
       </form>
