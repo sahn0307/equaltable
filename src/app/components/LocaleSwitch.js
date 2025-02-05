@@ -38,6 +38,12 @@ const LocaleSwitch = () => {
     }
   };
 
+  const handleReset = (e) => {
+    e.preventDefault();
+    sessionStorage.clear(); // Clear stored form state
+    window.location.href = '/'; // Force a full page reload
+  };
+
   return (
     <div className="switch" role="region" aria-label="language switcher">
       <button
@@ -54,7 +60,7 @@ const LocaleSwitch = () => {
       >
         {t('Korean')}
       </button>
-      <Link href="/" locale={locale}>
+      <Link href="/" locale={locale} onClick={handleReset}>
         {t('reset')}
       </Link>
     </div>
