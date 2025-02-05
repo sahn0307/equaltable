@@ -63,21 +63,10 @@ export const EmissionsProvider = ({ children }) => {
       };
     }
   
-    // Detailed Analysis: Disposal Emissions
-    const {
-      upcyclingStatus = '',
-      disposalFactor = 0.34 // Default value if empty
-    } = disposalData;
-  
-    let disposalPerKg = 0;
-  
-    if (upcyclingStatus === 'no') {
-      disposalPerKg = disposalFactor !== '' ? disposalFactor : 0.34;
-    }
-  
-    // Other Stage Calculations
+    // 1️⃣ Production Stage
     const productionPerKg = productionData.carbonEmissionsPerKg || 0;
   
+    // 2️⃣ Transportation Stage
     const {
       farmToPortDistance = 0,
       portToDomesticDistance = 0,
@@ -87,57 +76,99 @@ export const EmissionsProvider = ({ children }) => {
   
     const { farmToPort, portToDomestic, domestic } = transportType;
   
-    const A_transport =
+    const farmTransport =
       farmToPortDistance * getTransportEmissionFactor('farmToPort', farmToPort);
-    const B_transport =
+    const portTransport =
       portToDomesticDistance *
       getTransportEmissionFactor('portToDomestic', portToDomestic);
-    const C_transport =
+    const domesticTransport =
       domesticDistance * getTransportEmissionFactor('domestic', domestic);
   
-    const transportPerKg = ((A_transport + B_transport + C_transport) * 1.34) / 1000;
+    const transportPerKg = ((farmTransport + portTransport + domesticTransport) * 1.34) / 1000;
   
-    const processingPerKg = parseFloat(processingData.roasterPower || 0);
-  
+    // 3️⃣ Processing Stage (Using Unique Variable Names)
     const {
-      grinderType = '',
-      powerConsumption = 0,
-      usageTime = 0,
-      productionQuantity = 0,
-      extractorPower = 'no',
-      extractorPowerConsumption = 0,
-      extractorUsageTime = 0,
-      extractorProductionQuantity = 0
+      roasterType: processingRoasterType = '',
+      roasterPower: processingPower = 0,
+      gasConsumption: processingGasConsumption = 0,
+      usageTime: processingUsageTime = 0,
+      productionQuantity: processingProductionQty = 1,
+      smokeEliminator,
+      smokeEliminatorPowerConsumption: processingSmokePower = 0,
+    } = processingData;
+  
+    let processingPerKg = 0;
+  
+    if (processingRoasterType === 'electric') {
+      if (processingProductionQty > 0) {
+        processingPerKg =
+          ((processingPower || 0) + (processingSmokePower || 0)) *
+          (processingUsageTime || 0) *
+          0.4951 /
+          processingProductionQty;
+      }
+    } else if (processingRoasterType === 'gas') {
+      let electricPart = 0;
+      let gasPart = 0;
+  
+      if (processingProductionQty > 0) {
+        electricPart =
+          ((processingPower || 0) + (processingSmokePower || 0)) *
+          (processingUsageTime || 0) *
+          0.4951 /
+          processingProductionQty;
+      }
+      gasPart = (processingGasConsumption || 0) * 0.00157794;
+  
+      processingPerKg = electricPart + gasPart;
+    }
+  
+    // 4️⃣ Extraction Stage (Using Unique Variable Names)
+    const {
+      grinderType: extractionGrinderType = '',
+      powerConsumption: extractionPower = 0,            
+      usageTime: extractionUsageTime = 0,                   
+      productionQuantity: extractionProductionQty = 0,          
+      extractorPower,
+      extractorPowerConsumption: extractionExtractorPower = 0,   
+      extractorUsageTime: extractionExtractorUsage = 0,          
+      extractorProductionQuantity: extractionExtractorQty = 0  
     } = extractionData;
   
-    const A = powerConsumption;
-    const B = usageTime;
-    const C = productionQuantity;
-    const D = extractorPowerConsumption;
-    const E = extractorUsageTime;
-    const F = extractorProductionQuantity;
-    const EF = 0.4951;
-  
+    const EF = 0.4951; // Emission factor
     let extractionPerKg = 0;
   
-    if (grinderType === 'electric') {
+    if (extractionGrinderType === 'electric') {
       if (extractorPower === 'yes') {
-        if (C > 0 && F > 0) {
-          extractionPerKg = (A * EF * B) / C + (D * EF * E) / F;
-        } else if (C > 0) {
-          extractionPerKg = (A * EF * B) / C;
+        if (extractionProductionQty > 0 && extractionExtractorQty > 0) {
+          extractionPerKg = (extractionPower * EF * extractionUsageTime) / extractionProductionQty + (extractionExtractorPower * EF * extractionExtractorUsage) / extractionExtractorQty;
+        } else if (extractionProductionQty > 0) {
+          extractionPerKg = (extractionPower * EF * extractionUsageTime) / extractionProductionQty;
         }
       } else {
-        if (C > 0) {
-          extractionPerKg = (A * EF * B) / C;
+        if (extractionProductionQty > 0) {
+          extractionPerKg = (extractionPower * EF * extractionUsageTime) / extractionProductionQty;
         }
       }
-    } else if (grinderType === 'manual') {
-      if (extractorPower === 'yes' && F > 0) {
-        extractionPerKg = (D * EF * E) / F;
+    } else if (extractionGrinderType === 'manual') {
+      if (extractorPower === 'yes' && extractionExtractorQty > 0) {
+        extractionPerKg = (extractionExtractorPower * EF * extractionExtractorUsage) / extractionExtractorQty;
       }
     }
   
+    // 5️⃣ Disposal Stage
+    const {
+      upcyclingStatus = '',
+      disposalFactor = 0.34 
+    } = disposalData;
+  
+    let disposalPerKg = 0;
+  
+    if (upcyclingStatus === 'no') {
+      disposalPerKg = disposalFactor !== '' ? disposalFactor : 0.34;
+    }
+  
+    // 🔹 Final Total Calculation 🔹
     const totalPerKg =
       productionPerKg +
       transportPerKg +
@@ -145,7 +176,7 @@ export const EmissionsProvider = ({ children }) => {
       extractionPerKg +
       disposalPerKg;
   
-    console.log('Calculated Emissions:', {
+    console.log('✅ Final Emissions Breakdown:', {
       productionPerKg,
       transportPerKg,
       processingPerKg,
