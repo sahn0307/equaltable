@@ -8,6 +8,12 @@ export const useEmissionsContext = () => useContext(EmissionsContext);
 
 export const EmissionsProvider = ({ children }) => {
   const [isSimpleAnalysis, setIsSimpleAnalysis] = useState(false);
+  const setDetailedAnalysisMode = useCallback(() => {
+    setIsSimpleAnalysis(false); // ✅ Toggle off Simple Analysis mode without modifying `productionData`
+  }, []);
+  
+  
+  
 
   const [productionData, setProductionData] = useState({
     monthlyCoffeeUsage: '',
@@ -199,6 +205,43 @@ export const EmissionsProvider = ({ children }) => {
     setIsSimpleAnalysis(true); // Enable Simple Analysis mode
   }, []);
 
+  const restoreFormState = useCallback(() => {
+    console.log('Restoring form state...');
+    const saved = sessionStorage.getItem('formState');
+    if (saved) {
+      const state = JSON.parse(saved);
+      console.log('Restored state:', state);
+      setProductionData(state.productionData || {});
+      setTransportData(state.transportData || {});
+      setProcessingData(state.processingData || {});
+      setExtractionData(state.extractionData || {});
+      setDisposalData(state.disposalData || {});
+      setIsSimpleAnalysis(state.isSimpleAnalysis || false);
+      sessionStorage.removeItem('formState'); // Clear after restoring
+    } else {
+      console.log('No saved form state found.');
+    }
+  }, []);
+  const saveFormState = useCallback(() => {
+    const formState = {
+      productionData: {
+        ...productionData,
+        monthlyCoffeeUsage: productionData.monthlyCoffeeUsage, // ✅ Ensure it’s explicitly saved
+      },
+      transportData,
+      processingData,
+      extractionData,
+      disposalData,
+      isSimpleAnalysis,
+    };
+  
+    console.log('✅ Saving Form State:', formState);
+    sessionStorage.setItem('formState', JSON.stringify(formState));
+  }, [productionData, transportData, processingData, extractionData, disposalData, isSimpleAnalysis]);
+  
+  
+  
+
   return (
     <EmissionsContext.Provider
       value={{
@@ -214,7 +257,10 @@ export const EmissionsProvider = ({ children }) => {
         setDisposalData,
         isSimpleAnalysis,
         setSimpleAnalysisDefaults,
+        setDetailedAnalysisMode,
         calculateAllPerKg,
+        restoreFormState,
+        saveFormState,
       }}
     >
       {children}

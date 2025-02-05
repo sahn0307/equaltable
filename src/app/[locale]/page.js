@@ -100,34 +100,49 @@ export default function Page1() {
           </Link>
 
           {/* Detailed Emissions Button */}
-          <Link
-            href={canProceed ? '/page2' : '#'}
-            onClick={(e) => !canProceed && e.preventDefault()}
-            className={!canProceed ? 'disabled-link' : ''}
-            aria-disabled={!canProceed}
-            aria-label={!canProceed ? getAriaLabel() : undefined}
-          >
-            <button type="button" className={linkButtonClass} disabled={!canProceed}>
-              <Image
-                className="b2"
-                src={detail}
-                width={76}
-                height={68}
-                alt="pencil checking icon"
-                priority
-              />
-              <div className="bottom">
-                <div className="title-group">
-                  {t.rich('detail-check-title', {
-                    accent: (chunks) => <div className="title accent bold">{chunks}</div>,
-                    bold: (chunks) => <div className="title bold">{chunks}</div>,
-                    row: (chunks) => <div className="row">{chunks}</div>,
-                  })}
-                </div>
-                <p className="small">{t('button-2-desc')}</p>
-              </div>
-            </button>
-          </Link>
+			<Link
+			href={canProceed ? '/page2' : '#'}
+			onClick={(e) => {
+				if (!canProceed) {
+				e.preventDefault();
+				return;
+				}
+
+				// ✅ Preserve monthly coffee usage before switching
+				setProductionData((prev) => ({
+				...prev,
+				monthlyCoffeeUsage: prev.monthlyCoffeeUsage || 0, // Prevent accidental clearing
+				}));
+
+				// setDetailedAnalysisMode(); // ✅ Toggle off Simple Analysis
+			}}
+			className={!canProceed ? 'disabled-link' : ''}
+			aria-disabled={!canProceed}
+			aria-label={!canProceed ? getAriaLabel() : undefined}
+			>
+			<button type="button" className={linkButtonClass} disabled={!canProceed}>
+				<Image
+				className="b2"
+				src={detail}
+				width={76}
+				height={68}
+				alt="pencil checking icon"
+				priority
+				/>
+				<div className="bottom">
+				<div className="title-group">
+					{t.rich('detail-check-title', {
+					accent: (chunks) => <div className="title accent bold">{chunks}</div>,
+					bold: (chunks) => <div className="title bold">{chunks}</div>,
+					row: (chunks) => <div className="row">{chunks}</div>,
+					})}
+				</div>
+				<p className="small">{t('button-2-desc')}</p>
+				</div>
+			</button>
+			</Link>
+
+
         </div>
       </form>
 
