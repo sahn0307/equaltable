@@ -88,11 +88,12 @@ export default function Page1() {
               />
               <div className="bottom">
                 <div className="title-group">
-                  {t.rich('easy-check-title', {
-                    accent: (chunks) => <p className="title accent bold">{chunks}</p>,
-                    bold: (chunks) => <p className="title bold">{chunks}</p>,
-                    row: (chunks) => <div className="row">{chunks}</div>,
-                  })}
+                {t.rich('easy-check-title', {
+                  accent: (chunks) => <p className="title accent bold">{chunks} </p>,
+                  bold: (chunks) => <p className="title bold">{chunks} </p>,
+                  row: (chunks) => <div className="row">{chunks}</div>,
+                })}
+
                 </div>
                 <p className="small">{t('button-2-desc')}</p>
               </div>
