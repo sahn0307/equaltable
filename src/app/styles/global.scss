@@ -426,7 +426,7 @@ h1 {
     margin-top: 0;
     padding: 22px 36px 20px 0;
     color: $text;
-    font-size: 27px;
+    font-size: 45px;
     text-align: right;
     background-color: $white;
     box-shadow: inset 0 0 3px #ccc;
@@ -469,7 +469,7 @@ h1 {
     align-items: flex-end;
   }
   .title-group {
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
   .title {
     font-size: 18px;
@@ -562,8 +562,16 @@ h1 {
   }
   .small {
     margin-top: 8px;
-    font-size: 12px;
+    font-size: 14px;
   }
+}
+/* Center all elements in data consent */
+.data-consent {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center;    /* Center horizontally */
+  justify-content: center; /* Center vertically (if container has height) */
+  text-align: center;     /* Center text */
 }
 
 // page 4
@@ -728,19 +736,22 @@ input[type="number"]::-webkit-outer-spin-button {
   flex: 0 0 auto;
   display: flex;
   justify-content: flex-end;
-  gap: .5px;
+  gap: 4px;
   background: $grey-outline;
-  border: 1px solid $grey-outline;
-  border-radius: 4px;
+  border: 3px solid $grey-outline;
+  border-radius: 5px;
   button {
     background: $white;
+    padding: 0 5px;
   }
   .b1 {
     width: 76px;
     text-transform: uppercase;
+    
   }
   .b2 {
     width: 74px;
+    
   }
   a {
     padding: 0 10px;
@@ -992,4 +1003,11 @@ figure {
 .justify-right {
   justify-content: flex-end;
   font-weight: $bold;
+}
+/* Fix inline spacing issue */
+.row, .bold, .accent {
+  display: inline-block;
+  margin-right: 4px; /* Adjust spacing as needed */
+  letter-spacing: normal;
+  word-spacing: normal;
 }
