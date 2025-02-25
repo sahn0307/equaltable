@@ -50,7 +50,7 @@ export default function Page3() {
               </p>
             </div>
             <div className='card square'>
-              <h5>{t('col1-1-2-h')}</h5>
+              <h5>{t('col1-2-h')}</h5>
               <p>
                 <ExpectedMonthlyEmissions
                   productionData={productionData}
@@ -73,7 +73,7 @@ export default function Page3() {
         </article>
 
           {/* COL 2 */}
-          <article className='card'>
+        <article className='card'>
           <div className='graph-content'>
             <h5>{t.rich('col2-h', { br: () => <br /> })}</h5>
             <EmissionsBreakdown
