@@ -72,14 +72,10 @@ export default function Page3() {
           />
         </article>
 
-        {/* -- COL 2: ACTUAL user data -- */}
-        <article className='card'>
-          <div className='line-graph-group'>
-            <h5>
-              {t.rich('col2-h', {
-                br: () => <br />
-              })}
-            </h5>
+          {/* COL 2 */}
+          <article className='card'>
+          <div className='graph-content'>
+            <h5>{t.rich('col2-h', { br: () => <br /> })}</h5>
             <EmissionsBreakdown
               productionData={productionData}
               transportData={transportData}
@@ -89,22 +85,14 @@ export default function Page3() {
             />
           </div>
           <div className='footnote-wrapper'>
-            <p className='col-footnotes'>
-              {t.rich('col2-info', {
-                br: () => <br />
-              })}
-            </p>
+            <p className='col-footnotes'>{t.rich('col2-info', { br: () => <br /> })}</p>
           </div>
         </article>
 
-        {/* -- COL 3: HARDCODED STAGE VALUES -- */}
+        {/* COL 3 */}
         <article className='card'>
-          <div className='line-graph-group'>
-            <h5>
-              {t.rich('col3-h', {
-                br: () => <br />
-              })}
-            </h5>
+          <div className='graph-content'>
+            <h5>{t.rich('col3-h', { br: () => <br /> })}</h5>
             <EmissionsBreakdown
               overrideStageValues={{
                 productionPerKg: -3.60,
@@ -116,11 +104,7 @@ export default function Page3() {
             />
           </div>
           <div className='footnote-wrapper'>
-            <p className='col-footnotes'>
-              {t.rich('col3-info', {
-                br: () => <br />
-              })}
-            </p>
+            <p className='col-footnotes'>{t.rich('col3-info', { br: () => <br /> })}</p>
           </div>
         </article>
 

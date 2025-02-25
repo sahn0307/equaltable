@@ -95,7 +95,7 @@ export default function Page1() {
                 })}
 
                 </div>
-                <p className="small">{t('button-2-desc')}</p>
+                <p className="small">{t('button-1-desc')}</p>
               </div>
             </button>
           </Link>

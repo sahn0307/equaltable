@@ -1,5 +1,5 @@
 /* Typography*/
-$font-body: "Roboto", "Pretendard", sans-serif;
+$font-body:  "Pretendard", sans-serif;
 $light: 300;
 $regular: 400;
 $medium: 500;
@@ -90,6 +90,7 @@ p {
   flex: 1;
   .footnote {
     margin-top: 21px;
+    line-height: 15px;
     font-size: 11px;
     color: $dk-grey;
     p {
@@ -172,6 +173,7 @@ p {
   }
   input::placeholder {
     color: $text;
+    font-size: 20px;
   }
   .row-group {
     display: inline-flex;
@@ -414,9 +416,10 @@ input[type="radio"]:checked::before {
 }
 h1 {
   font-size: 45px;
+  line-height: 2;
   font-weight: $medium;
   color: $dk-grey;
-}
+} 
 .step1 {
   input[type="number"],
   input[type="text"],
@@ -480,7 +483,8 @@ h1 {
     color: $accent;
   }
   .small {
-    font-size: 12px;
+    font-size: 14px;
+    line-height: 20px;
     color: $text;
   }
   .row {
@@ -769,7 +773,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 // page 3
 .page3-wrapper {
-  width: 1719px;
+  width: flex;
   display: flex;
   flex-flow: column nowrap;
   .page-header {
@@ -777,6 +781,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
   h5 {
     font-size: 17px;
+    
     font-weight: $medium;
   }
 }
@@ -840,6 +845,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .card-row-wrapper {
   display: flex;
+  gap: 27px;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -848,12 +854,12 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 150px;
   padding: 36px 22px 36px 26px;
   p {
-    margin-top: 14px;
+    margin-top: 28px;
   }
 }
 .col1-gauge {
   padding: 35px 25px;
-  height: 610px;
+  height: flex;
   display: flex;
   flex-flow: column nowrap;
   color: $form-title;
@@ -862,7 +868,9 @@ input[type="number"]::-webkit-outer-spin-button {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   .grade {
     margin-bottom: 9px;
-    font-size: 10px;
+    line-height: 20px;
+    font-size: 15px;
+
     font-weight: $medium;
     color: $dk-grey;
     text-align: center;
@@ -873,12 +881,13 @@ input[type="number"]::-webkit-outer-spin-button {
     border-top: 1px solid $hr;
     border-bottom: 1px solid $hr;
     .p-style {
-      font-size: 9px;
+      font-size: 15px;
+      
       color: $text;
     }
     .k-title {
       margin: 14px 0 10px 0;
-      font-size: 10px;
+      font-size: 15px;
       font-weight: $bold;
       text-align: center;
     }
@@ -983,7 +992,8 @@ figure {
   justify-content: space-between;
   align-items: center;
   span {
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 400;
   }
   .group-container {
     display: flex;
@@ -1010,4 +1020,93 @@ figure {
   margin-right: 4px; /* Adjust spacing as needed */
   letter-spacing: normal;
   word-spacing: normal;
+}
+
+/* Updated global styles - Font size adjustments */
+.grade {
+  font-size: 12px;
+  font-weight: $medium;
+}
+
+.k-title {
+  font-size: 12px;
+  font-weight: $bold;
+}
+
+.key .p-style, .key-text {
+  font-size: 12px;
+}
+
+/* Targeted wrapper adjustment for EmissionsGauge component only */
+.col1-gauge {
+  width: 120%; /* adjust as needed, e.g., 360px */
+  max-width: none;
+  overflow-wrap: break-word;
+}
+/* Explicitly restoring layout for rows and columns */
+.row, .card-row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.col {
+  width: 325px; /* restore explicit width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-row .card {
+  width: 325px; /* explicitly restore card width */
+  margin-right: 24px; /* restores spacing between cards */
+}
+.card-row .card:last-of-type {
+  margin-right: 0; /* ensures no margin on last card */
+}
+
+.content-wrapper article:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .card {
+    width: 100%; // ensures all boxes in this column are aligned horizontally
+    box-sizing: border-box;
+  }
+
+  .row-wrapper {
+    display: flex;
+    gap: 20px;
+
+    .square {
+      flex: 1;
+      max-width: calc(50% - 10px); // precisely half minus gap for equal width
+    }
+  }
+
+  .col1-gauge {
+    width: 100%; // matches exactly the width of combined boxes above
+    max-width: 100%; // ensures it won't overflow horizontally
+    box-sizing: border-box; // padding is included in total width
+  }
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: stretch;
+
+  article {
+    display: flex;
+    flex-direction: column;
+
+    .article-content {
+      flex-grow: 1; // fills remaining height with whitespace
+    }
+  }
+}
+
+.graph-content h5 {
+  margin-bottom: 28px;
 }
