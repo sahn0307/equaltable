@@ -798,7 +798,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 .card {
-  padding: 38px 30px;
+  padding: 30px 30px;
   border-radius: 6px;
   background: $white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -852,13 +852,18 @@ input[type="number"]::-webkit-outer-spin-button {
 .square {
   width: 198px;
   height: 150px;
-  padding: 36px 22px 36px 26px;
+  padding: 30px 22px 30px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This pushes content to the edges */
+  
   p {
-    margin-top: 28px;
+    margin-top: 0; /* Remove the top margin */
+    margin-bottom: 0; /* Ensure no extra space at the bottom */
   }
 }
 .col1-gauge {
-  padding: 35px 25px;
+  padding: 35px 20px;
   height: flex;
   display: flex;
   flex-flow: column nowrap;
