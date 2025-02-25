@@ -16,7 +16,7 @@ export default function ExtractionStage({
     const { name, value } = e.target
     setExtractionData((prevData) => ({
       ...prevData,
-      [name]: parseFloat(value) || 0
+      [name]: value === '' ? '' : parseFloat(value) // Treat empty string as '' and valid numbers as is
     }))
   }
 
@@ -184,7 +184,7 @@ export default function ExtractionStage({
                   <input
                     type='number'
                     name='powerConsumption'
-                    value={extractionData.powerConsumption ?? 0}
+                    value={extractionData.powerConsumption ?? ''}
                     onChange={handleInputChange}
                     placeholder={t('input-default')}
                   />
@@ -197,7 +197,7 @@ export default function ExtractionStage({
                   <input
                     type='number'
                     name='usageTime'
-                    value={extractionData.usageTime ?? 0}
+                    value={extractionData.usageTime ?? ''}
                     onChange={handleInputChange}
                     placeholder={t('input-default')}
                   />
@@ -210,7 +210,7 @@ export default function ExtractionStage({
                   <input
                     type='number'
                     name='productionQuantity'
-                    value={extractionData.productionQuantity ?? 0}
+                    value={extractionData.productionQuantity ?? ''}
                     onChange={handleInputChange}
                     placeholder={t('input-default')}
                   />
@@ -258,7 +258,7 @@ export default function ExtractionStage({
                   type='number'
                   name='extractorPowerConsumption'
                   value={
-                    extractionData.extractorPowerConsumption ?? 0
+                    extractionData.extractorPowerConsumption ?? ''
                   }
                   onChange={handleInputChange}
                   placeholder={t('input-default')}
@@ -273,7 +273,7 @@ export default function ExtractionStage({
                 <input
                   type='number'
                   name='extractorUsageTime'
-                  value={extractionData.extractorUsageTime ?? 0}
+                  value={extractionData.extractorUsageTime ?? ''}
                   onChange={handleInputChange}
                   placeholder={t('input-default')}
                 />
@@ -288,7 +288,7 @@ export default function ExtractionStage({
                   type='number'
                   name='extractorProductionQuantity'
                   value={
-                    extractionData.extractorProductionQuantity ?? 0
+                    extractionData.extractorProductionQuantity ?? ''
                   }
                   onChange={handleInputChange}
                   placeholder={t('input-default')}

@@ -114,12 +114,30 @@ export default function EmissionsBreakdown({ overrideStageValues }) {
       legend: { display: false },
       tooltip: {
         enabled: true,
+        backgroundColor: 'white',
+        titleColor: 'black',
+        bodyColor: 'black',
+        titleFont: { weight: 'bold' },
+        bodyFont: { weight: 'normal' },
+        padding: 10,
+        cornerRadius: 4,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.1)',
+        usePointStyle: true,
+        boxWidth: 8,
+        boxHeight: 8,
         callbacks: {
+          // Set the title to be the stage name
+          title: (context) => {
+            if (context[0].dataIndex === 0) return '' // Hide tooltip for origin
+            const idx = context[0].dataIndex - 1
+            return stageLabels[idx]
+          },
+          // Set the label to be the emissions value
           label: (context) => {
             if (context.dataIndex === 0) return '' // Hide tooltip for origin
-            const idx = context.dataIndex - 1
             const diff = stageValues[context.dataIndex] - (stageValues[context.dataIndex - 1] || 0)
-            return `${stageLabels[idx]}: ${diff.toFixed(2)} kg CO₂`
+            return `${diff.toFixed(2)} kg CO₂`
           }
         }
       }

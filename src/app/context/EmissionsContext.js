@@ -39,6 +39,7 @@ export const EmissionsProvider = ({ children }) => {
   const [extractionData, setExtractionData] = useState({
     grinderType: 'electric',
     powerConsumption: '',
+    
   });
 
   const [disposalData, setDisposalData] = useState({
