@@ -1115,3 +1115,16 @@ figure {
 .graph-content h5 {
   margin-bottom: 28px;
 }
+
+
+.button-group .title-group .title {
+  font-size: 17px; /* Reduced from 18px */
+  line-height: 1.1; /* Slightly tightened line height */
+}
+
+/* If needed, you can make it even smaller for very tight spaces */
+@media screen and (max-width: 1200px) {
+  .button-group .title-group .title {
+    font-size: 15px;
+  }
+}
