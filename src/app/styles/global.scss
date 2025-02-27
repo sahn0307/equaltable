@@ -61,13 +61,11 @@ p {
 
 // Page 2
 .page-header {
-  width: 1719px;
   display: flex;
   justify-content:space-between;
 }
 
 .stage-container {
-  width: 1719px;
   margin-top: 23px;
   flex-wrap: nowrap;
   display: flex;
@@ -280,7 +278,6 @@ input[type="radio"]:checked::before {
 // Progress Steps
 .progress-bar-container {
   margin: 20px 0 0 0;
-  width: 1719px;
   display: flex;
   flex-flow: row nowrap;
 }
@@ -416,7 +413,6 @@ input[type="radio"]:checked::before {
 }
 h1 {
   font-size: 45px;
-  line-height: 2;
   font-weight: $medium;
   color: $dk-grey;
 } 
@@ -516,25 +512,27 @@ h1 {
 }
 
 .data-consent {
-  width: 694px;
-  height: 87px;
   margin-bottom: 79px;
   padding: 15px 17px;
   color: $dk-grey;
   background: $grey-bg;
   border-radius: 4px;
+  
   p {
     color: $dk-grey;
   }
+  
   .row {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-start;
+    justify-content: center; /* Center justify the row content */
     align-items: center;
   }
+  
   .title {
     font-size: 18px;
   }
+  
   input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
@@ -551,36 +549,32 @@ h1 {
     border: 3px solid $white;
     position: relative;
   }
+  
   input[type="checkbox"]::before {
     content: "x";
     position: absolute;
     top: -6.5px;
     visibility: hidden;
   }
+  
   input[type="checkbox"]:checked::before {
     visibility: visible;
   }
+  
   label {
     font-size: 14px;
     text-transform: uppercase;
   }
+  
   .small {
     margin-top: 8px;
     font-size: 14px;
+    text-align: center; /* Center the small text below */
   }
-}
-/* Center all elements in data consent */
-.data-consent {
-  display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center;    /* Center horizontally */
-  justify-content: center; /* Center vertically (if container has height) */
-  text-align: center;     /* Center text */
 }
 
 // page 4
 .page-wrapper {
-  width: 1719px;
   display: flex;
   flex-flow: column nowrap;
   .page-header {
@@ -614,7 +608,6 @@ h1 {
 }
 .psudo-progress {
   .bar {
-    width: 1719px;
     margin: 0;
     display: flex;
     flex-flow: row nowrap;
@@ -632,7 +625,6 @@ h1 {
   }
 }
 .card-row {
-  width: 1719px;
   .card {
     margin-right: 24px;
     padding: 25px;
@@ -1146,8 +1138,7 @@ body {
 
 /* Adjust the centered-wrapper to be horizontally centered but start from top */
 .centered-wrapper {
-  width: 1719px;
-  max-width: 90vw;
+  max-width: 100vw;
   margin: 0 auto; /* Center horizontally */
   display: flex;
   flex-flow: column nowrap;
@@ -1189,10 +1180,208 @@ body {
   width: 100%;
 }
 
-/* Data consent keeps bottom spacing */
-.data-consent {
-  width: 694px;
-  max-width: 90%;
-  margin-top: 40px; /* Fixed margin instead of auto */
-  margin-bottom: 40px;
+/* Unified CSS for consistent centered layout across all pages with minimum margins */
+
+/* Reset body padding for consistency */
+body {
+  padding: 40px 0;
+  min-height: 100vh;
+  font-family: $font-body;
+  font-weight: $regular;
+  font-size: 17px;
+  color: $mid-grey;
+  background-color: $body-bg;
+  margin: 0;
 }
+
+/* Common container for all pages with minimum margins */
+.centered-wrapper, 
+.page-wrapper, 
+.page3-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 50px; /* 100px minimum left/right margins */
+  box-sizing: border-box;
+}
+
+.page1-header h1 {
+  margin-bottom: 15px; /* Add 15px of space below the main header */
+}
+
+/* Fix horizontal overflow issues for pages 2-4 */
+
+/* Adjust wrapper containers to handle overflow better */
+.centered-wrapper, 
+.page-wrapper, 
+.page3-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 50px; /* Keep 100px minimum margins */
+  box-sizing: border-box;
+  overflow-x: visible; /* Allow content to be fully visible */
+}
+
+/* Ensure stage container doesn't get cut off in page 2 */
+.stage-container {
+  width: 100%;
+  margin-top: 23px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  overflow-x: auto; /* Add horizontal scrolling if needed */
+  padding-bottom: 20px; /* Space for scrollbar */
+}
+
+/* Page 3 content wrapper horizontal handling */
+.content-wrapper {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 27px;
+  overflow-x: auto; /* Allow horizontal scrolling */
+  padding-bottom: 20px; /* Space for scrollbar */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Page 4 row and card-row handling */
+.row, .card-row {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: baseline;
+  overflow-x: auto; /* Add horizontal scrolling if needed */
+  padding-bottom: 20px; /* Space for scrollbar */
+}
+
+/* Improve scrollbar appearance */
+.stage-container::-webkit-scrollbar,
+.content-wrapper::-webkit-scrollbar,
+.row::-webkit-scrollbar,
+.card-row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.stage-container::-webkit-scrollbar-track,
+.content-wrapper::-webkit-scrollbar-track,
+.row::-webkit-scrollbar-track,
+.card-row::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.stage-container::-webkit-scrollbar-thumb,
+.content-wrapper::-webkit-scrollbar-thumb,
+.row::-webkit-scrollbar-thumb,
+.card-row::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+/* Hide scrollbar but keep functionality for a cleaner look */
+@media (min-width: 1800px) {
+  .stage-container::-webkit-scrollbar,
+  .content-wrapper::-webkit-scrollbar,
+  .row::-webkit-scrollbar,
+  .card-row::-webkit-scrollbar {
+    height: 0;
+    display: none;
+  }
+}
+
+/* Fix width issues on page-specific elements */
+.stage-column {
+  min-width: 325px; /* Prevent shrinking */
+  width: 325px;
+  flex: 0 0 auto;
+}
+
+.content-wrapper article {
+  min-width: 410px; /* Ensure consistent width */
+  flex: 0 0 auto;
+}
+
+.card-row .card {
+  min-width: 325px; /* Minimum width for cards */
+  flex: 0 0 auto;
+}
+
+/* Make sure elements maintain correct spacing */
+.stage-container > img[alt="chevron"] {
+  flex: 0 0 auto;
+  margin: 0 10px;
+}
+
+/* Restore the original header justification with locale switch in top right */
+
+/* Page header styling for proper justification */
+.page-header {
+  width: 100%; /* Full width */
+  display: flex;
+  justify-content: space-between; /* Push content to opposite ends */
+  align-items: flex-start; /* Align to top */
+  margin-bottom: 60px;
+  position: relative; /* For positioning the locale switch */
+}
+
+/* Header text stays left-aligned */
+.page-header .left {
+  text-align: left;
+  max-width: 70%; /* Prevent overlap with locale switch */
+}
+
+/* Position locale switch in the top right */
+.page-header .switch,
+.page-header LocaleSwitch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+}
+
+/* Handle locale switch specifically for flex layouts */
+.flex-row .switch {
+  position: relative; /* Reset for flex layouts that need it */
+  margin-left: auto; /* Push to the right */
+}
+
+/* Ensure locale switch is properly visible */
+.switch {
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+/* For page 2 header specifically */
+.centered-wrapper .page-header {
+  /* These styles specifically target page 2 within the centered wrapper */
+  align-items: flex-start;
+}
+
+/* Progress bar container with justify-between */
+.progress-bar-container {
+  width: 100%;
+  margin: 20px 0 0 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between; /* Space between progress bar and button */
+  align-items: flex-start; /* Align to top */
+}
+
+/* Progress bar takes only the space it needs */
+.progress-bar {
+  margin: 0; /* Remove the negative margin */
+  display: flex;
+  flex-grow: 0; /* Don't grow to fill space */
+  flex-shrink: 0; /* Don't shrink */
+  justify-content: flex-start; /* Left justify the circles */
+  align-items: center;
+  position: relative;
+  width: auto; /* Only take needed width */
+}
+
+/* Calculate button stays on the right */
+.calculate-button {
+  margin-left: auto; /* Push to right */
+  flex-shrink: 0; /* Don't shrink */
+}
+
