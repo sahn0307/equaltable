@@ -29,46 +29,30 @@ export default function ProcessingStage({
     }));
   };
 
-  // Calculate monthly emissions
-  useEffect(() => {
-    const {
-      roasterType,
-      roasterPower = 0,
-      gasConsumption = 0,
-      usageTime = 0,
-      productionQuantity = 1,
-      smokeEliminator,
-      smokeEliminatorPowerConsumption = 0,
-    } = processingData;
+ // Calculate monthly emissions
+useEffect(() => {
+  const {
+    gasConsumption = 0,             // A
+    usageTime = 0,                  // C
+    productionQuantity = 1,         // D (avoid division by 0)
+    smokeEliminatorPowerConsumption = 0, // E
+  } = processingData;
 
-    let emissions = 0;
+  const EF = 0.4951; // Emission Factor for electricity
+  const GAS_EF = 1.57794; // Emission Factor for gas
+  let emissions = 0;
 
-    if (roasterType === 'electric') {
-      if (productionQuantity > 0) {
-        emissions =
-          ((roasterPower || 0) + (smokeEliminatorPowerConsumption || 0)) *
-          (usageTime || 0) *
-          0.4951 /
-          productionQuantity;
-      }
-    } else if (roasterType === 'gas') {
-      let electricPart = 0;
-      let gasPart = 0;
+  if (productionQuantity > 0) {
+    emissions =
+      (((usageTime + smokeEliminatorPowerConsumption) * EF) / productionQuantity) +
+      (gasConsumption * GAS_EF);
+  } else {
+    emissions = gasConsumption * GAS_EF; // Fallback to gas-only emissions
+  }
 
-      if (productionQuantity > 0) {
-        electricPart =
-          ((roasterPower || 0) + (smokeEliminatorPowerConsumption || 0)) *
-          (usageTime || 0) *
-          0.4951 /
-          productionQuantity;
-      }
-      gasPart = (gasConsumption || 0) * 0.00157794;
+  setMonthlyEmissions(emissions);
+}, [processingData]);
 
-      emissions = electricPart + gasPart;
-    }
-
-    setMonthlyEmissions(emissions);
-  }, [processingData]);
 
   // Check if all required fields are completed
   useEffect(() => {
