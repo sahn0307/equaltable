@@ -1130,43 +1130,69 @@ figure {
 }
 
 
-/* Ensure the page header stays on one line */
+/* Adjust body to remove full-height flex centering */
+body {
+  padding: 40px 0; /* Restore some padding but less than the original 100px */
+  min-height: 100vh;
+  font-family: $font-body;
+  font-weight: $regular;
+  font-size: 17px;
+  color: $mid-grey;
+  background-color: $body-bg;
+  margin: 0;
+  /* Remove the flex properties that were causing vertical centering */
+  display: block;
+}
+
+/* Adjust the centered-wrapper to be horizontally centered but start from top */
+.centered-wrapper {
+  width: 1719px;
+  max-width: 90vw;
+  margin: 0 auto; /* Center horizontally */
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 20px 20px 40px; /* Reduced top padding */
+  box-sizing: border-box;
+  /* Remove height:100vh and justify-content that were causing vertical centering */
+}
+
+/* Keep the locale switch at the top right */
+.flex-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Push to the right */
+  margin-bottom: 30px; /* Space between locale switch and header */
+  position: relative; /* Restore to normal flow */
+  top: auto; /* Remove absolute positioning */
+  right: auto;
+}
+
+/* One-line header styling from before */
 .page1-header h1 {
-  white-space: nowrap; /* Prevents text from wrapping */
-  overflow: hidden; /* Prevents overflow from affecting layout */
-  text-overflow: ellipsis; /* Shows ellipsis if text is too long */
-  max-width: 100%; /* Ensures it doesn't overflow its container */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
   font-size: 45px;
-  line-height: 1.2; /* Reduced from 2 to keep it compact */
+  line-height: 1.2;
   font-weight: $medium;
   color: $dk-grey;
 }
 
-/* Add responsive font sizing for very small screens */
-@media (max-width: 768px) {
-  .page1-header h1 {
-    font-size: 36px; /* Smaller font for small screens */
-  }
-}
-
-/* Make sure the page1-header container doesn't force wrapping */
+/* Keep page header centered */
 .page1-header {
-  line-height: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 49px;
   text-align: center;
-  max-width: 90%; /* Adjusted from fixed 800px to be percentage-based */
+  max-width: 90%;
   width: 100%;
 }
 
-/* Adjust the centered-wrapper to prioritize header visibility */
-.centered-wrapper {
-  width: 1719px;
-  max-width: 90vw;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  padding: 40px 20px; /* Added horizontal padding */
-  box-sizing: border-box;
+/* Data consent keeps bottom spacing */
+.data-consent {
+  width: 694px;
+  max-width: 90%;
+  margin-top: 40px; /* Fixed margin instead of auto */
+  margin-bottom: 40px;
 }
