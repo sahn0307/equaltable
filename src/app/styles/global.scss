@@ -1128,3 +1128,45 @@ figure {
     font-size: 15px;
   }
 }
+
+
+/* Ensure the page header stays on one line */
+.page1-header h1 {
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Prevents overflow from affecting layout */
+  text-overflow: ellipsis; /* Shows ellipsis if text is too long */
+  max-width: 100%; /* Ensures it doesn't overflow its container */
+  font-size: 45px;
+  line-height: 1.2; /* Reduced from 2 to keep it compact */
+  font-weight: $medium;
+  color: $dk-grey;
+}
+
+/* Add responsive font sizing for very small screens */
+@media (max-width: 768px) {
+  .page1-header h1 {
+    font-size: 36px; /* Smaller font for small screens */
+  }
+}
+
+/* Make sure the page1-header container doesn't force wrapping */
+.page1-header {
+  line-height: 50px;
+  margin-bottom: 30px;
+  text-align: center;
+  max-width: 90%; /* Adjusted from fixed 800px to be percentage-based */
+  width: 100%;
+}
+
+/* Adjust the centered-wrapper to prioritize header visibility */
+.centered-wrapper {
+  width: 1719px;
+  max-width: 90vw;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 40px 20px; /* Added horizontal padding */
+  box-sizing: border-box;
+}
