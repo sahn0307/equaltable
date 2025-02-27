@@ -148,15 +148,13 @@ export default function Page1() {
       </form>
 
       <div className="data-consent">
-        <div className="row">
-          <p className="medium title">{t('data-consent-title')}</p>
-          <div className="row">
-            <input type="checkbox" checked={dataConsent} onChange={handleConsentChange} />
-            <label>{t('data-consent')}</label>
-          </div>
-        </div>
-        <p className="small">{t('data-consent-desc')}</p>
-      </div>
+  <div className="row">
+    <p className="medium title">{t('data-consent-title')}</p>
+    <input type="checkbox" checked={dataConsent} onChange={handleConsentChange} />
+    <label>{t('data-consent')}</label>
+  </div>
+  <p className="small">{t('data-consent-desc')}</p>
+</div>
     </section>
   );
 }

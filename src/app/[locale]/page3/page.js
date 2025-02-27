@@ -30,7 +30,7 @@ export default function Page3() {
   } = useEmissionsContext()
 
   return (
-    <section className='page3-wrapper'>
+    <section className="centered-wrapper">
       <div className='page-header'>
         <div className='left'>
           <h2>{t('p3-header')}</h2>
@@ -72,7 +72,7 @@ export default function Page3() {
           />
         </article>
 
-          {/* COL 2 */}
+        {/* COL 2 */}
         <article className='card'>
           <div className='graph-content'>
             <h5>{t.rich('col2-h', { br: () => <br /> })}</h5>
