@@ -70,7 +70,6 @@ p {
   flex-wrap: nowrap;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 // Common Styles for Stage Components
@@ -98,7 +97,7 @@ p {
 }
 
 .scroll {
-  flex-grow: 1;
+
   max-height: 500px;
   overflow-y: scroll;
   padding-left: 2px;
@@ -141,7 +140,6 @@ p {
   margin-bottom: 20px;
   .question-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
       .radio-group {
         margin-top: 0;
@@ -284,8 +282,7 @@ input[type="radio"]:checked::before {
 .progress-bar {
   margin: 0 -100px 20px 0;
   display: flex;
-  flex-grow: 1;
-  justify-content: space-between;
+  
   align-items: center;
   position: relative;
 }
@@ -574,23 +571,9 @@ h1 {
 }
 
 // page 4
-.page-wrapper {
-  display: flex;
-  flex-flow: column nowrap;
-  .page-header {
-    margin-bottom: 60px;
-  }
-}
-.row {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: baseline;
-}
+
 .col {
   width: 325px;
-  display: flex;
-  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   .stage-title {
@@ -638,7 +621,6 @@ h1 {
       line-height: 1.4;
     }
     .scroll-card {
-      flex-grow: 1;
       padding-right: 10px;
       overflow-y: scroll;
     }
@@ -689,6 +671,7 @@ h1 {
   margin-right: 0;
 }
 .card-div {
+  width: fill;
   background: $text;
   height: 25.3px;
   margin: 13px 0;
@@ -697,7 +680,8 @@ h1 {
   color: $white;
   border-radius: 6px;
   text-align: center;
-  align-content: center;
+  align-content: center ;
+  
 }
 
 button {
@@ -798,7 +782,7 @@ input[type="number"]::-webkit-outer-spin-button {
   .row-wrapper {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    
     align-items: flex-end;
     img {
       position: relative;
@@ -829,7 +813,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .line-graph-group {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  
   
 }
 .footnote-wrapper {
@@ -839,7 +823,7 @@ input[type="number"]::-webkit-outer-spin-button {
   display: flex;
   gap: 27px;
   flex-direction: row;
-  justify-content: space-between;
+  
 }
 .square {
   width: 198px;
@@ -847,7 +831,7 @@ input[type="number"]::-webkit-outer-spin-button {
   padding: 30px 22px 30px 22px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* This pushes content to the edges */
+   /* This pushes content to the edges */
   
   p {
     margin-top: 0; /* Remove the top margin */
@@ -923,7 +907,7 @@ input[type="number"]::-webkit-outer-spin-button {
   padding: 28px 30px;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
+  
 }
 .p4-accent {
   padding: 28px 41px 25px 29px;
@@ -934,7 +918,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-top: -18px;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  
   align-items: flex-end;
   p {
     color: $white;
@@ -987,7 +971,7 @@ figure {
   margin-bottom: 14px;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  
   align-items: center;
   span {
     font-size: 12px;
@@ -1045,7 +1029,7 @@ figure {
 .row, .card-row {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  
   align-items: baseline;
 }
 
@@ -1093,7 +1077,7 @@ figure {
 
 .content-wrapper {
   display: flex;
-  align-items: stretch;
+
 
   article {
     display: flex;
@@ -1229,7 +1213,7 @@ body {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
+  
   overflow-x: auto; /* Add horizontal scrolling if needed */
   padding-bottom: 20px; /* Space for scrollbar */
 }
@@ -1250,7 +1234,7 @@ body {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  
   align-items: baseline;
   overflow-x: auto; /* Add horizontal scrolling if needed */
   padding-bottom: 20px; /* Space for scrollbar */
@@ -1320,7 +1304,7 @@ body {
 .page-header {
   width: 100%; /* Full width */
   display: flex;
-  justify-content: space-between; /* Push content to opposite ends */
+   /* Push content to opposite ends */
   align-items: flex-start; /* Align to top */
   margin-bottom: 60px;
   position: relative; /* For positioning the locale switch */
@@ -1364,7 +1348,7 @@ body {
   margin: 20px 0 0 0;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between; /* Space between progress bar and button */
+   /* Space between progress bar and button */
   align-items: flex-start; /* Align to top */
 }
 
