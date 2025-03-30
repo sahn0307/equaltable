@@ -108,10 +108,20 @@ export const EmissionsProvider = ({ children }) => {
     let processingPerKg = 0;
   
     if (processingProductionQty > 0) {
-      processingPerKg =
-        (((processingUsageTime + processingSmokePower) * EF) /
-          processingProductionQty) +
-        (processingGasConsumption * GAS_EF);
+      const processingRoasterPower = processingData.roasterPower || 0; // A
+const roasterType = processingData.roasterType || 'electric';
+
+const electricEmissions = ((processingRoasterPower + processingSmokePower) * processingUsageTime * EF) / processingProductionQty;
+const gasEmissions = processingGasConsumption * GAS_EF;
+
+if (processingProductionQty > 0) {
+  processingPerKg =
+    roasterType === 'electric'
+      ? electricEmissions
+      : electricEmissions + gasEmissions;
+} else {
+  processingPerKg = roasterType === 'gas' ? gasEmissions : 0;
+}
     } else {
       processingPerKg = processingGasConsumption * GAS_EF; // Gas-only fallback
     }

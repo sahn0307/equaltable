@@ -32,24 +32,30 @@ export default function ProcessingStage({
  // Calculate monthly emissions
 useEffect(() => {
   const {
-    gasConsumption = 0,             // A
+    roasterPower = 0,                // A (was missing!)
+    gasConsumption = 0,             // B
     usageTime = 0,                  // C
-    productionQuantity = 1,         // D (avoid division by 0)
+    productionQuantity = 1,         // D
     smokeEliminatorPowerConsumption = 0, // E
+    roasterType,
   } = processingData;
-
-  const EF = 0.4951; // Emission Factor for electricity
-  const GAS_EF = 1.57794; // Emission Factor for gas
+  
+  const EF = 0.4951;
+  const GAS_EF = 1.57794;
   let emissions = 0;
-
+  
   if (productionQuantity > 0) {
+    const electricEmissions = ((roasterPower + smokeEliminatorPowerConsumption) * usageTime * EF) / productionQuantity;
+    const gasEmissions = (gasConsumption * GAS_EF);
+  
     emissions =
-      (((usageTime + smokeEliminatorPowerConsumption) * EF) / productionQuantity) +
-      (gasConsumption * GAS_EF);
+      roasterType === 'electric'
+        ? electricEmissions
+        : electricEmissions + gasEmissions;
   } else {
-    emissions = gasConsumption * GAS_EF; // Fallback to gas-only emissions
+    emissions = roasterType === 'gas' ? gasConsumption * GAS_EF : 0;
   }
-
+  
   setMonthlyEmissions(emissions);
 }, [processingData]);
 
