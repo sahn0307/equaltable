@@ -870,7 +870,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
     font-weight: $medium;
     color: $dk-grey;
-    text-align: left;
+    text-align: center;
   }
   .key {
     width: 350px;
@@ -879,6 +879,7 @@ input[type="number"]::-webkit-outer-spin-button {
     border-bottom: 1px solid $hr;
     .p-style {
       font-size: 15px;
+      text-align: left;
       
       color: $text;
     }
