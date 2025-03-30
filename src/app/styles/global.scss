@@ -522,8 +522,8 @@ h1 {
   .row {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: center; /* Center justify the row content */
-    align-items: center;
+    justify-content: left; /* Center justify the row content */
+    align-items: left;
   }
   
   .title {
