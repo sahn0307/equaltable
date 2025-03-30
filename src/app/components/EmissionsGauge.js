@@ -30,7 +30,7 @@ const EmissionsGauge = ({ chevronImage }) => {
 
   return (
     <div className='col1-gauge' style={{ textAlign: 'center' }}>
-      <h5>{t('col1-2-h')}</h5>
+      <h5>{t('col1-3-h')}</h5>
       <figure>
         <svg viewBox='0 0 326 169' xmlns='http://www.w3.org/2000/svg' fillRule='evenodd' clipRule='evenodd' strokeLinejoin='round' strokeMiterlimit='2'>
           {/* Static arc */}
