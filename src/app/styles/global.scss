@@ -671,7 +671,7 @@ h1 {
   margin-right: 0;
 }
 .card-div {
-  width: fill;
+  width: 1700px;
   background: $text;
   height: 25.3px;
   margin: 13px 0;
@@ -680,7 +680,7 @@ h1 {
   color: $white;
   border-radius: 6px;
   text-align: center;
-  align-content: center ;
+  align-content: center;
   
 }
 
@@ -782,7 +782,7 @@ input[type="number"]::-webkit-outer-spin-button {
   .row-wrapper {
     display: flex;
     flex-flow: row nowrap;
-    
+    justify-content: space-between;
     align-items: flex-end;
     img {
       position: relative;
@@ -918,7 +918,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-top: -18px;
   display: flex;
   flex-flow: row nowrap;
-  
+  justify-content: space-between;
   align-items: flex-end;
   p {
     color: $white;
@@ -1231,9 +1231,7 @@ body {
 
 /* Page 4 row and card-row handling */
 .row, .card-row {
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
+
   
   align-items: baseline;
   overflow-x: auto; /* Add horizontal scrolling if needed */
