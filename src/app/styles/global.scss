@@ -848,7 +848,7 @@ input[type="number"]::-webkit-outer-spin-button {
   background: $white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   .grade {
-    margin-bottom: 9px;
+    margin-bottom: 0px;
     line-height: 20px;
     font-size: 15px;
 
@@ -868,12 +868,13 @@ input[type="number"]::-webkit-outer-spin-button {
       color: $text;
     }
     .k-title {
-      margin: 0px 0 10px 10px;
+      margin: 15px 0 10px 10px;
       font-size: 15 px;
       font-weight: $bold;
       text-align: center;
     }
     .key-text {
+      margin-top: 15px;
       margin-bottom: 15px;
     }
     .key-row {
@@ -1011,7 +1012,7 @@ figure {
 }
 
 .k-title {
-  font-size: 12px;
+  font-size: 15px;
   font-weight: $bold;
 }
 
