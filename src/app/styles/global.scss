@@ -1,1370 +1,1368 @@
-/* Typography*/
-$font-body:  "Pretendard", sans-serif;
-$light: 300;
-$regular: 400;
-$medium: 500;
-$bold: 700;
+  /* Typography*/
+  $font-body:  "Pretendard", sans-serif;
+  $light: 300;
+  $regular: 400;
+  $medium: 500;
+  $bold: 700;
 
-/* Palette */
-$white: #fff;
-$body-bg: #F1F3F2;
-$hr: #E6E9F4;
-$lt-grey: #F1F3F2;
-$grey-outline: #D7DBEC;
-$grey-bg: #D7D8D8;
-$mid-grey: #707070;
-$text: #7E7F81;
-$form-title: #131523;
-$dk-grey: #000002;
-$accent: #D16E11;
-$accent-bright: #FE6400;
+  /* Palette */
+  $white: #fff;
+  $body-bg: #F1F3F2;
+  $hr: #E6E9F4;
+  $lt-grey: #F1F3F2;
+  $grey-outline: #D7DBEC;
+  $grey-bg: #D7D8D8;
+  $mid-grey: #707070;
+  $text: #7E7F81;
+  $form-title: #131523;
+  $dk-grey: #000002;
+  $accent: #D16E11;
+  $accent-bright: #FE6400;
 
-// Reset and Global Styling
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  padding: 100px;
-  font-family: $font-body;
-  font-weight: $regular;
-  font-size: 17px;
-  color: $mid-grey;
-  background-color: $body-bg;
-}
-
-h2 {
-  font-weight: bold;
-  font-size: 30px;
-  line-height: 1.2;
-  margin-bottom: 14px;
-}
-h3 {
-  margin-bottom: 41px;
-  top: 0;
-  color: $form-title;
-  font-size: 18px;
-  font-weight: $medium;
-  position: static;
-  z-index: 10;
-}
-h3.completed {
-  color: $accent;
-}
-p {
-  color: $mid-grey;
-}
-
-// Page 2
-.page-header {
-  display: flex;
-  justify-content:space-between;
-}
-
-.stage-container {
-  margin-top: 23px;
-  flex-wrap: nowrap;
-  display: flex;
-  align-items: center;
-}
-
-// Common Styles for Stage Components
-.stage-column {
-  height: 725px;
-  width: 325px;
-  margin-bottom: 20px;
-  padding: 36px 20px 33px 28px;
-  background: $white;
-  display: flex;
-  flex-flow: column nowrap;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
-  position: relative;
-  flex: 1;
-  .footnote {
-    margin-top: 21px;
-    line-height: 15px;
-    font-size: 11px;
-    color: $dk-grey;
-    p {
-      color: $dk-grey;
-    }
+  // Reset and Global Styling
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
-}
 
-.scroll {
-
-  max-height: 500px;
-  overflow-y: scroll;
-  padding-left: 2px;
-  padding-right: 10px;
-}
-/* Style the scrollbar for WebKit browsers */
-.scroll::-webkit-scrollbar {
-  width: 3px;
-}
-.scroll::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-.scroll::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 3px;
-}
-.scroll::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-/* Style the scrollbar for Firefox */
-.scroll {
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
-}
-
-.bold {
-  font-weight: $bold;
-}
-.medium {
-  font-weight: $medium;
-}
-
-.question-container {
-  border-bottom: 1.4px solid $hr;
-  margin-bottom: 30px;
-  padding-bottom: 10px;
-}
-
-.question-group {
-  margin-bottom: 20px;
-  .question-row {
-    display: flex;
-    align-items: center;
-      .radio-group {
-        margin-top: 0;
-      }
-  }
-  label {
-    margin-bottom: 7px;
-    font-size: 12px;
-    font-weight: $medium;
-    color: $dk-grey;
-    line-height: 1;
-  }
-  input[type="number"],
-  input[type="text"],
-  select {
-    height: 47px;
-    width: 240px;
-    margin-top: 5px;
-    padding: 13px 15px 11px 15px;
-    color: $text;
-    font-size: 20px;
-    text-align: right;
-    background-color: $lt-grey;
-    box-shadow: inset 0 0 3px #ccc;
-    border-radius: 4px;
-    border: none;
-  }
-  input::placeholder {
-    color: $text;
-    font-size: 20px;
-  }
-  .row-group {
-    display: inline-flex;
-    flex-flow: row nowrap;
-    align-items: flex-end;
-    justify-content: center;
-  }
-  .unit {
-    margin-left: 8px;
-    padding-bottom: 3px;
-    font-size: 12px;
-    color: $text;
-  }
-  .radio-group {
-    margin-top: 10px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    label {
-      margin-right: 10px;
-      display: flex;
-      align-items: center;
-    }
-    .trim-label {
-      margin-right: 4px;
-    }
-    input {
-      margin-right: 5px;
-      accent-color: $accent-bright;
-    }
-    .trim {
-      margin-right: 4px;
-    }
-  }
-  .trim-row {
-    display: -webkit-box;
-  }
-}
-
-input[type="radio"] {
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: #fff;
-  margin: 0;
-  width: 10px;
-  height: 10px;
-  font-size: 12px;
-  font-weight: $regular;
-  color: $dk-grey;
-  border: .5px solid $text;
-  border-radius: 50%;
-  display: grid;
-  place-content: center;
-}
-input[type="radio"]::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  transform: scale(0);
-  transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em $accent-bright;
-}
-input[type="radio"]:checked::before {
-  transform: scale(1);
-}
-
-.external-link {
-  padding: 10px 8px;
-  color: $text;
-  text-decoration: none;
-  font-size: 10px;
-  font-weight: $bold;
-  background: $white;
-  border: 1px solid $lt-grey;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-// Carbon Summary
-.carbon-summary {
-  border-top: 1.4px solid $hr;
-  width: 270px;
-  padding-top: 32px;
-  padding-bottom: 32px;
-  align-items: flex-end;
-  position: absolute;
-  bottom: 0;
-  z-index: 10;
-  h4 {
-    margin-bottom: 5px;
-    font-size: 12px;
+  body {
+    padding: 100px;
+    font-family: $font-body;
     font-weight: $regular;
-    color: $dk-grey;
+    font-size: 17px;
+    color: $mid-grey;
+    background-color: $body-bg;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  h3 {
+    margin-bottom: 41px;
+    top: 0;
+    color: $form-title;
+    font-size: 18px;
+    font-weight: $medium;
+    position: static;
+    z-index: 10;
+  }
+  h3.completed {
+    color: $accent;
   }
   p {
-    font-size: 28px;
-    font-weight: $medium;
-    color: $form-title;
+    color: $mid-grey;
   }
-}
 
-// Progress Steps
-.progress-bar-container {
-  margin: 20px 0 0 0;
-  display: flex;
-  flex-flow: row nowrap;
-}
-.progress-bar {
-  margin: 0 -100px 20px 0;
-  display: flex;
-  
-  align-items: center;
-  position: relative;
-}
-.progress-step {
-  height: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  position: relative;
-  flex: 1;
-}
+  // Page 2
+  .page-header {
+    display: flex;
+    justify-content:space-between;
+  }
 
-.circle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: $white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: $light;
-  color: $accent;
-  z-index: 1;
-}
-.circle.completed {
-  background-color: $accent;
-  color: $white;
-}
+  .stage-container {
+    margin-top: 23px;
+    flex-wrap: nowrap;
+    display: flex;
+    align-items: center;
+  }
 
-.label {
-  margin-top: 10px;
-  width: 150px;
-  text-align: left;
-  color: $text;
-  font-size: 12px;
-}
-.label.completed {
-  color: $accent;
-}
-
-.line {
-  height: 2px;
-  width: calc(100% - 15px);
-  top: 22%;
-  transform: translateX(18px);
-  background-color: $white;
-  position: absolute;
-  z-index: 0;
-}
-.line.completed {
-  background-color: $accent;
-}
-
-.calculate-button {
-  height: 60px;
-  max-width: 325px;
-  padding: 12px 40px;
-  text-align: left;
-  text-decoration: none;
-  font-weight: $medium;
-  font-size: 16px;
-  color: $white;
-  display: flex;
-  background-color: $accent;
-  flex-flow: row nowrap;
-  align-items: center;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  &:hover {
-    background-color: $accent-bright;
-  }
-  span {
-    margin-right: 8px;
-  }
-}
-.calculate-button.disabled {
-  opacity: 0.6;
-  background-color: $text;
-  cursor: not-allowed;
-}
-
-// page 1
-.centered-wrapper {
-  width: 1719px;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-}
-.flex-row {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-.brand-wrapper {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  margin-right: auto;
-  .brand-logo {
-    margin-right: 9px;
-  }
-  .brand-name {
-    font-weight: 900;
-    font-size: 24px;
-  }
-}
-.progress-static {
-  width: 344px;
-  height: 36px;
-  margin: 68px 0 102px 0;
-  display: flex;
-  flex-flow: row nowrap;
-  .progress-bar {
-    align-items: baseline;
-  }
-}
-.page1-header {
-  margin-bottom: 49px;
-  text-align: center;
-}
-h1 {
-  font-size: 45px;
-  font-weight: $medium;
-  color: $dk-grey;
-} 
-.step1 {
-  input[type="number"],
-  input[type="text"],
-  select {
-    width: 535px;
-    height: 73px;
-    margin-top: 0;
-    padding: 22px 36px 20px 0;
-    color: $text;
-    font-size: 45px;
-    text-align: right;
-    background-color: $white;
-    box-shadow: inset 0 0 3px #ccc;
-    border-radius: 4px;
-    border: none;
-  }
-  input::placeholder {
-    color: $text;
-  }
-  .unit {
-    font-size: 20px;
-  }
-}
-.button-group {
-  margin-bottom: 52px;
-  width: 544px;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  .p1-button {
-    width: 250px;
-    height: 280px;
-    padding: 22px 18px 17px 18px;
+  // Common Styles for Stage Components
+  .stage-column {
+    height: 725px;
+    width: 325px;
+    margin-bottom: 20px;
+    padding: 36px 20px 33px 28px;
+    background: $white;
     display: flex;
     flex-flow: column nowrap;
-    align-items: flex-start;
-    text-align: left;
-    background: $white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    border-radius: 6px;
+    border-radius: 8px;
     position: relative;
+    flex: 1;
+    .footnote {
+      margin-top: 21px;
+      line-height: 15px;
+      font-size: 11px;
+      color: $dk-grey;
+      p {
+        color: $dk-grey;
+      }
+    }
   }
-  .b1 {
-    padding-top: 6px;
-  }
-  .bottom {
-    margin: 0 11px 17px 0;
-    position: absolute;
-    bottom: 0;
-    align-items: flex-end;
-  }
-  .title-group {
-    margin-bottom: 18px;
-  }
-  .title {
-    font-size: 18px;
-    color: $form-title;
-    line-height: 1.2;
-  }
-  .accent {
-    color: $accent;
-  }
-  .small {
-    font-size: 14px;
-    line-height: 20px;
-    color: $text;
-  }
-  .row {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: baseline;
-  }
-}
-.disabled-link {
-  cursor: not-allowed;
-}
-.p1-button.disabled {
-  cursor: not-allowed;
-}
 
-.button-group {
-  img {
-    position: relative;
-    display: block;
-    height: auto;
-    &.b1 {
-      max-width: 45px;
-    }
-    &.b2 {
-      max-width: 76px;
-    }
-  }
-}
+  .scroll {
 
-.data-consent {
-  margin-bottom: 79px;
-  padding: 15px 17px;
-  color: $dk-grey;
-  background: $grey-bg;
-  border-radius: 4px;
-  
-  p {
-    color: $dk-grey;
+    max-height: 500px;
+    overflow-y: scroll;
+    padding-left: 2px;
+    padding-right: 10px;
   }
-  
-  .row {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: left; /* Center justify the row content */
-    align-items: left;
-  }
-  
-  .title {
-    font-size: 18px;
-  }
-  
-  input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 17px;
-    height: 17px;
-    margin: 0 10px 0 13px;
-    color: $accent;
-    font-size: 1.2em;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    background: $white;
-    border-radius: 3.5px;
-    border: 3px solid $white;
-    position: relative;
-  }
-  
-  input[type="checkbox"]::before {
-    content: "x";
-    position: absolute;
-    top: -6.5px;
-    visibility: hidden;
-  }
-  
-  input[type="checkbox"]:checked::before {
-    visibility: visible;
-  }
-  
-  label {
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-  
-  .small {
-    margin-top: 8px;
-    font-size: 14px;
-    text-align: center; /* Center the small text below */
-  }
-}
-
-// page 4
-
-.col {
-  width: 325px;
-  justify-content: center;
-  align-items: center;
-  .stage-title {
-    margin: 12px 0 13px 0;
-    color: $form-title;
-    font-size: 18px;
-  }
-  .bar-circle {
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    background: $white;
-    z-index: 1;
-  }
-}
-.psudo-progress {
-  .bar {
-    margin: 0;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-    .bar-line {
-      width: 100%;
-      height: 2px;
-      background: $white;
-      position: absolute;
-      top: -9px;
-      z-index: 0;
-    }
-  }
-}
-.card-row {
-  .card {
-    margin-right: 24px;
-    padding: 25px;
-    width: 325px;
-    background: $white;
-    border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    p {
-      font-size: 12px;
-      color: $text;
-      line-height: 1.4;
-    }
-    .scroll-card {
-      padding-right: 10px;
-      overflow-y: scroll;
-    }
-    /* Style the scrollbar for WebKit browsers */
-  .scroll-card::-webkit-scrollbar {
+  /* Style the scrollbar for WebKit browsers */
+  .scroll::-webkit-scrollbar {
     width: 3px;
   }
-  .scroll-card::-webkit-scrollbar-track {
+  .scroll::-webkit-scrollbar-track {
     background: #f1f1f1;
   }
-  .scroll-card::-webkit-scrollbar-thumb {
+  .scroll::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 3px;
   }
-  .scroll-card::-webkit-scrollbar-thumb:hover {
+  .scroll::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
   /* Style the scrollbar for Firefox */
-  .scroll-card{
+  .scroll {
     scrollbar-width: thin;
     scrollbar-color: #888 #f1f1f1;
   }
-  }
-  .h150 {
-    height: 150px;
-    padding-top: 22px;
-    .card-title {
-      margin-bottom: 11px;
-      font-size: 17px;
-      font-weight: $bold;
-      color: $dk-grey;
-      line-height: 1.3;
-    }
-    span {
-      color: $accent;
-    }
-    .txt {
-      height: 57px;
-    }
-  }
-  .h180 {
-    margin-top: 23px;
-    padding-top: 41px;
-    height: 180px;
-  }
-}
-.card:last-of-type {
-  margin-right: 0;
-}
-.card-div {
-  width: 1700px;
-  background: $text;
-  height: 25.3px;
-  margin: 13px 0;
-  font-size: 12px;
-  font-weight: $medium;
-  color: $white;
-  border-radius: 6px;
-  text-align: center;
-  align-content: center;
-  
-}
 
-button {
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-/* Remove spinners from number input fields */
-input[type="number"] {
-  -moz-appearance: textfield; /* Remove for Firefox */
-  -webkit-appearance: none;  /* Remove for Chrome, Safari, Edge */
-  appearance: none;          /* Remove for modern browsers */
-  margin: 0;                 /* Reset margin for consistency */
-}
-
-/* Ensure additional browser-specific styling is removed */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-// LocalSwitch
-.switch {
-  height: 35px;
-  margin-left: auto;
-  text-transform: uppercase;
-  color: $dk-grey;
-  font-size: 12px;
-  flex: 0 0 auto;
-  display: flex;
-  justify-content: flex-end;
-  gap: 4px;
-  background: $grey-outline;
-  border: 3px solid $grey-outline;
-  border-radius: 5px;
-  button {
-    background: $white;
-    padding: 0 5px;
-  }
-  .b1 {
-    width: 76px;
-    text-transform: uppercase;
-    
-  }
-  .b2 {
-    width: 74px;
-    
-  }
-  a {
-    padding: 0 10px;
-    min-width: 57px;
-    max-width: 81px;
-    color: $white;
-    text-decoration: none;
+  .bold {
     font-weight: $bold;
-    text-align: center;
-    align-content: center;
-    background: $accent;
-    border-radius: 4px;
   }
-}
-
-// page 3
-.page3-wrapper {
-  width: flex;
-  display: flex;
-  flex-flow: column nowrap;
-  .page-header {
-    margin-bottom: 45px;
-  }
-  h5 {
-    font-size: 17px;
-    
+  .medium {
     font-weight: $medium;
   }
-}
-.content-wrapper {
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 27px;
-  article {
-    width: 410px;
-    height: 782px;
+
+  .question-container {
+    border-bottom: 1.4px solid $hr;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+  }
+
+  .question-group {
+    margin-bottom: 20px;
+    .question-row {
+      display: flex;
+      align-items: center;
+        .radio-group {
+          margin-top: 0;
+        }
+    }
+    label {
+      margin-bottom: 7px;
+      font-size: 12px;
+      font-weight: $medium;
+      color: $dk-grey;
+      line-height: 1;
+    }
+    input[type="number"],
+    input[type="text"],
+    select {
+      height: 47px;
+      width: 240px;
+      margin-top: 5px;
+      padding: 13px 15px 11px 15px;
+      color: $text;
+      font-size: 20px;
+      text-align: right;
+      background-color: $lt-grey;
+      box-shadow: inset 0 0 3px #ccc;
+      border-radius: 4px;
+      border: none;
+    }
+    input::placeholder {
+      color: $text;
+      font-size: 20px;
+    }
+    .row-group {
+      display: inline-flex;
+      flex-flow: row nowrap;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .unit {
+      margin-left: 8px;
+      padding-bottom: 3px;
+      font-size: 12px;
+      color: $text;
+    }
+    .radio-group {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      label {
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+      }
+      .trim-label {
+        margin-right: 4px;
+      }
+      input {
+        margin-right: 5px;
+        accent-color: $accent-bright;
+      }
+      .trim {
+        margin-right: 4px;
+      }
+    }
+    .trim-row {
+      display: -webkit-box;
+    }
+  }
+
+  input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    width: 10px;
+    height: 10px;
+    font-size: 12px;
+    font-weight: $regular;
+    color: $dk-grey;
+    border: .5px solid $text;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+  }
+  input[type="radio"]::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em $accent-bright;
+  }
+  input[type="radio"]:checked::before {
+    transform: scale(1);
+  }
+
+  .external-link {
+    padding: 10px 8px;
+    color: $text;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: $bold;
+    background: $white;
+    border: 1px solid $lt-grey;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  // Carbon Summary
+  .carbon-summary {
+    border-top: 1.4px solid $hr;
+    width: 270px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    align-items: flex-end;
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    h4 {
+      margin-bottom: 5px;
+      font-size: 12px;
+      font-weight: $regular;
+      color: $dk-grey;
+    }
+    p {
+      font-size: 28px;
+      font-weight: $medium;
+      color: $form-title;
+    }
+  }
+
+  // Progress Steps
+  .progress-bar-container {
+    
+    margin: 20px 0 0 0;
+  }
+  .progress-bar {
+    margin: 0 0px 20px 0;
+    display: flex;
+  min-width: 1450px;
+    
+    align-items: center;
+    position: relative;
+  }
+  .progress-step {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    position: relative;
+    flex: 1;
+  }
+
+  .circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: $light;
+    color: $accent;
+    z-index: 1;
+  }
+  .circle.completed {
+    background-color: $accent;
+    color: $white;
+  }
+
+  .label {
+    margin-top: 10px;
+    width: 150px;
+    text-align: left;
+    color: $text;
+    font-size: 12px;
+  }
+  .label.completed {
+    color: $accent;
+  }
+
+  .line {
+    height: 2px;
+    width: calc(100% - 15px);
+    top: 22%;
+    transform: translateX(18px);
+    background-color: $white;
+    position: absolute;
+    z-index: 0;
+  }
+  .line.completed {
+    background-color: $accent;
+  }
+
+  .calculate-button {
+    height: 60px;
+    min-width: 325px;
+    max-width: 325px;
+    padding: 12px 40px;
+    text-align: left;
+    text-decoration: none;
+    font-weight: $medium;
+    font-size: 16px;
+    color: $white;
+    display: flex;
+    background-color: $accent;
+    flex-flow: row nowrap;
+    align-items: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: $accent-bright;
+    }
+    span {
+      margin-right: 8px;
+    }
+  }
+  .calculate-button.disabled {
+    opacity: 0.6;
+    background-color: $text;
+    cursor: not-allowed;
+  }
+
+  // page 1
+  .centered-wrapper {
+    width: 1719px;
     display: flex;
     flex-flow: column nowrap;
-    gap: 20px;
+    align-items: center;
   }
-}
-.card {
-  padding: 30px 30px;
-  border-radius: 6px;
-  background: $white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  color: $form-title;
-  .row-wrapper {
+  .flex-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .brand-wrapper {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    .brand-logo {
+      margin-right: 9px;
+    }
+    .brand-name {
+      font-weight: 900;
+      font-size: 24px;
+    }
+  }
+  .progress-static {
+    width: 344px;
+    height: 36px;
+    margin: 68px 0 102px 0;
     display: flex;
     flex-flow: row nowrap;
+    .progress-bar {
+      align-items: baseline;
+    }
+  }
+  .page1-header {
+    margin-bottom: 49px;
+    text-align: center;
+  }
+  h1 {
+    font-size: 45px;
+    font-weight: $medium;
+    color: $dk-grey;
+  } 
+  .step1 {
+    input[type="number"],
+    input[type="text"],
+    select {
+      width: 535px;
+      height: 73px;
+      margin-top: 0;
+      padding: 22px 36px 20px 0;
+      color: $text;
+      font-size: 45px;
+      text-align: right;
+      background-color: $white;
+      box-shadow: inset 0 0 3px #ccc;
+      border-radius: 4px;
+      border: none;
+    }
+    input::placeholder {
+      color: $text;
+    }
+    .unit {
+      font-size: 20px;
+    }
+  }
+  .button-group {
+    margin-bottom: 52px;
+    width: 544px;
+    display: flex;
+    flex-wrap: nowrap;
     justify-content: space-between;
-    align-items: flex-end;
+    .p1-button {
+      width: 250px;
+      height: 280px;
+      padding: 22px 18px 17px 18px;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: flex-start;
+      text-align: left;
+      background: $white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      border-radius: 6px;
+      position: relative;
+    }
+    .b1 {
+      padding-top: 6px;
+    }
+    .bottom {
+      margin: 0 11px 17px 0;
+      position: absolute;
+      bottom: 0;
+      align-items: flex-end;
+    }
+    .title-group {
+      margin-bottom: 18px;
+    }
+    .title {
+      font-size: 18px;
+      color: $form-title;
+      line-height: 1.2;
+    }
+    .accent {
+      color: $accent;
+    }
+    .small {
+      font-size: 14px;
+      line-height: 20px;
+      color: $text;
+    }
+    .row {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: baseline;
+    }
+  }
+  .disabled-link {
+    cursor: not-allowed;
+  }
+  .p1-button.disabled {
+    cursor: not-allowed;
+  }
+
+  .button-group {
     img {
       position: relative;
       display: block;
       height: auto;
-    }
-    .four1 {
-      max-width: 90px;
-    }
-    .four3 {
-      max-width: 132.6px;
-    }
-    .four5 {
-      max-width: 94.8px;
+      &.b1 {
+        max-width: 45px;
+      }
+      &.b2 {
+        max-width: 76px;
+      }
     }
   }
-  p {
+
+  .data-consent {
+    margin-bottom: 79px;
+    padding: 15px 17px;
+    color: $dk-grey;
+    background: $grey-bg;
+    border-radius: 4px;
+    
+    p {
+      color: $dk-grey;
+    }
+    
+    .row {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: left; /* Center justify the row content */
+      align-items: left;
+    }
+    
+    .title {
+      font-size: 18px;
+    }
+    
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 17px;
+      height: 17px;
+      margin: 0 10px 0 13px;
+      color: $accent;
+      font-size: 1.2em;
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      background: $white;
+      border-radius: 3.5px;
+      border: 3px solid $white;
+      position: relative;
+    }
+    
+    input[type="checkbox"]::before {
+      content: "x";
+      position: absolute;
+      top: -6.5px;
+      visibility: hidden;
+    }
+    
+    input[type="checkbox"]:checked::before {
+      visibility: visible;
+    }
+    
+    label {
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+    
+    .small {
+      margin-top: 8px;
+      font-size: 14px;
+      text-align: center; /* Center the small text below */
+    }
+  }
+
+  // page 4
+
+  .col {
+    width: 325px;
+    justify-content: center;
+    align-items: center;
+    .stage-title {
+      margin: 12px 0 13px 0;
+      color: $form-title;
+      font-size: 18px;
+    }
+    .bar-circle {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: $white;
+      z-index: 1;
+    }
+  }
+  .psudo-progress {
+    .bar {
+      margin: 0;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      align-items: center;
+      position: relative;
+      .bar-line {
+        width: 100%;
+        height: 2px;
+        background: $white;
+        position: absolute;
+        top: -9px;
+        z-index: 0;
+      }
+    }
+  }
+  .card-row {
+    .card {
+      margin-right: 24px;
+      padding: 25px;
+      width: 325px;
+      background: $white;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      p {
+        font-size: 12px;
+        color: $text;
+        line-height: 1.4;
+      }
+      .scroll-card {
+        padding-right: 10px;
+        overflow-y: scroll;
+      }
+      /* Style the scrollbar for WebKit browsers */
+    .scroll-card::-webkit-scrollbar {
+      width: 3px;
+    }
+    .scroll-card::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    .scroll-card::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 3px;
+    }
+    .scroll-card::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    /* Style the scrollbar for Firefox */
+    .scroll-card{
+      scrollbar-width: thin;
+      scrollbar-color: #888 #f1f1f1;
+    }
+    }
+    .h150 {
+      height: 150px;
+      padding-top: 22px;
+      .card-title {
+        margin-bottom: 11px;
+        font-size: 17px;
+        font-weight: $bold;
+        color: $dk-grey;
+        line-height: 1.3;
+      }
+      span {
+        color: $accent;
+      }
+      .txt {
+        height: 57px;
+      }
+    }
+    .h180 {
+      margin-top: 23px;
+      padding-top: 41px;
+      height: 180px;
+    }
+  }
+  .card:last-of-type {
+    margin-right: 0;
+  }
+  .card-div {
+    width: 1700px;
+    background: $text;
+    height: 25.3px;
+    margin: 13px 0;
+    font-size: 12px;
+    font-weight: $medium;
+    color: $white;
+    border-radius: 6px;
+    text-align: center;
+    align-content: center;
+    
+  }
+
+  button {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Remove spinners from number input fields */
+  input[type="number"] {
+    -moz-appearance: textfield; /* Remove for Firefox */
+    -webkit-appearance: none;  /* Remove for Chrome, Safari, Edge */
+    appearance: none;          /* Remove for modern browsers */
+    margin: 0;                 /* Reset margin for consistency */
+  }
+
+  /* Ensure additional browser-specific styling is removed */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  // LocalSwitch
+  .switch {
+    height: 35px;
+    margin-left: auto;
+    text-transform: uppercase;
+    color: $dk-grey;
+    font-size: 12px;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+    background: $grey-outline;
+    border: 3px solid $grey-outline;
+    border-radius: 5px;
+    button {
+      background: $white;
+      padding: 0 5px;
+    }
+    .b1 {
+      width: 76px;
+      text-transform: uppercase;
+      
+    }
+    .b2 {
+      width: 74px;
+      
+    }
+    a {
+      padding: 0 10px;
+      min-width: 57px;
+      max-width: 81px;
+      color: $white;
+      text-decoration: none;
+      font-weight: $bold;
+      text-align: center;
+      align-content: center;
+      background: $accent;
+      border-radius: 4px;
+    }
+  }
+
+  // page 3
+  .page3-wrapper {
+    width: flex;
+    display: flex;
+    flex-flow: column nowrap;
+    .page-header {
+      margin-bottom: 45px;
+    }
+    h5 {
+      font-size: 17px;
+      
+      font-weight: $medium;
+    }
+  }
+  .content-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 27px;
+    article {
+      width: 410px;
+      height: 782px;
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 20px;
+    }
+  }
+  .card {
+    padding: 30px 30px;
+    border-radius: 6px;
+    background: $white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    color: $form-title;
+    .row-wrapper {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      img {
+        position: relative;
+        display: block;
+        height: auto;
+      }
+      .four1 {
+        max-width: 90px;
+      }
+      .four3 {
+        max-width: 132.6px;
+      }
+      .four5 {
+        max-width: 94.8px;
+      }
+    }
+    p {
+      color: $form-title;
+      font-size: 28px;
+      font-weight: $medium;
+    }
+    .col-footnotes {
+      font-size: 10px;
+      font-weight: $regular;
+      color: $dk-grey;
+    }
+  }
+  .line-graph-group {
+    display: flex;
+    flex-direction: column;
+    
+    
+  }
+  .footnote-wrapper {
+    align-items: flex-end;
+  }
+  .card-row-wrapper {
+    display: flex;
+    gap: 27px;
+    flex-direction: row;
+    
+  }
+  .square {
+    width: 198px;
+    height: 150px;
+    padding: 30px 22px 30px 22px;
+    display: flex;
+    flex-direction: column;
+    /* This pushes content to the edges */
+    
+    p {
+      margin-top: 0; /* Remove the top margin */
+      margin-bottom: 0; /* Ensure no extra space at the bottom */
+    }
+  }
+  .col1-gauge {
+    padding: 35px 0px;
+    height: flex;
+    display: flex;
+    flex-flow: column nowrap;
+    color: $form-title;
+    border-radius: 6px;
+    background: $white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    .grade {
+      margin-bottom: 0px;
+      line-height: 20px;
+      font-size: 15px;
+
+      font-weight: $medium;
+      color: $dk-grey;
+      text-align: center;
+    }
+    .key {
+      width: 360px;
+      align-self: center;
+      border-top: 1px solid $hr;
+      border-bottom: 1px solid $hr;
+      .p-style {
+        font-size: 14px;
+        text-align: left;
+        
+        color: $text;
+      }
+      .k-title {
+        margin: 15px 0 10px 10px;
+        font-size: 15 px;
+        font-weight: $bold;
+        text-align: center;
+      }
+      .key-text {
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+      .key-row {
+        display: flex;
+        flex-flow: row nowrap;
+      }
+      .w84 {
+        display: block;
+        width: 100px;
+      }
+      .w278 {
+        display:block;
+        width: 263px;
+      }
+    }
+    .page-link {
+      margin-top: 20px;
+      a {
+        font-size: 14px;
+        text-decoration: none;
+        color: $accent;
+        cursor: pointer;
+      }
+      img {
+        margin-left: 10px;
+      }
+    }
+  }
+  .h180 {
+    height: 180px;
+    padding: 28px 30px;
+    display: flex;
+    flex-flow: column nowrap;
+    
+  }
+  .p4-accent {
+    padding: 28px 41px 25px 29px;
+    background: $accent;
+    color: $white;
+  }
+  .col4-1 {
+    margin-top: -18px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    p {
+      color: $white;
+      font-size: 28px;
+      font-weight: $medium;
+    }
+  }
+  .font-20 {
+    padding-left: 9px;
+    font-size: 19px;
+    color: $mid-grey;
+  }
+  .col4-3>p {
+    margin-top: 32px;
     color: $form-title;
     font-size: 28px;
     font-weight: $medium;
   }
-  .col-footnotes {
-    font-size: 10px;
-    font-weight: $regular;
-    color: $dk-grey;
-  }
-}
-.line-graph-group {
-  display: flex;
-  flex-direction: column;
-  
-  
-}
-.footnote-wrapper {
-  align-items: flex-end;
-}
-.card-row-wrapper {
-  display: flex;
-  gap: 27px;
-  flex-direction: row;
-  
-}
-.square {
-  width: 198px;
-  height: 150px;
-  padding: 30px 22px 30px 22px;
-  display: flex;
-  flex-direction: column;
-   /* This pushes content to the edges */
-  
-  p {
-    margin-top: 0; /* Remove the top margin */
-    margin-bottom: 0; /* Ensure no extra space at the bottom */
-  }
-}
-.col1-gauge {
-  padding: 35px 0px;
-  height: flex;
-  display: flex;
-  flex-flow: column nowrap;
-  color: $form-title;
-  border-radius: 6px;
-  background: $white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  .grade {
-    margin-bottom: 9px;
-    line-height: 20px;
-    font-size: 15px;
-
-    font-weight: $medium;
-    color: $dk-grey;
-    text-align: center;
-  }
-  .key {
-    width: 360px;
-    align-self: center;
-    border-top: 1px solid $hr;
-    border-bottom: 1px solid $hr;
-    .p-style {
-      font-size: 14px;
-      text-align: left;
-      
-      color: $text;
-    }
-    .k-title {
-      margin: 0px 0 10px 10px;
-      font-size: 15 px;
-      font-weight: $bold;
-      text-align: center;
-    }
-    .key-text {
-      margin-bottom: 15px;
-    }
-    .key-row {
-      display: flex;
-      flex-flow: row nowrap;
-    }
-    .w84 {
-      display: block;
-      width: 100px;
-    }
-    .w278 {
-      display:block;
-      width: 263px;
-    }
-  }
-  .page-link {
-    margin-top: 20px;
-    a {
-      font-size: 14px;
-      text-decoration: none;
-      color: $accent;
-      cursor: pointer;
-    }
-    img {
-      margin-left: 10px;
-    }
-  }
-}
-.h180 {
-  height: 180px;
-  padding: 28px 30px;
-  display: flex;
-  flex-flow: column nowrap;
-  
-}
-.p4-accent {
-  padding: 28px 41px 25px 29px;
-  background: $accent;
-  color: $white;
-}
-.col4-1 {
-  margin-top: -18px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: flex-end;
-  p {
-    color: $white;
-    font-size: 28px;
-    font-weight: $medium;
-  }
-}
-.font-20 {
-  padding-left: 9px;
-  font-size: 19px;
-  color: $mid-grey;
-}
-.col4-3>p {
-  margin-top: 32px;
-  color: $form-title;
-  font-size: 28px;
-  font-weight: $medium;
-}
-.font-12 {
-  padding-left: 9px;
-  font-size: 12px;
-  color: $mid-grey;
-}
-.col4-5 {
-  margin-top: -34px;
-}
-
-figure {
-  width: 330px;
-  height: 175px;
-  margin: 20px 20px 45px 20px;
-  display: block;
-}
-
-.line-graph-wrapper {
-  max-width: 350px;
-}
-.kg {
-  margin-top: 10px;
-  margin-bottom: 81px;
-}
-.line-graph-container {
-  height: 300px;
-  max-height: 265px;
-}
-.graph-index {
-  margin-top: 69px;
-}
-.row-nowrap {
-  margin-bottom: 14px;
-  display: flex;
-  flex-flow: row nowrap;
-  
-  align-items: center;
-  span {
+  .font-12 {
+    padding-left: 9px;
     font-size: 12px;
-    font-weight: 400;
+    color: $mid-grey;
   }
-  .group-container {
+  .col4-5 {
+    margin-top: -34px;
+  }
+
+  figure {
+    width: 330px;
+    height: 175px;
+    margin: 20px 20px 45px 20px;
+    display: block;
+  }
+
+  .line-graph-wrapper {
+    max-width: 350px;
+  }
+  .kg {
+    margin-top: 10px;
+    margin-bottom: 81px;
+  }
+  .line-graph-container {
+    height: 300px;
+    max-height: 265px;
+  }
+  .graph-index {
+    margin-top: 69px;
+  }
+  .row-nowrap {
+    margin-bottom: 14px;
     display: flex;
     flex-flow: row nowrap;
+    
+    align-items: center;
+    span {
+      font-size: 12px;
+      font-weight: 400;
+    }
+    .group-container {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+    }
+  }
+  .row-nowrap:last-of-type {
+    margin-bottom: 0;
+  }
+  .color-chip {
+    margin-right: 20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+  }
+  .justify-right {
+    justify-content: flex-end;
+    font-weight: $bold;
+  }
+  /* Fix inline spacing issue */
+  .row, .bold, .accent {
+    display: inline-block;
+    margin-right: 4px; /* Adjust spacing as needed */
+    letter-spacing: normal;
+    word-spacing: normal;
+  }
+
+  /* Updated global styles - Font size adjustments */
+  .grade {
+    font-size: 12px;
+    font-weight: $medium;
+  }
+
+  .k-title {
+    font-size: 15px;
+    font-weight: $bold;
+  }
+
+  .key .p-style, .key-text {
+    font-size: 12px;
+  }
+
+  /* Targeted wrapper adjustment for EmissionsGauge component only */
+  .col1-gauge {
+    width: 120%; /* adjust as needed, e.g., 360px */
+    max-width: none;
+    overflow-wrap: break-word;
+  }
+  /* Explicitly restoring layout for rows and columns */
+  .row, .card-row {
+    display: flex;
+    flex-flow: row nowrap;
+    
+    align-items: baseline;
+  }
+
+  .col {
+    width: 325px; /* restore explicit width */
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
-}
-.row-nowrap:last-of-type {
-  margin-bottom: 0;
-}
-.color-chip {
-  margin-right: 20px;
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-}
-.justify-right {
-  justify-content: flex-end;
-  font-weight: $bold;
-}
-/* Fix inline spacing issue */
-.row, .bold, .accent {
-  display: inline-block;
-  margin-right: 4px; /* Adjust spacing as needed */
-  letter-spacing: normal;
-  word-spacing: normal;
-}
 
-/* Updated global styles - Font size adjustments */
-.grade {
-  font-size: 12px;
-  font-weight: $medium;
-}
+  .card-row .card {
+    width: 325px; /* explicitly restore card width */
+    margin-right: 24px; /* restores spacing between cards */
+  }
+  .card-row .card:last-of-type {
+    margin-right: 0; /* ensures no margin on last card */
+  }
 
-.k-title {
-  font-size: 12px;
-  font-weight: $bold;
-}
+  .content-wrapper article:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
-.key .p-style, .key-text {
-  font-size: 12px;
-}
+    .card {
+      width: 100%; // ensures all boxes in this column are aligned horizontally
+      box-sizing: border-box;
+    }
 
-/* Targeted wrapper adjustment for EmissionsGauge component only */
-.col1-gauge {
-  width: 120%; /* adjust as needed, e.g., 360px */
-  max-width: none;
-  overflow-wrap: break-word;
-}
-/* Explicitly restoring layout for rows and columns */
-.row, .card-row {
-  display: flex;
-  flex-flow: row nowrap;
-  
-  align-items: baseline;
-}
+    .row-wrapper {
+      display: flex;
+      gap: 20px;
 
-.col {
-  width: 325px; /* restore explicit width */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+      .square {
+        flex: 1;
+        max-width: calc(50% - 10px); // precisely half minus gap for equal width
+      }
+    }
 
-.card-row .card {
-  width: 325px; /* explicitly restore card width */
-  margin-right: 24px; /* restores spacing between cards */
-}
-.card-row .card:last-of-type {
-  margin-right: 0; /* ensures no margin on last card */
-}
+    .col1-gauge {
+      width: 100%; // matches exactly the width of combined boxes above
+      max-width: 100%; // ensures it won't overflow horizontally
+      box-sizing: border-box; // padding is included in total width
+    }
+  }
 
-.content-wrapper article:first-child {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  .content-wrapper {
+    display: flex;
 
-  .card {
-    width: 100%; // ensures all boxes in this column are aligned horizontally
+
+    article {
+      display: flex;
+      flex-direction: column;
+
+      .article-content {
+        flex-grow: 1; // fills remaining height with whitespace
+      }
+    }
+  }
+
+  .graph-content h5 {
+    margin-bottom: 28px;
+  }
+
+
+  .button-group .title-group .title {
+    font-size: 17px; /* Reduced from 18px */
+    line-height: 1.1; /* Slightly tightened line height */
+  }
+
+  /* If needed, you can make it even smaller for very tight spaces */
+  @media screen and (max-width: 1200px) {
+    .button-group .title-group .title {
+      font-size: 15px;
+    }
+  }
+
+
+  /* Adjust body to remove full-height flex centering */
+  body {
+    padding: 40px 0; /* Restore some padding but less than the original 100px */
+    min-height: 100vh;
+    font-family: $font-body;
+    font-weight: $regular;
+    font-size: 17px;
+    color: $mid-grey;
+    background-color: $body-bg;
+    margin: 0;
+    /* Remove the flex properties that were causing vertical centering */
+    display: block;
+  }
+
+  /* Adjust the centered-wrapper to be horizontally centered but start from top */
+  .centered-wrapper {
+    max-width: 100vw;
+    margin: 0 auto; /* Center horizontally */
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 20px 20px 40px; /* Reduced top padding */
+    box-sizing: border-box;
+    /* Remove height:100vh and justify-content that were causing vertical centering */
+  }
+
+  /* Keep the locale switch at the top right */
+  .flex-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Push to the right */
+    margin-bottom: 30px; /* Space between locale switch and header */
+    position: relative; /* Restore to normal flow */
+
+  }
+
+  /* One-line header styling from before */
+  .page1-header h1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    font-size: 45px;
+    line-height: 1.2;
+    font-weight: $medium;
+    color: $dk-grey;
+  }
+
+  /* Keep page header centered */
+  .page1-header {
+    margin-bottom: 49px;
+    text-align: center;
+    max-width: 90%;
+    width: 100%;
+  }
+
+  /* Unified CSS for consistent centered layout across all pages with minimum margins */
+
+  /* Reset body padding for consistency */
+  body {
+    padding: 40px 0;
+    min-height: 100vh;
+    font-family: $font-body;
+    font-weight: $regular;
+    font-size: 17px;
+    color: $mid-grey;
+    background-color: $body-bg;
+    margin: 0;
+  }
+
+  /* Common container for all pages with minimum margins */
+  .centered-wrapper, 
+  .page-wrapper, 
+  .page3-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 50px; /* 100px minimum left/right margins */
     box-sizing: border-box;
   }
 
-  .row-wrapper {
+  .page1-header h1 {
+    margin-bottom: 15px; /* Add 15px of space below the main header */
+  }
+
+  /* Fix horizontal overflow issues for pages 2-4 */
+
+  /* Adjust wrapper containers to handle overflow better */
+  .centered-wrapper, 
+  .page-wrapper, 
+  .page3-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 50px; /* Keep 100px minimum margins */
+    box-sizing: border-box;
+    overflow-x: visible; /* Allow content to be fully visible */
+  }
+
+  /* Ensure stage container doesn't get cut off in page 2 */
+  .stage-container {
+    width: 100%;
+    margin-top: 23px;
     display: flex;
-    gap: 20px;
-
-    .square {
-      flex: 1;
-      max-width: calc(50% - 10px); // precisely half minus gap for equal width
-    }
+    flex-wrap: nowrap;
+    align-items: center;
+    
+    overflow-x: auto; /* Add horizontal scrolling if needed */
+    padding-bottom: 20px; /* Space for scrollbar */
   }
 
-  .col1-gauge {
-    width: 100%; // matches exactly the width of combined boxes above
-    max-width: 100%; // ensures it won't overflow horizontally
-    box-sizing: border-box; // padding is included in total width
-  }
-}
-
-.content-wrapper {
-  display: flex;
-
-
-  article {
+  /* Page 3 content wrapper horizontal handling */
+  .content-wrapper {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-
-    .article-content {
-      flex-grow: 1; // fills remaining height with whitespace
-    }
+    flex-flow: row nowrap;
+    gap: 27px;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    padding-bottom: 20px; /* Space for scrollbar */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   }
-}
 
-.graph-content h5 {
-  margin-bottom: 28px;
-}
+  /* Page 4 row and card-row handling */
+  .row, .card-row {
 
-
-.button-group .title-group .title {
-  font-size: 17px; /* Reduced from 18px */
-  line-height: 1.1; /* Slightly tightened line height */
-}
-
-/* If needed, you can make it even smaller for very tight spaces */
-@media screen and (max-width: 1200px) {
-  .button-group .title-group .title {
-    font-size: 15px;
+    
+    align-items: baseline;
+    overflow-x: auto; /* Add horizontal scrolling if needed */
+    padding-bottom: 20px; /* Space for scrollbar */
   }
-}
 
-
-/* Adjust body to remove full-height flex centering */
-body {
-  padding: 40px 0; /* Restore some padding but less than the original 100px */
-  min-height: 100vh;
-  font-family: $font-body;
-  font-weight: $regular;
-  font-size: 17px;
-  color: $mid-grey;
-  background-color: $body-bg;
-  margin: 0;
-  /* Remove the flex properties that were causing vertical centering */
-  display: block;
-}
-
-/* Adjust the centered-wrapper to be horizontally centered but start from top */
-.centered-wrapper {
-  max-width: 100vw;
-  margin: 0 auto; /* Center horizontally */
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  padding: 20px 20px 40px; /* Reduced top padding */
-  box-sizing: border-box;
-  /* Remove height:100vh and justify-content that were causing vertical centering */
-}
-
-/* Keep the locale switch at the top right */
-.flex-row {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; /* Push to the right */
-  margin-bottom: 30px; /* Space between locale switch and header */
-  position: relative; /* Restore to normal flow */
-  top: auto; /* Remove absolute positioning */
-  right: auto;
-}
-
-/* One-line header styling from before */
-.page1-header h1 {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  font-size: 45px;
-  line-height: 1.2;
-  font-weight: $medium;
-  color: $dk-grey;
-}
-
-/* Keep page header centered */
-.page1-header {
-  margin-bottom: 49px;
-  text-align: center;
-  max-width: 90%;
-  width: 100%;
-}
-
-/* Unified CSS for consistent centered layout across all pages with minimum margins */
-
-/* Reset body padding for consistency */
-body {
-  padding: 40px 0;
-  min-height: 100vh;
-  font-family: $font-body;
-  font-weight: $regular;
-  font-size: 17px;
-  color: $mid-grey;
-  background-color: $body-bg;
-  margin: 0;
-}
-
-/* Common container for all pages with minimum margins */
-.centered-wrapper, 
-.page-wrapper, 
-.page3-wrapper {
-  width: 100%;
-  margin: 0 auto;
-  padding: 40px 50px; /* 100px minimum left/right margins */
-  box-sizing: border-box;
-}
-
-.page1-header h1 {
-  margin-bottom: 15px; /* Add 15px of space below the main header */
-}
-
-/* Fix horizontal overflow issues for pages 2-4 */
-
-/* Adjust wrapper containers to handle overflow better */
-.centered-wrapper, 
-.page-wrapper, 
-.page3-wrapper {
-  width: 100%;
-  margin: 0 auto;
-  padding: 40px 50px; /* Keep 100px minimum margins */
-  box-sizing: border-box;
-  overflow-x: visible; /* Allow content to be fully visible */
-}
-
-/* Ensure stage container doesn't get cut off in page 2 */
-.stage-container {
-  width: 100%;
-  margin-top: 23px;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  
-  overflow-x: auto; /* Add horizontal scrolling if needed */
-  padding-bottom: 20px; /* Space for scrollbar */
-}
-
-/* Page 3 content wrapper horizontal handling */
-.content-wrapper {
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 27px;
-  overflow-x: auto; /* Allow horizontal scrolling */
-  padding-bottom: 20px; /* Space for scrollbar */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-}
-
-/* Page 4 row and card-row handling */
-.row, .card-row {
-
-  
-  align-items: baseline;
-  overflow-x: auto; /* Add horizontal scrolling if needed */
-  padding-bottom: 20px; /* Space for scrollbar */
-}
-
-/* Improve scrollbar appearance */
-.stage-container::-webkit-scrollbar,
-.content-wrapper::-webkit-scrollbar,
-.row::-webkit-scrollbar,
-.card-row::-webkit-scrollbar {
-  height: 8px;
-}
-
-.stage-container::-webkit-scrollbar-track,
-.content-wrapper::-webkit-scrollbar-track,
-.row::-webkit-scrollbar-track,
-.card-row::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-.stage-container::-webkit-scrollbar-thumb,
-.content-wrapper::-webkit-scrollbar-thumb,
-.row::-webkit-scrollbar-thumb,
-.card-row::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 4px;
-}
-
-/* Hide scrollbar but keep functionality for a cleaner look */
-@media (min-width: 1800px) {
+  /* Improve scrollbar appearance */
   .stage-container::-webkit-scrollbar,
   .content-wrapper::-webkit-scrollbar,
   .row::-webkit-scrollbar,
   .card-row::-webkit-scrollbar {
-    height: 0;
-    display: none;
+    height: 8px;
   }
-}
 
-/* Fix width issues on page-specific elements */
-.stage-column {
-  min-width: 325px; /* Prevent shrinking */
-  width: 325px;
-  flex: 0 0 auto;
-}
+  .stage-container::-webkit-scrollbar-track,
+  .content-wrapper::-webkit-scrollbar-track,
+  .row::-webkit-scrollbar-track,
+  .card-row::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
 
-.content-wrapper article {
-  min-width: 410px; /* Ensure consistent width */
-  flex: 0 0 auto;
-}
+  .stage-container::-webkit-scrollbar-thumb,
+  .content-wrapper::-webkit-scrollbar-thumb,
+  .row::-webkit-scrollbar-thumb,
+  .card-row::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+  }
 
-.card-row .card {
-  min-width: 325px; /* Minimum width for cards */
-  flex: 0 0 auto;
-}
+  /* Hide scrollbar but keep functionality for a cleaner look */
+  @media (min-width: 1800px) {
+    .stage-container::-webkit-scrollbar,
+    .content-wrapper::-webkit-scrollbar,
+    .row::-webkit-scrollbar,
+    .card-row::-webkit-scrollbar {
+      height: 0;
+      display: none;
+    }
+  }
 
-/* Make sure elements maintain correct spacing */
-.stage-container > img[alt="chevron"] {
-  flex: 0 0 auto;
-  margin: 0 10px;
-}
+  /* Fix width issues on page-specific elements */
+  .stage-column {
+    min-width: 325px; /* Prevent shrinking */
+    width: 325px;
+    flex: 0 0 auto;
+  }
 
-/* Restore the original header justification with locale switch in top right */
+  .content-wrapper article {
+    min-width: 410px; /* Ensure consistent width */
+    flex: 0 0 auto;
+  }
 
-/* Page header styling for proper justification */
-.page-header {
-  width: 100%; /* Full width */
-  display: flex;
-   /* Push content to opposite ends */
-  align-items: flex-start; /* Align to top */
-  margin-bottom: 60px;
-  position: relative; /* For positioning the locale switch */
-}
+  .card-row .card {
+    min-width: 325px; /* Minimum width for cards */
+    flex: 0 0 auto;
+  }
 
-/* Header text stays left-aligned */
-.page-header .left {
-  text-align: left;
-  max-width: 70%; /* Prevent overlap with locale switch */
-}
+  /* Make sure elements maintain correct spacing */
+  .stage-container > img[alt="chevron"] {
+    flex: 0 0 auto;
+    margin: 0 10px;
+  }
 
-/* Position locale switch in the top right */
-.page-header .switch,
-.page-header LocaleSwitch {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-}
+  /* Restore the original header justification with locale switch in top right */
 
-/* Handle locale switch specifically for flex layouts */
-.flex-row .switch {
-  position: relative; /* Reset for flex layouts that need it */
-  margin-left: auto; /* Push to the right */
-}
+  /* Page header styling for proper justification */
+  .page-header {
+    width: 100%; /* Full width */
+    display: flex;
+    /* Push content to opposite ends */
+    align-items: flex-start; /* Align to top */
+    margin-bottom: 60px;
+    position: relative; /* For positioning the locale switch */
+  }
 
-/* Ensure locale switch is properly visible */
-.switch {
-  z-index: 10; /* Ensure it's above other elements */
-}
+  /* Header text stays left-aligned */
+  .page-header .left {
+    text-align: left;
+    max-width: 70%; /* Prevent overlap with locale switch */
+  }
 
-/* For page 2 header specifically */
-.centered-wrapper .page-header {
-  /* These styles specifically target page 2 within the centered wrapper */
-  align-items: flex-start;
-}
+  /* Position locale switch in the top right */
+  .page-header .switch,
+  .page-header LocaleSwitch {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+  }
 
-/* Progress bar container with justify-between */
-.progress-bar-container {
-  width: 100%;
-  margin: 20px 0 0 0;
-  display: flex;
-  flex-flow: row nowrap;
-   /* Space between progress bar and button */
-  align-items: flex-start; /* Align to top */
-}
+  /* Handle locale switch specifically for flex layouts */
+  .flex-row .switch {
+    position: relative; /* Reset for flex layouts that need it */
+    margin-left: auto; /* Push to the right */
+  }
 
-/* Progress bar takes only the space it needs */
-.progress-bar {
-  margin: 0; /* Remove the negative margin */
-  display: flex;
-  flex-grow: 0; /* Don't grow to fill space */
-  flex-shrink: 0; /* Don't shrink */
-  justify-content: flex-start; /* Left justify the circles */
-  align-items: center;
-  position: relative;
-  width: auto; /* Only take needed width */
-}
+  /* Ensure locale switch is properly visible */
+  .switch {
+    z-index: 10; /* Ensure it's above other elements */
+  }
 
-/* Calculate button stays on the right */
-.calculate-button {
-  margin-left: auto; /* Push to right */
-  flex-shrink: 0; /* Don't shrink */
-}
+  /* For page 2 header specifically */
+  .centered-wrapper .page-header {
+    /* These styles specifically target page 2 within the centered wrapper */
+    align-items: flex-start;
+  }
+
+  /* Progress bar container with justify-between */
+  .progress-bar-container {
+    width: 100%;
+    margin: 20px 0 0 0;
+    display: flex;
+    flex-flow: row nowrap;
+    /* Space between progress bar and button */
+    align-items: flex-start; /* Align to top */
+  }
+
+  /* Progress bar takes only the space it needs */
+  .progress-bar {
+    margin: 0; /* Remove the negative margin */
+    display: flex;
+    flex-grow: 0; /* Don't grow to fill space */
+    flex-shrink: 0; /* Don't shrink */
+    justify-content: flex-start; /* Left justify the circles */
+    align-items: center;
+    position: relative;
+    width: auto; /* Only take needed width */
+  }
+
+  /* Calculate button stays on the right */
+
 

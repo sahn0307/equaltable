@@ -67,6 +67,7 @@ const EmissionsGauge = ({ chevronImage }) => {
           reduction: Math.abs(monthlyReduction).toFixed(2)
         })}
       </p>
+      <br></br>
 
       <div className='key'>
         <p className='k-title'>
@@ -74,7 +75,9 @@ const EmissionsGauge = ({ chevronImage }) => {
             br: () => <br />
           })}
         </p>
+
         <p className='key-text p-style'>
+        
           <span className='key-row'>
             {t.rich('key-a', {
               color: (chunks) => (<span className='w84'>{chunks}</span>),
