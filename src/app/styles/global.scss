@@ -143,6 +143,7 @@
       align-items: center;
         .radio-group {
           margin-top: 0;
+          margin-left: 10px;
         }
     }
     label {
@@ -996,6 +997,7 @@
   }
   .justify-right {
     justify-content: flex-end;
+    margin-left: 4px;
     font-weight: $bold;
   }
   /* Fix inline spacing issue */

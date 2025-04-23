@@ -137,7 +137,7 @@ export default function EmissionsBreakdown({ overrideStageValues }) {
           label: (context) => {
             if (context.dataIndex === 0) return '' // Hide tooltip for origin
             const diff = stageValues[context.dataIndex] - (stageValues[context.dataIndex - 1] || 0)
-            return `${diff.toFixed(2)} kg CO₂`
+            return `${diff.toFixed(2)}kg CO₂`
           }
         }
       }
@@ -193,7 +193,7 @@ export default function EmissionsBreakdown({ overrideStageValues }) {
                 <span>{label}</span>
               </div>
               {/* Show actual emissions values instead of percentages */}
-              <span className='justify-right'>{diff.toFixed(2)} kg CO₂</span>
+              <span className='justify-right'>{diff.toFixed(2)}kg CO₂</span>
             </div>
           )
         })}
