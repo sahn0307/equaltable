@@ -78,7 +78,11 @@ export default function ProductionStage({
       <article className='scroll'>
         {/* Carbon Emissions from Farm */}
         <div className='question-group'>
-          <label>{t('q2')}</label>
+        <label>
+          {t.rich('q2', {
+            br: () => <br />
+          })}
+        </label>
           <div className='row-group'>
             <input
               type='text' // Allow decimals and "-"
