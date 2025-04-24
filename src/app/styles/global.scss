@@ -190,7 +190,7 @@
       justify-content: flex-end;
       align-items: center;
       label {
-        margin-right: 10px;
+        margin-right: 5px;
         display: flex;
         align-items: center;
       }
@@ -1367,4 +1367,69 @@
 
   /* Calculate button stays on the right */
 
-
+  .q6-inline {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    margin-bottom: 20px;
+  
+    .inline-label {
+      font-weight: $medium;
+      font-size: 12px;
+      color: $dk-grey;
+    }
+  
+    .radio-inline-group {
+      display: inline-block;
+  
+      label {
+        display: inline-flex; // 🟢 fix label layout
+        align-items: center;  // 🟢 vertically center label text
+        margin-left: 15px;
+        font-size: 12px;
+        color: $dk-grey;
+  
+        input {
+          margin-right: 5px;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  
+  .smoke-eliminator-inline {
+    > label {
+      font-size: 12px;
+      font-weight: $medium;
+      color: $dk-grey;
+      display: block;
+      margin-bottom: 7px;
+    }
+  
+    .radio-inline-group {
+      white-space: nowrap; // stay on one line
+  
+      label {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 0px;
+  
+        &:first-child {
+          margin-left: 0;
+        }
+  
+        font-size: 12px;
+        max-width: 75px; // ✅ reduce max width to prevent pushing others
+        line-height: 1.2;
+        color: $dk-grey;
+        text-align: left; // Optional: better for multi-line
+  
+        input {
+          vertical-align: middle;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  
+  
