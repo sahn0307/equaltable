@@ -112,9 +112,9 @@ useEffect(() => {
       })}
       <article className="scroll">
         {/* Roaster Type */}
-        <div className="question-group">
-          <label>{t('q6')}</label>
-          <div className="radio-group">
+        <div className="question-group q6-inline">
+          <label className="inline-label">{t('q6')}</label>
+          <div className="radio-inline-group">
             <label>
               <input
                 type="radio"
@@ -201,7 +201,7 @@ useEffect(() => {
         </div>
 
         {/* Smoke Eliminator Options */}
-        <div className="question-group">
+        <div className="question-group smoke-eliminator-inline">
           <label>{t('q11')}</label>
           <div className="radio-group">
             <label>

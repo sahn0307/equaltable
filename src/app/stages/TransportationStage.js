@@ -205,7 +205,11 @@ export default function TransportationStage({
 
         {/* Domestic Distance to Roasting Factory */}
         <div className="question-group">
-          <label>{t('q5')}</label>
+        <label>
+          {t.rich('q5', {
+            br: () => <br />
+          })}
+        </label>
           <div className="radio-group">
             <label>
               <input

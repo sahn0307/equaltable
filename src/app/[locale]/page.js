@@ -10,7 +10,7 @@ import detail from '../../../public/assets/detailed.png';
 
 export default function Page1() {
   const t = useTranslations();
-  const { productionData, setProductionData, setSimpleAnalysisDefaults } = useEmissionsContext();
+  const { productionData, setProductionData, setSimpleAnalysisDefaults, setDetailedAnalysisMode } = useEmissionsContext();
   const [dataConsent, setDataConsent] = useState(false);
 
   const handleInputChange = (e) => {
@@ -115,7 +115,7 @@ export default function Page1() {
 				monthlyCoffeeUsage: prev.monthlyCoffeeUsage || 0, // Prevent accidental clearing
 				}));
 
-				// setDetailedAnalysisMode(); // ✅ Toggle off Simple Analysis
+				setDetailedAnalysisMode(); // ✅ Toggle off Simple Analysis
 			}}
 			className={!canProceed ? 'disabled-link' : ''}
 			aria-disabled={!canProceed}
