@@ -10,7 +10,7 @@ import detail from '../../../public/assets/detailed.png';
 
 export default function Page1() {
   const t = useTranslations();
-  const { productionData, setProductionData, setSimpleAnalysisDefaults } = useEmissionsContext();
+  const { productionData, setProductionData, setSimpleAnalysisDefaults, setDetailedAnalysisMode } = useEmissionsContext();
   const [dataConsent, setDataConsent] = useState(false);
 
   const handleInputChange = (e) => {
